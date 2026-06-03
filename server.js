@@ -18,9 +18,7 @@ app.use("/api/crossword", crosswordRoutes);
 app.use("/api/wordle", wordleRoutes);
 
 // Initialize Gemini AI
-const genAI = new GoogleGenerativeAI(
-  "AQ.Ab8RN6IeOLJCgmGQVZK_XPkYXI2oz8WKk0qy4VPnqMqBIhppkw",
-);
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
 const PDF_FILE_PATH = path.join(
   __dirname,
