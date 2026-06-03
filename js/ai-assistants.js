@@ -142,14 +142,19 @@ async function askPhilosophyGemini(userQuestion) {
           `Bạn đã vượt giới hạn miễn phí.${waitText} Nếu cần, hãy nâng quota hoặc đợi sang ngày mới.`,
         );
       }
-      throw new Error(errorData.error || "Không thể kết nối với server");
+      const detail = errorData.details ? ` (${errorData.details})` : "";
+      throw new Error(`[HTTP ${response.status}] ${errorData.error || "Server error"}${detail}`);
     }
 
     const data = await response.json();
     return data.answer;
   } catch (error) {
     console.error("Fetch error:", error);
-    throw new Error("Không thể kết nối với server. Vui lòng thử lại sau.");
+    // Nếu lỗi đã có message rõ ràng (ném từ trên), giữ nguyên
+    if (error.message && !error.message.includes("Failed to fetch")) {
+      throw error;
+    }
+    throw new Error("Không thể kết nối với server (network error). Hãy kiểm tra Netlify đã deploy thành công chưa.");
   }
 }
 
