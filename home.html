@@ -1,0 +1,1478 @@
+<!doctype html>
+<html class="light" lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Học Viện PhiloVerse — Triết Học Trong Đời Sống</title>
+
+    <!-- Google Fonts & Icons -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Tailwind CSS with CDN and Custom Palette Config -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script src="js/tailwind-config-global.js"></script>
+
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+    </style>
+  </head>
+
+  <body
+    class="bg-[#FAF8F3] dark:bg-[#0A0F1D] text-[#1E293B] dark:text-[#FAF8F3] font-sans min-h-screen flex flex-col overflow-x-hidden transition-colors duration-500"
+  >
+    <!-- Header Placeholder -->
+    <div id="header-placeholder"></div>
+
+    <!-- Main Container -->
+    <main class="flex-grow">
+      <!-- HERO SECTION (GRAND LIBRARY PORTAL Entrance) -->
+      <section
+        class="relative min-h-[50vh] flex items-center justify-center pt-24 pb-12 px-4 md:px-10 overflow-hidden border-b border-slate-200/50 dark:border-slate-800/40"
+      >
+        <div
+          class="absolute inset-0 bg-[radial-gradient(#8B6F47_1px,transparent_1px)] [background-size:24px_24px] opacity-[0.04] dark:opacity-[0.02] pointer-events-none"
+        ></div>
+        <div
+          class="absolute top-0 right-0 w-96 h-96 bg-[#D4A017]/5 rounded-full blur-[120px] -z-10"
+        ></div>
+
+        <div
+          class="max-w-7xl mx-auto w-full text-center flex flex-col items-center gap-6 relative z-10"
+        >
+          <div
+            class="inline-flex items-center gap-2 px-3 py-1 bg-[#D4A017]/10 border border-[#D4A017]/30 rounded-full text-xs font-semibold text-[#D4A017] uppercase tracking-wider"
+          >
+            <span class="material-symbols-outlined text-sm">history_edu</span>
+            Học viện Triết học Số
+          </div>
+          <h1
+            class="text-4xl md:text-6xl font-bold font-serif-academy leading-tight text-[#0F172A] dark:text-white max-w-4xl"
+          >
+            Giải Mã Cuộc Sống Bằng <br />
+            <span
+              class="text-[#D4A017] underline decoration-[#D4A017]/30 decoration-2 underline-offset-4 font-serif-academy"
+              >Triết Học Biện Chứng</span
+            >
+          </h1>
+          <p
+            class="text-xs md:text-sm text-slate-600 dark:text-slate-350 leading-relaxed max-w-2xl"
+          >
+            Chào mừng bạn đến với Buồng Giải Mã Socratic. Hãy lựa chọn một khủng
+            hoảng thời đại bên dưới để chứng kiến bánh xe tinh tú xoay vần và
+            giải mã thế giới quan của bạn thông qua 3 bước biện chứng sâu sắc.
+          </p>
+          <div class="flex flex-wrap gap-4 mt-2">
+            <a
+              href="#overview"
+              class="btn-academic-gold text-xs md:text-sm shadow-md hover:shadow-lg transition-transform hover:-translate-y-0.5"
+            >
+              Khám phá 6 Module
+              <span class="material-symbols-outlined text-sm font-bold"
+                >arrow_forward</span
+              >
+            </a>
+            <a
+              href="ai-assistants.html"
+              class="btn-academic-outline text-xs md:text-sm text-[#0F172A] dark:text-[#FAF8F3] hover:-translate-y-0.5"
+            >
+              Hỏi Đáp Trực Tuyến AI
+              <span class="material-symbols-outlined text-sm"
+                >auto_awesome</span
+              >
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- CELESTIAL SOCRATIC ORACLE DECIPHERING STATION (Brand New Layout!) -->
+      <section
+        class="py-16 px-4 md:px-10 max-w-7xl mx-auto border-b border-slate-200/50 dark:border-slate-800/40"
+      >
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+          <!-- Column 1: Cửa Ngõ Khủng Hoảng (LG:col-span-4) -->
+          <div class="lg:col-span-4 flex flex-col gap-4 justify-center">
+            <div class="mb-4">
+              <h3
+                class="text-lg font-bold font-serif-academy text-[#0F172A] dark:text-[#FAF8F3] flex items-center gap-2"
+              >
+                <span class="material-symbols-outlined text-[#D4A017]"
+                  >problem</span
+                >
+                1. Chọn Khủng Hoảng
+              </h3>
+              <p class="text-xs text-slate-550 dark:text-slate-400 mt-1">
+                Lựa chọn vấn đề đời sống bạn đang gặp phải.
+              </p>
+            </div>
+
+            <div class="flex flex-col gap-3">
+              <!-- Card 1: Stress Học Tập -->
+              <div
+                class="enigma-item-card active"
+                data-topic="stress"
+                onclick="selectOracleEnigma('stress', this)"
+              >
+                <div class="enigma-icon-container">
+                  <span class="material-symbols-outlined"
+                    >sentiment_stressed</span
+                  >
+                </div>
+                <div>
+                  <h4
+                    class="text-xs font-bold text-[#0F172A] dark:text-white uppercase tracking-wider"
+                  >
+                    Học Nghiệp
+                  </h4>
+                  <p class="text-[10px] text-slate-500 mt-0.5">
+                    Áp lực điểm số &amp; stress học tập
+                  </p>
+                </div>
+              </div>
+
+              <!-- Card 2: Áp lực thành công -->
+              <div
+                class="enigma-item-card"
+                data-topic="success"
+                onclick="selectOracleEnigma('success', this)"
+              >
+                <div class="enigma-icon-container">
+                  <span class="material-symbols-outlined">verified</span>
+                </div>
+                <div>
+                  <h4
+                    class="text-xs font-bold text-[#0F172A] dark:text-white uppercase tracking-wider"
+                  >
+                    Thành Danh
+                  </h4>
+                  <p class="text-[10px] text-slate-500 mt-0.5">
+                    Nỗi sợ tụt hậu &amp; áp lực thành công
+                  </p>
+                </div>
+              </div>
+
+              <!-- Card 3: Thất bại vấp ngã -->
+              <div
+                class="enigma-item-card"
+                data-topic="failure"
+                onclick="selectOracleEnigma('failure', this)"
+              >
+                <div class="enigma-icon-container">
+                  <span class="material-symbols-outlined">help</span>
+                </div>
+                <div>
+                  <h4
+                    class="text-xs font-bold text-[#0F172A] dark:text-white uppercase tracking-wider"
+                  >
+                    Nghịch Cảnh
+                  </h4>
+                  <p class="text-[10px] text-slate-500 mt-0.5">
+                    Khủng hoảng đổ vỡ &amp; vấp ngã đầu đời
+                  </p>
+                </div>
+              </div>
+
+              <!-- Card 4: Mâu thuẫn quan hệ -->
+              <div
+                class="enigma-item-card"
+                data-topic="relationship"
+                onclick="selectOracleEnigma('relationship', this)"
+              >
+                <div class="enigma-icon-container">
+                  <span class="material-symbols-outlined">favorite</span>
+                </div>
+                <div>
+                  <h4
+                    class="text-xs font-bold text-[#0F172A] dark:text-white uppercase tracking-wider"
+                  >
+                    Nhân Duyên
+                  </h4>
+                  <p class="text-[10px] text-slate-500 mt-0.5">
+                    Rạn nứt tình bạn &amp; mâu thuẫn quan hệ
+                  </p>
+                </div>
+              </div>
+
+              <!-- Card 5: Mất phương hướng -->
+              <div
+                class="enigma-item-card"
+                data-topic="lost"
+                onclick="selectOracleEnigma('lost', this)"
+              >
+                <div class="enigma-icon-container">
+                  <span class="material-symbols-outlined">explore</span>
+                </div>
+                <div>
+                  <h4
+                    class="text-xs font-bold text-[#0F172A] dark:text-white uppercase tracking-wider"
+                  >
+                    Định Hướng
+                  </h4>
+                  <p class="text-[10px] text-slate-500 mt-0.5">
+                    Lạc lối, trống rỗng &amp; hoài nghi tương lai
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Column 2: The Socratic Astrolabe Core (LG:col-span-4) -->
+          <div
+            class="lg:col-span-4 flex flex-col items-center justify-center gap-6 py-12 border-y lg:border-y-0 lg:border-x border-slate-200/50 dark:border-slate-800/40 relative"
+          >
+            <div class="text-center absolute top-4">
+              <h3
+                class="text-xs font-bold uppercase tracking-widest text-[#D4A017] font-serif-academy"
+              >
+                Trung Tâm Vận Hành
+              </h3>
+              <p class="text-[10px] text-slate-450 dark:text-slate-400">
+                Bánh Xe Bản Thể Socratic
+              </p>
+            </div>
+
+            <!-- Beautiful Rotating Astrolabe Wheel -->
+            <div class="astrolabe-station-wrapper">
+              <div class="astrolabe-ring-outer"></div>
+              <div class="astrolabe-ring-middle"></div>
+              <div class="astrolabe-ring-inner" id="astrolabe-dynamic-wheel">
+                <div
+                  class="astrolabe-pointer"
+                  id="astrolabe-pointer-needle"
+                ></div>
+                <!-- Sun core icon -->
+                <div
+                  class="size-16 rounded-full bg-white dark:bg-[#121826] shadow-lg border border-[#D4A017]/30 flex items-center justify-center z-10 transition-transform duration-500 group-hover:scale-105"
+                >
+                  <span
+                    class="material-symbols-outlined text-[#D4A017] text-2xl font-bold animate-spin"
+                    style="animation-duration: 25s"
+                    >explore</span
+                  >
+                </div>
+              </div>
+            </div>
+
+            <div class="text-center max-w-[240px]">
+              <p class="text-[11px] text-slate-500 italic leading-relaxed">
+                Click chọn khủng hoảng để astrolabe định hướng các lực lượng đối
+                lập của tư duy.
+              </p>
+            </div>
+          </div>
+
+          <!-- Column 3: Sách Cổ Giải Mã (LG:col-span-4) -->
+          <div
+            class="lg:col-span-4 flex flex-col justify-center gap-4 bg-white/45 dark:bg-[#121826]/10 p-6 md:p-8 rounded-3xl border border-[#D4A017]/25 relative"
+          >
+            <div
+              class="absolute inset-0 bg-[radial-gradient(#8B6F47_1px,transparent_1px)] [background-size:20px_20px] opacity-[0.015] pointer-events-none rounded-3xl"
+            ></div>
+
+            <div class="mb-4 relative z-10">
+              <h3
+                class="text-lg font-bold font-serif-academy text-[#0F172A] dark:text-[#FAF8F3] flex items-center gap-2"
+              >
+                <span class="material-symbols-outlined text-[#D4A017]"
+                  >history_edu</span
+                >
+                2. Buồng Giải Mã
+              </h3>
+              <p class="text-xs text-slate-550 dark:text-slate-400 mt-1">
+                Phép phân tích biện chứng 3 bước.
+              </p>
+            </div>
+
+            <!-- Progressive Decoding Content Display Scroll -->
+            <div
+              class="flex flex-col gap-6 relative z-10"
+              id="decipher-scroll-content"
+            >
+              <!-- Will be populated dynamically via Javascript with 3 steps -->
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FEATURED PHILOSOPHERS SECTION -->
+      <section class="py-20 px-4 md:px-10 max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+          <div
+            class="inline-flex items-center gap-1.5 px-3 py-1 bg-[#D4A017]/10 rounded-full text-xs font-bold text-[#D4A017] uppercase tracking-wider mb-3"
+          >
+            <span class="material-symbols-outlined text-xs">local_library</span>
+            Trụ Cột Tư Tưởng
+          </div>
+          <h2
+            class="text-3xl md:text-4xl font-bold font-serif-academy text-[#0F172A] dark:text-white"
+          >
+            Những Triết Gia Đại Diện
+          </h2>
+          <p
+            class="text-xs md:text-sm text-slate-500 dark:text-slate-400 mt-2 max-w-xl mx-auto"
+          >
+            Học hỏi những câu nói tinh túy nhất soi rọi giá trị cuộc đời từ các
+            trường phái triết lý nhân loại tiêu biểu.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <!-- Card 1: Socrates -->
+          <div
+            class="bg-white dark:bg-[#121826] rounded-2xl p-6 border border-slate-200/50 dark:border-slate-800/40 hover-lift flex flex-col justify-between"
+          >
+            <div>
+              <div class="flex items-center gap-3.5 mb-5">
+                <div
+                  class="size-11 rounded-full bg-[#FAF8F3] dark:bg-[#0A0F1D] flex items-center justify-center text-[#D4A017] border border-[#D4A017]/20 text-xl font-serif"
+                >
+                  S
+                </div>
+                <div>
+                  <h3 class="text-sm font-bold text-slate-900 dark:text-white">
+                    Socrates
+                  </h3>
+                  <span class="text-[10px] text-slate-450 dark:text-slate-500"
+                    >Đặt Câu Hỏi Biện Chứng</span
+                  >
+                </div>
+              </div>
+              <p
+                class="text-xs italic text-slate-650 dark:text-slate-350 leading-relaxed quote-text font-serif"
+              >
+                "Cuộc đời không phản tư là cuộc đời không đáng sống."
+              </p>
+            </div>
+            <div
+              class="mt-6 pt-4 border-t border-slate-100 dark:border-slate-800 text-[10px] text-slate-400"
+            >
+              Phương pháp phản tư Socratic giúp phá vỡ các định kiến sai lệch để
+              chạm tới bản chất chân lý.
+            </div>
+          </div>
+
+          <!-- Card 2: Marcus Aurelius -->
+          <div
+            class="bg-white dark:bg-[#121826] rounded-2xl p-6 border border-slate-200/50 dark:border-slate-800/40 hover-lift flex flex-col justify-between"
+          >
+            <div>
+              <div class="flex items-center gap-3.5 mb-5">
+                <div
+                  class="size-11 rounded-full bg-[#FAF8F3] dark:bg-[#0A0F1D] flex items-center justify-center text-[#D4A017] border border-[#D4A017]/20 text-xl font-serif"
+                >
+                  M
+                </div>
+                <div>
+                  <h3 class="text-sm font-bold text-slate-900 dark:text-white">
+                    Marcus Aurelius
+                  </h3>
+                  <span class="text-[10px] text-slate-450 dark:text-slate-500"
+                    >Chủ Nghĩa Khắc Kỷ</span
+                  >
+                </div>
+              </div>
+              <p
+                class="text-xs italic text-slate-650 dark:text-slate-350 leading-relaxed quote-text font-serif"
+              >
+                "Tâm trí bạn sẽ mang màu sắc của những ý nghĩ thường trực."
+              </p>
+            </div>
+            <div
+              class="mt-6 pt-4 border-t border-slate-100 dark:border-slate-800 text-[10px] text-slate-400"
+            >
+              Rèn luyện kỷ luật tự thân, bình thản chấp nhận những điều bất khả
+              kháng để tìm kiếm an nhiên nội tâm.
+            </div>
+          </div>
+
+          <!-- Card 3: Karl Marx -->
+          <div
+            class="bg-white dark:bg-[#121826] rounded-2xl p-6 border border-slate-200/50 dark:border-slate-800/40 hover-lift flex flex-col justify-between"
+          >
+            <div>
+              <div class="flex items-center gap-3.5 mb-5">
+                <div
+                  class="size-11 rounded-full bg-[#FAF8F3] dark:bg-[#0A0F1D] flex items-center justify-center text-[#D4A017] border border-[#D4A017]/20 text-xl font-serif"
+                >
+                  K
+                </div>
+                <div>
+                  <h3 class="text-sm font-bold text-slate-900 dark:text-white">
+                    Karl Marx
+                  </h3>
+                  <span class="text-[10px] text-slate-450 dark:text-slate-500"
+                    >Duy Vật Biện Chứng</span
+                  >
+                </div>
+              </div>
+              <p
+                class="text-xs italic text-slate-650 dark:text-slate-350 leading-relaxed quote-text font-serif"
+              >
+                "Các triết gia mới chỉ giải thích thế giới, vấn đề là cải tạo
+                thế giới."
+              </p>
+            </div>
+            <div
+              class="mt-6 pt-4 border-t border-slate-100 dark:border-slate-800 text-[10px] text-slate-400"
+            >
+              Nhận thức hiện thực khách quan thông qua thực tiễn hoạt động cách
+              mạng cải tạo cơ cấu kinh tế xã hội.
+            </div>
+          </div>
+
+          <!-- Card 4: Lao Tzu -->
+          <div
+            class="bg-white dark:bg-[#121826] rounded-2xl p-6 border border-slate-200/50 dark:border-slate-800/40 hover-lift flex flex-col justify-between"
+          >
+            <div>
+              <div class="flex items-center gap-3.5 mb-5">
+                <div
+                  class="size-11 rounded-full bg-[#FAF8F3] dark:bg-[#0A0F1D] flex items-center justify-center text-[#D4A017] border border-[#D4A017]/20 text-xl font-serif"
+                >
+                  L
+                </div>
+                <div>
+                  <h3 class="text-sm font-bold text-slate-900 dark:text-white">
+                    Lão Tử
+                  </h3>
+                  <span class="text-[10px] text-slate-450 dark:text-slate-500"
+                    >Triết Học Đạo Gia</span
+                  >
+                </div>
+              </div>
+              <p
+                class="text-xs italic text-slate-650 dark:text-slate-350 leading-relaxed quote-text font-serif"
+              >
+                "Hành trình vạn dặm bắt đầu từ một bước chân."
+              </p>
+            </div>
+            <div
+              class="mt-6 pt-4 border-t border-slate-100 dark:border-slate-800 text-[10px] text-slate-400"
+            >
+              Theo đuổi triết lý "Vô vi" - thuận theo quy luật tự nhiên, giải
+              phóng bản ngã khỏi những áp đặt gượng ép.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PHILOSOPHY SCHOOLS SECTION -->
+      <section
+        class="bg-[#FAF8F3] dark:bg-[#121826]/40 py-20 px-4 md:px-10 border-t border-b border-slate-200/50 dark:border-slate-800/40"
+      >
+        <div class="max-w-7xl mx-auto">
+          <div class="text-center mb-16">
+            <div
+              class="inline-flex items-center gap-1.5 px-3 py-1 bg-[#D4A017]/10 rounded-full text-xs font-bold text-[#D4A017] uppercase tracking-wider mb-3"
+            >
+              <span class="material-symbols-outlined text-xs">mediation</span>
+              Hệ Tư Tưởng Cổ Điển
+            </div>
+            <h2
+              class="text-3xl md:text-4xl font-bold font-serif-academy text-[#0F172A] dark:text-white"
+            >
+              Các Trường Phái Học Thuyết
+            </h2>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div
+              class="bg-white dark:bg-[#121826] rounded-2xl p-8 border border-slate-200/50 dark:border-slate-800/40 flex flex-col gap-4"
+            >
+              <span class="material-symbols-outlined text-[#D4A017] text-3xl"
+                >psychology</span
+              >
+              <h3
+                class="text-lg font-bold text-slate-900 dark:text-white font-serif-academy"
+              >
+                Chủ nghĩa Khắc kỷ
+              </h3>
+              <p
+                class="text-xs text-slate-600 dark:text-slate-350 leading-relaxed"
+              >
+                Tập trung quản trị cảm xúc cá nhân bằng trí tuệ lô-gíc, tách
+                biệt rạch ròi giữa các yếu tố chủ quan kiểm soát được và ngoại
+                cảnh khách quan.
+              </p>
+            </div>
+
+            <div
+              class="bg-white dark:bg-[#121826] rounded-2xl p-8 border border-slate-200/50 dark:border-slate-800/40 flex flex-col gap-4"
+            >
+              <span class="material-symbols-outlined text-[#D4A017] text-3xl"
+                >balance</span
+              >
+              <h3
+                class="text-lg font-bold text-slate-900 dark:text-white font-serif-academy"
+              >
+                Duy vật Biện chứng
+              </h3>
+              <p
+                class="text-xs text-slate-600 dark:text-slate-350 leading-relaxed"
+              >
+                Nền tảng triết học khoa học coi vật chất là nguồn gốc quyết định
+                ý thức, nhìn nhận sự vật trong mối liên hệ phổ biến và vận động
+                tự thân.
+              </p>
+            </div>
+
+            <div
+              class="bg-white dark:bg-[#121826] rounded-2xl p-8 border border-slate-200/50 dark:border-slate-800/40 flex flex-col gap-4"
+            >
+              <span class="material-symbols-outlined text-[#D4A017] text-3xl"
+                >history_edu</span
+              >
+              <h3
+                class="text-lg font-bold text-slate-900 dark:text-white font-serif-academy"
+              >
+                Chủ nghĩa Hiện sinh
+              </h3>
+              <p
+                class="text-xs text-slate-600 dark:text-slate-350 leading-relaxed"
+              >
+                Khẳng định hiện sinh đi trước bản chất. Con người hoàn toàn tự
+                do định đoạt và chịu trách nhiệm tuyệt đối về ý nghĩa sự sống
+                của chính mình.
+              </p>
+            </div>
+
+            <div
+              class="bg-white dark:bg-[#121826] rounded-2xl p-8 border border-slate-200/50 dark:border-slate-800/40 flex flex-col gap-4"
+            >
+              <span class="material-symbols-outlined text-[#D4A017] text-3xl"
+                >spa</span
+              >
+              <h3
+                class="text-lg font-bold text-slate-900 dark:text-white font-serif-academy"
+              >
+                Minh triết phương Đông
+              </h3>
+              <p
+                class="text-xs text-slate-600 dark:text-slate-350 leading-relaxed"
+              >
+                Đạo lý hòa hợp giữa tiểu vũ trụ con người với đại vũ trụ tự
+                nhiên, đề cao tu dưỡng đạo đức tâm tính đạt đến cảnh giới vẹn
+                toàn.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- DAILY QUOTES SECTION -->
+      <section class="py-20 px-4 md:px-10 max-w-4xl mx-auto text-center">
+        <div class="quote-box double-border text-left mx-auto">
+          <div class="flex flex-col gap-4">
+            <p
+              id="parchment-quote"
+              class="text-base md:text-lg font-serif text-[#0F172A] dark:text-white leading-relaxed italic"
+            >
+              "Lao động đã sáng tạo ra chính bản thân con người. Nó là điều kiện
+              cơ bản đầu tiên của toàn bộ đời sống loài người."
+            </p>
+            <div class="flex items-center justify-between mt-4">
+              <span
+                id="parchment-author"
+                class="text-xs font-bold uppercase tracking-wider text-[#D4A017]"
+                >— Friedrich Engels</span
+              >
+              <button
+                id="btn-next-quote"
+                class="btn-academic-gold text-xs font-semibold py-2 px-4 shadow hover:shadow-md transition-all flex items-center gap-1.5"
+                onclick="rotateWisdomQuote()"
+              >
+                <span class="material-symbols-outlined text-sm">cycle</span>
+                Nhận Lời Khuyên
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CURRICULUM ROADMAP TIMELINE -->
+      <section
+        id="overview"
+        class="py-24 px-4 md:px-10 max-w-5xl mx-auto relative"
+      >
+        <div class="text-center mb-16">
+          <div
+            class="inline-flex items-center gap-1.5 px-3 py-1 bg-[#D4A017]/10 rounded-full text-xs font-bold text-[#D4A017] uppercase tracking-wider mb-3"
+          >
+            <span class="material-symbols-outlined text-xs">schema</span>
+            Hành Trình Khai Phá
+          </div>
+          <h2
+            class="text-3xl md:text-4xl font-bold font-serif-academy text-[#0F172A] dark:text-white"
+          >
+            Chương Trình Học Tập Học Phần
+          </h2>
+          <p
+            class="text-xs md:text-sm text-slate-500 dark:text-slate-400 mt-2 max-w-xl mx-auto"
+          >
+            6 module cốt lõi bám sát cấu trúc giáo trình Triết học Mác - Lênin
+            chuẩn của Bộ Giáo dục & Đào tạo.
+          </p>
+        </div>
+
+        <!-- Timeline container -->
+        <div class="timeline-stem flex flex-col gap-12">
+          <!-- Module 1 -->
+          <div
+            class="timeline-node grid grid-cols-1 md:grid-cols-12 gap-6 items-start"
+          >
+            <div class="timeline-node-dot"></div>
+            <!-- Left Side Spacer for Desktop -->
+            <div class="hidden md:block md:col-span-1"></div>
+            <!-- Card Body (Right 11 Cols) -->
+            <a
+              href="module1.html"
+              class="md:col-span-11 bg-white dark:bg-[#121826] rounded-2xl p-8 border border-slate-200/50 dark:border-slate-800/40 hover-lift block"
+            >
+              <div
+                class="flex flex-col md:flex-row gap-6 justify-between items-start"
+              >
+                <div class="flex-1">
+                  <span
+                    class="px-2.5 py-1 bg-[#D4A017]/10 rounded text-[#D4A017] text-[10px] font-bold uppercase tracking-wider mb-3 inline-block"
+                    >Module 1</span
+                  >
+                  <h3
+                    class="text-xl md:text-2xl font-serif-academy font-bold text-slate-900 dark:text-white group-hover:text-[#D4A017] transition-colors mb-3"
+                  >
+                    Nhập môn Triết học Mác–Lênin
+                  </h3>
+                  <p
+                    class="text-xs md:text-sm text-slate-600 dark:text-slate-350 leading-relaxed mb-4"
+                  >
+                    Tìm hiểu nguồn gốc hình thành và các chức năng thế giới
+                    quan, phương pháp luận của Triết học Mác–Lênin.
+                  </p>
+                  <div class="flex flex-wrap gap-2">
+                    <span
+                      class="px-2.5 py-0.5 bg-slate-100 dark:bg-[#0A0F1D] text-slate-600 dark:text-slate-400 text-[10px] rounded-full"
+                      >Triết học là gì</span
+                    >
+                    <span
+                      class="px-2.5 py-0.5 bg-slate-100 dark:bg-[#0A0F1D] text-slate-600 dark:text-slate-400 text-[10px] rounded-full"
+                      >Thế giới quan</span
+                    >
+                  </div>
+                </div>
+                <div
+                  class="text-[#D4A017] font-semibold text-xs flex items-center gap-1 shrink-0 self-end md:self-center mt-4 md:mt-0"
+                >
+                  Chi tiết
+                  <span class="material-symbols-outlined text-sm"
+                    >arrow_forward</span
+                  >
+                </div>
+              </div>
+            </a>
+          </div>
+
+          <!-- Module 2 -->
+          <div
+            class="timeline-node grid grid-cols-1 md:grid-cols-12 gap-6 items-start"
+          >
+            <div class="timeline-node-dot"></div>
+            <div class="hidden md:block md:col-span-1"></div>
+            <a
+              href="module2.html"
+              class="md:col-span-11 bg-white dark:bg-[#121826] rounded-2xl p-8 border border-slate-200/50 dark:border-slate-800/40 hover-lift block"
+            >
+              <div
+                class="flex flex-col md:flex-row gap-6 justify-between items-start"
+              >
+                <div class="flex-1">
+                  <span
+                    class="px-2.5 py-1 bg-[#D4A017]/10 rounded text-[#D4A017] text-[10px] font-bold uppercase tracking-wider mb-3 inline-block"
+                    >Module 2</span
+                  >
+                  <h3
+                    class="text-xl md:text-2xl font-serif-academy font-bold text-slate-900 dark:text-white group-hover:text-[#D4A017] transition-colors mb-3"
+                  >
+                    Chủ nghĩa Duy vật Biện chứng
+                  </h3>
+                  <p
+                    class="text-xs md:text-sm text-slate-600 dark:text-slate-350 leading-relaxed mb-4"
+                  >
+                    Bản chất của vật chất, ý thức và mối quan hệ biện chứng biện
+                    chứng sinh động giữa chúng.
+                  </p>
+                  <div class="flex flex-wrap gap-2">
+                    <span
+                      class="px-2.5 py-0.5 bg-slate-100 dark:bg-[#0A0F1D] text-slate-600 dark:text-slate-400 text-[10px] rounded-full"
+                      >Vật chất & Ý thức</span
+                    >
+                    <span
+                      class="px-2.5 py-0.5 bg-slate-100 dark:bg-[#0A0F1D] text-slate-600 dark:text-slate-400 text-[10px] rounded-full"
+                      >Không-Thời gian</span
+                    >
+                  </div>
+                </div>
+                <div
+                  class="text-[#D4A017] font-semibold text-xs flex items-center gap-1 shrink-0 self-end md:self-center mt-4 md:mt-0"
+                >
+                  Chi tiết
+                  <span class="material-symbols-outlined text-sm"
+                    >arrow_forward</span
+                  >
+                </div>
+              </div>
+            </a>
+          </div>
+
+          <!-- Module 3 -->
+          <div
+            class="timeline-node grid grid-cols-1 md:grid-cols-12 gap-6 items-start"
+          >
+            <div class="timeline-node-dot"></div>
+            <div class="hidden md:block md:col-span-1"></div>
+            <a
+              href="module3.html"
+              class="md:col-span-11 bg-white dark:bg-[#121826] rounded-2xl p-8 border border-slate-200/50 dark:border-slate-800/40 hover-lift block"
+            >
+              <div
+                class="flex flex-col md:flex-row gap-6 justify-between items-start"
+              >
+                <div class="flex-1">
+                  <span
+                    class="px-2.5 py-1 bg-[#D4A017]/10 rounded text-[#D4A017] text-[10px] font-bold uppercase tracking-wider mb-3 inline-block"
+                    >Module 3</span
+                  >
+                  <h3
+                    class="text-xl md:text-2xl font-serif-academy font-bold text-slate-900 dark:text-white group-hover:text-[#D4A017] transition-colors mb-3"
+                  >
+                    Phép Biện chứng Duy vật
+                  </h3>
+                  <p
+                    class="text-xs md:text-sm text-slate-600 dark:text-slate-350 leading-relaxed mb-4"
+                  >
+                    Ba quy luật cơ bản: Lượng - Chất, Mâu thuẫn, Phủ định biện
+                    chứng — động lực phát triển vạn vật.
+                  </p>
+                  <div class="flex flex-wrap gap-2">
+                    <span
+                      class="px-2.5 py-0.5 bg-slate-100 dark:bg-[#0A0F1D] text-slate-600 dark:text-slate-400 text-[10px] rounded-full"
+                      >Quy luật Lượng-Chất</span
+                    >
+                    <span
+                      class="px-2.5 py-0.5 bg-slate-100 dark:bg-[#0A0F1D] text-slate-600 dark:text-slate-400 text-[10px] rounded-full"
+                      >Đấu tranh đối lập</span
+                    >
+                  </div>
+                </div>
+                <div
+                  class="text-[#D4A017] font-semibold text-xs flex items-center gap-1 shrink-0 self-end md:self-center mt-4 md:mt-0"
+                >
+                  Chi tiết
+                  <span class="material-symbols-outlined text-sm"
+                    >arrow_forward</span
+                  >
+                </div>
+              </div>
+            </a>
+          </div>
+
+          <!-- Module 4 -->
+          <div
+            class="timeline-node grid grid-cols-1 md:grid-cols-12 gap-6 items-start"
+          >
+            <div class="timeline-node-dot"></div>
+            <div class="hidden md:block md:col-span-1"></div>
+            <a
+              href="module4.html"
+              class="md:col-span-11 bg-white dark:bg-[#121826] rounded-2xl p-8 border border-slate-200/50 dark:border-slate-800/40 hover-lift block"
+            >
+              <div
+                class="flex flex-col md:flex-row gap-6 justify-between items-start"
+              >
+                <div class="flex-1">
+                  <span
+                    class="px-2.5 py-1 bg-[#D4A017]/10 rounded text-[#D4A017] text-[10px] font-bold uppercase tracking-wider mb-3 inline-block"
+                    >Module 4</span
+                  >
+                  <h3
+                    class="text-xl md:text-2xl font-serif-academy font-bold text-slate-900 dark:text-white group-hover:text-[#D4A017] transition-colors mb-3"
+                  >
+                    Lý luận Nhận thức
+                  </h3>
+                  <p
+                    class="text-xs md:text-sm text-slate-600 dark:text-slate-350 leading-relaxed mb-4"
+                  >
+                    Con đường nhận thức biện chứng của tri thức khoa học đi từ
+                    trực quan sinh động đến tư duy trừu tượng.
+                  </p>
+                  <div class="flex flex-wrap gap-2">
+                    <span
+                      class="px-2.5 py-0.5 bg-slate-100 dark:bg-[#0A0F1D] text-slate-600 dark:text-slate-400 text-[10px] rounded-full"
+                      >Thực tiễn khách quan</span
+                    >
+                    <span
+                      class="px-2.5 py-0.5 bg-slate-100 dark:bg-[#0A0F1D] text-slate-600 dark:text-slate-400 text-[10px] rounded-full"
+                      >Chân lý tiệm cận</span
+                    >
+                  </div>
+                </div>
+                <div
+                  class="text-[#D4A017] font-semibold text-xs flex items-center gap-1 shrink-0 self-end md:self-center mt-4 md:mt-0"
+                >
+                  Chi tiết
+                  <span class="material-symbols-outlined text-sm"
+                    >arrow_forward</span
+                  >
+                </div>
+              </div>
+            </a>
+          </div>
+
+          <!-- Module 5 -->
+          <div
+            class="timeline-node grid grid-cols-1 md:grid-cols-12 gap-6 items-start"
+          >
+            <div class="timeline-node-dot"></div>
+            <div class="hidden md:block md:col-span-1"></div>
+            <a
+              href="module5.html"
+              class="md:col-span-11 bg-white dark:bg-[#121826] rounded-2xl p-8 border border-slate-200/50 dark:border-slate-800/40 hover-lift block"
+            >
+              <div
+                class="flex flex-col md:flex-row gap-6 justify-between items-start"
+              >
+                <div class="flex-1">
+                  <span
+                    class="px-2.5 py-1 bg-[#D4A017]/10 rounded text-[#D4A017] text-[10px] font-bold uppercase tracking-wider mb-3 inline-block"
+                    >Module 5</span
+                  >
+                  <h3
+                    class="text-xl md:text-2xl font-serif-academy font-bold text-slate-900 dark:text-white group-hover:text-[#D4A017] transition-colors mb-3"
+                  >
+                    CNDV Lịch sử: Lực lượng &amp; Quan hệ Sản xuất
+                  </h3>
+                  <p
+                    class="text-xs md:text-sm text-slate-600 dark:text-slate-350 leading-relaxed mb-4"
+                  >
+                    Quy luật vận động của Lực lượng sản xuất và Quan hệ sản xuất
+                    dưới lăng kính quản trị doanh nghiệp.
+                  </p>
+                  <div class="flex flex-wrap gap-2">
+                    <span
+                      class="px-2.5 py-0.5 bg-slate-100 dark:bg-[#0A0F1D] text-slate-600 dark:text-slate-400 text-[10px] rounded-full"
+                      >Phương thức sản xuất</span
+                    >
+                    <span
+                      class="px-2.5 py-0.5 bg-slate-100 dark:bg-[#0A0F1D] text-slate-600 dark:text-slate-400 text-[10px] rounded-full"
+                      >Doanh nghiệp</span
+                    >
+                  </div>
+                </div>
+                <div
+                  class="text-[#D4A017] font-semibold text-xs flex items-center gap-1 shrink-0 self-end md:self-center mt-4 md:mt-0"
+                >
+                  Chi tiết
+                  <span class="material-symbols-outlined text-sm"
+                    >arrow_forward</span
+                  >
+                </div>
+              </div>
+            </a>
+          </div>
+
+          <!-- Module 6 -->
+          <div
+            class="timeline-node grid grid-cols-1 md:grid-cols-12 gap-6 items-start"
+          >
+            <div class="timeline-node-dot"></div>
+            <div class="hidden md:block md:col-span-1"></div>
+            <a
+              href="module6.html"
+              class="md:col-span-11 bg-white dark:bg-[#121826] rounded-2xl p-8 border border-slate-200/50 dark:border-[#D4A017]/35 hover-lift block"
+            >
+              <div
+                class="flex flex-col md:flex-row gap-6 justify-between items-start"
+              >
+                <div class="flex-1">
+                  <div class="flex items-center gap-2 mb-3">
+                    <span
+                      class="px-2.5 py-1 bg-[#D4A017]/10 rounded text-[#D4A017] text-[10px] font-bold uppercase tracking-wider inline-block"
+                      >Module 6</span
+                    >
+                    <span
+                      class="text-[9px] bg-red-150 text-red-650 px-2 py-0.5 rounded-full font-bold dark:bg-red-950/30 dark:text-red-400"
+                      >HOT</span
+                    >
+                  </div>
+                  <h3
+                    class="text-xl md:text-2xl font-serif-academy font-bold text-slate-900 dark:text-white group-hover:text-[#D4A017] transition-colors mb-3"
+                  >
+                    Biện chứng CSHT &amp; Kiến trúc Thượng tầng
+                  </h3>
+                  <p
+                    class="text-xs md:text-sm text-slate-600 dark:text-slate-350 leading-relaxed mb-4"
+                  >
+                    Hệ thống quan hệ giữa Cơ sở hạ tầng kinh tế với Kiến trúc
+                    thượng tầng nhà nước pháp luật qua case study Đổi mới Việt
+                    Nam 1986.
+                  </p>
+                  <div class="flex flex-wrap gap-2">
+                    <span
+                      class="px-2.5 py-0.5 bg-slate-100 dark:bg-[#0A0F1D] text-slate-600 dark:text-slate-400 text-[10px] rounded-full"
+                      >CSHT &amp; KTTT</span
+                    >
+                    <span
+                      class="px-2.5 py-0.5 bg-slate-100 dark:bg-[#0A0F1D] text-slate-600 dark:text-slate-400 text-[10px] rounded-full"
+                      >Nhà nước pháp quyền</span
+                    >
+                  </div>
+                </div>
+                <div
+                  class="text-[#D4A017] font-semibold text-xs flex items-center gap-1 shrink-0 self-end md:self-center mt-4 md:mt-0"
+                >
+                  Chi tiết
+                  <span class="material-symbols-outlined text-sm"
+                    >arrow_forward</span
+                  >
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- POPULAR ARTICLES SECTION -->
+      <section
+        class="py-20 bg-[#FAF8F3] dark:bg-[#121826]/40 border-t border-b border-slate-200/50 dark:border-slate-800/40 px-4 md:px-10"
+      >
+        <div class="max-w-7xl mx-auto">
+          <div class="text-center mb-16">
+            <div
+              class="inline-flex items-center gap-1.5 px-3 py-1 bg-[#D4A017]/10 rounded-full text-xs font-bold text-[#D4A017] uppercase tracking-wider mb-3"
+            >
+              <span class="material-symbols-outlined text-xs">newspaper</span>
+              Góc Báo Chí &amp; Nghiên Cứu
+            </div>
+            <h2
+              class="text-3xl md:text-4xl font-bold font-serif-academy text-[#0F172A] dark:text-white"
+            >
+              Góc Nhìn Học Thuật Nổi Bật
+            </h2>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Article 1 -->
+            <article
+              class="bg-white dark:bg-[#121826] rounded-2xl overflow-hidden border border-slate-200/50 dark:border-slate-800/40 hover-lift relative group"
+            >
+              <a
+                href="articles/ap-luc-hoc-tap.html"
+                class="absolute inset-0 z-0"
+              ></a>
+              <div
+                class="h-44 relative overflow-hidden z-10 pointer-events-none"
+              >
+                <img
+                  src="images/articles/soul_science.png"
+                  alt="Linh hồn"
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <span
+                  class="absolute top-4 left-4 px-2.5 py-1 bg-slate-900/70 backdrop-blur-md rounded text-white text-[9px] font-bold uppercase tracking-wider"
+                  >Bản chất phản ánh</span
+                >
+              </div>
+              <div
+                class="p-6 flex flex-col justify-between h-48 z-10 relative pointer-events-none"
+              >
+                <h3
+                  class="text-sm font-bold text-slate-900 dark:text-white leading-snug group-hover:text-[#D4A017] transition-colors line-clamp-2"
+                >
+                  Bản chất ý thức: Bí ẩn linh hồn và sự giải mã của khoa học
+                  hiện đại
+                </h3>
+                <p
+                  class="text-[11px] text-slate-500 line-clamp-3 leading-relaxed mt-2"
+                >
+                  Khoa học thần kinh bác bỏ quan điểm duy tâm siêu hình về linh
+                  hồn phi vật chất, chứng minh ý thức là thuộc tính phản ánh vật
+                  chất.
+                </p>
+                <div
+                  class="mt-4 pt-3 border-t border-slate-50 dark:border-slate-800 flex items-center justify-between pointer-events-auto"
+                >
+                  <a
+                    href="articles/ap-luc-hoc-tap.html"
+                    class="text-[10px] font-bold text-[#D4A017]"
+                    >Đọc Ngay</a
+                  >
+                  <span
+                    class="text-[9px] text-slate-400 flex items-center gap-1"
+                    ><span class="material-symbols-outlined text-[10px]"
+                      >link</span
+                    >Tuổi Trẻ</span
+                  >
+                </div>
+              </div>
+            </article>
+
+            <!-- Article 2 -->
+            <article
+              class="bg-white dark:bg-[#121826] rounded-2xl overflow-hidden border border-slate-200/50 dark:border-slate-800/40 hover-lift relative group"
+            >
+              <a
+                href="articles/toi-la-ai-kham-pha-ban-than.html"
+                class="absolute inset-0 z-0"
+              ></a>
+              <div
+                class="h-44 relative overflow-hidden z-10 pointer-events-none"
+              >
+                <img
+                  src="images/articles/ai_mind.png"
+                  alt="AI và Ý thức"
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <span
+                  class="absolute top-4 left-4 px-2.5 py-1 bg-slate-900/70 backdrop-blur-md rounded text-white text-[9px] font-bold uppercase tracking-wider"
+                  >Tranh biện hiện đại</span
+                >
+              </div>
+              <div
+                class="p-6 flex flex-col justify-between h-48 z-10 relative pointer-events-none"
+              >
+                <h3
+                  class="text-sm font-bold text-slate-900 dark:text-white leading-snug group-hover:text-[#D4A017] transition-colors line-clamp-2"
+                >
+                  Tranh luận: Liệu trí tuệ nhân tạo (AI) có thể hình thành ý
+                  thức và ngôn ngữ tự chủ?
+                </h3>
+                <p
+                  class="text-[11px] text-slate-500 line-clamp-3 leading-relaxed mt-2"
+                >
+                  Đối chiếu cơ chế xử lý silicon cơ học với sự phản ánh năng
+                  động, sáng tạo biện chứng của bộ não con người.
+                </p>
+                <div
+                  class="mt-4 pt-3 border-t border-slate-50 dark:border-slate-800 flex items-center justify-between pointer-events-auto"
+                >
+                  <a
+                    href="articles/toi-la-ai-kham-pha-ban-than.html"
+                    class="text-[10px] font-bold text-[#D4A017]"
+                    >Đọc Ngay</a
+                  >
+                  <span
+                    class="text-[9px] text-slate-400 flex items-center gap-1"
+                    ><span class="material-symbols-outlined text-[10px]"
+                      >link</span
+                    >CafeF</span
+                  >
+                </div>
+              </div>
+            </article>
+
+            <!-- Article 3 -->
+            <article
+              class="bg-white dark:bg-[#121826] rounded-2xl overflow-hidden border border-slate-200/50 dark:border-slate-800/40 hover-lift relative group"
+            >
+              <a
+                href="articles/khai-niem-tha-hoa.html"
+                class="absolute inset-0 z-0"
+              ></a>
+              <div
+                class="h-44 relative overflow-hidden z-10 pointer-events-none"
+              >
+                <img
+                  src="images/articles/creative_thinking.png"
+                  alt="Sáng tạo"
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <span
+                  class="absolute top-4 left-4 px-2.5 py-1 bg-slate-900/70 backdrop-blur-md rounded text-white text-[9px] font-bold uppercase tracking-wider"
+                  >Năng động sáng tạo</span
+                >
+              </div>
+              <div
+                class="p-6 flex flex-col justify-between h-48 z-10 relative pointer-events-none"
+              >
+                <h3
+                  class="text-sm font-bold text-slate-900 dark:text-white leading-snug group-hover:text-[#D4A017] transition-colors line-clamp-2"
+                >
+                  Bản chất sáng tạo của ý thức con người trong lao động xã hội
+                  thực tiễn
+                </h3>
+                <p
+                  class="text-[11px] text-slate-500 line-clamp-3 leading-relaxed mt-2"
+                >
+                  Ý thức con người không sao chép thụ động mà có tính năng động
+                  chủ quan, sáng tạo mô hình tương lai định hướng lao động thực
+                  tế.
+                </p>
+                <div
+                  class="mt-4 pt-3 border-t border-slate-50 dark:border-slate-800 flex items-center justify-between pointer-events-auto"
+                >
+                  <a
+                    href="articles/khai-niem-tha-hoa.html"
+                    class="text-[10px] font-bold text-[#D4A017]"
+                    >Đọc Ngay</a
+                  >
+                  <span
+                    class="text-[9px] text-slate-400 flex items-center gap-1"
+                    ><span class="material-symbols-outlined text-[10px]"
+                      >link</span
+                    >VnExpress</span
+                  >
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ACADEMIC SENATE FORUM MOCK -->
+      <section class="py-24 px-4 md:px-10 max-w-5xl mx-auto">
+        <div class="text-center mb-16">
+          <div
+            class="inline-flex items-center gap-1.5 px-3 py-1 bg-[#D4A017]/10 rounded-full text-xs font-bold text-[#D4A017] uppercase tracking-wider mb-3"
+          >
+            <span class="material-symbols-outlined text-xs">forum</span>
+            Hội Thoại Socratic
+          </div>
+          <h2
+            class="text-3xl md:text-4xl font-bold font-serif-academy text-[#0F172A] dark:text-white"
+          >
+            Tranh Biện Học Thuật
+          </h2>
+          <p
+            class="text-xs md:text-sm text-slate-500 mt-2 max-w-xl mx-auto dark:text-slate-450"
+          >
+            Cùng trao đổi và thảo luận học hỏi các câu hỏi triết lý biện chứng
+            xoay quanh bài toán cuộc sống sinh viên Việt Nam.
+          </p>
+        </div>
+
+        <div class="flex flex-col gap-6">
+          <div class="debate-card border-[#D4A017]/30">
+            <div class="flex items-center justify-between gap-4 mb-4">
+              <span
+                class="px-2.5 py-0.5 bg-[#FAF8F3] dark:bg-[#0A0F1D] text-[#D4A017] text-[10px] font-bold border border-[#D4A017]/20 rounded uppercase"
+                >Chủ đề thảo luận hot</span
+              >
+              <span class="text-[10px] text-slate-440 dark:text-slate-500"
+                >120 phản hồi học thuật</span
+              >
+            </div>
+            <h3
+              class="text-sm md:text-base font-bold text-slate-900 dark:text-white mb-3"
+            >
+              "Liệu sa thải hàng loạt bởi sự phát triển AI có phản ánh quy luật
+              quan hệ sản xuất mâu thuẫn lực lượng sản xuất của Karl Marx?"
+            </h3>
+            <p
+              class="text-xs text-slate-650 dark:text-slate-350 leading-relaxed mb-4"
+            >
+              Sinh viên A đặt vấn đề: AI là bước nhảy vọt của công cụ lao động.
+              Khi cơ cấu công cụ thay đổi vượt bậc mà chế độ phân chia thụ hưởng
+              không đổi, mâu thuẫn xã hội tất yếu nổ ra.
+            </p>
+            <div
+              class="flex items-center justify-between text-[10px] text-[#D4A017] font-semibold border-t border-slate-100 dark:border-slate-800 pt-3"
+            >
+              <span>Đại học FPT - Nhóm Nghiên Cứu Triết Học</span>
+              <a href="#" class="hover:underline flex items-center gap-1"
+                >Tham gia tranh biện
+                <span class="material-symbols-outlined text-xs">chat</span></a
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Scroll indicator - fixed at bottom center, only visible at hero section -->
+    <div
+      class="fixed bottom-8 left-1/2 -translate-x-1/2 z-40 transition-all duration-500"
+      id="scroll-indicator"
+    >
+      <a
+        href="#overview"
+        class="flex flex-col items-center gap-1.5 animate-bounce cursor-pointer bg-white/95 dark:bg-[#121826]/95 backdrop-blur-md px-6 py-2.5 rounded-full shadow-lg border border-[#D4A017]/20 hover:shadow-xl transition-shadow duration-300"
+      >
+        <span
+          class="text-[10px] font-bold uppercase tracking-widest text-[#D4A017]"
+          >KHÁM PHÁ THÊM</span
+        >
+        <span class="material-symbols-outlined text-[#D4A017] text-sm"
+          >keyboard_arrow_down</span
+        >
+      </a>
+    </div>
+
+    <!-- Footer Placeholder -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Component Loader & Search Data Script References -->
+    <script src="js/search-data-global.js"></script>
+    <script src="js/load-components.js"></script>
+    <script src="js/search-init.js"></script>
+    <script src="js/tet-effect.js"></script>
+
+    <!-- Socratic Astrolabe Oracle Core Logic Script -->
+    <script>
+      // Deep Socratic Deciphering Data Map
+      const oracleData = {
+        stress: {
+          title: "Khủng hoảng Học nghiệp — Áp Lực Điểm Số",
+          steps: [
+            {
+              label: "Bệnh Đề (The Thesis Enigma)",
+              desc: "Áp lực tâm lý đè nặng từ điểm số, lo sợ tụt hậu so với bạn bè, cảm giác học tập như một nghĩa vụ cưỡng bức mệt mỏi hằng ngày.",
+            },
+            {
+              label: "Phản Tư (The Socratic Antithesis)",
+              desc: "Bạn đang thực sự học tập để tích lũy tri thức khách quan phục vụ đời sống của chính mình, hay chỉ đang sao chép vô thức kỳ vọng chủ quan của người khác?",
+            },
+            {
+              label: "Minh Triết (The Dialectical Synthesis)",
+              desc: "Quy luật Lượng - Chất chỉ ra việc học là quá trình tích lũy lượng lâu dài. Mỗi kỳ thi là điểm nút để thực hiện bước nhảy. Hãy kiên trì tích lũy lượng nội lực tự thân thay vì chìm đắm trong các phép so sánh cơ học bên ngoài.",
+              badge: "Học Quy Luật Lượng - Chất",
+              url: "module2.html",
+            },
+          ],
+          rotation: 72,
+        },
+        success: {
+          title: "Khủng hoảng Thành danh — Nỗi Sợ Tụt Hậu",
+          steps: [
+            {
+              label: "Bệnh Đề (The Thesis Enigma)",
+              desc: "Nỗi ám ảnh phải thành đạt tài chính vượt bậc ngay khi vừa ra trường, áp lực thăng tiến từ mạng xã hội tạo dựng ảo tưởng.",
+            },
+            {
+              label: "Phản Tư (The Socratic Antithesis)",
+              desc: "Nếu thành công của bạn được đo lường hoàn toàn bằng các thước đo vật chất nằm ngoài tầm kiểm soát, liệu bạn có bao giờ có được tự do và bình yên?",
+            },
+            {
+              label: "Minh Triết (The Dialectical Synthesis)",
+              desc: "Chủ nghĩa Khắc kỷ đề xuất lý thuyết Nhị phân Kiểm soát. Tập trung toàn bộ sức mạnh ý chí vào hành động thực tiễn tự thân, xem thành bại ngoại cảnh chỉ là các yếu tố khách quan cần linh hoạt thích ứng.",
+              badge: "Học Bản Chất Vật Chất",
+              url: "module2.html",
+            },
+          ],
+          rotation: 144,
+        },
+        failure: {
+          title: "Khủng hoảng Nghịch cảnh — Vấp Ngã Đầu Đời",
+          steps: [
+            {
+              label: "Bệnh Đề (The Thesis Enigma)",
+              desc: "Sự sụp đổ niềm tin sau khi trượt môn học tập, thất bại trong các dự án khởi nghiệp thử nghiệm đầu tay, mất sạch nhuệ khí.",
+            },
+            {
+              label: "Phản Tư (The Socratic Antithesis)",
+              desc: "Liệu thất bại này là sự hủy diệt tuyệt đối của hành trình, hay chính là mắt xích biện chứng phủ định cái cũ lỗi thời, mở lối cho cái mới tiến bộ?",
+            },
+            {
+              label: "Minh Triết (The Dialectical Synthesis)",
+              desc: "Quy luật Phủ định của Phủ định khẳng định con đường phát triển đi theo hình xoắn ốc đi lên. Vấp ngã hiện tại chính là tiền đề phủ định cần thiết để bạn rút kinh nghiệm và tái sinh bản thân ở nấc thang cao quý hơn.",
+              badge: "Học Phép Biện Chứng",
+              url: "module3.html",
+            },
+          ],
+          rotation: 216,
+        },
+        relationship: {
+          title: "Khủng hoảng Nhân duyên — Rạn Nứt Quan Hệ",
+          steps: [
+            {
+              label: "Bệnh Đề (The Thesis Enigma)",
+              desc: "Bất đồng ý kiến gay gắt với người thân, bạn bè, rạn nứt tình cảm sâu sắc do va quệt cái tôi trong sinh hoạt hoặc làm việc nhóm.",
+            },
+            {
+              label: "Phản Tư (The Socratic Antithesis)",
+              desc: "Bạn đang cố ép đối phương hành xử theo ý chí chủ quan độc đoán của mình, hay đang lắng nghe xung đột để hiểu các mặt đối lập vận hành?",
+            },
+            {
+              label: "Minh Triết (The Dialectical Synthesis)",
+              desc: "Quy luật thống nhất và đấu tranh giữa các mặt đối lập chỉ ra mâu thuẫn là phổ biến và khách quan. Giải quyết mâu thuẫn không phải triệt tiêu nhau, mà là tìm ra điểm cân bằng mới để dung hòa cùng phát triển.",
+              badge: "Học Quy Luật Mâu Thuẫn",
+              url: "module3.html",
+            },
+          ],
+          rotation: 288,
+        },
+        lost: {
+          title: "Khủng hoảng Định hướng — Lạc Lối Trống Rỗng",
+          steps: [
+            {
+              label: "Bệnh Đề (The Thesis Enigma)",
+              desc: "Cảm giác lạc lõng, mất phương hướng, không biết mình đang học và sống vì giá trị gì, hoang mang trước biến cố tương lai.",
+            },
+            {
+              label: "Phản Tư (The Socratic Antithesis)",
+              desc: "Khi bạn giao quyền định đoạt ý nghĩa bản chất sự sống cho người khác, bạn có đang thực sự tồn tại như một con người tự do?",
+            },
+            {
+              label: "Minh Triết (The Dialectical Synthesis)",
+              desc: "Hiện sinh luận và học thuyết giải phóng con người của Mác chứng minh con người tự định nghĩa bản thân qua thực tiễn lao động cải biến. Đừng chờ đợi thụ động, hãy dấn thân hành động để tự thêu dệt nên ý nghĩa cuộc đời.",
+              badge: "Học Bản Chất Con Người",
+              url: "module5.html",
+            },
+          ],
+          rotation: 360,
+        },
+      };
+
+      function selectOracleEnigma(topic, element) {
+        // 1. Update active card styling
+        document.querySelectorAll(".enigma-item-card").forEach((card) => {
+          card.classList.remove("active");
+        });
+        element.classList.add("active");
+
+        // 2. Rotate the Celestial Astrolabe Wheel
+        const wheel = document.getElementById("astrolabe-dynamic-wheel");
+        const needle = document.getElementById("astrolabe-pointer-needle");
+        if (wheel && oracleData[topic]) {
+          wheel.style.transform = `rotate(${oracleData[topic].rotation}deg)`;
+          if (needle) {
+            needle.style.transform = `rotate(-${oracleData[topic].rotation}deg)`;
+          }
+        }
+
+        // 3. Populate and Animate Socratic Decipher Scroll
+        const container = document.getElementById("decipher-scroll-content");
+        if (!container || !oracleData[topic]) return;
+
+        const data = oracleData[topic];
+
+        // Fade out previous content
+        container.style.opacity = 0;
+
+        setTimeout(() => {
+          container.innerHTML = "";
+
+          data.steps.forEach((step, idx) => {
+            const stepCard = document.createElement("div");
+            stepCard.className = `decipher-step-card ${idx === 2 ? "active-step" : ""}`;
+            stepCard.style.animationDelay = `${idx * 0.15}s`;
+
+            let actionLinkHtml = "";
+            if (idx === 2 && step.badge && step.url) {
+              actionLinkHtml = `
+                <div class="mt-3.5 flex items-center justify-between">
+                  <span class="px-2.5 py-0.5 bg-[#D4A017]/10 text-[#D4A017] text-[9px] font-bold uppercase rounded border border-[#D4A017]/25">${step.badge}</span>
+                  <a href="${step.url}" class="text-[10px] font-semibold text-[#D4A017] hover:underline flex items-center gap-0.5">
+                    Học lý luận <span class="material-symbols-outlined text-[12px] font-bold">arrow_right_alt</span>
+                  </a>
+                </div>
+              `;
+            }
+
+            stepCard.innerHTML = `
+              <h4 class="text-[10px] font-bold uppercase tracking-widest text-[#8B6F47] dark:text-[#D4A017] mb-1 font-serif-academy">${step.label}</h4>
+              <p class="text-xs text-slate-700 dark:text-slate-350 leading-relaxed font-serif">${step.desc}</p>
+              ${actionLinkHtml}
+            `;
+
+            container.appendChild(stepCard);
+          });
+
+          container.style.opacity = 1;
+        }, 150);
+      }
+
+      // Initialize with first topic on load
+      window.addEventListener("load", () => {
+        const activeCard = document.querySelector(".enigma-item-card.active");
+        if (activeCard) {
+          const topic = activeCard.dataset.topic;
+          selectOracleEnigma(topic, activeCard);
+        }
+      });
+
+      // Scroll indicator visibility
+      function updateActiveNav() {
+        const overviewSection = document.getElementById("overview");
+        const scrollIndicator = document.getElementById("scroll-indicator");
+
+        if (!overviewSection) return;
+
+        const overviewTop = overviewSection.getBoundingClientRect().top;
+        const threshold = window.innerHeight * 0.5;
+
+        if (overviewTop <= threshold) {
+          if (scrollIndicator) {
+            scrollIndicator.style.opacity = "0";
+            scrollIndicator.style.pointerEvents = "none";
+          }
+        } else {
+          if (scrollIndicator) {
+            scrollIndicator.style.opacity = "1";
+            scrollIndicator.style.pointerEvents = "auto";
+          }
+        }
+      }
+
+      window.addEventListener("scroll", updateActiveNav);
+      window.addEventListener("load", updateActiveNav);
+
+      // Parchment Wisdom quotes data list
+      const wisdomQuotes = [
+        {
+          text: "Lao động đã sáng tạo ra chính bản thân con người. Nó là điều kiện cơ bản đầu tiên của toàn bộ đời sống loài người.",
+          author: "Friedrich Engels",
+        },
+        {
+          text: "Tâm trí bạn sẽ mang màu sắc của những ý nghĩ thường trực. Bởi tâm hồn luôn nhuốm màu tính chất của tư duy.",
+          author: "Marcus Aurelius",
+        },
+        {
+          text: "Cuộc sống tự nó không có ý nghĩa nào cả, nghĩa của cuộc sống là do bạn tự quyết định định đoạt.",
+          author: "Jean-Paul Sartre",
+        },
+        {
+          text: "Chân lý khách quan không phụ thuộc vào ý muốn chủ quan của con người. Con người chỉ có thể nhận thức và cải tạo nó.",
+          author: "Vladimir Lenin",
+        },
+        {
+          text: "Lực lượng sản xuất quyết định quan hệ sản xuất. Khi lực lượng sản xuất biến đổi, quan hệ sản xuất sớm muộn cũng phải thay đổi theo.",
+          author: "Karl Marx",
+        },
+      ];
+      let currentQuoteIndex = 0;
+
+      function rotateWisdomQuote() {
+        currentQuoteIndex = (currentQuoteIndex + 1) % wisdomQuotes.length;
+        const qBox = document.getElementById("parchment-quote");
+        const aBox = document.getElementById("parchment-author");
+
+        qBox.style.opacity = 0;
+        aBox.style.opacity = 0;
+
+        setTimeout(() => {
+          qBox.innerText = `"${wisdomQuotes[currentQuoteIndex].text}"`;
+          aBox.innerText = `— ${wisdomQuotes[currentQuoteIndex].author}`;
+          qBox.style.opacity = 1;
+          aBox.style.opacity = 1;
+        }, 300);
+      }
+    </script>
+  </body>
+</html>

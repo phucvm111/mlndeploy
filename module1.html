@@ -1,0 +1,1692 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Module 1: Vật chất & Vận động — PhiloVerse MLN111</title>
+    <meta name="description"
+        content="Khám phá quan điểm chủ nghĩa duy vật biện chứng về vật chất, vận động, không gian-thời gian và ứng dụng thực tiễn qua 6 bài học tương tác." />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <script src="js/tailwind-config-global.js"></script>
+    <style>
+        .material-symbols-outlined {
+            font-family: 'Material Symbols Outlined';
+            font-weight: normal;
+            font-style: normal;
+            font-size: 24px;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .dark .glass-panel {
+            background: rgba(37, 38, 43, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* Progress bar animation */
+        #m1-progress-bar {
+            transition: width 0.6s ease;
+        }
+
+        /* Lesson card active state */
+        .lesson-card.active {
+            border-color: #308ce8;
+            box-shadow: 0 0 0 2px rgba(48, 140, 232, 0.2);
+        }
+
+        /* Quiz overlay */
+        #quiz-modal {
+            transition: opacity 0.3s;
+        }
+
+        /* Reflection toggle */
+        .reflection-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, opacity 0.3s;
+            opacity: 0;
+        }
+
+        .reflection-answer.open {
+            max-height: 500px;
+            opacity: 1;
+        }
+
+        /* Achievement badge pulse */
+        @keyframes badge-pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.15);
+            }
+        }
+
+        .achievement-earned {
+            animation: badge-pulse 0.5s ease 3;
+        }
+
+        /* AI panel slide */
+        #ai-panel {
+            transition: transform 0.35s ease, opacity 0.35s;
+        }
+
+        #ai-panel.hidden-panel {
+            transform: translateX(100%);
+            opacity: 0;
+            pointer-events: none;
+        }
+    </style>
+</head>
+
+<body
+    class="bg-background-light dark:bg-background-dark text-text-main-light dark:text-text-main-dark font-body transition-colors duration-300 min-h-screen flex flex-col overflow-x-hidden">
+    <!-- Header Placeholder -->
+    <div id="header-placeholder"></div>
+
+    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 w-full">
+
+        <!-- ===== MODULE HEADER ===== -->
+        <header class="text-center mb-12 space-y-5 max-w-4xl mx-auto">
+            <div
+                class="inline-flex items-center px-4 py-1.5 rounded-full bg-blue-50 border border-blue-100 dark:bg-blue-900/20 dark:border-blue-800 text-primary text-xs font-bold uppercase tracking-wider mb-4 gap-2">
+                <a href="home.html" class="hover:underline hover:text-blue-600 transition-colors">TRANG CHỦ</a>
+                <span class="opacity-60">/</span>
+                <a href="home.html#overview" class="hover:underline hover:text-blue-600 transition-colors">MODULES</a>
+                <span class="opacity-60">/</span>
+                <span>MODULE 1 • VẬT CHẤT & VẬN ĐỘNG</span>
+            </div>
+            <h1 class="font-display text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
+                Vật chất &amp; Vận động<br class="hidden md:block" /> <span class="text-primary italic">trong Triết học
+                    Mác-Lênin</span>
+            </h1>
+            <p
+                class="max-w-2xl mx-auto text-lg text-text-muted-light dark:text-text-muted-dark font-light leading-relaxed">
+                6 bài học khám phá nền tảng nhận thức luận duy vật — từ định nghĩa vật chất đến ứng dụng phân tích thực
+                tiễn cuộc sống.
+            </p>
+            <!-- Progress -->
+            <div class="max-w-md mx-auto">
+                <div
+                    class="flex items-center justify-between text-xs text-text-muted-light dark:text-text-muted-dark mb-1.5">
+                    <span id="m1-progress-label">0 / 6 bài hoàn thành</span>
+                    <span id="m1-progress-pct">0%</span>
+                </div>
+                <div class="h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                    <div id="m1-progress-bar" class="h-full bg-gradient-to-r from-primary to-secondary rounded-full"
+                        style="width:0%"></div>
+                </div>
+            </div>
+        </header>
+
+        <section class="mb-16">
+            <div id="video-container" onclick="(function(el){
+                    el.innerHTML = '<iframe class=\'w-full h-full\' src=\'https://www.youtube.com/embed/m3sK1WEyjY4?autoplay=1&rel=0\' title=\'Module 1 Video\' frameborder=\'0\' allow=\'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\' allowfullscreen></iframe>';
+                })(this)"
+                class="relative aspect-video rounded-2xl overflow-hidden shadow-2xl shadow-blue-900/10 group cursor-pointer bg-gray-900 max-w-4xl mx-auto">
+                <img src="https://img.youtube.com/vi/m3sK1WEyjY4/hqdefault.jpg"
+                    onerror="this.src='https://img.youtube.com/vi/m3sK1WEyjY4/0.jpg'"
+                    class="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition-opacity duration-300"
+                    alt="Video giới thiệu Module 1">
+                <div id="video-overlay"
+                    class="absolute inset-0 flex flex-col items-center justify-center bg-black/30 group-hover:bg-black/40 transition-all duration-300">
+                    <div
+                        class="w-20 h-20 rounded-full bg-white/20 backdrop-blur-md border-2 border-white/70 flex items-center justify-center transition-transform group-hover:scale-110 shadow-lg">
+                        <span class="material-symbols-outlined text-white text-5xl"
+                            style="font-variation-settings:'FILL' 1,'wght' 500;margin-left:4px">play_arrow</span>
+                    </div>
+                    <p class="mt-4 text-white text-sm font-semibold drop-shadow">▶ Nhấn để xem video Module 1</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== LESSON NAV TABS ===== -->
+        <section class="mb-10">
+            <div class="flex items-center gap-4 mb-6">
+                <span class="h-px bg-gray-200 dark:bg-gray-700 flex-1"></span>
+                <span
+                    class="font-display text-lg uppercase tracking-widest text-text-muted-light dark:text-text-muted-dark">6
+                    Bài học</span>
+                <span class="h-px bg-gray-200 dark:bg-gray-700 flex-1"></span>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
+                <button onclick="showLesson('M1-L1')" id="tab-M1-L1"
+                    class="lesson-tab group flex flex-col items-center gap-2 p-4 rounded-2xl bg-surface-light dark:bg-surface-dark border-2 border-gray-100 dark:border-gray-700 hover:border-primary transition-all duration-200 text-center">
+                    <span class="text-2xl">⚛️</span>
+                    <span class="text-xs font-semibold text-text-muted-light dark:text-text-muted-dark">Bài 1.1</span>
+                    <span class="text-xs font-medium">Vật chất là gì?</span>
+                    <span class="w-2 h-2 rounded-full bg-gray-300 dark:bg-gray-600 lesson-dot" id="dot-M1-L1"></span>
+                </button>
+                <button onclick="showLesson('M1-L2')" id="tab-M1-L2"
+                    class="lesson-tab group flex flex-col items-center gap-2 p-4 rounded-2xl bg-surface-light dark:bg-surface-dark border-2 border-gray-100 dark:border-gray-700 hover:border-primary transition-all duration-200 text-center">
+                    <span class="text-2xl">🌀</span>
+                    <span class="text-xs font-semibold text-text-muted-light dark:text-text-muted-dark">Bài 1.2</span>
+                    <span class="text-xs font-medium">Vận động</span>
+                    <span class="w-2 h-2 rounded-full bg-gray-300 dark:bg-gray-600 lesson-dot" id="dot-M1-L2"></span>
+                </button>
+                <button onclick="showLesson('M1-L3')" id="tab-M1-L3"
+                    class="lesson-tab group flex flex-col items-center gap-2 p-4 rounded-2xl bg-surface-light dark:bg-surface-dark border-2 border-gray-100 dark:border-gray-700 hover:border-primary transition-all duration-200 text-center">
+                    <span class="text-2xl">🕐</span>
+                    <span class="text-xs font-semibold text-text-muted-light dark:text-text-muted-dark">Bài 1.3</span>
+                    <span class="text-xs font-medium">Không gian & Thời gian</span>
+                    <span class="w-2 h-2 rounded-full bg-gray-300 dark:bg-gray-600 lesson-dot" id="dot-M1-L3"></span>
+                </button>
+                <button onclick="showLesson('M1-L4')" id="tab-M1-L4"
+                    class="lesson-tab group flex flex-col items-center gap-2 p-4 rounded-2xl bg-surface-light dark:bg-surface-dark border-2 border-gray-100 dark:border-gray-700 hover:border-primary transition-all duration-200 text-center">
+                    <span class="text-2xl">🔬</span>
+                    <span class="text-xs font-semibold text-text-muted-light dark:text-text-muted-dark">Bài 1.4</span>
+                    <span class="text-xs font-medium">Các dạng vận động</span>
+                    <span class="w-2 h-2 rounded-full bg-gray-300 dark:bg-gray-600 lesson-dot" id="dot-M1-L4"></span>
+                </button>
+                <button onclick="showLesson('M1-L5')" id="tab-M1-L5"
+                    class="lesson-tab group flex flex-col items-center gap-2 p-4 rounded-2xl bg-surface-light dark:bg-surface-dark border-2 border-gray-100 dark:border-gray-700 hover:border-primary transition-all duration-200 text-center">
+                    <span class="text-2xl">🧠</span>
+                    <span class="text-xs font-semibold text-text-muted-light dark:text-text-muted-dark">Bài 1.5</span>
+                    <span class="text-xs font-medium">Vật chất & Ý thức</span>
+                    <span class="w-2 h-2 rounded-full bg-gray-300 dark:bg-gray-600 lesson-dot" id="dot-M1-L5"></span>
+                </button>
+                <button onclick="showLesson('M1-L6')" id="tab-M1-L6"
+                    class="lesson-tab group flex flex-col items-center gap-2 p-4 rounded-2xl bg-surface-light dark:bg-surface-dark border-2 border-gray-100 dark:border-gray-700 hover:border-primary transition-all duration-200 text-center">
+                    <span class="text-2xl">🎯</span>
+                    <span class="text-xs font-semibold text-text-muted-light dark:text-text-muted-dark">Bài 1.6</span>
+                    <span class="text-xs font-medium">Nguyên tắc hành động</span>
+                    <span class="w-2 h-2 rounded-full bg-gray-300 dark:bg-gray-600 lesson-dot" id="dot-M1-L6"></span>
+                </button>
+            </div>
+        </section>
+
+        <!-- ===== LESSON CONTENT AREA ===== -->
+        <section id="lesson-area" class="mb-16 min-h-[500px]">
+
+            <!-- BÀI 1.1: VẬT CHẤT LÀ GÌ? -->
+            <div id="lesson-M1-L1" class="lesson-content hidden">
+                <div
+                    class="bg-surface-light dark:bg-surface-dark rounded-3xl border border-gray-100 dark:border-gray-700 shadow-sm overflow-hidden">
+                    <!-- Lesson header -->
+                    <div class="lesson-header-academic">
+                        <div class="flex items-center gap-3 mb-3">
+                            <span class="text-3xl">⚛️</span>
+                            <span class="text-blue-100 text-sm font-semibold uppercase tracking-wider">Bài 1.1 — Module
+                                1</span>
+                        </div>
+                        <h2 class="font-display text-3xl font-bold text-white mb-2">Vật chất là gì?</h2>
+                        <p class="text-blue-100 text-sm">🎯 <strong>Mục tiêu:</strong> Phân biệt quan niệm duy tâm / duy
+                            vật về vật chất; nắm định nghĩa kinh điển của V.I. Lênin và ý nghĩa thực tiễn.</p>
+                    </div>
+                    <div class="p-8 space-y-8">
+                        <!-- Canonical Quote -->
+                        <div class="bg-blue-50 dark:bg-blue-900/20 border-l-4 border-primary rounded-r-2xl p-6">
+                            <p class="text-xs font-bold text-primary uppercase tracking-wider mb-2">📖 Trích dẫn kinh
+                                điển</p>
+                            <blockquote
+                                class="font-display text-lg italic text-text-main-light dark:text-text-main-dark leading-relaxed">
+                                "Vật chất là một phạm trù triết học dùng để chỉ thực tại khách quan được đem lại cho con
+                                người trong cảm giác, được cảm giác của chúng ta chép lại, chụp lại, phản ánh, và tồn
+                                tại không lệ thuộc vào cảm giác."
+                            </blockquote>
+                            <p class="text-right text-sm text-text-muted-light dark:text-text-muted-dark mt-3">— V.I.
+                                Lênin | <em>Chủ nghĩa duy vật và chủ nghĩa kinh nghiệm phê phán</em> | <strong
+                                    class="text-primary">Chương 2, tr.449</strong></p>
+                        </div>
+
+                        <!-- Content -->
+                        <div class="prose prose-lg dark:prose-invert max-w-none space-y-5">
+                            <h3 class="font-display text-xl font-bold text-text-main-light dark:text-text-main-dark">Tại
+                                sao cần định nghĩa vật chất?</h3>
+                            <p class="text-text-muted-light dark:text-text-muted-dark leading-relaxed">
+                                Trước khi có định nghĩa của Lênin, các nhà duy vật thường <strong>đồng nhất vật chất với
+                                    một dạng cụ thể</strong> như nguyên tử, nước, lửa... Điều này dẫn đến cuộc khủng
+                                hoảng cuối TK XIX: khi khoa học phát hiện nguyên tử có thể bị phân chia, nhiều người la
+                                lên "vật chất tiêu tan!" — thực ra họ chỉ bác bỏ một <em>dạng vật chất cụ thể</em>,
+                                không phải bác bỏ vật chất nói chung.
+                            </p>
+                            <p class="text-text-muted-light dark:text-text-muted-dark leading-relaxed">
+                                Lênin giải quyết bằng cách định nghĩa vật chất như <strong>phạm trù triết học</strong> —
+                                chỉ thực tại khách quan nói chung — thay vì gắn với bất kỳ dạng vật thể cụ thể nào.
+                                Nguyên tử bị phân chia? Không sao — điện tử, proton vẫn là vật chất, đều là "thực tại
+                                khách quan".
+                            </p>
+
+                            <div class="grid md:grid-cols-2 gap-4 not-prose">
+                                <div
+                                    class="bg-red-50 dark:bg-red-900/10 border border-red-200 dark:border-red-800/30 rounded-2xl p-5">
+                                    <h4 class="font-bold text-red-600 dark:text-red-400 mb-3 flex items-center gap-2">
+                                        <span class="material-symbols-outlined text-lg">cancel</span> Quan niệm sai: Duy
+                                        tâm chủ quan</h4>
+                                    <p class="text-sm text-text-muted-light dark:text-text-muted-dark">Vật chất = cảm
+                                        giác của tôi. Vật chỉ tồn tại khi tôi nhận thức nó (Berkeley, Mach). → <em>"Hãy
+                                            nghĩ mình là tỷ phú, vũ trụ sẽ gửi tiền đến!"</em></p>
+                                </div>
+                                <div
+                                    class="bg-green-50 dark:bg-green-900/10 border border-green-200 dark:border-green-800/30 rounded-2xl p-5">
+                                    <h4
+                                        class="font-bold text-green-600 dark:text-green-400 mb-3 flex items-center gap-2">
+                                        <span class="material-symbols-outlined text-lg">check_circle</span> Quan niệm
+                                        đúng: CNDV biện chứng</h4>
+                                    <p class="text-sm text-text-muted-light dark:text-text-muted-dark">Vật chất = thực
+                                        tại khách quan, tồn tại độc lập với ý thức. Hoàn cảnh nghèo khó của Nam là thực
+                                        tại khách quan — không thể "tưởng tượng" nó đi.</p>
+                                </div>
+                            </div>
+
+                            <h3 class="font-display text-xl font-bold text-text-main-light dark:text-text-main-dark">3
+                                nội dung cốt lõi của định nghĩa Lênin</h3>
+                            <div class="space-y-3 not-prose">
+                                <div class="flex gap-4 items-start">
+                                    <span
+                                        class="flex-shrink-0 w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center text-sm font-bold">1</span>
+                                    <div><strong class="block text-sm">Vật chất là thực tại khách quan</strong><span
+                                            class="text-sm text-text-muted-light dark:text-text-muted-dark">Tồn tại
+                                            ngoài ý thức, không phụ thuộc ý thức ai. Xã hội loài người cũng là dạng vật
+                                            chất đặc biệt.</span></div>
+                                </div>
+                                <div class="flex gap-4 items-start">
+                                    <span
+                                        class="flex-shrink-0 w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center text-sm font-bold">2</span>
+                                    <div><strong class="block text-sm">Vật chất tác động vào giác quan → đem lại cảm
+                                            giác</strong><span
+                                            class="text-sm text-text-muted-light dark:text-text-muted-dark">Không phải
+                                            tất cả vật chất đều có thể cảm nhận trực tiếp, nhưng chúng vẫn là vật
+                                            chất.</span></div>
+                                </div>
+                                <div class="flex gap-4 items-start">
+                                    <span
+                                        class="flex-shrink-0 w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center text-sm font-bold">3</span>
+                                    <div><strong class="block text-sm">Ý thức chỉ là sự phản ánh của vật
+                                            chất</strong><span
+                                            class="text-sm text-text-muted-light dark:text-text-muted-dark">Không có gì
+                                            trong ý thức mà không xuất phát từ vật chất. Tư duy phản ánh, không tạo ra,
+                                            thực tại.</span></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Reflection Questions -->
+                        <div class="border-t border-gray-100 dark:border-gray-700 pt-6">
+                            <h3 class="font-display text-lg font-bold mb-4 flex items-center gap-2"><span
+                                    class="material-symbols-outlined text-primary">psychology</span> Câu hỏi phản tư
+                            </h3>
+                            <div class="space-y-3">
+                                <div class="reflection-item">
+                                    <button onclick="toggleReflection(this)"
+                                        class="w-full text-left p-4 bg-gray-50 dark:bg-gray-800 rounded-xl hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors text-sm font-medium flex justify-between items-center">
+                                        <span>1. Câu slogan "Law of Attraction — Hút giàu sang bằng sức mạnh của tư duy"
+                                            có mâu thuẫn với quan điểm CNDV biện chứng không? Tại sao?</span>
+                                        <span
+                                            class="material-symbols-outlined text-gray-400 flex-shrink-0 ml-2">expand_more</span>
+                                    </button>
+                                    <div
+                                        class="reflection-answer p-4 text-sm text-text-muted-light dark:text-text-muted-dark">
+                                        <strong class="text-primary block mb-1">Gợi ý trả lời:</strong> Có mâu thuẫn
+                                        nghiêm trọng. CNDV biện chứng khẳng định vật chất quyết định ý thức — không phải
+                                        ngược lại. Ý thức (tư duy về sự giàu có) không thể tự tạo ra vật chất (tiền bạc)
+                                        nếu không có hành động thực tiễn và điều kiện khách quan. "Law of Attraction" là
+                                        quan niệm duy tâm chủ quan.
+                                    </div>
+                                </div>
+                                <div class="reflection-item">
+                                    <button onclick="toggleReflection(this)"
+                                        class="w-full text-left p-4 bg-gray-50 dark:bg-gray-800 rounded-xl hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors text-sm font-medium flex justify-between items-center">
+                                        <span>2. Khi các nhà vật lý phát hiện ra "hạt Higgs boson" năm 2012, điều đó có
+                                            làm thay đổi định nghĩa vật chất của Lênin không? Tại sao có/không?</span>
+                                        <span
+                                            class="material-symbols-outlined text-gray-400 flex-shrink-0 ml-2">expand_more</span>
+                                    </button>
+                                    <div
+                                        class="reflection-answer p-4 text-sm text-text-muted-light dark:text-text-muted-dark">
+                                        <strong class="text-primary block mb-1">Gợi ý trả lời:</strong> Không thay đổi —
+                                        thậm chí còn xác nhận định nghĩa. Hạt Higgs boson là <em>dạng vật chất cụ
+                                            thể</em> mới được khám phá, nhưng bản thân nó là "thực tại khách quan tồn
+                                        tại độc lập với ý thức". Định nghĩa của Lênin đủ rộng để bao quát mọi dạng vật
+                                        chất — đã biết lẫn chưa biết.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Activity -->
+                        <div class="bg-accent/10 dark:bg-amber-900/20 border border-accent/30 rounded-2xl p-6">
+                            <h3 class="font-display text-lg font-bold mb-3 flex items-center gap-2"><span
+                                    class="material-symbols-outlined text-amber-600">edit_note</span> Hoạt động: Phân
+                                loại quan điểm</h3>
+                            <p class="text-sm text-text-muted-light dark:text-text-muted-dark mb-3">Với mỗi câu sau, xác
+                                định là <strong class="text-green-600">Duy vật</strong> hay <strong
+                                    class="text-red-600">Duy tâm</strong>:</p>
+                            <ul class="space-y-2 text-sm">
+                                <li class="flex gap-3 items-start"><span class="text-lg">🔵</span><span>"Tôi thay đổi
+                                        thái độ → cuộc sống thay đổi → thu nhập tăng" <em>(sau khi học kỹ năng
+                                            mới)</em></span></li>
+                                <li class="flex gap-3 items-start"><span class="text-lg">🔵</span><span>"Chỉ cần
+                                        visualize thành công, năng lượng vũ trụ sẽ đưa tiền đến"</span></li>
+                                <li class="flex gap-3 items-start"><span class="text-lg">🔵</span><span>"Hoàn cảnh xã
+                                        hội ảnh hưởng đến nhận thức của tôi, nhưng tôi có thể cải tạo hoàn cảnh qua hành
+                                        động"</span></li>
+                            </ul>
+                        </div>
+
+                        <!-- Complete button -->
+                        <div class="flex justify-end">
+                            <button onclick="completeLesson('M1-L1')" id="btn-complete-M1-L1"
+                                class="bg-primary hover:bg-blue-700 text-white font-semibold px-8 py-3 rounded-xl transition-colors flex items-center gap-2">
+                                <span class="material-symbols-outlined">check_circle</span>
+                                Đánh dấu hoàn thành
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BÀI 1.2: VẬN ĐỘNG -->
+            <div id="lesson-M1-L2" class="lesson-content hidden">
+                <div
+                    class="bg-surface-light dark:bg-surface-dark rounded-3xl border border-gray-100 dark:border-gray-700 shadow-sm overflow-hidden">
+                    <div class="lesson-header-academic">
+                        <div class="flex items-center gap-3 mb-3">
+                            <span class="text-3xl">🌀</span>
+                            <span class="text-emerald-100 text-sm font-semibold uppercase tracking-wider">Bài 1.2 —
+                                Module 1</span>
+                        </div>
+                        <h2 class="font-display text-3xl font-bold text-white mb-2">Vận động — Thuộc tính cố hữu của vật
+                            chất</h2>
+                        <p class="text-emerald-100 text-sm">🎯 <strong>Mục tiêu:</strong> Hiểu vận động là phương thức
+                            tồn tại của vật chất; phân biệt vận động tuyệt đối và đứng im tương đối; nhận diện vận động
+                            tự thân.</p>
+                    </div>
+                    <div class="p-8 space-y-8">
+                        <div class="bg-emerald-50 dark:bg-emerald-900/20 border-l-4 border-secondary rounded-r-2xl p-6">
+                            <p class="text-xs font-bold text-secondary uppercase tracking-wider mb-2">📖 Trích dẫn kinh
+                                điển</p>
+                            <blockquote
+                                class="font-display text-lg italic text-text-main-light dark:text-text-main-dark leading-relaxed">
+                                "Vận động, hiểu theo nghĩa chung nhất, — tức được hiểu là một phương thức tồn tại của
+                                vật chất, là một thuộc tính cố hữu của vật chất, — thì bao gồm tất cả mọi sự thay đổi và
+                                mọi quá trình diễn ra trong vũ trụ, kể từ sự thay đổi vị trí đơn giản cho đến tư duy."
+                            </blockquote>
+                            <p class="text-right text-sm text-text-muted-light dark:text-text-muted-dark mt-3">— Ph.
+                                Ăngghen | <em>Biện chứng của tự nhiên</em> | <strong class="text-secondary">Chương 2,
+                                    tr.465</strong></p>
+                        </div>
+
+                        <div class="space-y-5">
+                            <h3 class="font-display text-xl font-bold">Vận động — Không ở đâu vắng mặt</h3>
+                            <p class="text-text-muted-light dark:text-text-muted-dark leading-relaxed">
+                                Từ thiên thể khổng lồ đến hạt electron, từ hiện tượng tự nhiên đến hoạt động xã hội —
+                                tất cả đều vận động. Vận động không phải là <em>một đặc điểm</em> của vật chất mà là
+                                <strong>cách thức duy nhất để vật chất tồn tại</strong>. Không có vật chất nào thoát
+                                khỏi vận động.
+                            </p>
+                            <div class="bg-gray-50 dark:bg-gray-800 rounded-2xl p-6">
+                                <h4 class="font-bold mb-3">Vì sao vận động là "tự thân"?</h4>
+                                <p class="text-sm text-text-muted-light dark:text-text-muted-dark">Bất cứ sự vật nào
+                                    cũng là <strong>thể thống nhất các nhân tố đối lập</strong>. Sự tác động qua lại
+                                    giữa chúng chính là nguồn gốc nội tại của vận động. Không cần "Thượng đế đẩy" hay
+                                    "năng lượng bên ngoài" — vật chất tự vận động.</p>
+                            </div>
+
+                            <h3 class="font-display text-xl font-bold">Vận động tuyệt đối, Đứng im tương đối</h3>
+                            <div class="grid md:grid-cols-2 gap-4">
+                                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-2xl p-5">
+                                    <h4 class="font-bold text-primary mb-2">⚡ Vận động — Tuyệt đối</h4>
+                                    <ul class="text-sm text-text-muted-light dark:text-text-muted-dark space-y-1">
+                                        <li>• Luôn luôn xảy ra, không bao giờ ngừng</li>
+                                        <li>• Bao gồm MỌI sự biến đổi — kể cả tư duy</li>
+                                        <li>• Không thể tạo ra hay tiêu diệt vận động</li>
+                                    </ul>
+                                </div>
+                                <div class="bg-gray-50 dark:bg-gray-800 rounded-2xl p-5">
+                                    <h4 class="font-bold mb-2">⚖️ Đứng im — Tương đối</h4>
+                                    <ul class="text-sm text-text-muted-light dark:text-text-muted-dark space-y-1">
+                                        <li>• Ổn định về chất trong điều kiện cụ thể</li>
+                                        <li>• Chỉ tạm thời, trong một mối quan hệ nhất định</li>
+                                        <li>• Là <em>dạng đặc biệt</em> của vận động (trong thăng bằng)</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="bg-amber-50 dark:bg-amber-900/10 border border-amber-200 rounded-2xl p-4">
+                                <p class="text-sm"><strong>🏫 Ví dụ sinh động:</strong> Lớp học đang "đứng im" về địa lý
+                                    nhưng: mọi học sinh đang suy nghĩ (vận động tư duy), máu lưu thông (vận động sinh
+                                    học), nguyên tử trong tường dao động (vận động vật lý). Đứng im chỉ là tương đối!
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="border-t border-gray-100 dark:border-gray-700 pt-6">
+                            <h3 class="font-display text-lg font-bold mb-4 flex items-center gap-2"><span
+                                    class="material-symbols-outlined text-secondary">psychology</span> Câu hỏi phản tư
+                            </h3>
+                            <div class="space-y-3">
+                                <div class="reflection-item">
+                                    <button onclick="toggleReflection(this)"
+                                        class="w-full text-left p-4 bg-gray-50 dark:bg-gray-800 rounded-xl hover:bg-emerald-50 dark:hover:bg-emerald-900/20 transition-colors text-sm font-medium flex justify-between items-center">
+                                        <span>1. Một người "không làm gì, chỉ ngồi thiền" — theo triết học, người đó có
+                                            đang vận động không?</span>
+                                        <span
+                                            class="material-symbols-outlined text-gray-400 flex-shrink-0 ml-2">expand_more</span>
+                                    </button>
+                                    <div
+                                        class="reflection-answer p-4 text-sm text-text-muted-light dark:text-text-muted-dark">
+                                        <strong class="text-secondary block mb-1">Gợi ý:</strong> Có! Người đó đang vận
+                                        động ở nhiều hình thức: sinh học (tim đập, hô hấp, trao đổi chất), tâm lý/tư duy
+                                        (thiền = vận động ý thức), nguyên tử trong cơ thể vận động vật lý. "Đứng yên"
+                                        chỉ là không vận động cơ học bề ngoài — nhưng các hình thức vận động khác vẫn
+                                        tiếp diễn.
+                                    </div>
+                                </div>
+                                <div class="reflection-item">
+                                    <button onclick="toggleReflection(this)"
+                                        class="w-full text-left p-4 bg-gray-50 dark:bg-gray-800 rounded-xl hover:bg-emerald-50 dark:hover:bg-emerald-900/20 transition-colors text-sm font-medium flex justify-between items-center">
+                                        <span>2. Xã hội Việt Nam trong 10 năm qua có "đứng im" không? Những hình thức
+                                            vận động nào đang diễn ra?</span>
+                                        <span
+                                            class="material-symbols-outlined text-gray-400 flex-shrink-0 ml-2">expand_more</span>
+                                    </button>
+                                    <div
+                                        class="reflection-answer p-4 text-sm text-text-muted-light dark:text-text-muted-dark">
+                                        <strong class="text-secondary block mb-1">Gợi ý:</strong> Không đứng im. Xã hội
+                                        là hình thức vận động xã hội — cao nhất. Cụ thể: kinh tế chuyển đổi số (biến đổi
+                                        xã hội), thay đổi cấu trúc gia đình, phát triển khoa học-công nghệ (biến đổi vật
+                                        lý-hóa học ở cấp độ xã hội), thay đổi nhận thức tư duy (biến đổi ý thức xã hội).
+                                        Không có gì đứng im tuyệt đối.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-secondary/10 dark:bg-teal-900/20 border border-secondary/30 rounded-2xl p-6">
+                            <h3 class="font-display text-lg font-bold mb-3 flex items-center gap-2"><span
+                                    class="material-symbols-outlined text-secondary">edit_note</span> Hoạt động: Bản đồ
+                                vận động của bản thân</h3>
+                            <p class="text-sm text-text-muted-light dark:text-text-muted-dark mb-3">Hãy liệt kê
+                                <strong>3 sự thay đổi</strong> đang diễn ra trong cuộc sống của bạn và xác định thuộc
+                                hình thức vận động nào:</p>
+                            <div class="grid grid-cols-3 gap-3 text-xs text-center">
+                                <div class="bg-white dark:bg-gray-800 rounded-xl p-3"><span
+                                        class="font-bold text-blue-600">Cơ học</span><br><span class="text-gray-500">Di
+                                        chuyển, vị trí</span></div>
+                                <div class="bg-white dark:bg-gray-800 rounded-xl p-3"><span
+                                        class="font-bold text-green-600">Sinh học</span><br><span
+                                        class="text-gray-500">Sức khỏe, tăng trưởng</span></div>
+                                <div class="bg-white dark:bg-gray-800 rounded-xl p-3"><span
+                                        class="font-bold text-purple-600">Xã hội</span><br><span
+                                        class="text-gray-500">Tư duy, quan hệ</span></div>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center justify-between">
+                            <button onclick="showLesson('M1-L1')"
+                                class="text-sm text-text-muted-light dark:text-text-muted-dark hover:text-primary flex items-center gap-1">
+                                <span class="material-symbols-outlined text-sm">arrow_back</span> Bài trước
+                            </button>
+                            <div class="flex gap-3">
+                                <button onclick="openFormativeQuiz('M1-FQ1')"
+                                    class="bg-secondary hover:bg-teal-600 text-white font-semibold px-6 py-3 rounded-xl transition-colors flex items-center gap-2 text-sm">
+                                    <span class="material-symbols-outlined text-sm">quiz</span>
+                                    Kiểm tra hình thành (Bài 1.1–1.2)
+                                </button>
+                                <button onclick="completeLesson('M1-L2')" id="btn-complete-M1-L2"
+                                    class="bg-primary hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-xl transition-colors flex items-center gap-2 text-sm">
+                                    <span class="material-symbols-outlined text-sm">check_circle</span>
+                                    Hoàn thành
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BÀI 1.3: KHÔNG GIAN & THỜI GIAN -->
+            <div id="lesson-M1-L3" class="lesson-content hidden">
+                <div
+                    class="bg-surface-light dark:bg-surface-dark rounded-3xl border border-gray-100 dark:border-gray-700 shadow-sm overflow-hidden">
+                    <div class="lesson-header-academic">
+                        <div class="flex items-center gap-3 mb-3"><span class="text-3xl">🕐</span><span
+                                class="text-purple-100 text-sm font-semibold uppercase tracking-wider">Bài 1.3 — Module
+                                1</span></div>
+                        <h2 class="font-display text-3xl font-bold text-white mb-2">Không gian & Thời gian</h2>
+                        <p class="text-purple-100 text-sm">🎯 <strong>Mục tiêu:</strong> Hiểu không gian-thời gian là
+                            hình thức tồn tại khách quan của vật chất; bác bỏ quan niệm duy tâm; kết nối với thuyết
+                            tương đối Einstein.</p>
+                    </div>
+                    <div class="p-8 space-y-8">
+                        <div class="bg-purple-50 dark:bg-purple-900/20 border-l-4 border-purple-500 rounded-r-2xl p-6">
+                            <p class="text-xs font-bold text-purple-600 uppercase tracking-wider mb-2">📖 Trích dẫn kinh
+                                điển</p>
+                            <blockquote
+                                class="font-display text-lg italic text-text-main-light dark:text-text-main-dark leading-relaxed">
+                                "Trong thế giới, không có gì ngoài vật chất đang vận động và vật chất đang vận động
+                                không thể vận động ở đâu ngoài không gian và thời gian."
+                            </blockquote>
+                            <p class="text-right text-sm text-text-muted-light dark:text-text-muted-dark mt-3">— V.I.
+                                Lênin | <strong class="text-purple-600">Chương 2, tr.487</strong></p>
+                        </div>
+                        <div class="space-y-5">
+                            <h3 class="font-display text-xl font-bold">Không gian & Thời gian là gì?</h3>
+                            <div class="grid md:grid-cols-2 gap-4">
+                                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-2xl p-5">
+                                    <h4 class="font-bold text-blue-600 mb-2">📐 Không gian</h4>
+                                    <p class="text-sm text-text-muted-light dark:text-text-muted-dark">Hình thức tồn tại
+                                        của vật chất xét về <strong>quảng tính</strong> — sự cùng tồn tại, trật tự, kết
+                                        cấu và sự tác động lẫn nhau giữa các sự vật.</p>
+                                </div>
+                                <div class="bg-amber-50 dark:bg-amber-900/20 rounded-2xl p-5">
+                                    <h4 class="font-bold text-amber-600 mb-2">⏱️ Thời gian</h4>
+                                    <p class="text-sm text-text-muted-light dark:text-text-muted-dark">Hình thức tồn tại
+                                        của vật chất xét về <strong>độ dài diễn biến</strong> — sự kế tiếp của các quá
+                                        trình, trước/sau, nhanh/chậm.</p>
+                                </div>
+                            </div>
+                            <h3 class="font-display text-xl font-bold">Einstein đã chứng minh gì?</h3>
+                            <div class="bg-gray-50 dark:bg-gray-800 rounded-2xl p-6">
+                                <p class="text-sm text-text-muted-light dark:text-text-muted-dark mb-3">Thuyết tương đối
+                                    (1905-1916) chứng minh: không gian và thời gian <strong>không phải "khung cứng cố
+                                        định"</strong> mà có tính khả biến — phụ thuộc vào tốc độ và khối lượng của vật
+                                    chất.</p>
+                                <ul class="text-sm space-y-2">
+                                    <li>⏩ Vật chuyển động nhanh → đồng hồ chạy chậm hơn (giãn thời gian)</li>
+                                    <li>⚫ Khối lượng lớn → không gian bị cong (lỗ đen)</li>
+                                    <li>✅ Điều này <em>xác nhận</em> quan điểm CNDV biện chứng: vật chất quyết định
+                                        không gian-thời gian</li>
+                                </ul>
+                            </div>
+                            <div class="bg-red-50 dark:bg-red-900/10 border border-red-200 rounded-2xl p-5">
+                                <h4 class="font-bold text-red-600 mb-2">❌ Bác bỏ Kant</h4>
+                                <p class="text-sm text-text-muted-light dark:text-text-muted-dark">Kant cho rằng không
+                                    gian và thời gian là "hình thức trực quan tiên nghiệm" — tức là do tư duy con người
+                                    tạo ra, không phải khách quan. CNDV biện chứng bác bỏ: không gian-thời gian tồn tại
+                                    khách quan, không phụ thuộc vào tư duy.</p>
+                            </div>
+                        </div>
+                        <div class="border-t border-gray-100 dark:border-gray-700 pt-6">
+                            <h3 class="font-display text-lg font-bold mb-4">Câu hỏi phản tư</h3>
+                            <div class="space-y-3">
+                                <div class="reflection-item">
+                                    <button onclick="toggleReflection(this)"
+                                        class="w-full text-left p-4 bg-gray-50 dark:bg-gray-800 rounded-xl hover:bg-purple-50 dark:hover:bg-purple-900/20 transition-colors text-sm font-medium flex justify-between items-center">
+                                        <span>1. Câu nói "Thời gian là tiền bạc" — từ góc nhìn triết học, điều này có ý
+                                            nghĩa gì? Có phải thời gian thực sự là vật chất không?</span>
+                                        <span
+                                            class="material-symbols-outlined text-gray-400 flex-shrink-0 ml-2">expand_more</span>
+                                    </button>
+                                    <div
+                                        class="reflection-answer p-4 text-sm text-text-muted-light dark:text-text-muted-dark">
+                                        <strong class="text-purple-600 block mb-1">Gợi ý:</strong> Thời gian bản thân nó
+                                        không phải vật chất — mà là hình thức tồn tại của vật chất vận động. "Thời gian
+                                        là tiền bạc" theo nghĩa: trong thời gian đó, con người (vật chất) có thể vận
+                                        động (lao động, sáng tạo) để tạo ra giá trị (vật chất mới). Mất thời gian = mất
+                                        cơ hội vận động tạo giá trị.
+                                    </div>
+                                </div>
+                                <div class="reflection-item">
+                                    <button onclick="toggleReflection(this)"
+                                        class="w-full text-left p-4 bg-gray-50 dark:bg-gray-800 rounded-xl hover:bg-purple-50 dark:hover:bg-purple-900/20 transition-colors text-sm font-medium flex justify-between items-center">
+                                        <span>2. Nếu không gian và thời gian là vô tận, có nghĩa là lịch sử nhân loại
+                                            trong vũ trụ chỉ là "một chớp mắt" — điều này ảnh hưởng đến thế giới quan
+                                            của bạn thế nào?</span>
+                                        <span
+                                            class="material-symbols-outlined text-gray-400 flex-shrink-0 ml-2">expand_more</span>
+                                    </button>
+                                    <div
+                                        class="reflection-answer p-4 text-sm text-text-muted-light dark:text-text-muted-dark">
+                                        <strong class="text-purple-600 block mb-1">Gợi ý mở:</strong> Câu hỏi này không
+                                        có đáp án "đúng duy nhất". Từ góc nhìn CNDV biện chứng: dù vũ trụ vô tận, lịch
+                                        sử nhân loại và hoạt động thực tiễn của từng con người vẫn có ý nghĩa vật
+                                        chất-xã hội thực sự. Sự vô tận của vũ trụ không phủ nhận ý nghĩa của hành động
+                                        trong không-thời gian cụ thể của chúng ta.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            class="bg-purple-50 dark:bg-purple-900/20 border border-purple-200 dark:border-purple-800/30 rounded-2xl p-6">
+                            <h3 class="font-display text-lg font-bold mb-3"><span
+                                    class="material-symbols-outlined text-purple-600">edit_note</span> Hoạt động: So
+                                sánh Newton vs Einstein vs CNDV</h3>
+                            <p class="text-sm text-text-muted-light dark:text-text-muted-dark">Hãy điền vào bảng so sánh
+                                3 quan điểm về không gian-thời gian: Newton (tuyệt đối, bất biến), Kant (tiên nghiệm
+                                trong tư duy), và CNDV biện chứng (khách quan, khả biến). Cái nào phù hợp nhất với thực
+                                tế khoa học hiện đại? Tại sao?</p>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <button onclick="showLesson('M1-L2')"
+                                class="text-sm text-text-muted-light hover:text-primary flex items-center gap-1"><span
+                                    class="material-symbols-outlined text-sm">arrow_back</span> Bài trước</button>
+                            <button onclick="completeLesson('M1-L3')" id="btn-complete-M1-L3"
+                                class="bg-primary hover:bg-blue-700 text-white font-semibold px-8 py-3 rounded-xl transition-colors flex items-center gap-2"><span
+                                    class="material-symbols-outlined text-sm">check_circle</span> Hoàn thành</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BÀI 1.4: CÁC DẠNG VẬN ĐỘNG -->
+            <div id="lesson-M1-L4" class="lesson-content hidden">
+                <div
+                    class="bg-surface-light dark:bg-surface-dark rounded-3xl border border-gray-100 dark:border-gray-700 shadow-sm overflow-hidden">
+                    <div class="lesson-header-academic">
+                        <div class="flex items-center gap-3 mb-3"><span class="text-3xl">🔬</span><span
+                                class="text-rose-100 text-sm font-semibold uppercase tracking-wider">Bài 1.4 — Module
+                                1</span></div>
+                        <h2 class="font-display text-3xl font-bold text-white mb-2">Các dạng vận động của vật chất</h2>
+                        <p class="text-rose-100 text-sm">🎯 <strong>Mục tiêu:</strong> Nắm 5 hình thức vận động theo Ph.
+                            Ăngghen; hiểu quan hệ cao-thấp; phê phán chủ nghĩa cơ giới và chủ nghĩa Đácuyn xã hội.</p>
+                    </div>
+                    <div class="p-8 space-y-8">
+                        <div class="bg-rose-50 dark:bg-rose-900/20 border-l-4 border-rose-500 rounded-r-2xl p-6">
+                            <p class="text-xs font-bold text-rose-600 uppercase tracking-wider mb-2">📖 Trích dẫn kinh
+                                điển</p>
+                            <blockquote
+                                class="font-display text-base italic text-text-main-light dark:text-text-main-dark leading-relaxed">
+                                "Vận động trong không gian vũ trụ, vận động cơ học của các vật thể tương đối nhỏ trên
+                                một thiên thể riêng biệt, chấn động phân tử dưới hình thức nhiệt, dòng điện, dòng từ
+                                phổ, phân giải và hợp chất hóa học, sự sống hữu cơ cho đến cái sản phẩm cao nhất của nó
+                                là tư duy."
+                            </blockquote>
+                            <p class="text-right text-sm text-text-muted-light dark:text-text-muted-dark mt-3">— Ph.
+                                Ăngghen | <strong class="text-rose-600">Chương 2, tr.472</strong></p>
+                        </div>
+                        <div class="space-y-5">
+                            <h3 class="font-display text-xl font-bold">5 Hình thức vận động — Từ thấp đến cao</h3>
+                            <div class="space-y-3">
+                                <div class="flex gap-4 items-center p-4 bg-gray-50 dark:bg-gray-800 rounded-xl">
+                                    <div
+                                        class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center text-blue-600 font-bold">
+                                        1</div>
+                                    <div><strong class="text-sm">Cơ học</strong> <span
+                                            class="text-xs text-gray-500 ml-2">di chuyển vị trí trong không
+                                            gian</span><br><span
+                                            class="text-xs text-text-muted-light dark:text-text-muted-dark">VD: Trái đất
+                                            quay, xe chạy, bóng bay</span></div>
+                                </div>
+                                <div class="flex gap-4 items-center p-4 bg-gray-50 dark:bg-gray-800 rounded-xl">
+                                    <div
+                                        class="flex-shrink-0 w-10 h-10 rounded-full bg-yellow-100 dark:bg-yellow-900/30 flex items-center justify-center text-yellow-600 font-bold">
+                                        2</div>
+                                    <div><strong class="text-sm">Vật lý</strong> <span
+                                            class="text-xs text-gray-500 ml-2">nhiệt, điện, từ, ánh sáng</span><br><span
+                                            class="text-xs text-text-muted-light dark:text-text-muted-dark">VD: Nước
+                                            sôi, dây điện dẫn, sóng radio</span></div>
+                                </div>
+                                <div class="flex gap-4 items-center p-4 bg-gray-50 dark:bg-gray-800 rounded-xl">
+                                    <div
+                                        class="flex-shrink-0 w-10 h-10 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center text-green-600 font-bold">
+                                        3</div>
+                                    <div><strong class="text-sm">Hóa học</strong> <span
+                                            class="text-xs text-gray-500 ml-2">phân giải, hợp chất, phản
+                                            ứng</span><br><span
+                                            class="text-xs text-text-muted-light dark:text-text-muted-dark">VD: Đốt cháy
+                                            gỗ, tiêu hóa thức ăn, quang hợp</span></div>
+                                </div>
+                                <div class="flex gap-4 items-center p-4 bg-gray-50 dark:bg-gray-800 rounded-xl">
+                                    <div
+                                        class="flex-shrink-0 w-10 h-10 rounded-full bg-rose-100 dark:bg-rose-900/30 flex items-center justify-center text-rose-600 font-bold">
+                                        4</div>
+                                    <div><strong class="text-sm">Sinh học</strong> <span
+                                            class="text-xs text-gray-500 ml-2">sinh trưởng, trao đổi chất, tiến
+                                            hóa</span><br><span
+                                            class="text-xs text-text-muted-light dark:text-text-muted-dark">VD: Cây lớn,
+                                            tim đập, ếch tiến hóa</span></div>
+                                </div>
+                                <div
+                                    class="flex gap-4 items-center p-4 bg-gradient-to-r from-purple-50 to-blue-50 dark:from-purple-900/20 dark:to-blue-900/20 rounded-xl border border-purple-200 dark:border-purple-800/30">
+                                    <div
+                                        class="flex-shrink-0 w-10 h-10 rounded-full bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center text-purple-600 font-bold">
+                                        5</div>
+                                    <div><strong class="text-sm text-purple-700 dark:text-purple-300">Xã hội ⭐ (cao
+                                            nhất)</strong> <span class="text-xs text-gray-500 ml-2">tư duy, lao động,
+                                            quan hệ sản xuất</span><br><span
+                                            class="text-xs text-text-muted-light dark:text-text-muted-dark">VD: Cách
+                                            mạng xã hội, sáng tạo nghệ thuật, tư duy triết học</span></div>
+                                </div>
+                            </div>
+                            <div class="bg-amber-50 dark:bg-amber-900/10 border border-amber-200 rounded-2xl p-5">
+                                <h4 class="font-bold text-amber-700 dark:text-amber-400 mb-2">⚠️ Phê phán: Chủ nghĩa cơ
+                                    giới</h4>
+                                <p class="text-sm text-text-muted-light dark:text-text-muted-dark">Quy mọi hình thức vận
+                                    động về vận động cơ học là sai lầm. Ví dụ: giải thích tình yêu bằng "lực hấp dẫn
+                                    giữa hai khối lượng" — mất đi bản chất xã hội của cảm xúc con người.</p>
+                            </div>
+                        </div>
+                        <div class="border-t border-gray-100 dark:border-gray-700 pt-6">
+                            <h3 class="font-display text-lg font-bold mb-4">Câu hỏi phản tư</h3>
+                            <div class="space-y-3">
+                                <div class="reflection-item">
+                                    <button onclick="toggleReflection(this)"
+                                        class="w-full text-left p-4 bg-gray-50 dark:bg-gray-800 rounded-xl hover:bg-rose-50 dark:hover:bg-rose-900/20 transition-colors text-sm font-medium flex justify-between items-center">
+                                        <span>1. Sự kiện "sinh viên đình công phản đối chính sách học phí" thuộc hình
+                                            thức vận động nào? Tại sao không thể quy về vận động sinh học?</span>
+                                        <span
+                                            class="material-symbols-outlined text-gray-400 flex-shrink-0 ml-2">expand_more</span>
+                                    </button>
+                                    <div
+                                        class="reflection-answer p-4 text-sm text-text-muted-light dark:text-text-muted-dark">
+                                        <strong class="text-rose-600 block mb-1">Gợi ý:</strong> Thuộc vận động xã hội —
+                                        cao nhất. Không thể quy về sinh học vì: đây không chỉ là "hành vi bầy đàn sinh
+                                        vật" mà là hành động có ý thức, mục đích, tổ chức; xuất phát từ quan hệ xã hội
+                                        (học phí, quyền lợi); sử dụng ngôn ngữ, lý lẽ, thể chế. Vận động xã hội khác về
+                                        chất, không thể giản hóa thành sinh học.
+                                    </div>
+                                </div>
+                                <div class="reflection-item">
+                                    <button onclick="toggleReflection(this)"
+                                        class="w-full text-left p-4 bg-gray-50 dark:bg-gray-800 rounded-xl hover:bg-rose-50 dark:hover:bg-rose-900/20 transition-colors text-sm font-medium flex justify-between items-center">
+                                        <span>2. "AI tư duy" (ChatGPT v.v.) thuộc hình thức vận động nào theo Ph.
+                                            Ăngghen? Điều này đặt ra vấn đề triết học gì?</span>
+                                        <span
+                                            class="material-symbols-outlined text-gray-400 flex-shrink-0 ml-2">expand_more</span>
+                                    </button>
+                                    <div
+                                        class="reflection-answer p-4 text-sm text-text-muted-light dark:text-text-muted-dark">
+                                        <strong class="text-rose-600 block mb-1">Gợi ý mở:</strong> AI xử lý thông tin =
+                                        vận động vật lý-điện tử (cấp độ 2); nhưng "đầu ra" bắt chước vận động xã hội
+                                        (ngôn ngữ, lý luận). Câu hỏi triết học: liệu mô phỏng vận động xã hội có phải là
+                                        vận động xã hội thực sự không? Ph. Ăngghen phân biệt vận động cao bởi tính ý
+                                        thức và quan hệ xã hội — AI hiện tại chưa có điều này.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            class="bg-rose-50 dark:bg-rose-900/20 border border-rose-200 dark:border-rose-800/30 rounded-2xl p-6">
+                            <h3 class="font-display text-lg font-bold mb-3">Hoạt động: Nhận diện dạng vận động</h3>
+                            <p class="text-sm text-text-muted-light dark:text-text-muted-dark mb-3">Phân loại mỗi hiện
+                                tượng vào 1 (hoặc nhiều) hình thức vận động chính:</p>
+                            <div class="grid grid-cols-1 gap-2 text-sm">
+                                <div class="flex gap-2 items-center p-2 bg-white dark:bg-gray-800 rounded-lg">
+                                    <span class="text-base">🌊</span> <span>Sóng thần hình thành sau động đất</span>
+                                    <span class="ml-auto text-xs text-gray-400">→ ___________</span>
+                                </div>
+                                <div class="flex gap-2 items-center p-2 bg-white dark:bg-gray-800 rounded-lg">
+                                    <span class="text-base">💡</span> <span>Học sinh hiểu ra bài toán khó</span> <span
+                                        class="ml-auto text-xs text-gray-400">→ ___________</span>
+                                </div>
+                                <div class="flex gap-2 items-center p-2 bg-white dark:bg-gray-800 rounded-lg">
+                                    <span class="text-base">🦠</span> <span>Virus SARS-CoV-2 đột biến gen</span> <span
+                                        class="ml-auto text-xs text-gray-400">→ ___________</span>
+                                </div>
+                                <div class="flex gap-2 items-center p-2 bg-white dark:bg-gray-800 rounded-lg">
+                                    <span class="text-base">📱</span> <span>Cách mạng 4.0 thay đổi cấu trúc kinh
+                                        tế</span> <span class="ml-auto text-xs text-gray-400">→ ___________</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <button onclick="showLesson('M1-L3')"
+                                class="text-sm text-text-muted-light hover:text-primary flex items-center gap-1"><span
+                                    class="material-symbols-outlined text-sm">arrow_back</span> Bài trước</button>
+                            <div class="flex gap-3">
+                                <button onclick="openFormativeQuiz('M1-FQ2')"
+                                    class="bg-rose-500 hover:bg-rose-600 text-white font-semibold px-6 py-3 rounded-xl transition-colors flex items-center gap-2 text-sm">
+                                    <span class="material-symbols-outlined text-sm">quiz</span> Kiểm tra hình thành (Bài
+                                    1.3–1.4)
+                                </button>
+                                <button onclick="completeLesson('M1-L4')" id="btn-complete-M1-L4"
+                                    class="bg-primary hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-xl transition-colors flex items-center gap-2 text-sm"><span
+                                        class="material-symbols-outlined text-sm">check_circle</span> Hoàn
+                                    thành</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BÀI 1.5: VẬT CHẤT & Ý THỨC -->
+            <div id="lesson-M1-L5" class="lesson-content hidden">
+                <div
+                    class="bg-surface-light dark:bg-surface-dark rounded-3xl border border-gray-100 dark:border-gray-700 shadow-sm overflow-hidden">
+                    <div class="lesson-header-academic">
+                        <div class="flex items-center gap-3 mb-3"><span class="text-3xl">🧠</span><span
+                                class="text-indigo-100 text-sm font-semibold uppercase tracking-wider">Bài 1.5 — Module
+                                1</span></div>
+                        <h2 class="font-display text-3xl font-bold text-white mb-2">Mối quan hệ Vật chất & Ý thức</h2>
+                        <p class="text-indigo-100 text-sm">🎯 <strong>Mục tiêu:</strong> Hiểu vật chất quyết định ý
+                            thức; ý thức có thể tác động ngược lại; tránh cả hai sai lầm: duy tâm và thụ động.</p>
+                    </div>
+                    <div class="p-8 space-y-8">
+                        <div class="bg-indigo-50 dark:bg-indigo-900/20 border-l-4 border-indigo-500 rounded-r-2xl p-6">
+                            <p class="text-xs font-bold text-indigo-600 uppercase tracking-wider mb-2">📖 Nguyên tắc cốt
+                                lõi</p>
+                            <blockquote
+                                class="font-display text-lg italic text-text-main-light dark:text-text-main-dark leading-relaxed">
+                                Vật chất là tính thứ nhất, ý thức là tính thứ hai; vật chất quyết định ý thức; ý thức là
+                                sự phản ánh sáng tạo của vật chất — và có thể tác động tích cực hoặc tiêu cực trở lại
+                                vật chất.
+                            </blockquote>
+                            <p class="text-right text-sm text-text-muted-light dark:text-text-muted-dark mt-3">— CNDV
+                                biện chứng | <strong class="text-indigo-600">Chương 2</strong></p>
+                        </div>
+                        <div class="space-y-5">
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div class="space-y-3">
+                                    <h3 class="font-display text-xl font-bold">Vật chất quyết định ý thức</h3>
+                                    <ul class="space-y-2 text-sm text-text-muted-light dark:text-text-muted-dark">
+                                        <li class="flex gap-2"><span class="text-primary flex-shrink-0">→</span> Ý thức
+                                            ra đời từ vật chất (não bộ là cơ quan vật chất của tư duy)</li>
+                                        <li class="flex gap-2"><span class="text-primary flex-shrink-0">→</span> Nội
+                                            dung ý thức phản ánh thế giới vật chất khách quan</li>
+                                        <li class="flex gap-2"><span class="text-primary flex-shrink-0">→</span> Điều
+                                            kiện vật chất thay đổi → ý thức thay đổi theo</li>
+                                        <li class="flex gap-2 bg-blue-50 dark:bg-blue-900/20 rounded-lg p-2"><span
+                                                class="text-primary flex-shrink-0">💡</span> Nam: hoàn cảnh nghèo khó
+                                            (vật chất) ảnh hưởng đến tư duy, quan điểm của anh ta</li>
+                                    </ul>
+                                </div>
+                                <div class="space-y-3">
+                                    <h3 class="font-display text-xl font-bold">Ý thức tác động ngược lại</h3>
+                                    <ul class="space-y-2 text-sm text-text-muted-light dark:text-text-muted-dark">
+                                        <li class="flex gap-2"><span class="text-secondary flex-shrink-0">→</span> Ý
+                                            thức đúng đắn → hành động đúng → cải tạo vật chất hiệu quả</li>
+                                        <li class="flex gap-2"><span class="text-secondary flex-shrink-0">→</span> Ý
+                                            thức sai lầm → hành động sai → kìm hãm hoặc phá hoại</li>
+                                        <li class="flex gap-2"><span class="text-secondary flex-shrink-0">→</span> Sức
+                                            mạnh của ý thức thể hiện qua <em>hành động thực tiễn</em>, không phải tư
+                                            tưởng thuần túy</li>
+                                        <li class="flex gap-2 bg-green-50 dark:bg-green-900/20 rounded-lg p-2"><span
+                                                class="text-secondary flex-shrink-0">💡</span> Nam: nếu nhận thức đúng
+                                            về hoàn cảnh và lập kế hoạch hành động → có thể cải tạo hoàn cảnh</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="bg-amber-50 dark:bg-amber-900/10 border border-amber-300 rounded-2xl p-6">
+                                <h4 class="font-bold text-amber-700 dark:text-amber-400 mb-3">⚖️ Hai sai lầm cần tránh
+                                </h4>
+                                <div class="grid md:grid-cols-2 gap-4 text-sm">
+                                    <div class="bg-red-50 dark:bg-red-900/10 rounded-xl p-4 border border-red-200">
+                                        <strong class="text-red-600">Duy ý chí (Duy tâm)</strong>
+                                        <p class="text-text-muted-light dark:text-text-muted-dark mt-1">Coi ý thức có
+                                            thể vượt qua mọi điều kiện vật chất. "Chỉ cần nghĩ đúng, tiền sẽ đến" —
+                                            không cần học tập, rèn luyện.</p>
+                                    </div>
+                                    <div
+                                        class="bg-gray-100 dark:bg-gray-800 rounded-xl p-4 border border-gray-200 dark:border-gray-700">
+                                        <strong class="text-gray-600">Thụ động buông xuôi</strong>
+                                        <p class="text-text-muted-light dark:text-text-muted-dark mt-1">"Hoàn cảnh bắt
+                                            tôi phải thế này." — Phủ nhận hoàn toàn vai trò tích cực của ý thức trong
+                                            việc cải tạo hoàn cảnh.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="border-t border-gray-100 dark:border-gray-700 pt-6">
+                            <h3 class="font-display text-lg font-bold mb-4">Câu hỏi phản tư</h3>
+                            <div class="space-y-3">
+                                <div class="reflection-item">
+                                    <button onclick="toggleReflection(this)"
+                                        class="w-full text-left p-4 bg-gray-50 dark:bg-gray-800 rounded-xl hover:bg-indigo-50 dark:hover:bg-indigo-900/20 transition-colors text-sm font-medium flex justify-between items-center">
+                                        <span>1. "Người tích cực sẽ thành công hơn người tiêu cực" — câu này đúng hay
+                                            sai theo CNDV biện chứng?</span>
+                                        <span
+                                            class="material-symbols-outlined text-gray-400 flex-shrink-0 ml-2">expand_more</span>
+                                    </button>
+                                    <div
+                                        class="reflection-answer p-4 text-sm text-text-muted-light dark:text-text-muted-dark">
+                                        <strong class="text-indigo-600 block mb-1">Gợi ý:</strong> Đúng một phần — nhưng
+                                        cần bổ sung điều kiện. Ý thức tích cực giúp hành động hiệu quả hơn → tác động
+                                        ngược lại vật chất tốt hơn. Tuy nhiên, thái độ tích cực KHÔNG thể thay thế điều
+                                        kiện vật chất (kiến thức, kỹ năng, cơ hội). Cần cả hai: nhận thức đúng (tích
+                                        cực, thực tế) VÀ hành động thực tiễn phù hợp với quy luật khách quan.
+                                    </div>
+                                </div>
+                                <div class="reflection-item">
+                                    <button onclick="toggleReflection(this)"
+                                        class="w-full text-left p-4 bg-gray-50 dark:bg-gray-800 rounded-xl hover:bg-indigo-50 dark:hover:bg-indigo-900/20 transition-colors text-sm font-medium flex justify-between items-center">
+                                        <span>2. Trong thời đại mạng xã hội, "thông tin giả" (fake news) có ảnh hưởng
+                                            đến vật chất không? Cho ví dụ cụ thể.</span>
+                                        <span
+                                            class="material-symbols-outlined text-gray-400 flex-shrink-0 ml-2">expand_more</span>
+                                    </button>
+                                    <div
+                                        class="reflection-answer p-4 text-sm text-text-muted-light dark:text-text-muted-dark">
+                                        <strong class="text-indigo-600 block mb-1">Gợi ý:</strong> Có! Đây là ví dụ ý
+                                        thức (sai lầm) tác động ngược lại vật chất. VD: Fake news về COVID → người dân
+                                        mua sạch khẩu trang (vật chất khan hiếm); Thông tin sai về cổ phiếu → giá thị
+                                        trường thay đổi (vật chất kinh tế); Tin đồn về thực phẩm → hành vi tiêu dùng
+                                        thay đổi. Ý thức sai lầm tác động tiêu cực đến vật chất rất mạnh mẽ.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-indigo-50 dark:bg-indigo-900/20 border border-indigo-200 rounded-2xl p-6">
+                            <h3 class="font-display text-lg font-bold mb-3">Hoạt động: Phân tích trường hợp của Nam</h3>
+                            <p class="text-sm text-text-muted-light dark:text-text-muted-dark mb-3">Đọc 3 kịch bản và
+                                xác định kịch bản nào áp dụng đúng CNDV biện chứng:</p>
+                            <div class="space-y-2 text-sm">
+                                <div class="p-3 bg-white dark:bg-gray-800 rounded-xl flex gap-3"><span>A</span><span>Nam
+                                        "visualize" giàu có mỗi ngày 1 giờ, không học thêm kỹ năng, chờ "vũ trụ gửi cơ
+                                        hội".</span></div>
+                                <div class="p-3 bg-white dark:bg-gray-800 rounded-xl flex gap-3"><span>B</span><span>Nam
+                                        nhận ra mình thiếu kỹ năng lập trình, học online 2 giờ/ngày, xin thực tập, áp
+                                        dụng thực tế.</span></div>
+                                <div class="p-3 bg-white dark:bg-gray-800 rounded-xl flex gap-3"><span>C</span><span>Nam
+                                        bỏ cuộc: "Nhà mình không có quan hệ, không thể thành công được".</span></div>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <button onclick="showLesson('M1-L4')"
+                                class="text-sm text-text-muted-light hover:text-primary flex items-center gap-1"><span
+                                    class="material-symbols-outlined text-sm">arrow_back</span> Bài trước</button>
+                            <button onclick="completeLesson('M1-L5')" id="btn-complete-M1-L5"
+                                class="bg-primary hover:bg-blue-700 text-white font-semibold px-8 py-3 rounded-xl transition-colors flex items-center gap-2"><span
+                                    class="material-symbols-outlined text-sm">check_circle</span> Hoàn thành</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BÀI 1.6: NGUYÊN TẮC HÀNH ĐỘNG -->
+            <div id="lesson-M1-L6" class="lesson-content hidden">
+                <div
+                    class="bg-surface-light dark:bg-surface-dark rounded-3xl border border-gray-100 dark:border-gray-700 shadow-sm overflow-hidden">
+                    <div class="lesson-header-academic">
+                        <div class="flex items-center gap-3 mb-3"><span class="text-3xl">🎯</span><span
+                                class="text-amber-900/80 text-sm font-semibold uppercase tracking-wider">Bài 1.6 —
+                                Module 1</span></div>
+                        <h2 class="font-display text-3xl font-bold text-amber-900 mb-2">Nguyên tắc hành động trong thực
+                            tiễn</h2>
+                        <p class="text-amber-900/70 text-sm">🎯 <strong>Mục tiêu:</strong> Rút ra nguyên tắc phương pháp
+                            luận từ CNDV biện chứng; áp dụng vào định hướng học tập, nghề nghiệp, lối sống.</p>
+                    </div>
+                    <div class="p-8 space-y-8">
+                        <div class="bg-amber-50 dark:bg-amber-900/20 border-l-4 border-amber-500 rounded-r-2xl p-6">
+                            <p class="text-xs font-bold text-amber-600 uppercase tracking-wider mb-2">📖 Nguyên tắc
+                                phương pháp luận</p>
+                            <blockquote
+                                class="font-display text-lg italic text-text-main-light dark:text-text-main-dark leading-relaxed">
+                                "Trong nhận thức và thực tiễn, đòi hỏi con người phải quán triệt nguyên tắc khách quan,
+                                xuất phát từ hiện thực khách quan, tôn trọng khách quan, nhận thức và vận dụng đúng quy
+                                luật khách quan."
+                            </blockquote>
+                            <p class="text-right text-sm text-text-muted-light dark:text-text-muted-dark mt-3">— CNDV
+                                biện chứng | <strong class="text-amber-600">Chương 2, tr.461</strong></p>
+                        </div>
+                        <div class="space-y-6">
+                            <h3 class="font-display text-xl font-bold">Công thức 3 bước: Định vị — Phát huy — Hành động
+                            </h3>
+                            <div class="grid md:grid-cols-3 gap-6">
+                                <div
+                                    class="flex flex-col items-center text-center p-6 bg-surface-light dark:bg-surface-dark rounded-2xl border-2 border-primary/30">
+                                    <div
+                                        class="w-16 h-16 rounded-full bg-primary/10 text-primary flex items-center justify-center text-2xl font-bold mb-4">
+                                        01</div>
+                                    <h4 class="font-bold text-primary mb-2">Tôn trọng khách quan</h4>
+                                    <p class="text-sm text-text-muted-light dark:text-text-muted-dark italic mb-3">"Nhìn
+                                        thẳng vào sự thật"</p>
+                                    <p class="text-xs text-text-muted-light dark:text-text-muted-dark">Đánh giá trung
+                                        thực điểm mạnh, điểm yếu, cơ hội và thách thức thực tế. Không tô hồng hay bôi
+                                        đen.</p>
+                                </div>
+                                <div
+                                    class="flex flex-col items-center text-center p-6 bg-surface-light dark:bg-surface-dark rounded-2xl border-2 border-secondary/30">
+                                    <div
+                                        class="w-16 h-16 rounded-full bg-secondary/10 text-secondary flex items-center justify-center text-2xl font-bold mb-4">
+                                        02</div>
+                                    <h4 class="font-bold text-secondary mb-2">Phát huy năng động</h4>
+                                    <p class="text-sm text-text-muted-light dark:text-text-muted-dark italic mb-3">"Ý
+                                        thức tác động trở lại"</p>
+                                    <p class="text-xs text-text-muted-light dark:text-text-muted-dark">Từ nhận thức
+                                        đúng, xây dựng kế hoạch hành động cụ thể. Dùng tri thức để tìm "khe cửa hẹp"
+                                        trong hoàn cảnh.</p>
+                                </div>
+                                <div
+                                    class="flex flex-col items-center text-center p-6 bg-surface-light dark:bg-surface-dark rounded-2xl border-2 border-accent/30">
+                                    <div
+                                        class="w-16 h-16 rounded-full bg-accent/10 text-amber-600 flex items-center justify-center text-2xl font-bold mb-4">
+                                        03</div>
+                                    <h4 class="font-bold text-amber-600 mb-2">Thống nhất biện chứng</h4>
+                                    <p class="text-sm text-text-muted-light dark:text-text-muted-dark italic mb-3">"Lời
+                                        nói đi đôi việc làm"</p>
+                                    <p class="text-xs text-text-muted-light dark:text-text-muted-dark">Kiên trì thực
+                                        hiện, liên tục điều chỉnh dựa trên phản hồi thực tế. Không ảo tưởng, không bỏ
+                                        cuộc.</p>
+                                </div>
+                            </div>
+                            <div
+                                class="bg-gradient-to-r from-primary/5 to-secondary/5 border border-primary/20 rounded-2xl p-6">
+                                <h4 class="font-bold text-lg mb-4">🏆 Áp dụng vào câu chuyện của Nam</h4>
+                                <div class="space-y-3 text-sm">
+                                    <div class="flex gap-3 items-start">
+                                        <span
+                                            class="w-6 h-6 rounded-full bg-primary text-white flex items-center justify-center text-xs flex-shrink-0 mt-0.5">1</span>
+                                        <div><strong>Tôn trọng khách quan:</strong> Nam nhìn nhận thực tế — thiếu vốn,
+                                            thiếu mạng lưới, đang học năm 1. Không ảo tưởng cũng không tự ti.</div>
+                                    </div>
+                                    <div class="flex gap-3 items-start">
+                                        <span
+                                            class="w-6 h-6 rounded-full bg-secondary text-white flex items-center justify-center text-xs flex-shrink-0 mt-0.5">2</span>
+                                        <div><strong>Phát huy năng động:</strong> Nam lập kế hoạch: học kỹ năng thiếu,
+                                            xin học bổng, networking với thầy cô, làm thêm đúng ngành.</div>
+                                    </div>
+                                    <div class="flex gap-3 items-start">
+                                        <span
+                                            class="w-6 h-6 rounded-full bg-amber-500 text-white flex items-center justify-center text-xs flex-shrink-0 mt-0.5">3</span>
+                                        <div><strong>Thống nhất biện chứng:</strong> Nam thực hiện kế hoạch 6 tháng,
+                                            đánh giá kết quả, điều chỉnh khi cần. Vừa thực tế vừa kiên trì.</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="border-t border-gray-100 dark:border-gray-700 pt-6">
+                            <h3 class="font-display text-lg font-bold mb-4">Câu hỏi phản tư</h3>
+                            <div class="space-y-3">
+                                <div class="reflection-item">
+                                    <button onclick="toggleReflection(this)"
+                                        class="w-full text-left p-4 bg-gray-50 dark:bg-gray-800 rounded-xl hover:bg-amber-50 dark:hover:bg-amber-900/20 transition-colors text-sm font-medium flex justify-between items-center">
+                                        <span>1. Áp dụng công thức 3 bước vào một quyết định quan trọng trong cuộc sống
+                                            bạn hiện nay (chọn ngành, chọn việc làm, hoặc dự án cá nhân).</span>
+                                        <span
+                                            class="material-symbols-outlined text-gray-400 flex-shrink-0 ml-2">expand_more</span>
+                                    </button>
+                                    <div
+                                        class="reflection-answer p-4 text-sm text-text-muted-light dark:text-text-muted-dark">
+                                        <strong class="text-amber-600 block mb-1">Gợi ý cấu trúc trả lời:</strong> [1]
+                                        Liệt kê thực tế khách quan hiện tại (điểm mạnh/yếu, cơ hội/thách thức cụ thể).
+                                        [2] Kế hoạch hành động dựa trên điều kiện thực tế đó. [3] Cách kiểm tra và điều
+                                        chỉnh kế hoạch. Tránh: mơ ước chung chung hoặc than vãn về hoàn cảnh.
+                                    </div>
+                                </div>
+                                <div class="reflection-item">
+                                    <button onclick="toggleReflection(this)"
+                                        class="w-full text-left p-4 bg-gray-50 dark:bg-gray-800 rounded-xl hover:bg-amber-50 dark:hover:bg-amber-900/20 transition-colors text-sm font-medium flex justify-between items-center">
+                                        <span>2. Lênin nói: "Người ai bắt tay vào những vấn đề riêng trước khi giải
+                                            quyết các vấn đề chung thì sẽ không sao tránh khỏi vấp phải những vấn đề
+                                            chung đó." Điều này áp dụng vào việc học triết học như thế nào?</span>
+                                        <span
+                                            class="material-symbols-outlined text-gray-400 flex-shrink-0 ml-2">expand_more</span>
+                                    </button>
+                                    <div
+                                        class="reflection-answer p-4 text-sm text-text-muted-light dark:text-text-muted-dark">
+                                        <strong class="text-amber-600 block mb-1">Gợi ý:</strong> Không có nền tảng
+                                        triết học (thế giới quan, phương pháp luận), chúng ta giải quyết vấn đề cụ thể
+                                        (chọn nghề, đánh giá thông tin, xử lý mâu thuẫn) theo bản năng hoặc trực giác —
+                                        dễ sai. Học triết không phải học thuộc lòng mà là trang bị "bộ lọc nhận thức" để
+                                        đối phó với mọi vấn đề cụ thể về sau.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            class="bg-gradient-to-r from-amber-50 to-yellow-50 dark:from-amber-900/20 dark:to-yellow-900/20 border border-amber-200 rounded-2xl p-6">
+                            <h3 class="font-display text-lg font-bold mb-3">Hoạt động tổng kết: Bức thư gửi bản thân
+                            </h3>
+                            <p class="text-sm text-text-muted-light dark:text-text-muted-dark">Viết 1 đoạn ngắn (5-7
+                                câu) trả lời câu hỏi của Nam: <em>"Hoàn cảnh hay ý chí — cái gì quyết định cuộc đời
+                                    tôi?"</em> — dùng ngôn ngữ của chính bạn, dựa trên những gì học được trong 6 bài.
+                            </p>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <button onclick="showLesson('M1-L5')"
+                                class="text-sm text-text-muted-light hover:text-primary flex items-center gap-1"><span
+                                    class="material-symbols-outlined text-sm">arrow_back</span> Bài trước</button>
+                            <div class="flex gap-3">
+                                <button onclick="openFormativeQuiz('M1-FQ3')"
+                                    class="bg-amber-500 hover:bg-amber-600 text-white font-semibold px-6 py-3 rounded-xl transition-colors flex items-center gap-2 text-sm">
+                                    <span class="material-symbols-outlined text-sm">quiz</span> Kiểm tra hình thành (Bài
+                                    1.5–1.6)
+                                </button>
+                                <button onclick="completeLesson('M1-L6')" id="btn-complete-M1-L6"
+                                    class="bg-primary hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-xl transition-colors flex items-center gap-2 text-sm"><span
+                                        class="material-symbols-outlined text-sm">check_circle</span> Hoàn
+                                    thành</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- ===== MODULE QUIZ BANNER ===== -->
+        <section id="module-quiz-banner" class="mb-16 hidden">
+            <div class="bg-gradient-to-r from-primary to-secondary rounded-3xl p-8 text-white text-center">
+                <span class="text-5xl mb-4 block">🏆</span>
+                <h2 class="font-display text-3xl font-bold mb-3">Bạn đã hoàn thành 6 bài học!</h2>
+                <p class="text-white/80 mb-6">Hãy làm bài kiểm tra tổng kết Module 1 (12 câu) để nhận thành tích
+                    <strong>Motion Analyst 🥈</strong> và +10 XP.</p>
+                <button onclick="openModuleQuiz()" id="btn-module-quiz"
+                    class="bg-white text-primary hover:bg-blue-50 font-bold px-10 py-4 rounded-2xl transition-colors inline-flex items-center gap-2 text-lg shadow-lg">
+                    <span class="material-symbols-outlined">school</span>
+                    Làm bài kiểm tra Module 1
+                </button>
+            </div>
+        </section>
+
+        <!-- ===== AI PANEL BUTTON ===== -->
+        <div class="fixed bottom-6 right-6 z-40">
+            <button onclick="toggleAIPanel()" id="btn-ai-panel"
+                class="w-14 h-14 rounded-full bg-primary text-white shadow-xl hover:bg-blue-700 flex items-center justify-center transition-all hover:scale-105">
+                <span class="material-symbols-outlined">smart_toy</span>
+            </button>
+        </div>
+
+        <!-- ===== AI PANEL ===== -->
+        <div id="ai-panel"
+            class="hidden-panel fixed right-0 top-0 h-full w-80 md:w-96 bg-surface-light dark:bg-surface-dark border-l border-gray-200 dark:border-gray-700 shadow-2xl z-50 flex flex-col">
+            <div class="p-4 border-b border-gray-200 dark:border-gray-700 flex items-center justify-between">
+                <div>
+                    <h3 class="font-bold text-sm">🤖 AI Triết học — Module 1</h3>
+                    <p class="text-xs text-text-muted-light dark:text-text-muted-dark">Mọi trả lời có trích dẫn từ
+                        Chương 2 Triet.txt</p>
+                </div>
+                <button onclick="toggleAIPanel()"
+                    class="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full"><span
+                        class="material-symbols-outlined text-gray-500">close</span></button>
+            </div>
+            <div id="ai-chat-history" class="flex-1 overflow-y-auto p-4 space-y-3">
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-xl p-3">
+                    <p class="text-xs font-bold text-primary mb-1">🤖 AI Triết học</p>
+                    <p class="text-sm text-text-muted-light dark:text-text-muted-dark">Xin chào! Tôi sẵn sàng giải thích
+                        các khái niệm Module 1 — <strong>Vật chất, Vận động, Không gian-Thời gian</strong>. Mọi câu trả
+                        lời sẽ có trích dẫn từ <em>Giáo trình Triết học Mác-Lênin 2021, Chương 2</em>.</p>
+                </div>
+                <!-- Quick prompts -->
+                <div class="space-y-2">
+                    <p class="text-xs text-gray-400 font-medium">💡 Câu hỏi gợi ý:</p>
+                    <button onclick="sendAIPrompt('Giải thích định nghĩa vật chất của Lênin bằng ví dụ thực tế')"
+                        class="w-full text-left text-xs p-2.5 bg-gray-50 dark:bg-gray-800 rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors">Định
+                        nghĩa vật chất của Lênin?</button>
+                    <button onclick="sendAIPrompt('Tại sao vận động là thuộc tính cố hữu của vật chất?')"
+                        class="w-full text-left text-xs p-2.5 bg-gray-50 dark:bg-gray-800 rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors">Vận
+                        động là thuộc tính cố hữu?</button>
+                    <button onclick="sendAIPrompt('Sự khác nhau giữa duy tâm và duy vật trong nhìn nhận về vật chất?')"
+                        class="w-full text-left text-xs p-2.5 bg-gray-50 dark:bg-gray-800 rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors">Duy
+                        tâm vs Duy vật về vật chất?</button>
+                    <button onclick="sendAIPrompt('5 hình thức vận động của Ph. Ăngghen là gì và cho ví dụ mỗi loại?')"
+                        class="w-full text-left text-xs p-2.5 bg-gray-50 dark:bg-gray-800 rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors">5
+                        hình thức vận động?</button>
+                </div>
+            </div>
+            <div class="p-4 border-t border-gray-200 dark:border-gray-700">
+                <div class="flex gap-2">
+                    <input id="ai-input" type="text" placeholder="Hỏi về Module 1..."
+                        class="flex-1 text-sm border border-gray-200 dark:border-gray-600 rounded-xl px-3 py-2 bg-gray-50 dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-primary/30"
+                        onkeypress="if(event.key==='Enter') sendAIMessage()">
+                    <button onclick="sendAIMessage()"
+                        class="bg-primary text-white rounded-xl px-4 hover:bg-blue-700 transition-colors"><span
+                            class="material-symbols-outlined text-sm">send</span></button>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- ===== FORMATIVE QUIZ MODAL ===== -->
+    <div id="quiz-modal"
+        class="hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+        <div
+            class="bg-surface-light dark:bg-surface-dark rounded-3xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            <div class="p-6 border-b border-gray-200 dark:border-gray-700 flex items-center justify-between">
+                <div>
+                    <h2 id="quiz-modal-title" class="text-xl font-bold">Kiểm tra hình thành</h2>
+                    <p id="quiz-modal-sub" class="text-sm text-text-muted-light dark:text-text-muted-dark"></p>
+                </div>
+                <button onclick="closeQuizModal()"
+                    class="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full"><span
+                        class="material-symbols-outlined text-gray-500">close</span></button>
+            </div>
+            <div id="quiz-modal-body" class="p-6"></div>
+        </div>
+    </div>
+
+    <!-- ===== ACHIEVEMENT TOAST ===== -->
+    <div id="achievement-toast" class="hidden fixed top-6 right-6 z-50 max-w-sm">
+        <div
+            class="bg-gradient-to-r from-amber-400 to-yellow-300 rounded-2xl p-4 shadow-2xl flex items-center gap-4 achievement-earned">
+            <span id="achievement-icon" class="text-4xl">🥈</span>
+            <div>
+                <p class="font-bold text-amber-900 text-sm">Thành tích mới!</p>
+                <p id="achievement-name" class="font-display font-bold text-amber-900"></p>
+                <p id="achievement-desc" class="text-xs text-amber-800"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Scripts -->
+    <script src="js/search-data-global.js"></script>
+    <script src="js/quiz-data.js"></script>
+    <script src="js/load-components.js"></script>
+    <script src="js/search-init.js"></script>
+
+    <script>
+        // =============================================
+        // MODULE 1 STATE MANAGEMENT
+        // =============================================
+        const M1_STATE = {
+            completedLessons: new Set(),
+            currentLesson: null,
+            quizResults: {},
+            achievements: []
+        };
+
+        const M1_LESSONS = ['M1-L1', 'M1-L2', 'M1-L3', 'M1-L4', 'M1-L5', 'M1-L6'];
+
+        // Load state from localStorage
+        function loadM1State() {
+            try {
+                const saved = JSON.parse(localStorage.getItem('philo_quiz_results') || '{}');
+                if (saved.M1_completed) {
+                    saved.M1_completed.forEach(id => M1_STATE.completedLessons.add(id));
+                }
+                M1_STATE.quizResults = saved.M1_quiz || {};
+            } catch (e) { console.warn('M1: Could not load state', e); }
+        }
+
+        function saveM1State() {
+            try {
+                const saved = JSON.parse(localStorage.getItem('philo_quiz_results') || '{}');
+                saved.M1_completed = [...M1_STATE.completedLessons];
+                saved.M1_quiz = M1_STATE.quizResults;
+                localStorage.setItem('philo_quiz_results', JSON.stringify(saved));
+            } catch (e) { console.warn('M1: Could not save state', e); }
+        }
+
+        // =============================================
+        // LESSON NAVIGATION
+        // =============================================
+        function showLesson(lessonId) {
+            // Hide all lessons
+            document.querySelectorAll('.lesson-content').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.lesson-tab').forEach(el => {
+                el.classList.remove('border-primary', 'bg-blue-50', 'dark:bg-blue-900/20');
+                el.classList.add('border-gray-100', 'dark:border-gray-700');
+            });
+
+            // Show target lesson
+            const target = document.getElementById('lesson-' + lessonId);
+            if (target) {
+                target.classList.remove('hidden');
+                M1_STATE.currentLesson = lessonId;
+            }
+
+            // Highlight tab
+            const tab = document.getElementById('tab-' + lessonId);
+            if (tab) {
+                tab.classList.remove('border-gray-100', 'dark:border-gray-700');
+                tab.classList.add('border-primary', 'bg-blue-50', 'dark:bg-blue-900/20');
+            }
+
+            // Scroll to lesson area
+            document.getElementById('lesson-area').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        function completeLesson(lessonId) {
+            M1_STATE.completedLessons.add(lessonId);
+            saveM1State();
+            updateProgress();
+
+            // Update dot
+            const dot = document.getElementById('dot-' + lessonId);
+            if (dot) { dot.classList.remove('bg-gray-300', 'dark:bg-gray-600'); dot.classList.add('bg-primary'); }
+
+            // Update complete button
+            const btn = document.getElementById('btn-complete-' + lessonId);
+            if (btn) {
+                btn.classList.remove('bg-primary', 'hover:bg-blue-700');
+                btn.classList.add('bg-green-500', 'hover:bg-green-600');
+                btn.innerHTML = '<span class="material-symbols-outlined">check_circle</span> Đã hoàn thành ✓';
+            }
+
+            // Auto advance to next lesson
+            const idx = M1_LESSONS.indexOf(lessonId);
+            if (idx >= 0 && idx < M1_LESSONS.length - 1) {
+                setTimeout(() => showLesson(M1_LESSONS[idx + 1]), 500);
+            }
+
+            // Show module quiz banner if all done
+            if (M1_STATE.completedLessons.size === 6) {
+                const banner = document.getElementById('module-quiz-banner');
+                if (banner) banner.classList.remove('hidden');
+            }
+        }
+
+        function updateProgress() {
+            const count = M1_STATE.completedLessons.size;
+            const pct = Math.round((count / 6) * 100);
+            document.getElementById('m1-progress-label').textContent = count + ' / 6 bài hoàn thành';
+            document.getElementById('m1-progress-pct').textContent = pct + '%';
+            document.getElementById('m1-progress-bar').style.width = pct + '%';
+
+            // Update completed dots
+            M1_STATE.completedLessons.forEach(id => {
+                const dot = document.getElementById('dot-' + id);
+                if (dot) { dot.classList.remove('bg-gray-300', 'dark:bg-gray-600'); dot.classList.add('bg-primary'); }
+            });
+        }
+
+        // =============================================
+        // REFLECTION TOGGLES
+        // =============================================
+        function toggleReflection(btn) {
+            const answer = btn.nextElementSibling;
+            const icon = btn.querySelector('.material-symbols-outlined');
+            if (answer.classList.contains('open')) {
+                answer.classList.remove('open');
+                icon.textContent = 'expand_more';
+            } else {
+                answer.classList.add('open');
+                icon.textContent = 'expand_less';
+            }
+        }
+
+        // =============================================
+        // QUIZ SYSTEM
+        // =============================================
+        let currentQuizData = null;
+        let currentQuizAnswers = {};
+        let currentQuizSubmitted = false;
+
+        function openFormativeQuiz(quizId) {
+            if (!window.FORMATIVE_QUIZZES_M1) { alert('Quiz data chưa tải. Hãy thử lại.'); return; }
+            const quiz = window.FORMATIVE_QUIZZES_M1[quizId];
+            if (!quiz) { alert('Không tìm thấy quiz: ' + quizId); return; }
+            currentQuizData = { ...quiz, id: quizId };
+            currentQuizAnswers = {};
+            currentQuizSubmitted = false;
+            renderQuizModal(quiz);
+            document.getElementById('quiz-modal').classList.remove('hidden');
+        }
+
+        function openModuleQuiz() {
+            if (!window.MODULE_QUIZ_M1) { alert('Quiz data chưa tải.'); return; }
+            currentQuizData = window.MODULE_QUIZ_M1;
+            currentQuizAnswers = {};
+            currentQuizSubmitted = false;
+            renderQuizModal(window.MODULE_QUIZ_M1);
+            document.getElementById('quiz-modal').classList.remove('hidden');
+        }
+
+        function renderQuizModal(quiz) {
+            document.getElementById('quiz-modal-title').textContent = quiz.title;
+            document.getElementById('quiz-modal-sub').textContent = 'Cần đạt ' + quiz.passingScore + '% để hoàn thành • ' + quiz.questions.length + ' câu hỏi';
+
+            let html = '<div class="space-y-6">';
+            quiz.questions.forEach((q, qi) => {
+                html += `<div class="quiz-question" data-qid="${q.id}">
+                <p class="font-medium text-sm mb-3">${qi + 1}. ${q.text}</p>
+                <div class="space-y-2">`;
+                q.options.forEach(opt => {
+                    html += `<label class="quiz-option flex items-start gap-3 p-3 rounded-xl border border-gray-200 dark:border-gray-600 cursor-pointer hover:border-primary hover:bg-blue-50 dark:hover:bg-blue-900/10 transition-all">
+                    <input type="radio" name="q_${q.id}" value="${opt.id}" onclick="selectAnswer('${q.id}','${opt.id}')" class="mt-0.5 flex-shrink-0">
+                    <span class="text-sm">${opt.text}</span>
+                </label>`;
+                });
+                html += `</div></div>`;
+            });
+            html += `</div>
+        <div class="mt-6 flex justify-end">
+            <button onclick="submitQuiz()" id="btn-submit-quiz" class="bg-gray-300 dark:bg-gray-600 text-gray-500 dark:text-gray-400 font-bold px-8 py-3 rounded-xl transition-all cursor-not-allowed" data-ready="false">
+                Nộp bài
+            </button>
+        </div>`;
+            document.getElementById('quiz-modal-body').innerHTML = html;
+        }
+
+        function selectAnswer(qId, optId) {
+            currentQuizAnswers[qId] = optId;
+            const allAnswered = currentQuizData.questions.every(q => currentQuizAnswers[q.id]);
+            const btn = document.getElementById('btn-submit-quiz');
+            if (btn) {
+                if (allAnswered) {
+                    btn.setAttribute('data-ready', 'true');
+                    btn.className = 'bg-primary hover:bg-blue-700 text-white font-bold px-8 py-3 rounded-xl transition-all cursor-pointer';
+                } else {
+                    btn.setAttribute('data-ready', 'false');
+                    btn.className = 'bg-gray-300 dark:bg-gray-600 text-gray-500 dark:text-gray-400 font-bold px-8 py-3 rounded-xl transition-all cursor-not-allowed';
+                }
+            }
+        }
+
+        function submitQuiz() {
+            // Guard: block if not all questions answered
+            const btn = document.getElementById('btn-submit-quiz');
+            if (btn && btn.getAttribute('data-ready') !== 'true') return;
+            if (currentQuizSubmitted) return;
+            currentQuizSubmitted = true;
+            const quiz = currentQuizData;
+            let correct = 0;
+
+            quiz.questions.forEach(q => {
+                const userAns = currentQuizAnswers[q.id];
+                const isCorrect = userAns === q.correctOptionId;
+                if (isCorrect) correct++;
+
+                const qEl = document.querySelector(`[data-qid="${q.id}"]`);
+                if (!qEl) return;
+                qEl.querySelectorAll('.quiz-option').forEach(label => {
+                    const radio = label.querySelector('input');
+                    if (!radio) return;
+                    if (radio.value === q.correctOptionId) {
+                        label.classList.add('border-green-400', 'bg-green-50', 'dark:bg-green-900/20');
+                    }
+                    if (radio.value === userAns && !isCorrect) {
+                        label.classList.add('border-red-400', 'bg-red-50', 'dark:bg-red-900/20');
+                    }
+                });
+
+                // Show rationale
+                const rationaleEl = document.createElement('div');
+                rationaleEl.className = 'mt-2 p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg text-xs text-text-muted-light dark:text-text-muted-dark';
+                rationaleEl.innerHTML = '<strong class="text-primary">📖 Giải thích:</strong> ' + q.rationale;
+                qEl.appendChild(rationaleEl);
+            });
+
+            const score = Math.round((correct / quiz.questions.length) * 100);
+            const passed = score >= quiz.passingScore;
+
+            // Save result
+            M1_STATE.quizResults[quiz.id || currentQuizData.id] = { score, correct, total: quiz.questions.length, passed, timestamp: Date.now() };
+            saveM1State();
+
+            // Show result header
+            const resultHtml = `<div class="mb-6 p-4 rounded-2xl text-center ${passed ? 'bg-green-50 dark:bg-green-900/20 border border-green-200' : 'bg-red-50 dark:bg-red-900/20 border border-red-200'}">
+            <p class="text-4xl mb-2">${passed ? '🎉' : '📚'}</p>
+            <p class="text-2xl font-bold ${passed ? 'text-green-600' : 'text-red-600'}">${score}%</p>
+            <p class="text-sm font-medium">${correct}/${quiz.questions.length} câu đúng</p>
+            <p class="text-sm mt-1 ${passed ? 'text-green-600' : 'text-red-600'}">${passed ? '✅ Đạt! ' + (quiz.achievement ? 'Thành tích đã mở khóa!' : '') : '❌ Chưa đạt. Hãy ôn lại và thử lại.'}</p>
+        </div>`;
+
+            const body = document.getElementById('quiz-modal-body');
+            body.insertAdjacentHTML('afterbegin', resultHtml);
+            document.getElementById('btn-submit-quiz').textContent = passed ? 'Tiếp tục ✓' : 'Thử lại';
+            document.getElementById('btn-submit-quiz').onclick = passed ? closeQuizModal : () => { closeQuizModal(); setTimeout(() => openModuleQuiz(), 300); };
+
+            if (passed && quiz.achievement) {
+                showAchievement(quiz.achievement);
+            }
+        }
+
+        function closeQuizModal() {
+            document.getElementById('quiz-modal').classList.add('hidden');
+        }
+
+        // =============================================
+        // ACHIEVEMENTS
+        // =============================================
+        const M1_ACHIEVEMENTS = {
+            'motion-analyst': { name: 'Motion Analyst', icon: '🥈', desc: 'Đạt ≥75% bài kiểm tra Module 1 — +10 XP' },
+            'matter-adept': { name: 'Matter Adept', icon: '🥉', desc: 'Hoàn thành kiểm tra hình thành đầu tiên Module 1' }
+        };
+
+        function showAchievement(slug) {
+            const ach = M1_ACHIEVEMENTS[slug];
+            if (!ach) return;
+
+            // Save to localStorage
+            try {
+                const saved = JSON.parse(localStorage.getItem('philo_achievements') || '[]');
+                if (!saved.find(a => a.id === slug)) {
+                    saved.push({ id: slug, slug, earnedAt: Date.now(), module: 'M1', xp: slug === 'motion-analyst' ? 10 : 5 });
+                    localStorage.setItem('philo_achievements', JSON.stringify(saved));
+                }
+            } catch (e) { }
+
+            // Show toast
+            document.getElementById('achievement-icon').textContent = ach.icon;
+            document.getElementById('achievement-name').textContent = ach.name;
+            document.getElementById('achievement-desc').textContent = ach.desc;
+            const toast = document.getElementById('achievement-toast');
+            toast.classList.remove('hidden');
+            setTimeout(() => toast.classList.add('hidden'), 4000);
+        }
+
+        // =============================================
+        // AI PANEL
+        // =============================================
+        let aiPanelOpen = false;
+
+        function toggleAIPanel() {
+            aiPanelOpen = !aiPanelOpen;
+            const panel = document.getElementById('ai-panel');
+            if (aiPanelOpen) {
+                panel.classList.remove('hidden-panel');
+            } else {
+                panel.classList.add('hidden-panel');
+            }
+        }
+
+        // AI offline fallback responses (sourceRef included)
+        const AI_OFFLINE_RESPONSES = {
+            'vật chất': {
+                answer: 'Theo V.I. Lênin: "Vật chất là một phạm trù triết học dùng để chỉ thực tại khách quan được đem lại cho con người trong cảm giác, được cảm giác của chúng ta chép lại, chụp lại, phản ánh, và tồn tại không lệ thuộc vào cảm giác." Điểm mấu chốt: vật chất = thực tại khách quan, không phụ thuộc ý thức.',
+                sourceRef: 'Chương 2, tr.449 — Giáo trình Triết học Mác-Lênin 2021'
+            },
+            'vận động': {
+                answer: 'Ph. Ăngghen định nghĩa: "Vận động, hiểu theo nghĩa chung nhất, — là phương thức tồn tại của vật chất, là thuộc tính cố hữu của vật chất, — bao gồm tất cả mọi sự thay đổi và mọi quá trình diễn ra trong vũ trụ, kể từ sự thay đổi vị trí đơn giản cho đến tư duy." Vận động là tuyệt đối; đứng im là tương đối, tạm thời.',
+                sourceRef: 'Chương 2, tr.465 — Giáo trình Triết học Mác-Lênin 2021'
+            },
+            'hình thức vận động': {
+                answer: 'Ph. Ăngghen phân chia 5 hình thức vận động từ thấp đến cao: (1) Cơ học, (2) Vật lý, (3) Hóa học, (4) Sinh học, (5) Xã hội. Hình thức cao nảy sinh trên cơ sở hình thức thấp nhưng khác về chất — không thể quy hình thức cao về hình thức thấp (phê phán chủ nghĩa cơ giới).',
+                sourceRef: 'Chương 2, tr.472 — Giáo trình Triết học Mác-Lênin 2021'
+            },
+            'không gian': {
+                answer: 'Không gian và thời gian là hình thức tồn tại khách quan của vật chất vận động. Lênin: "Trong thế giới, không có gì ngoài vật chất đang vận động và vật chất đang vận động không thể vận động ở đâu ngoài không gian và thời gian." Einstein chứng minh: không gian-thời gian có tính khả biến, phụ thuộc vận tốc và khối lượng vật chất.',
+                sourceRef: 'Chương 2, tr.486-489 — Giáo trình Triết học Mác-Lênin 2021'
+            },
+            'ý thức': {
+                answer: 'Quan hệ vật chất-ý thức: (1) Vật chất quyết định ý thức — ý thức là sự phản ánh sáng tạo của vật chất. (2) Ý thức có thể tác động ngược lại vật chất qua hành động thực tiễn. Cần tránh: duy ý chí (đề cao ý thức quá mức) và thụ động (phủ nhận vai trò ý thức).',
+                sourceRef: 'Chương 2, tr.456-461 — Giáo trình Triết học Mác-Lênin 2021'
+            }
+        };
+
+        function getAIOfflineResponse(query) {
+            const q = query.toLowerCase();
+            for (const [key, resp] of Object.entries(AI_OFFLINE_RESPONSES)) {
+                if (q.includes(key)) return resp;
+            }
+            return {
+                answer: 'Câu hỏi của bạn nằm ngoài nội dung Module 1 (Vật chất & Vận động). Module 1 tập trung vào: định nghĩa vật chất (Lênin), vận động (Ăngghen), không gian-thời gian, 5 hình thức vận động, và quan hệ vật chất-ý thức. Hãy hỏi về những chủ đề này!',
+                sourceRef: 'Chương 2 — Giáo trình Triết học Mác-Lênin 2021'
+            };
+        }
+
+        function sendAIPrompt(prompt) {
+            document.getElementById('ai-input').value = prompt;
+            sendAIMessage();
+        }
+
+        function sendAIMessage() {
+            const input = document.getElementById('ai-input');
+            const query = input.value.trim();
+            if (!query) return;
+            input.value = '';
+
+            const history = document.getElementById('ai-chat-history');
+
+            // User message
+            history.insertAdjacentHTML('beforeend', `<div class="flex justify-end"><div class="bg-primary text-white rounded-xl rounded-tr-sm p-3 max-w-[85%]"><p class="text-sm">${query}</p></div></div>`);
+
+            // AI loading
+            const loadingId = 'ai-loading-' + Date.now();
+            history.insertAdjacentHTML('beforeend', `<div id="${loadingId}" class="bg-blue-50 dark:bg-blue-900/20 rounded-xl p-3"><p class="text-xs text-text-muted-light">⏳ Đang tra cứu giáo trình...</p></div>`);
+            history.scrollTop = history.scrollHeight;
+
+            // Offline AI response (with sourceRef)
+            setTimeout(() => {
+                const resp = getAIOfflineResponse(query);
+                const loadEl = document.getElementById(loadingId);
+                if (loadEl) {
+                    loadEl.outerHTML = `<div class="bg-blue-50 dark:bg-blue-900/20 rounded-xl p-3">
+                    <p class="text-xs font-bold text-primary mb-1">🤖 AI Triết học — Module 1</p>
+                    <p class="text-sm text-text-main-light dark:text-text-main-dark mb-2">${resp.answer}</p>
+                    <p class="text-xs text-gray-400 border-t border-blue-100 dark:border-blue-800 pt-1 mt-1">📖 <em>${resp.sourceRef}</em></p>
+                </div>`;
+                }
+                history.scrollTop = history.scrollHeight;
+
+                // Save to localStorage
+                try {
+                    const aiHist = JSON.parse(localStorage.getItem('philoMapAiHistory') || '[]');
+                    aiHist.push({ question: query, answer: resp.answer, sourceRef: resp.sourceRef, module: 'M1', timestamp: Date.now() });
+                    if (aiHist.length > 50) aiHist.shift();
+                    localStorage.setItem('philoMapAiHistory', JSON.stringify(aiHist));
+                } catch (e) { }
+            }, 800);
+        }
+
+        // =============================================
+        // VIDEO PLAYER
+        // =============================================
+        document.addEventListener('DOMContentLoaded', () => {
+            loadM1State();
+            updateProgress();
+
+            // Show first lesson by default
+            if (M1_STATE.completedLessons.size > 0) {
+                const lastIdx = Math.min(M1_STATE.completedLessons.size, 5);
+                showLesson(M1_LESSONS[lastIdx]);
+            } else {
+                showLesson('M1-L1');
+            }
+
+            // Show module quiz banner if all completed
+            if (M1_STATE.completedLessons.size === 6) {
+                const banner = document.getElementById('module-quiz-banner');
+                if (banner) banner.classList.remove('hidden');
+            }
+
+            // Restore complete button states
+            M1_STATE.completedLessons.forEach(id => {
+                const btn = document.getElementById('btn-complete-' + id);
+                if (btn) {
+                    btn.classList.remove('bg-primary', 'hover:bg-blue-700');
+                    btn.classList.add('bg-green-500', 'hover:bg-green-600');
+                    btn.innerHTML = '<span class="material-symbols-outlined">check_circle</span> Đã hoàn thành ✓';
+                }
+            });
+
+            // Video player
+            const container = document.getElementById('video-container');
+            if (container) {
+                container.addEventListener('click', () => {
+                    container.innerHTML = `<iframe class="w-full h-full" src="https://www.youtube.com/embed/m3sK1WEyjY4?autoplay=1&rel=0" title="Module 1 Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`;
+                });
+            }
+        });
+    </script>
+
+</body>
+
+</html>

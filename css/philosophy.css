@@ -1,0 +1,725 @@
+/* 
+ * PhiloVerse Academy Premium Stylesheet
+ * Inspired by libraries, ancient manuscripts, and prestigious universities.
+ * Crafted with Vanilla CSS for maximum architectural flexibility and aesthetics.
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800;900&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
+
+:root {
+  /* Premium Design Tokens */
+  --primary-navy: #0F172A;
+  --secondary-gold: #D4A017;
+  --bg-ivory: #FAF8F3;
+  --accent-brown: #8B6F47;
+  --surface-white: #FFFFFF;
+  --border-color: rgba(139, 111, 71, 0.18);
+  
+  /* Text & Semantic Colors */
+  --text-main: #1E293B;
+  --text-muted: #64748B;
+  --primary-glow: rgba(15, 23, 42, 0.05);
+  --gold-glow: rgba(212, 160, 23, 0.15);
+  
+  /* Fonts */
+  --font-serif: 'Lora', 'Georgia', serif;
+  --font-sans: 'Lexend', 'Inter', sans-serif;
+  
+  /* Transitions */
+  --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-fast: all 0.2s ease;
+}
+
+/* Dark Mode Overrides */
+html.dark {
+  --primary-navy: #FAF8F3;
+  --secondary-gold: #F5C542; /* Slightly brighter gold for dark reading contrast */
+  --bg-ivory: #0A0F1D; /* Highly premium deep dark slate background */
+  --accent-brown: #A88D65;
+  --surface-white: #121826; /* Deep navy card surface */
+  --border-color: rgba(245, 197, 66, 0.15);
+  
+  --text-main: #FAF8F3; /* Ivory text in dark mode */
+  --text-muted: #94A3B8;
+  --primary-glow: rgba(245, 197, 66, 0.08);
+  --gold-glow: rgba(245, 197, 66, 0.25);
+}
+
+/* Base Style Restructures */
+body {
+  background-color: var(--bg-ivory) !important;
+  color: var(--text-main) !important;
+  font-family: var(--font-sans);
+  transition: background-color 0.5s ease, color 0.3s ease;
+  overflow-x: hidden;
+}
+
+/* Scholarly Headings */
+h1, h2, h3, h4, .font-serif-academy {
+  font-family: var(--font-serif) !important;
+  font-weight: 700;
+}
+
+/* Elegant Manuscript Details */
+.double-border {
+  position: relative;
+  border: 1px solid var(--accent-brown);
+  padding: 8px;
+}
+
+.double-border::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  right: 3px;
+  bottom: 3px;
+  border: 1px solid var(--accent-brown);
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* Glassmorphism Academic Panel */
+.glass-academy {
+  background: rgba(250, 248, 243, 0.75);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--border-color);
+  box-shadow: 0 10px 40px -10px rgba(15, 23, 42, 0.04);
+}
+
+html.dark .glass-academy {
+  background: rgba(18, 24, 38, 0.75);
+  border: 1px solid rgba(245, 197, 66, 0.12);
+  box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.3);
+}
+
+/* Astrolabe Drop Shadows */
+.astrolabe-shadow {
+  box-shadow: 0 20px 50px -15px rgba(139, 111, 71, 0.12),
+              0 0 40px -5px rgba(212, 160, 23, 0.05);
+}
+
+html.dark .astrolabe-shadow {
+  box-shadow: 0 20px 50px -15px rgba(0, 0, 0, 0.5),
+              0 0 40px -5px rgba(245, 197, 66, 0.05);
+}
+
+/* Golden Underline Hover Animation */
+.link-gold-hover {
+  position: relative;
+}
+
+.link-gold-hover::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--secondary-gold);
+  transition: var(--transition-smooth);
+}
+
+.link-gold-hover:hover::after {
+  width: 100%;
+}
+
+/* Classical Timeline Layout */
+.timeline-stem {
+  position: relative;
+}
+
+.timeline-stem::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 2px;
+  background: linear-gradient(to bottom, transparent, var(--secondary-gold) 15%, var(--secondary-gold) 85%, transparent);
+  transform: translateX(-50%);
+}
+
+@media (max-width: 768px) {
+  .timeline-stem::before {
+    left: 20px;
+  }
+}
+
+.timeline-node {
+  position: relative;
+  transition: var(--transition-smooth);
+}
+
+.timeline-node-dot {
+  position: absolute;
+  left: 50%;
+  top: 24px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: var(--bg-ivory);
+  border: 3px solid var(--secondary-gold);
+  transform: translateX(-50%);
+  z-index: 10;
+  transition: var(--transition-smooth);
+  box-shadow: 0 0 0 4px rgba(212, 160, 23, 0.15);
+}
+
+@media (max-width: 768px) {
+  .timeline-node-dot {
+    left: 20px;
+    transform: none;
+  }
+}
+
+.timeline-node:hover .timeline-node-dot {
+  background-color: var(--secondary-gold);
+  box-shadow: 0 0 16px var(--secondary-gold), 0 0 0 6px rgba(212, 160, 23, 0.3);
+  transform: translateX(-50%) scale(1.2);
+}
+
+@media (max-width: 768px) {
+  .timeline-node:hover .timeline-node-dot {
+    transform: scale(1.2);
+  }
+}
+
+/* Scholarly Drop Caps */
+.drop-cap::first-letter {
+  font-family: var(--font-serif);
+  font-size: 3.8rem;
+  font-weight: 700;
+  float: left;
+  line-height: 0.85;
+  padding-right: 12px;
+  padding-top: 4px;
+  color: var(--secondary-gold);
+  text-shadow: 1px 1px 0px rgba(15, 23, 42, 0.15);
+}
+
+/* Modern Quote Box */
+.quote-box {
+  position: relative;
+  padding: 2.5rem;
+  background-color: var(--surface-white);
+  border-left: 4px solid var(--secondary-gold);
+  border-radius: 4px 20px 20px 4px;
+  box-shadow: 0 8px 30px rgba(15, 23, 42, 0.03);
+  border: 1px solid var(--border-color);
+  border-left-width: 4px;
+}
+
+.quote-box::before {
+  content: '“';
+  position: absolute;
+  top: 10px;
+  left: 20px;
+  font-family: var(--font-serif);
+  font-size: 8rem;
+  color: var(--secondary-gold);
+  opacity: 0.12;
+  line-height: 1;
+}
+
+/* Micro-animations */
+.hover-lift {
+  transition: var(--transition-smooth);
+}
+
+.hover-lift:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px -15px rgba(15, 23, 42, 0.1);
+  border-color: rgba(212, 160, 23, 0.3);
+}
+
+html.dark .hover-lift:hover {
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5);
+  border-color: rgba(245, 197, 66, 0.3);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-ivory);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--accent-brown);
+  border-radius: 10px;
+  opacity: 0.6;
+  border: 2px solid var(--bg-ivory);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--secondary-gold);
+}
+
+/* Debate Forum Mock Details */
+.debate-card {
+  border: 1px solid var(--border-color);
+  background-color: var(--surface-white);
+  border-radius: 16px;
+  padding: 1.8rem;
+  margin-bottom: 1.5rem;
+  transition: var(--transition-smooth);
+}
+
+.debate-card:hover {
+  border-color: var(--secondary-gold);
+  box-shadow: 0 12px 30px rgba(212, 160, 23, 0.06);
+  transform: translateY(-2px);
+}
+
+/* Astrolabe Theme Toggle Button */
+.astrolabe-toggle {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1px solid var(--border-color);
+  background-color: var(--surface-white);
+  color: var(--secondary-gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05);
+}
+
+.astrolabe-toggle:hover {
+  border-color: var(--secondary-gold);
+  background-color: rgba(212, 160, 23, 0.08);
+  transform: rotate(35deg) scale(1.05);
+  box-shadow: 0 6px 16px var(--gold-glow);
+}
+
+/* Elegant Buttons */
+.btn-academic-gold {
+  background-color: var(--secondary-gold);
+  color: #FAF8F3 !important;
+  font-weight: 600;
+  border: 1px solid var(--secondary-gold);
+  transition: var(--transition-smooth);
+  box-shadow: 0 4px 14px var(--gold-glow);
+  border-radius: 9999px;
+  padding: 0.75rem 2rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.btn-academic-gold:hover {
+  background-color: transparent;
+  color: var(--secondary-gold) !important;
+  box-shadow: 0 6px 20px var(--gold-glow);
+  transform: translateY(-2px);
+}
+
+.btn-academic-outline {
+  background-color: transparent;
+  color: var(--text-main) !important;
+  font-weight: 600;
+  border: 1.5px solid var(--border-color);
+  transition: var(--transition-smooth);
+  border-radius: 9999px;
+  padding: 0.75rem 2rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.btn-academic-outline:hover {
+  border-color: var(--secondary-gold);
+  color: var(--secondary-gold) !important;
+  box-shadow: 0 4px 14px var(--gold-glow);
+  transform: translateY(-2px);
+}
+
+/* Glow Elements */
+.glow-gold {
+  position: relative;
+}
+.glow-gold::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: 0 0 20px var(--secondary-gold);
+  opacity: 0;
+  transition: var(--transition-smooth);
+  z-index: -1;
+}
+.glow-gold:hover::after {
+  opacity: 0.25;
+}
+
+/* ==========================================
+   Socratic Astrolabe Oracle Custom CSS
+   ========================================== */
+
+/* Enigma Index Cards */
+.enigma-item-card {
+  border: 1.5px solid var(--border-color);
+  background-color: var(--surface-white);
+  border-radius: 1.25rem;
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  position: relative;
+  overflow: hidden;
+}
+
+.enigma-item-card::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background-color: transparent;
+  transition: var(--transition-smooth);
+}
+
+.enigma-item-card:hover {
+  transform: translateX(6px);
+  border-color: var(--secondary-gold);
+  box-shadow: 0 8px 24px rgba(212, 160, 23, 0.05);
+}
+
+.enigma-item-card.active {
+  border-color: var(--secondary-gold);
+  box-shadow: 0 10px 30px rgba(212, 160, 23, 0.08);
+  background-color: rgba(212, 160, 23, 0.03);
+  transform: translateX(8px);
+}
+
+html.dark .enigma-item-card.active {
+  background-color: rgba(245, 197, 66, 0.05);
+}
+
+.enigma-item-card.active::before {
+  background-color: var(--secondary-gold);
+}
+
+.enigma-icon-container {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background-color: rgba(139, 111, 71, 0.06);
+  color: var(--accent-brown);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition-smooth);
+}
+
+.enigma-item-card.active .enigma-icon-container {
+  background-color: var(--secondary-gold);
+  color: var(--bg-ivory);
+}
+
+/* Socratic Astrolabe core animation styles */
+.astrolabe-station-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 320px;
+  aspect-ratio: 1;
+}
+
+.astrolabe-ring-outer {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 2px dashed var(--secondary-gold);
+  opacity: 0.25;
+  animation: spin-clockwise 60s linear infinite;
+  pointer-events: none;
+}
+
+.astrolabe-ring-middle {
+  position: absolute;
+  inset: 20px;
+  border-radius: 50%;
+  border: 1.5px solid var(--accent-brown);
+  opacity: 0.35;
+  animation: spin-counter-clockwise 45s linear infinite;
+  pointer-events: none;
+}
+
+.astrolabe-ring-inner {
+  position: absolute;
+  inset: 45px;
+  border-radius: 50%;
+  background: radial-gradient(circle, transparent 50%, rgba(212, 160, 23, 0.04) 100%);
+  border: 2px solid var(--secondary-gold);
+  box-shadow: 0 0 30px rgba(212, 160, 23, 0.05);
+  transition: transform 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.astrolabe-pointer {
+  width: 4px;
+  height: 40%;
+  background: linear-gradient(to top, transparent, var(--secondary-gold));
+  position: absolute;
+  bottom: 50%;
+  left: calc(50% - 2px);
+  transform-origin: bottom center;
+  border-radius: 9999px;
+  box-shadow: 0 0 10px var(--secondary-gold);
+}
+
+@keyframes spin-clockwise {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes spin-counter-clockwise {
+  0% { transform: rotate(360deg); }
+  100% { transform: rotate(0deg); }
+}
+
+/* Deciphering Steps Styles */
+.decipher-step-card {
+  border-left: 3px solid var(--border-color);
+  padding-left: 1.5rem;
+  position: relative;
+  opacity: 0;
+  transform: translateY(15px);
+  animation: fade-in-up 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.decipher-step-card::after {
+  content: '';
+  position: absolute;
+  left: -7px;
+  top: 4px;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background-color: var(--bg-ivory);
+  border: 2.5px solid var(--border-color);
+  transition: var(--transition-smooth);
+}
+
+.decipher-step-card.active-step {
+  border-left-color: var(--secondary-gold);
+}
+
+.decipher-step-card.active-step::after {
+  background-color: var(--secondary-gold);
+  border-color: var(--secondary-gold);
+  box-shadow: 0 0 8px var(--secondary-gold);
+}
+
+@keyframes fade-in-up {
+  0% {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ==========================================
+   GLOBAL TARGET OVERRIDES FOR READING PAGES
+   ========================================== */
+
+/* Reading Prose container */
+.prose {
+  font-family: var(--font-serif) !important;
+  color: var(--text-main) !important;
+  line-height: 1.85 !important;
+}
+
+html.dark .prose {
+  color: var(--text-main) !important;
+}
+
+/* Ivory base background class mapping */
+body.bg-background-light {
+  background-color: var(--bg-ivory) !important;
+}
+
+/* Elegant styled quote boxes in posts */
+.bg-blue-50\/70, 
+.bg-blue-50, 
+.bg-blue-100 {
+  background-color: var(--surface-white) !important;
+  border-left: 4px solid var(--secondary-gold) !important;
+  border-radius: 4px 20px 20px 4px !important;
+  box-shadow: 0 8px 30px rgba(15, 23, 42, 0.03) !important;
+  border: 1px solid var(--border-color) !important;
+  border-left-width: 4px !important;
+  padding: 2rem !important;
+  position: relative !important;
+  color: var(--text-main) !important;
+  margin-bottom: 2rem !important;
+}
+
+html.dark .bg-blue-50\/70,
+html.dark .bg-blue-50,
+html.dark .bg-blue-100 {
+  background-color: var(--surface-white) !important;
+}
+
+.bg-blue-50\/70::before, 
+.bg-blue-50::before,
+.bg-blue-100::before {
+  content: '“';
+  position: absolute;
+  top: 10px;
+  left: 20px;
+  font-family: var(--font-serif);
+  font-size: 8rem;
+  color: var(--secondary-gold);
+  opacity: 0.12;
+  line-height: 1;
+  pointer-events: none;
+}
+
+/* Scholarly Drop Cap applied to the very first paragraph of all articles */
+.prose > p:first-of-type {
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  line-height: 1.85;
+}
+
+.prose > p:first-of-type::first-letter {
+  font-family: var(--font-serif);
+  font-size: 3.8rem;
+  font-weight: 700;
+  float: left;
+  line-height: 0.85;
+  padding-right: 12px;
+  padding-top: 4px;
+  color: var(--secondary-gold);
+  text-shadow: 1px 1px 0px rgba(15, 23, 42, 0.15);
+}
+
+/* Category Badge overlays */
+.bg-blue-50.text-blue-600 {
+  background-color: rgba(212, 160, 23, 0.1) !important;
+  color: var(--secondary-gold) !important;
+  border: 1px solid rgba(212, 160, 23, 0.25) !important;
+  font-weight: 750 !important;
+}
+
+/* Academic citation and fact sheet boxes */
+.bg-slate-50 {
+  background-color: var(--bg-ivory) !important;
+  border: 1.5px solid var(--border-color) !important;
+  border-radius: 1.25rem !important;
+  padding: 1.8rem !important;
+  box-shadow: none !important;
+  position: relative;
+  overflow: hidden;
+}
+
+html.dark .bg-slate-50 {
+  background-color: #0A0F1D !important;
+}
+
+.bg-slate-50::after {
+  content: '';
+  position: absolute;
+  inset: 3px;
+  border: 1px solid var(--border-color);
+  border-radius: 1.1rem;
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+/* Reading card wrapper settings */
+main .bg-white {
+  background-color: var(--surface-white) !important;
+  border: 1.5px solid var(--border-color) !important;
+  border-radius: 2rem !important;
+  box-shadow: 0 10px 40px -10px rgba(15, 23, 42, 0.04) !important;
+  transition: background-color 0.5s ease;
+}
+
+html.dark main .bg-white {
+  background-color: var(--surface-white) !important;
+  border-color: rgba(245, 197, 66, 0.12) !important;
+}
+
+/* Premium frame details for article illustrations */
+main img {
+  border: 2px solid rgba(212, 160, 23, 0.25) !important;
+  padding: 5px !important;
+  background-color: var(--surface-white) !important;
+  border-radius: 1rem !important;
+  transition: transform 0.4s ease, border-color 0.4s ease;
+}
+
+html.dark main img {
+  background-color: #0A0F1D !important;
+  border-color: rgba(245, 197, 66, 0.2) !important;
+}
+
+/* Academic Lesson Header - Premium Navy & Gold */
+.lesson-header-academic {
+  background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%) !important;
+  border-bottom: 3px double rgba(212, 160, 23, 0.4) !important;
+  position: relative;
+  overflow: hidden;
+  padding: 2rem !important;
+}
+
+.lesson-header-academic::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(#D4A017 1px, transparent 1px);
+  background-size: 28px 28px;
+  opacity: 0.06;
+  pointer-events: none;
+}
+
+/* Ensure child elements match academic styles */
+.lesson-header-academic h2 {
+  color: #FAF8F3 !important;
+  font-family: var(--font-serif) !important;
+  font-weight: 700 !important;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3) !important;
+}
+
+.lesson-header-academic span, 
+.lesson-header-academic p, 
+.lesson-header-academic strong {
+  color: rgba(250, 248, 243, 0.85) !important;
+}
+
+/* Gold Highlight Badge text */
+.lesson-header-academic .text-blue-100,
+.lesson-header-academic .text-emerald-100,
+.lesson-header-academic .text-purple-100,
+.lesson-header-academic .text-rose-100,
+.lesson-header-academic .text-indigo-100,
+.lesson-header-academic .text-amber-900\/85,
+.lesson-header-academic .text-amber-900\/80,
+.lesson-header-academic .text-amber-900\/70 {
+  color: var(--secondary-gold) !important;
+  font-weight: 600 !important;
+}
+
+.lesson-header-academic strong {
+  color: #FAF8F3 !important;
+}
+

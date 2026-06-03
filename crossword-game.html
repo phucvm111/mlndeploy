@@ -1,0 +1,351 @@
+<!doctype html>
+<html lang="vi" class="light">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ô chữ Triết học Mác - Lênin | PhiloVerse</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800&family=Lora:wght@600;700&display=swap"
+    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+    rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            primary: "#1d4ed8",
+            accent: "#f59e0b",
+            ink: "#10203b",
+            "background-light": "#f7f5ef",
+            "background-dark": "#111921",
+          },
+          fontFamily: {
+            display: ["Lexend", "sans-serif"],
+            serif: ["Lora", "serif"],
+          },
+          boxShadow: {
+            panel: "0 18px 50px -18px rgba(16, 32, 59, 0.28)",
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+    }
+
+    body {
+      background:
+        radial-gradient(circle at top left, rgba(245, 158, 11, 0.16), transparent 28%),
+        radial-gradient(circle at top right, rgba(29, 78, 216, 0.14), transparent 24%),
+        linear-gradient(180deg, #f7f5ef 0%, #f4f6fb 48%, #eef3f9 100%);
+    }
+
+    .chapter-card {
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    }
+
+    .chapter-card:hover {
+      transform: translateY(-6px);
+    }
+
+    .crossword-board {
+      display: grid;
+      gap: 0.2rem;
+      width: fit-content;
+      max-width: 100%;
+      margin-inline: auto;
+    }
+
+    .crossword-cell {
+      position: relative;
+      width: clamp(2rem, 4vw, 2.85rem);
+      height: clamp(2rem, 4vw, 2.85rem);
+      border-radius: 0.8rem;
+      overflow: hidden;
+      transition: transform 0.18s ease, box-shadow 0.18s ease, background-color 0.18s ease;
+    }
+
+    .crossword-cell input {
+      width: 100%;
+      height: 100%;
+      border: 1px solid rgba(148, 163, 184, 0.75);
+      background: rgba(255, 255, 255, 0.98);
+      color: #10203b;
+      text-align: center;
+      font-size: clamp(0.9rem, 2vw, 1.2rem);
+      font-weight: 800;
+      text-transform: uppercase;
+      caret-color: #1d4ed8;
+      padding: 0;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    }
+
+    .crossword-cell input:focus {
+      outline: none;
+      border-color: #1d4ed8;
+      box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.14);
+    }
+
+    .crossword-cell.blocked {
+      background:
+        linear-gradient(135deg, rgba(16, 32, 59, 0.98), rgba(31, 41, 55, 0.94));
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+    }
+
+    .crossword-cell.active input {
+      background: #dbeafe;
+      border-color: #60a5fa;
+    }
+
+    .crossword-cell.in-word input {
+      background: #eff6ff;
+    }
+
+    .crossword-cell.correct input {
+      background: #dcfce7;
+      border-color: #22c55e;
+    }
+
+    .crossword-cell.wrong input {
+      background: #fee2e2;
+      border-color: #ef4444;
+    }
+
+    .crossword-number {
+      position: absolute;
+      top: 0.18rem;
+      left: 0.28rem;
+      font-size: 0.58rem;
+      line-height: 1;
+      color: #64748b;
+      font-weight: 700;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .clue-item {
+      transition: border-color 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .clue-item:hover {
+      transform: translateX(2px);
+    }
+
+    .clue-item.active {
+      border-color: rgba(29, 78, 216, 0.3);
+      background: rgba(219, 234, 254, 0.72);
+    }
+
+    .status-pill {
+      background: rgba(255, 255, 255, 0.82);
+      backdrop-filter: blur(10px);
+    }
+  </style>
+</head>
+
+<body class="font-display text-slate-800 min-h-screen flex flex-col">
+  <div id="header-placeholder"></div>
+
+  <main class="flex-grow px-4 py-10 md:px-8">
+    <div class="max-w-7xl mx-auto space-y-10">
+      <section
+        class="relative overflow-hidden rounded-[2rem] border border-white/70 bg-white/75 shadow-panel backdrop-blur-xl">
+        <div class="absolute inset-0 opacity-80"
+          style="background-image: linear-gradient(rgba(29,78,216,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(29,78,216,0.05) 1px, transparent 1px); background-size: 34px 34px;">
+        </div>
+        <div class="relative px-6 py-10 md:px-10 md:py-12">
+          <div
+            class="inline-flex items-center gap-2 rounded-full border border-amber-200 bg-amber-50 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.2em] text-amber-700">
+            <span class="material-symbols-outlined text-base">frame_inspect</span>
+            Ô Chữ Chương Học
+          </div>
+          <div class="mt-6 grid gap-8 lg:grid-cols-[1.4fr_0.9fr] lg:items-center">
+            <div>
+              <h1 class="max-w-3xl text-4xl font-serif font-bold leading-tight text-ink md:text-5xl">
+                Ô chữ Triết học Mác - Lênin theo từng chương
+              </h1>
+              <p class="mt-4 max-w-2xl text-base leading-7 text-slate-600 md:text-lg">
+                Trò chơi này lấy trực tiếp các khái niệm cốt lõi từ giáo trình năm 2021. Mỗi chương có một ô chữ
+                riêng, dùng đáp án đã chuẩn hóa không dấu để dễ nhập nhưng vẫn giữ đầy đủ nhãn tiếng Việt ở phần hiển
+                thị và lời gợi ý.
+              </p>
+              <div class="mt-6 flex flex-wrap gap-3 text-sm text-slate-600">
+                <div class="status-pill rounded-full px-4 py-2 shadow-sm">
+                  3 chương cốt lõi
+                </div>
+                <div class="status-pill rounded-full px-4 py-2 shadow-sm">
+                  Gợi ý + kiểm tra đáp án
+                </div>
+                <div class="status-pill rounded-full px-4 py-2 shadow-sm">
+                  Lưu tiến độ trong trình duyệt
+                </div>
+              </div>
+            </div>
+            <div class="grid gap-4 rounded-[1.75rem] bg-ink p-5 text-white shadow-lg">
+              <div class="rounded-2xl bg-white/8 p-4">
+                <div class="text-xs font-semibold uppercase tracking-[0.18em] text-blue-200">Nguồn dữ liệu</div>
+                <div class="mt-2 text-lg font-bold">Giáo trình Triết học Mác - Lênin 2021</div>
+                <p class="mt-2 text-sm leading-6 text-slate-200">
+                  Bộ dữ liệu MVP bám theo ba chương lớn: nhập môn, chủ nghĩa duy vật biện chứng và chủ nghĩa duy vật
+                  lịch sử.
+                </p>
+              </div>
+              <div class="rounded-2xl bg-gradient-to-br from-blue-500/20 to-amber-400/20 p-4">
+                <div class="text-xs font-semibold uppercase tracking-[0.18em] text-amber-200">Cách chơi nhanh</div>
+                <p class="mt-2 text-sm leading-6 text-slate-100">
+                  Chọn chương, nhập từng chữ cái vào lưới, nhấn “Kiểm tra” để chấm nhanh, hoặc dùng “Gợi ý” để mở
+                  một ô trong từ đang chọn.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="space-y-5">
+        <div class="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+          <div>
+            <h2 class="text-2xl font-bold text-ink">Chọn chương ô chữ</h2>
+            <p class="mt-1 text-sm text-slate-600">
+              Mỗi thẻ dẫn tới một màn chơi riêng và có thể mở lại bằng liên kết trực tiếp.
+            </p>
+          </div>
+          <a href="games.html"
+            class="inline-flex items-center gap-2 self-start rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-600 shadow-sm transition-colors hover:border-primary hover:text-primary">
+            <span class="material-symbols-outlined text-base">arrow_back</span>
+            Về danh sách trò chơi
+          </a>
+        </div>
+        <div id="chapter-grid" class="grid gap-5 md:grid-cols-2 xl:grid-cols-3"></div>
+      </section>
+
+      <section id="puzzle-section" class="hidden space-y-6">
+        <div class="rounded-[2rem] border border-white/70 bg-white/85 p-5 shadow-panel backdrop-blur-xl md:p-6">
+          <div class="flex flex-col gap-4 xl:flex-row xl:items-start xl:justify-between">
+            <div class="space-y-3">
+              <div class="flex flex-wrap items-center gap-3">
+                <span id="chapter-badge"
+                  class="inline-flex items-center gap-2 rounded-full bg-blue-50 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.18em] text-primary"></span>
+                <span id="progress-pill"
+                  class="inline-flex items-center gap-2 rounded-full bg-emerald-50 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.18em] text-emerald-700"></span>
+              </div>
+              <h2 id="puzzle-title" class="text-3xl font-serif font-bold text-ink"></h2>
+              <p id="puzzle-description" class="max-w-3xl text-sm leading-7 text-slate-600 md:text-base"></p>
+              <div id="source-sections" class="flex flex-wrap gap-2"></div>
+            </div>
+            <div class="grid grid-cols-2 gap-3 md:grid-cols-4 xl:w-[23rem]">
+              <div class="rounded-2xl bg-slate-50 p-4">
+                <div class="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Ô đã đúng</div>
+                <div id="correct-count" class="mt-2 text-2xl font-black text-ink">0</div>
+              </div>
+              <div class="rounded-2xl bg-slate-50 p-4">
+                <div class="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Từ hoàn thành</div>
+                <div id="entry-count" class="mt-2 text-2xl font-black text-ink">0/0</div>
+              </div>
+              <div class="rounded-2xl bg-slate-50 p-4">
+                <div class="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Gợi ý đã dùng</div>
+                <div id="hint-count" class="mt-2 text-2xl font-black text-ink">0</div>
+              </div>
+              <div class="rounded-2xl bg-slate-50 p-4">
+                <div class="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Điểm</div>
+                <div id="score-count" class="mt-2 text-2xl font-black text-primary">0%</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid gap-6 xl:grid-cols-[minmax(0,1.4fr)_minmax(320px,0.9fr)]">
+          <div class="space-y-5">
+            <div class="rounded-[2rem] border border-white/70 bg-white/85 p-5 shadow-panel backdrop-blur-xl">
+              <div class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+                <div>
+                  <h3 class="text-xl font-bold text-ink">Lưới ô chữ</h3>
+                  <p class="mt-1 text-sm text-slate-600">
+                    Chữ nhập tự động chuyển sang không dấu, in hoa và di chuyển theo hướng đang chọn.
+                  </p>
+                </div>
+                <div class="flex flex-wrap gap-2">
+                  <button id="toggle-direction-btn"
+                    class="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 shadow-sm transition-colors hover:border-primary hover:text-primary">
+                    <span class="material-symbols-outlined text-base">swap_horiz</span>
+                    <span id="direction-label">Hướng: Ngang</span>
+                  </button>
+                  <button id="hint-btn"
+                    class="inline-flex items-center gap-2 rounded-full bg-amber-400 px-4 py-2 text-sm font-bold text-amber-950 shadow-sm transition-transform hover:-translate-y-0.5">
+                    <span class="material-symbols-outlined text-base">lightbulb</span>
+                    Gợi ý
+                  </button>
+                  <button id="check-btn"
+                    class="inline-flex items-center gap-2 rounded-full bg-primary px-4 py-2 text-sm font-bold text-white shadow-sm transition-transform hover:-translate-y-0.5">
+                    <span class="material-symbols-outlined text-base">task_alt</span>
+                    Kiểm tra
+                  </button>
+                  <button id="reset-btn"
+                    class="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 shadow-sm transition-colors hover:border-rose-300 hover:text-rose-600">
+                    <span class="material-symbols-outlined text-base">restart_alt</span>
+                    Làm lại
+                  </button>
+                </div>
+              </div>
+              <div class="mt-5 overflow-x-auto rounded-[1.5rem] bg-slate-100/80 p-4">
+                <div id="crossword-board" class="crossword-board"></div>
+              </div>
+            </div>
+
+            <div id="message-panel"
+              class="hidden rounded-[1.5rem] border px-5 py-4 text-sm font-medium shadow-sm"></div>
+          </div>
+
+          <aside class="space-y-5">
+            <div class="rounded-[2rem] border border-white/70 bg-white/85 p-5 shadow-panel backdrop-blur-xl">
+              <h3 class="text-xl font-bold text-ink">Từ đang chọn</h3>
+              <div id="active-word-card"
+                class="mt-4 rounded-[1.5rem] bg-slate-50 p-4 text-sm leading-6 text-slate-600">
+                Chọn một ô hoặc một gợi ý ở cột bên dưới để bắt đầu.
+              </div>
+            </div>
+
+            <div class="rounded-[2rem] border border-white/70 bg-white/85 p-5 shadow-panel backdrop-blur-xl">
+              <div class="flex items-center justify-between">
+                <h3 class="text-xl font-bold text-ink">Gợi ý</h3>
+                <button id="return-to-chapters-btn"
+                  class="text-sm font-semibold text-primary transition-colors hover:text-blue-700">
+                  Đổi chương
+                </button>
+              </div>
+              <div class="mt-5 grid gap-5">
+                <div>
+                  <div class="mb-3 flex items-center gap-2 text-sm font-bold uppercase tracking-[0.16em] text-primary">
+                    <span class="material-symbols-outlined text-base">east</span>
+                    Ngang
+                  </div>
+                  <div id="across-clues" class="space-y-3"></div>
+                </div>
+                <div>
+                  <div class="mb-3 flex items-center gap-2 text-sm font-bold uppercase tracking-[0.16em] text-amber-700">
+                    <span class="material-symbols-outlined text-base">south</span>
+                    Dọc
+                  </div>
+                  <div id="down-clues" class="space-y-3"></div>
+                </div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <div id="footer-placeholder"></div>
+
+  <script src="js/load-components.js"></script>
+  <script src="js/crossword-game.js"></script>
+</body>
+
+</html>

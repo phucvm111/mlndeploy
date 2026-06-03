@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html class="light" lang="vi">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Trò chơi Triết học - PhiloVerse</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&amp;display=swap" rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&family=Lora:wght@700&display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script src="js/tailwind-config-global.js"></script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .game-card {
+            transition: all 0.3s ease;
+        }
+
+        .game-card:hover {
+            transform: translateY(-8px);
+        }
+    </style>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark font-display min-h-screen flex flex-col">
+    <!-- Header Placeholder -->
+    <div id="header-placeholder"></div>
+
+    <!-- Main Content -->
+    <main class="flex-grow py-12 px-4 md:px-10">
+        <div class="max-w-6xl mx-auto">
+            <!-- Page Header -->
+            <div class="mb-12 text-center">
+                <div
+                    class="inline-flex items-center px-4 py-1.5 rounded-full bg-amber-50/60 border border-amber-100/80 dark:bg-amber-950/20 dark:border-amber-900/30 text-secondary text-xs font-bold uppercase tracking-wider gap-2 mb-4">
+                    <span class="material-symbols-outlined text-base">sports_esports</span>
+                    TRÒ CHƠI TRIẾT HỌC
+                </div>
+                <h1 class="text-3xl md:text-5xl font-serif font-bold text-slate-900 mb-4">Học qua Trò chơi</h1>
+                <p class="text-slate-600 max-w-2xl mx-auto text-lg">
+                    Khám phá triết học Mác - Lênin thông qua các trò chơi tương tác thú vị. Vừa học vừa chơi!
+                </p>
+            </div>
+
+            <!-- Games List - Horizontal Cards -->
+            <div class="flex flex-col gap-6">
+
+                <!-- Game 1: Xây Thế Giới Quan -->
+                <a href="worldview-game.html"
+                    class="game-card bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl border border-gray-100 group flex flex-col md:flex-row">
+                    <div class="w-full md:w-64 h-48 md:h-auto relative flex items-center justify-center shrink-0 overflow-hidden">
+                        <img src="images/games/worldview_game_bg.png" alt="Xây Thế Giới Quan" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-slate-950/40 z-10"></div>
+                        <span class="material-symbols-outlined text-white text-6xl opacity-90 z-20">hub</span>
+                        <div class="absolute top-3 left-3 flex gap-2 z-20">
+                            <span
+                                class="px-2 py-1 bg-white/20 backdrop-blur-md rounded-full text-white text-[9px] font-bold uppercase tracking-wider">TRÒ CHƠI TƯƠNG TÁC</span>
+                            <span class="px-2 py-1 bg-[#D4A017]/80 rounded-full text-white text-[9px] font-bold uppercase tracking-wider">Tương tác</span>
+                        </div>
+                    </div>
+                    <div class="p-6 flex flex-col justify-center flex-1">
+                        <h3 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-primary transition-colors">
+                            Xây Thế Giới Quan
+                        </h3>
+                        <p class="text-slate-600 text-sm mb-4">
+                            Tự tay xây dựng hệ tư duy triết học của riêng bạn thông qua kéo thả và kết nối các mảnh
+                            ghép. Không có câu hỏi, không có đáp án - chỉ có sự sáng tạo của bạn!
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span
+                                class="px-3 py-1 bg-orange-50 text-orange-600 rounded-full text-xs font-medium flex items-center gap-1">
+                                <span class="material-symbols-outlined text-sm">pan_tool</span> Kéo thả
+                            </span>
+                            <span
+                                class="px-3 py-1 bg-pink-50 text-pink-600 rounded-full text-xs font-medium flex items-center gap-1">
+                                <span class="material-symbols-outlined text-sm">link</span> Kết nối
+                            </span>
+                            <span
+                                class="px-3 py-1 bg-purple-50 text-purple-600 rounded-full text-xs font-medium flex items-center gap-1">
+                                <span class="material-symbols-outlined text-sm">analytics</span> Trực quan hóa
+                            </span>
+                        </div>
+                        <div
+                            class="flex items-center text-primary font-semibold text-sm group-hover:gap-3 transition-all">
+                            Bắt đầu chơi
+                            <span class="material-symbols-outlined text-base ml-1">arrow_forward</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Game 2: Ghép Đôi Triết Gia -->
+                <a href="philosopher-match-game.html"
+                    class="game-card bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl border border-gray-100 group flex flex-col md:flex-row">
+                    <div class="w-full md:w-64 h-48 md:h-auto relative flex items-center justify-center shrink-0 overflow-hidden">
+                        <img src="images/games/philosopher_match_bg.png" alt="Ghép đôi Triết gia" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-slate-950/40 z-10"></div>
+                        <span class="material-symbols-outlined text-white text-6xl opacity-90 z-20">psychology</span>
+                        <div class="absolute top-3 left-3 flex gap-2 z-20">
+                            <span
+                                class="px-2 py-1 bg-white/20 backdrop-blur-md rounded-full text-white text-[9px] font-bold uppercase tracking-wider">TRÒ CHƠI TƯƠNG TÁC</span>
+                            <span class="px-2 py-1 bg-[#D4A017]/80 rounded-full text-white text-[9px] font-bold uppercase tracking-wider">Vui học</span>
+                        </div>
+                    </div>
+                    <div class="p-6 flex flex-col justify-center flex-1">
+                        <h3 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-primary transition-colors">
+                            Ghép đôi Triết gia
+                        </h3>
+                        <p class="text-slate-600 text-sm mb-4">
+                            Thử thách trí nhớ của bạn! Ghép đúng chân dung triết gia với triết thuyết và trích dẫn nổi
+                            tiếng của họ. Cùng nhau khám phá kho tàng tri thức từ các triết gia vĩ đại Đông - Tây.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span
+                                class="px-3 py-1 bg-blue-50 text-blue-600 rounded-full text-xs font-medium flex items-center gap-1">
+                                <span class="material-symbols-outlined text-sm">memory</span> Trí nhớ
+                            </span>
+                            <span
+                                class="px-3 py-1 bg-green-50 text-green-600 rounded-full text-xs font-medium flex items-center gap-1">
+                                <span class="material-symbols-outlined text-sm">join</span> Ghép đôi
+                            </span>
+                            <span
+                                class="px-3 py-1 bg-indigo-50 text-indigo-600 rounded-full text-xs font-medium flex items-center gap-1">
+                                <span class="material-symbols-outlined text-sm">school</span> Kiến thức
+                            </span>
+                        </div>
+                        <div
+                            class="flex items-center text-primary font-semibold text-sm group-hover:gap-3 transition-all">
+                            Bắt đầu chơi
+                            <span class="material-symbols-outlined text-base ml-1">arrow_forward</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Game 3: Khám Phá Triết Lý Sống -->
+                <a href="philosophy-game-enhanced.html"
+                    class="game-card bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl border border-gray-100 group flex flex-col md:flex-row">
+                    <div class="w-full md:w-64 h-48 md:h-auto relative flex items-center justify-center shrink-0 overflow-hidden">
+                        <img src="images/games/life_philosophy_bg.png" alt="Khám phá Triết lý sống" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-slate-950/40 z-10"></div>
+                        <span class="material-symbols-outlined text-white text-6xl opacity-90 z-20">orbit</span>
+                        <div class="absolute top-3 left-3 flex gap-2 z-20">
+                            <span
+                                class="px-2 py-1 bg-white/20 backdrop-blur-md rounded-full text-white text-[9px] font-bold uppercase tracking-wider">THẾ GIỚI QUAN</span>
+                            <span class="px-2 py-1 bg-[#D4A017]/80 rounded-full text-white text-[9px] font-bold uppercase tracking-wider">Khám phá</span>
+                        </div>
+                    </div>
+                    <div class="p-6 flex flex-col justify-center flex-1">
+                        <h3 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-primary transition-colors">
+                            Khám phá Triết lý sống
+                        </h3>
+                        <p class="text-slate-600 text-sm mb-4">
+                            Game giúp các bạn khám phá triết lý sống của bản thân qua các tình huống thực tế, biến triết
+                            học từ lý thuyết trừu tượng thành công cụ sống có ích.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span
+                                class="px-3 py-1 bg-cyan-50 text-cyan-600 rounded-full text-xs font-medium flex items-center gap-1">
+                                <span class="material-symbols-outlined text-sm">format_list_numbered</span> 10 Tình
+                                huống
+                            </span>
+                            <span
+                                class="px-3 py-1 bg-teal-50 text-teal-600 rounded-full text-xs font-medium flex items-center gap-1">
+                                <span class="material-symbols-outlined text-sm">lightbulb</span> 5 Triết lý
+                            </span>
+                            <span
+                                class="px-3 py-1 bg-emerald-50 text-emerald-600 rounded-full text-xs font-medium flex items-center gap-1">
+                                <span class="material-symbols-outlined text-sm">person</span> Cá nhân hóa
+                            </span>
+                        </div>
+                        <div
+                            class="flex items-center text-primary font-semibold text-sm group-hover:gap-3 transition-all">
+                            Chơi ngay
+                            <span class="material-symbols-outlined text-base ml-1">arrow_forward</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Game 4: Ô chữ Triết học -->
+                <a href="crossword-game.html"
+                    class="game-card bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl border border-gray-100 group flex flex-col md:flex-row">
+                    <div class="w-full md:w-64 h-48 md:h-auto relative flex items-center justify-center shrink-0 overflow-hidden">
+                        <img src="images/games/crossword_game_bg.png" alt="Ô chữ Triết học" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-slate-950/40 z-10"></div>
+                        <span class="material-symbols-outlined text-white text-6xl opacity-90 z-20">grid_view</span>
+                        <div class="absolute top-3 left-3 flex gap-2 z-20">
+                            <span
+                                class="px-2 py-1 bg-white/20 backdrop-blur-md rounded-full text-white text-[9px] font-bold uppercase tracking-wider">HỌC THEO CHƯƠNG</span>
+                            <span class="px-2 py-1 bg-[#D4A017]/80 rounded-full text-white text-[9px] font-bold uppercase tracking-wider">Ô chữ</span>
+                        </div>
+                    </div>
+                    <div class="p-6 flex flex-col justify-center flex-1">
+                        <h3 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-primary transition-colors">
+                            Ô chữ Triết học Mác - Lênin
+                        </h3>
+                        <p class="text-slate-650 dark:text-slate-400 text-sm mb-4">
+                            Giải ô chữ theo từng chương giáo trình với bộ từ khóa triết học cốt lõi. Trò chơi hỗ trợ nhập đáp án không dấu, kiểm tra nhanh, gợi ý từng ô và tự động lưu tiến độ của bạn.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span
+                                class="px-3 py-1 bg-amber-50 dark:bg-amber-950/10 text-amber-700 dark:text-[#D4A017] rounded-full text-xs font-medium flex items-center gap-1 border border-amber-200/50 dark:border-amber-900/30">
+                                <span class="material-symbols-outlined text-sm">grid_view</span> Lưới ô chữ
+                            </span>
+                            <span
+                                class="px-3 py-1 bg-orange-50 dark:bg-orange-950/10 text-orange-600 dark:text-orange-400 rounded-full text-xs font-medium flex items-center gap-1 border border-orange-200/50 dark:border-orange-900/30">
+                                <span class="material-symbols-outlined text-sm">lists</span> Gợi ý theo chương
+                            </span>
+                            <span
+                                class="px-3 py-1 bg-blue-50 dark:bg-blue-950/10 text-blue-600 dark:text-blue-400 rounded-full text-xs font-medium flex items-center gap-1 border border-blue-200/50 dark:border-blue-900/30">
+                                <span class="material-symbols-outlined text-sm">bookmark_added</span> Lưu tiến độ
+                            </span>
+                        </div>
+                        <div
+                            class="flex items-center text-primary font-semibold text-sm group-hover:gap-3 transition-all">
+                            Mở ô chữ
+                            <span class="material-symbols-outlined text-base ml-1">arrow_forward</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Game 5: Wordle Cụm Từ -->
+                <a href="wordle-game.html"
+                    class="game-card bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl border border-gray-100 group flex flex-col md:flex-row">
+                    <div class="w-full md:w-64 h-48 md:h-auto relative flex items-center justify-center shrink-0 overflow-hidden">
+                        <img src="images/games/wordle_game_bg.png" alt="Wordle Triết học" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-slate-950/40 z-10"></div>
+                        <span class="material-symbols-outlined text-white text-6xl opacity-90 z-20">neurology</span>
+                        <div class="absolute top-3 left-3 flex gap-2 z-20">
+                            <span
+                                class="px-2 py-1 bg-white/20 backdrop-blur-md rounded-full text-white text-[9px] font-bold uppercase tracking-wider">WORDLE CỤM TỪ</span>
+                            <span class="px-2 py-1 bg-[#D4A017]/80 rounded-full text-white text-[9px] font-bold uppercase tracking-wider">Mới</span>
+                        </div>
+                    </div>
+                    <div class="p-6 flex flex-col justify-center flex-1">
+                        <h3 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-primary transition-colors">
+                            Wordle Triết học Mác - Lênin
+                        </h3>
+                        <p class="text-slate-650 dark:text-slate-400 text-sm mb-4">
+                            Đoán cả cụm khái niệm triết học thay vì từng chữ cái. Hệ thống phản hồi theo từng từ, cung cấp gợi ý theo chương, gợi ý phụ và tự động lưu tiến độ đoán chữ của bạn.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span
+                                class="px-3 py-1 bg-emerald-50 dark:bg-emerald-950/10 text-emerald-700 dark:text-emerald-400 rounded-full text-xs font-medium flex items-center gap-1 border border-emerald-200/50 dark:border-emerald-900/30">
+                                <span class="material-symbols-outlined text-sm">token</span> Chấm theo từ
+                            </span>
+                            <span
+                                class="px-3 py-1 bg-teal-50 dark:bg-teal-950/10 text-teal-700 dark:text-teal-400 rounded-full text-xs font-medium flex items-center gap-1 border border-teal-200/50 dark:border-teal-900/30">
+                                <span class="material-symbols-outlined text-sm">quiz</span> Clue + hint
+                            </span>
+                            <span
+                                class="px-3 py-1 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-350 rounded-full text-xs font-medium flex items-center gap-1 border border-slate-200/50 dark:border-slate-700/50">
+                                <span class="material-symbols-outlined text-sm">save</span> Lưu tiến độ
+                            </span>
+                        </div>
+                        <div
+                            class="flex items-center text-primary font-semibold text-sm group-hover:gap-3 transition-all">
+                            Bắt đầu đoán
+                            <span class="material-symbols-outlined text-base ml-1">arrow_forward</span>
+                        </div>
+                    </div>
+                </a>
+
+            </div>
+
+            <!-- Additional Info Section -->
+            <div class="mt-16 bg-amber-50/30 dark:bg-amber-950/10 rounded-2xl p-8 border border-amber-100/80 dark:border-amber-900/30">
+                <div class="flex flex-col md:flex-row items-center gap-6">
+                    <div class="p-4 bg-white dark:bg-slate-800 rounded-xl shadow-sm">
+                        <span class="material-symbols-outlined text-4xl text-secondary">tips_and_updates</span>
+                    </div>
+                    <div class="flex-1 text-center md:text-left">
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">Học triết học chưa bao giờ dễ dàng hơn!</h3>
+                        <p class="text-slate-600 dark:text-gray-400">
+                            Các trò chơi được thiết kế để giúp bạn tiếp cận triết học Mác - Lênin một cách trực quan và
+                            thú vị.
+                            Thay vì đọc lý thuyết khô khan, hãy trải nghiệm và khám phá qua hoạt động tương tác.
+                        </p>
+                    </div>
+                    <a href="home.html#overview"
+                        class="shrink-0 px-6 py-3 bg-primary text-white font-semibold rounded-xl hover:bg-primary/90 transition-colors flex items-center gap-2">
+                        <span class="material-symbols-outlined text-base">menu_book</span>
+                        Xem Modules
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer Placeholder -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Scripts -->
+    <script src="js/search-data-global.js"></script>
+    <script src="js/load-components.js"></script>
+    <script src="js/search-init.js"></script>
+    <script src="js/tet-effect.js"></script>
+</body>
+
+</html>

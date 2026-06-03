@@ -1,0 +1,1223 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Module 2: Ý thức — PhiloVerse MLN111</title>
+    <meta name="description" content="Khám phá nguồn gốc, bản chất và kết cấu ý thức theo CNDV biện chứng qua 6 bài học tương tác, có quiz và trợ lý AI." />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+    <script src="js/tailwind-config-global.js"></script>
+    <style>
+        .material-symbols-outlined {
+            font-family: 'Material Symbols Outlined';
+            font-weight: normal;
+            font-style: normal;
+            font-size: 24px;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        #m2-progress-bar { transition: width 0.6s ease; }
+        .reflection-answer { max-height: 0; overflow: hidden; transition: max-height 0.5s ease, opacity 0.3s; opacity: 0; }
+        .reflection-answer.open { max-height: 600px; opacity: 1; }
+        #quiz-modal { transition: opacity 0.3s; }
+        #ai-panel { transition: transform 0.35s ease, opacity 0.35s; }
+        #ai-panel.hidden-panel { transform: translateX(110%); opacity: 0; pointer-events: none; }
+        @keyframes badge-pulse { 0%,100%{ transform:scale(1); } 50%{ transform:scale(1.15); } }
+        .achievement-earned { animation: badge-pulse 0.5s ease 3; }
+        /* Short answer textarea */
+        .short-answer-textarea { resize: vertical; min-height: 120px; }
+    </style>
+</head>
+
+<body class="bg-bg-light dark:bg-bg-dark text-text-main-light dark:text-text-main-dark font-body transition-colors duration-300 min-h-screen flex flex-col overflow-x-hidden">
+    <div id="header-placeholder"></div>
+
+    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 w-full">
+
+        <!-- ===== MODULE HEADER ===== -->
+        <header class="text-center mb-12 space-y-5 max-w-4xl mx-auto">
+            <div class="inline-flex items-center px-4 py-1.5 rounded-full bg-purple-50 border border-purple-100 dark:bg-purple-900/20 dark:border-purple-800 text-primary text-xs font-bold uppercase tracking-wider mb-4 gap-2">
+                <a href="home.html" class="hover:underline hover:text-purple-600 transition-colors">TRANG CHỦ</a>
+                <span class="opacity-60">/</span>
+                <a href="home.html#overview" class="hover:underline hover:text-purple-600 transition-colors">MODULES</a>
+                <span class="opacity-60">/</span>
+                <span>MODULE 2 • Ý THỨC</span>
+            </div>
+            <h1 class="font-display text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
+                Ý thức<br class="hidden md:block" /> <span class="text-primary italic">trong Triết học Mác-Lênin</span>
+            </h1>
+            <p class="max-w-2xl mx-auto text-lg text-text-muted-light dark:text-text-muted-dark font-light leading-relaxed">
+                6 bài học khám phá nguồn gốc, bản chất, kết cấu ý thức và mối quan hệ biện chứng vật chất–ý thức — nền tảng thế giới quan duy vật.
+            </p>
+            <div class="max-w-md mx-auto">
+                <div class="flex items-center justify-between text-xs text-text-muted-light dark:text-text-muted-dark mb-1.5">
+                    <span id="m2-progress-label">0 / 6 bài hoàn thành</span>
+                    <span id="m2-progress-pct">0%</span>
+                </div>
+                <div class="h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                    <div id="m2-progress-bar" class="h-full bg-gradient-to-r from-primary to-secondary rounded-full" style="width:0%"></div>
+                </div>
+            </div>
+        </header>
+
+        <!-- ===== LESSON TABS ===== -->
+        <section class="mb-10">
+            <div class="flex items-center gap-4 mb-6">
+                <span class="h-px bg-gray-200 dark:bg-gray-700 flex-1"></span>
+                <span class="font-display text-lg uppercase tracking-widest text-text-muted-light dark:text-text-muted-dark">6 Bài học</span>
+                <span class="h-px bg-gray-200 dark:bg-gray-700 flex-1"></span>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
+                <button onclick="showLesson('M2-L1')" id="tab-M2-L1" class="lesson-tab group flex flex-col items-center gap-2 p-4 rounded-2xl bg-surface-light dark:bg-surface-dark border-2 border-gray-100 dark:border-gray-700 hover:border-primary transition-all duration-200 text-center">
+                    <span class="text-2xl">🧠</span>
+                    <span class="text-xs font-semibold text-text-muted-light dark:text-text-muted-dark">Bài 2.1</span>
+                    <span class="text-xs font-medium">Ý thức là gì?</span>
+                    <span class="w-2 h-2 rounded-full bg-gray-300 dark:bg-gray-600 lesson-dot" id="dot-M2-L1"></span>
+                </button>
+                <button onclick="showLesson('M2-L2')" id="tab-M2-L2" class="lesson-tab group flex flex-col items-center gap-2 p-4 rounded-2xl bg-surface-light dark:bg-surface-dark border-2 border-gray-100 dark:border-gray-700 hover:border-primary transition-all duration-200 text-center">
+                    <span class="text-2xl">🌱</span>
+                    <span class="text-xs font-semibold text-text-muted-light dark:text-text-muted-dark">Bài 2.2</span>
+                    <span class="text-xs font-medium">Nguồn gốc</span>
+                    <span class="w-2 h-2 rounded-full bg-gray-300 dark:bg-gray-600 lesson-dot" id="dot-M2-L2"></span>
+                </button>
+                <button onclick="showLesson('M2-L3')" id="tab-M2-L3" class="lesson-tab group flex flex-col items-center gap-2 p-4 rounded-2xl bg-surface-light dark:bg-surface-dark border-2 border-gray-100 dark:border-gray-700 hover:border-primary transition-all duration-200 text-center">
+                    <span class="text-2xl">🔮</span>
+                    <span class="text-xs font-semibold text-text-muted-light dark:text-text-muted-dark">Bài 2.3</span>
+                    <span class="text-xs font-medium">Bản chất</span>
+                    <span class="w-2 h-2 rounded-full bg-gray-300 dark:bg-gray-600 lesson-dot" id="dot-M2-L3"></span>
+                </button>
+                <button onclick="showLesson('M2-L4')" id="tab-M2-L4" class="lesson-tab group flex flex-col items-center gap-2 p-4 rounded-2xl bg-surface-light dark:bg-surface-dark border-2 border-gray-100 dark:border-gray-700 hover:border-primary transition-all duration-200 text-center">
+                    <span class="text-2xl">📊</span>
+                    <span class="text-xs font-semibold text-text-muted-light dark:text-text-muted-dark">Bài 2.4</span>
+                    <span class="text-xs font-medium">Các dạng phản ánh</span>
+                    <span class="w-2 h-2 rounded-full bg-gray-300 dark:bg-gray-600 lesson-dot" id="dot-M2-L4"></span>
+                </button>
+                <button onclick="showLesson('M2-L5')" id="tab-M2-L5" class="lesson-tab group flex flex-col items-center gap-2 p-4 rounded-2xl bg-surface-light dark:bg-surface-dark border-2 border-gray-100 dark:border-gray-700 hover:border-primary transition-all duration-200 text-center">
+                    <span class="text-2xl">⚖️</span>
+                    <span class="text-xs font-semibold text-text-muted-light dark:text-text-muted-dark">Bài 2.5</span>
+                    <span class="text-xs font-medium">Vật chất & Ý thức</span>
+                    <span class="w-2 h-2 rounded-full bg-gray-300 dark:bg-gray-600 lesson-dot" id="dot-M2-L5"></span>
+                </button>
+                <button onclick="showLesson('M2-L6')" id="tab-M2-L6" class="lesson-tab group flex flex-col items-center gap-2 p-4 rounded-2xl bg-surface-light dark:bg-surface-dark border-2 border-gray-100 dark:border-gray-700 hover:border-primary transition-all duration-200 text-center">
+                    <span class="text-2xl">🎯</span>
+                    <span class="text-xs font-semibold text-text-muted-light dark:text-text-muted-dark">Bài 2.6</span>
+                    <span class="text-xs font-medium">Ứng dụng</span>
+                    <span class="w-2 h-2 rounded-full bg-gray-300 dark:bg-gray-600 lesson-dot" id="dot-M2-L6"></span>
+                </button>
+            </div>
+        </section>
+
+        <!-- ===== LESSON CONTENT ===== -->
+        <section id="lesson-area" class="mb-16 min-h-[500px]">
+
+            <!-- BÀI 2.1: Ý THỨC LÀ GÌ? -->
+            <div id="lesson-M2-L1" class="lesson-content hidden">
+                <div class="bg-surface-light dark:bg-surface-dark rounded-3xl border border-gray-100 dark:border-gray-700 shadow-sm overflow-hidden">
+                    <div class="lesson-header-academic">
+                        <div class="flex items-center gap-3 mb-3"><span class="text-3xl">🧠</span><span class="text-violet-100 text-sm font-semibold uppercase tracking-wider">Bài 2.1 — Module 2</span></div>
+                        <h2 class="font-display text-3xl font-bold text-white mb-2">Ý thức là gì?</h2>
+                        <p class="text-violet-100 text-sm">🎯 <strong>Mục tiêu:</strong> Phân biệt các quan niệm về ý thức (duy tâm, duy vật siêu hình, CNDV biện chứng); nắm định nghĩa và tính chất cơ bản của ý thức.</p>
+                    </div>
+                    <div class="p-8 space-y-8">
+                        <div class="bg-purple-50 dark:bg-purple-900/20 border-l-4 border-primary rounded-r-2xl p-6">
+                            <p class="text-xs font-bold text-primary uppercase tracking-wider mb-2">📖 Trích dẫn kinh điển</p>
+                            <blockquote class="font-display text-lg italic text-text-main-light dark:text-text-main-dark leading-relaxed">
+                                "Ý thức là hình thức phản ánh cao nhất riêng có của óc người về hiện thực khách quan trên cơ sở thực tiễn xã hội–lịch sử."
+                            </blockquote>
+                            <p class="text-right text-sm text-text-muted-light dark:text-text-muted-dark mt-3">— CNDV biện chứng | <strong class="text-primary">Triet.txt, dòng 545</strong></p>
+                        </div>
+
+                        <div class="space-y-5">
+                            <h3 class="font-display text-xl font-bold">Ba trường phái — Ba câu trả lời khác nhau</h3>
+                            <div class="grid md:grid-cols-3 gap-4">
+                                <div class="bg-red-50 dark:bg-red-900/10 border border-red-200 dark:border-red-800/30 rounded-2xl p-5">
+                                    <h4 class="font-bold text-red-600 mb-2">❌ Chủ nghĩa duy tâm</h4>
+                                    <p class="text-xs text-text-muted-light dark:text-text-muted-dark"><strong>Khách quan (Plato, Hegel):</strong> Ý thức = "ý niệm tuyệt đối" có trước, sinh ra vật chất. Con người chỉ "hồi tưởng ý niệm".</p>
+                                    <p class="text-xs text-text-muted-light dark:text-text-muted-dark mt-2"><strong>Chủ quan (Berkeley, Mach):</strong> Cảm giác là tồn tại duy nhất — vật chất do cảm giác sinh ra.</p>
+                                </div>
+                                <div class="bg-yellow-50 dark:bg-yellow-900/10 border border-yellow-200 dark:border-yellow-800/30 rounded-2xl p-5">
+                                    <h4 class="font-bold text-yellow-600 mb-2">⚠️ Duy vật siêu hình</h4>
+                                    <p class="text-xs text-text-muted-light dark:text-text-muted-dark"><strong>Đồng nhất ý thức với vật chất:</strong> "Óc tiết ra ý thức như gan tiết ra mật." Tầm thường hóa, bỏ qua tính sáng tạo của ý thức.</p>
+                                </div>
+                                <div class="bg-green-50 dark:bg-green-900/10 border border-green-200 dark:border-green-800/30 rounded-2xl p-5">
+                                    <h4 class="font-bold text-green-600 mb-2">✅ CNDV biện chứng</h4>
+                                    <p class="text-xs text-text-muted-light dark:text-text-muted-dark">Ý thức = thuộc tính của <strong>bộ óc người</strong> (không phải mọi vật chất). Là <strong>sự phản ánh tích cực, sáng tạo</strong> hiện thực khách quan — không phải thụ động.</p>
+                                </div>
+                            </div>
+
+                            <h3 class="font-display text-xl font-bold">Vì sao chỉ con người có ý thức?</h3>
+                            <div class="bg-gray-50 dark:bg-gray-800 rounded-2xl p-6">
+                                <p class="text-text-muted-light dark:text-text-muted-dark text-sm leading-relaxed mb-3">
+                                    Bộ óc người có khoảng <strong>14–15 tỷ tế bào thần kinh</strong> với cấu trúc đặc biệt phức tạp. Sự phân khu não bộ và hệ thần kinh tạo khả năng thu nhận, xử lý thông tin và hình thành phản xạ có điều kiện — nền tảng vật chất của ý thức.
+                                </p>
+                                <p class="text-text-muted-light dark:text-text-muted-dark text-sm leading-relaxed">
+                                    Nhưng không phải có bộ óc là có ý thức ngay — còn cần <strong>thực tiễn xã hội</strong>. C. Mác khẳng định: <em>"ý thức ngay từ đầu đã là một sản phẩm xã hội."</em> (dòng 527)
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="border-t border-gray-100 dark:border-gray-700 pt-6">
+                            <h3 class="font-display text-lg font-bold mb-4 flex items-center gap-2"><span class="material-symbols-outlined text-primary">psychology</span> Câu hỏi phản tư</h3>
+                            <div class="space-y-3">
+                                <div class="reflection-item">
+                                    <button onclick="toggleReflection(this)" class="w-full text-left p-4 bg-gray-50 dark:bg-gray-800 rounded-xl hover:bg-purple-50 dark:hover:bg-purple-900/20 transition-colors text-sm font-medium flex justify-between items-center">
+                                        <span>1. Con người có ý thức từ khi nào — khi chào đời hay sau quá trình lâu dài? Điều này có ý nghĩa gì với việc nuôi dạy trẻ?</span>
+                                        <span class="material-symbols-outlined text-gray-400 flex-shrink-0 ml-2">expand_more</span>
+                                    </button>
+                                    <div class="reflection-answer p-4 text-sm text-text-muted-light dark:text-text-muted-dark">
+                                        <strong class="text-primary block mb-1">Gợi ý:</strong> Ý thức không bẩm sinh "thuần túy" — phải phát triển qua thực tiễn xã hội. Trẻ sơ sinh có bộ óc (điều kiện cần) nhưng cần tương tác xã hội, ngôn ngữ, lao động để ý thức phát triển (điều kiện đủ). → Nuôi dạy trẻ trong môi trường phong phú về tương tác xã hội và hoạt động thực tiễn là cực kỳ quan trọng — không chỉ đơn giản là "đầu vào" thông tin.
+                                    </div>
+                                </div>
+                                <div class="reflection-item">
+                                    <button onclick="toggleReflection(this)" class="w-full text-left p-4 bg-gray-50 dark:bg-gray-800 rounded-xl hover:bg-purple-50 dark:hover:bg-purple-900/20 transition-colors text-sm font-medium flex justify-between items-center">
+                                        <span>2. Câu "Tôi nghĩ, vậy tôi tồn tại" (Descartes) — CNDV biện chứng đồng ý hay bác bỏ luận điểm này? Tại sao?</span>
+                                        <span class="material-symbols-outlined text-gray-400 flex-shrink-0 ml-2">expand_more</span>
+                                    </button>
+                                    <div class="reflection-answer p-4 text-sm text-text-muted-light dark:text-text-muted-dark">
+                                        <strong class="text-primary block mb-1">Gợi ý:</strong> CNDV biện chứng bác bỏ theo nghĩa: tư duy không phải nền tảng của sự tồn tại — ngược lại, tồn tại (vật chất, bộ óc, thực tiễn xã hội) là nền tảng của tư duy. Descartes làm theo hướng duy tâm: lấy ý thức (tư duy) làm điểm xuất phát chắc chắn nhất. CNDV đảo ngược: vật chất tồn tại trước, ý thức là thuộc tính phản ánh về sau.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-purple-50 dark:bg-purple-900/20 border border-purple-200 dark:border-purple-800/30 rounded-2xl p-6">
+                            <h3 class="font-display text-lg font-bold mb-3">Hoạt động: Phân loại quan điểm về ý thức</h3>
+                            <p class="text-sm text-text-muted-light dark:text-text-muted-dark mb-3">Với mỗi câu sau, xác định thuộc quan điểm nào (Duy tâm / Duy vật siêu hình / CNDV biện chứng):</p>
+                            <div class="space-y-2 text-sm">
+                                <div class="flex gap-2 items-start p-2 bg-white dark:bg-gray-800 rounded-lg"><span>A.</span><span>"Đêm qua tôi mơ thấy người thân đã mất đang nhắn nhủ — đó là thông điệp từ linh hồn họ."</span></div>
+                                <div class="flex gap-2 items-start p-2 bg-white dark:bg-gray-800 rounded-lg"><span>B.</span><span>"Muốn thay đổi xã hội, phải thay đổi điều kiện vật chất — kinh tế, giáo dục, môi trường sống."</span></div>
+                                <div class="flex gap-2 items-start p-2 bg-white dark:bg-gray-800 rounded-lg"><span>C.</span><span>"Não bộ chứa đủ tế bào thần kinh là có ý thức — như máy tính đủ RAM sẽ chạy được."</span></div>
+                            </div>
+                        </div>
+
+                        <div class="flex justify-end">
+                            <button onclick="completeLesson('M2-L1')" id="btn-complete-M2-L1" class="bg-primary hover:bg-purple-700 text-white font-semibold px-8 py-3 rounded-xl transition-colors flex items-center gap-2">
+                                <span class="material-symbols-outlined">check_circle</span> Đánh dấu hoàn thành
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BÀI 2.2: NGUỒN GỐC Ý THỨC -->
+            <div id="lesson-M2-L2" class="lesson-content hidden">
+                <div class="bg-surface-light dark:bg-surface-dark rounded-3xl border border-gray-100 dark:border-gray-700 shadow-sm overflow-hidden">
+                    <div class="lesson-header-academic">
+                        <div class="flex items-center gap-3 mb-3"><span class="text-3xl">🌱</span><span class="text-emerald-100 text-sm font-semibold uppercase tracking-wider">Bài 2.2 — Module 2</span></div>
+                        <h2 class="font-display text-3xl font-bold text-white mb-2">Nguồn gốc của ý thức</h2>
+                        <p class="text-emerald-100 text-sm">🎯 <strong>Mục tiêu:</strong> Phân biệt nguồn gốc tự nhiên và xã hội của ý thức; nắm vai trò quyết định của lao động và ngôn ngữ; thực hành so sánh duy vật vs. duy tâm.</p>
+                    </div>
+                    <div class="p-8 space-y-8">
+                        <div class="bg-emerald-50 dark:bg-emerald-900/20 border-l-4 border-emerald-500 rounded-r-2xl p-6">
+                            <p class="text-xs font-bold text-emerald-700 uppercase tracking-wider mb-2">📖 Trích dẫn kinh điển</p>
+                            <blockquote class="font-display text-lg italic text-text-main-light dark:text-text-main-dark leading-relaxed">
+                                "Trước hết là lao động; sau lao động và đồng thời với lao động là ngôn ngữ; đó là hai sức kích thích chủ yếu đã ảnh hưởng đến bộ óc của con vượn, làm cho bộ óc đó dần dần biến chuyển thành bộ óc con người."
+                            </blockquote>
+                            <p class="text-right text-sm text-text-muted-light dark:text-text-muted-dark mt-3">— Ph. Ăngghen | <em>Biện chứng của tự nhiên</em> | <strong class="text-emerald-600">Triet.txt, dòng 528</strong></p>
+                        </div>
+
+                        <div class="space-y-5">
+                            <h3 class="font-display text-xl font-bold">Hai nguồn gốc — Cần & Đủ</h3>
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-2xl p-6">
+                                    <h4 class="font-bold text-blue-600 mb-3">🔬 Nguồn gốc tự nhiên <span class="text-xs font-normal bg-blue-100 text-blue-700 px-2 py-0.5 rounded-full ml-1">Điều kiện CẦN</span></h4>
+                                    <ul class="text-sm text-text-muted-light dark:text-text-muted-dark space-y-2">
+                                        <li>• Bộ óc người với 14–15 tỷ nơ-ron thần kinh</li>
+                                        <li>• Tiến hóa lâu dài của giới tự nhiên</li>
+                                        <li>• Năng lực phản ánh phát triển từ thấp đến cao</li>
+                                    </ul>
+                                    <p class="text-xs text-blue-600 mt-3 font-medium">→ Không có bộ óc, không có ý thức. Nhưng chỉ bộ óc thôi chưa đủ.</p>
+                                </div>
+                                <div class="bg-emerald-50 dark:bg-emerald-900/20 rounded-2xl p-6">
+                                    <h4 class="font-bold text-emerald-600 mb-3">🤝 Nguồn gốc xã hội <span class="text-xs font-normal bg-emerald-100 text-emerald-700 px-2 py-0.5 rounded-full ml-1">Điều kiện ĐỦ</span></h4>
+                                    <ul class="text-sm text-text-muted-light dark:text-text-muted-dark space-y-2">
+                                        <li>• <strong>Lao động:</strong> Con người tác động vào tự nhiên, buộc thế giới bộc lộ thuộc tính</li>
+                                        <li>• <strong>Ngôn ngữ:</strong> "Vỏ vật chất" của tư duy — giúp khái quát hóa, lưu giữ tri thức</li>
+                                        <li>• <strong>Thực tiễn xã hội:</strong> Môi trường ý thức hình thành và phát triển</li>
+                                    </ul>
+                                    <p class="text-xs text-emerald-600 mt-3 font-medium">→ Nguồn gốc xã hội là điều kiện đủ và trực tiếp quyết định ý thức.</p>
+                                </div>
+                            </div>
+
+                            <div class="bg-amber-50 dark:bg-amber-900/10 border border-amber-200 rounded-2xl p-5">
+                                <h4 class="font-bold text-amber-700 mb-2">🏫 Ví dụ: Trẻ em "do chó nuôi" (Feral children)</h4>
+                                <p class="text-sm text-text-muted-light dark:text-text-muted-dark">Các trường hợp trẻ em bị tách khỏi xã hội từ nhỏ (như Amala & Kamala ở Ấn Độ) dù có bộ óc bình thường nhưng không phát triển ngôn ngữ, tư duy trừu tượng bình thường. → Xác nhận: nguồn gốc xã hội (lao động, ngôn ngữ, giao tiếp) là điều kiện đủ, không thể thiếu.</p>
+                            </div>
+                        </div>
+
+                        <div class="border-t border-gray-100 dark:border-gray-700 pt-6">
+                            <h3 class="font-display text-lg font-bold mb-4">Câu hỏi phản tư</h3>
+                            <div class="space-y-3">
+                                <div class="reflection-item">
+                                    <button onclick="toggleReflection(this)" class="w-full text-left p-4 bg-gray-50 dark:bg-gray-800 rounded-xl hover:bg-emerald-50 dark:hover:bg-emerald-900/20 transition-colors text-sm font-medium flex justify-between items-center">
+                                        <span>1. Nếu một người bị câm điếc bẩm sinh — họ có ý thức không? Ngôn ngữ ký hiệu đóng vai trò gì?</span>
+                                        <span class="material-symbols-outlined text-gray-400 flex-shrink-0 ml-2">expand_more</span>
+                                    </button>
+                                    <div class="reflection-answer p-4 text-sm text-text-muted-light dark:text-text-muted-dark">
+                                        <strong class="text-emerald-600 block mb-1">Gợi ý:</strong> Có ý thức đầy đủ. Ngôn ngữ không nhất thiết phải là lời nói — ngôn ngữ ký hiệu cũng là "hệ thống tín hiệu vật chất mang nội dung ý thức". Người câm điếc bẩm sinh phát triển ý thức qua ngôn ngữ ký hiệu và thực tiễn xã hội — đây là bằng chứng rõ ràng về nguồn gốc xã hội của ý thức không phụ thuộc vào hình thức cụ thể của ngôn ngữ.
+                                    </div>
+                                </div>
+                                <div class="reflection-item">
+                                    <button onclick="toggleReflection(this)" class="w-full text-left p-4 bg-gray-50 dark:bg-gray-800 rounded-xl hover:bg-emerald-50 dark:hover:bg-emerald-900/20 transition-colors text-sm font-medium flex justify-between items-center">
+                                        <span>2. "Người thành thị và nông thôn có ý thức khác nhau về tiêu dùng" — điều này có phù hợp với CNDV biện chứng không?</span>
+                                        <span class="material-symbols-outlined text-gray-400 flex-shrink-0 ml-2">expand_more</span>
+                                    </button>
+                                    <div class="reflection-answer p-4 text-sm text-text-muted-light dark:text-text-muted-dark">
+                                        <strong class="text-emerald-600 block mb-1">Gợi ý:</strong> Hoàn toàn phù hợp! Điều kiện vật chất xã hội khác nhau (hạ tầng, thu nhập, tiếp xúc thị trường) → ý thức tiêu dùng khác nhau. Đây là minh chứng cụ thể: "vật chất quyết định ý thức" và nguồn gốc xã hội (môi trường sống, thực tiễn) tạo ra ý thức. Để thay đổi ý thức tiêu dùng, phải thay đổi điều kiện vật chất.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Bài tập trả lời ngắn (đặc biệt của Bài 2.2) -->
+                        <div class="bg-gradient-to-br from-purple-50 to-emerald-50 dark:from-purple-900/10 dark:to-emerald-900/10 border border-purple-200 dark:border-purple-800/30 rounded-2xl p-6">
+                            <h3 class="font-display text-lg font-bold mb-2 flex items-center gap-2"><span class="material-symbols-outlined text-primary">edit_note</span> Bài tập so sánh (150–300 từ)</h3>
+                            <p class="text-sm text-text-muted-light dark:text-text-muted-dark mb-4">So sánh quan điểm <strong>duy vật biện chứng</strong> và <strong>duy tâm</strong> về nguồn gốc ý thức. Câu trả lời cần bao gồm: (1) khẳng định nguồn gốc theo mỗi trường phái, (2) ít nhất 1 dẫn chứng từ Triet.txt, (3) kết luận tại sao CNDV biện chứng đúng hơn.</p>
+                            <div class="bg-amber-50 dark:bg-amber-900/10 border border-amber-200 rounded-xl p-4 mb-4 text-xs">
+                                <p class="font-bold text-amber-700 mb-1">📋 Rubric 3 điểm:</p>
+                                <ul class="text-amber-700 space-y-1">
+                                    <li>• <strong>1đ</strong> — Nêu được nguồn gốc theo cả hai trường phái</li>
+                                    <li>• <strong>1đ</strong> — Có ít nhất 1 dẫn chứng/trích dẫn từ giáo trình</li>
+                                    <li>• <strong>1đ</strong> — Kết luận có lập luận rõ ràng, không chỉ nhận xét chung</li>
+                                </ul>
+                            </div>
+                            <textarea id="short-answer-M2-L2" class="short-answer-textarea w-full rounded-xl border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-800 p-4 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30" placeholder="Viết câu trả lời của bạn ở đây (150–300 từ)..."></textarea>
+                            <div class="flex items-center justify-between mt-3">
+                                <span id="word-count-M2-L2" class="text-xs text-gray-400">0 từ</span>
+                                <button onclick="submitShortAnswer('M2-L2')" class="bg-primary hover:bg-purple-700 text-white font-semibold px-6 py-2.5 rounded-xl transition-colors text-sm flex items-center gap-2">
+                                    <span class="material-symbols-outlined text-sm">send</span> Nộp bài tập
+                                </button>
+                            </div>
+                            <div id="short-answer-feedback-M2-L2" class="hidden mt-4 p-4 bg-green-50 dark:bg-green-900/20 border border-green-200 rounded-xl text-sm text-green-700 dark:text-green-400"></div>
+                        </div>
+
+                        <div class="flex items-center justify-between">
+                            <button onclick="showLesson('M2-L1')" class="text-sm text-text-muted-light hover:text-primary flex items-center gap-1"><span class="material-symbols-outlined text-sm">arrow_back</span> Bài trước</button>
+                            <div class="flex gap-3">
+                                <button onclick="openFormativeQuiz('M2-FQ1')" class="bg-emerald-500 hover:bg-emerald-600 text-white font-semibold px-6 py-3 rounded-xl transition-colors flex items-center gap-2 text-sm">
+                                    <span class="material-symbols-outlined text-sm">quiz</span> Kiểm tra hình thành (Bài 2.1–2.2)
+                                </button>
+                                <button onclick="completeLesson('M2-L2')" id="btn-complete-M2-L2" class="bg-primary hover:bg-purple-700 text-white font-semibold px-6 py-3 rounded-xl transition-colors flex items-center gap-2 text-sm"><span class="material-symbols-outlined text-sm">check_circle</span> Hoàn thành</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BÀI 2.3: BẢN CHẤT Ý THỨC -->
+            <div id="lesson-M2-L3" class="lesson-content hidden">
+                <div class="bg-surface-light dark:bg-surface-dark rounded-3xl border border-gray-100 dark:border-gray-700 shadow-sm overflow-hidden">
+                    <div class="lesson-header-academic">
+                        <div class="flex items-center gap-3 mb-3"><span class="text-3xl">🔮</span><span class="text-fuchsia-100 text-sm font-semibold uppercase tracking-wider">Bài 2.3 — Module 2</span></div>
+                        <h2 class="font-display text-3xl font-bold text-white mb-2">Bản chất của ý thức</h2>
+                        <p class="text-fuchsia-100 text-sm">🎯 <strong>Mục tiêu:</strong> Nắm vững bản chất ý thức là "hình ảnh chủ quan của thế giới khách quan"; hiểu tính sáng tạo là đặc trưng cốt lõi; phân biệt với phản ánh thụ động.</p>
+                    </div>
+                    <div class="p-8 space-y-8">
+                        <div class="bg-fuchsia-50 dark:bg-fuchsia-900/20 border-l-4 border-fuchsia-500 rounded-r-2xl p-6">
+                            <p class="text-xs font-bold text-fuchsia-600 uppercase tracking-wider mb-2">📖 Trích dẫn kinh điển</p>
+                            <blockquote class="font-display text-lg italic text-text-main-light dark:text-text-main-dark leading-relaxed">
+                                "Bản chất của ý thức là hình ảnh chủ quan của thế giới khách quan, là quá trình phản ánh tích cực, sáng tạo hiện thực khách quan của óc người."
+                            </blockquote>
+                            <p class="text-right text-sm text-text-muted-light dark:text-text-muted-dark mt-3">— CNDV biện chứng | <strong class="text-fuchsia-600">Triet.txt, dòng 539</strong></p>
+                        </div>
+
+                        <div class="space-y-5">
+                            <h3 class="font-display text-xl font-bold">Giải mã: "Hình ảnh chủ quan của thế giới khách quan"</h3>
+                            <div class="grid md:grid-cols-2 gap-5">
+                                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-2xl p-5">
+                                    <h4 class="font-bold text-blue-600 mb-2">🌍 Khách quan: <em>Nội dung</em> phản ánh</h4>
+                                    <p class="text-sm text-text-muted-light dark:text-text-muted-dark">Thế giới bên ngoài (thực tại vật chất) là nguyên mẫu, nguồn cung cấp thông tin cho ý thức. Không có thế giới vật chất → không có ý thức phản ánh.</p>
+                                </div>
+                                <div class="bg-purple-50 dark:bg-purple-900/20 rounded-2xl p-5">
+                                    <h4 class="font-bold text-purple-600 mb-2">👤 Chủ quan: <em>Hình thức</em> phản ánh</h4>
+                                    <p class="text-sm text-text-muted-light dark:text-text-muted-dark">Mang dấu ấn chủ thể: kinh nghiệm, điều kiện lịch sử, đặc điểm tâm lý. Cùng một đối tượng nhưng mỗi người phản ánh khác nhau.</p>
+                                </div>
+                            </div>
+
+                            <h3 class="font-display text-xl font-bold">3 bước của quá trình phản ánh ý thức</h3>
+                            <div class="space-y-3">
+                                <div class="flex gap-4 items-start p-4 bg-gray-50 dark:bg-gray-800 rounded-xl">
+                                    <div class="flex-shrink-0 w-9 h-9 rounded-full bg-primary text-white flex items-center justify-center text-sm font-bold">1</div>
+                                    <div><strong class="text-sm block">Trao đổi thông tin</strong><span class="text-sm text-text-muted-light dark:text-text-muted-dark">Hai chiều, có định hướng và chọn lọc — không phải tất cả thông tin đều được thu nhận.</span></div>
+                                </div>
+                                <div class="flex gap-4 items-start p-4 bg-gray-50 dark:bg-gray-800 rounded-xl">
+                                    <div class="flex-shrink-0 w-9 h-9 rounded-full bg-primary text-white flex items-center justify-center text-sm font-bold">2</div>
+                                    <div><strong class="text-sm block">Mô hình hóa trong tư duy</strong><span class="text-sm text-text-muted-light dark:text-text-muted-dark">Mã hóa đối tượng vật chất thành ý tưởng tinh thần — "sáng tạo lại" hiện thực trong ý thức.</span></div>
+                                </div>
+                                <div class="flex gap-4 items-start p-4 bg-gray-50 dark:bg-gray-800 rounded-xl">
+                                    <div class="flex-shrink-0 w-9 h-9 rounded-full bg-primary text-white flex items-center justify-center text-sm font-bold">3</div>
+                                    <div><strong class="text-sm block">Chuyển hóa mô hình ra hiện thực</strong><span class="text-sm text-text-muted-light dark:text-text-muted-dark">Qua thực tiễn — biến ý tưởng thành hiện thực. Đây là bước phân biệt ý thức người với phản xạ đơn giản.</span></div>
+                                </div>
+                            </div>
+
+                            <div class="bg-amber-50 dark:bg-amber-900/10 border border-amber-200 rounded-2xl p-5">
+                                <h4 class="font-bold text-amber-700 mb-2">💡 Sáng tạo là đặc trưng bản chất nhất</h4>
+                                <p class="text-sm text-text-muted-light dark:text-text-muted-dark">Ý thức không chỉ chụp lại thực tại như máy ảnh — mà còn <strong>sáng tạo ra những cái chưa có</strong>: thiết kế máy bay (chưa có trong tự nhiên), viết nhạc, lập kế hoạch tương lai. Đây là "giới tự nhiên thứ hai" in đậm dấu ấn con người.</p>
+                            </div>
+                        </div>
+
+                        <div class="border-t border-gray-100 dark:border-gray-700 pt-6">
+                            <h3 class="font-display text-lg font-bold mb-4">Câu hỏi phản tư</h3>
+                            <div class="space-y-3">
+                                <div class="reflection-item">
+                                    <button onclick="toggleReflection(this)" class="w-full text-left p-4 bg-gray-50 dark:bg-gray-800 rounded-xl hover:bg-fuchsia-50 dark:hover:bg-fuchsia-900/20 transition-colors text-sm font-medium flex justify-between items-center">
+                                        <span>1. Hai nhà khoa học cùng quan sát một thí nghiệm nhưng đưa ra diễn giải khác nhau — điều này mâu thuẫn hay xác nhận quan điểm "hình ảnh chủ quan của thế giới khách quan"?</span>
+                                        <span class="material-symbols-outlined text-gray-400 flex-shrink-0 ml-2">expand_more</span>
+                                    </button>
+                                    <div class="reflection-answer p-4 text-sm text-text-muted-light dark:text-text-muted-dark">
+                                        <strong class="text-fuchsia-600 block mb-1">Gợi ý:</strong> Xác nhận! Nội dung (thí nghiệm) là khách quan nhưng hình thức phản ánh chủ quan (kiến thức nền, giả thuyết, trường phái lý thuyết của mỗi nhà khoa học) → diễn giải khác nhau. CNDV biện chứng không có nghĩa là nhận thức hoàn toàn giống nhau — chỉ là phản ánh hướng đến chân lý khách quan ngày càng chính xác hơn qua kiểm chứng thực tiễn.
+                                    </div>
+                                </div>
+                                <div class="reflection-item">
+                                    <button onclick="toggleReflection(this)" class="w-full text-left p-4 bg-gray-50 dark:bg-gray-800 rounded-xl hover:bg-fuchsia-50 dark:hover:bg-fuchsia-900/20 transition-colors text-sm font-medium flex justify-between items-center">
+                                        <span>2. Một nhà thiết kế thời trang sáng tạo ra bộ quần áo mới chưa từng có — đây là ý thức sáng tạo hay vẫn chỉ là phản ánh?</span>
+                                        <span class="material-symbols-outlined text-gray-400 flex-shrink-0 ml-2">expand_more</span>
+                                    </button>
+                                    <div class="reflection-answer p-4 text-sm text-text-muted-light dark:text-text-muted-dark">
+                                        <strong class="text-fuchsia-600 block mb-1">Gợi ý:</strong> Cả hai — và không mâu thuẫn nhau. CNDV biện chứng: sáng tạo là đặc trưng của sự phản ánh ý thức, không phải đối lập với phản ánh. Nhà thiết kế phản ánh vật chất (vải, màu sắc, xu hướng xã hội, cơ thể người) nhưng tổng hợp sáng tạo thành điều chưa có. Ý thức nhân đôi thế giới trong tinh thần, rồi hiện thực hóa qua thực tiễn.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-fuchsia-50 dark:bg-fuchsia-900/20 border border-fuchsia-200 rounded-2xl p-6">
+                            <h3 class="font-display text-lg font-bold mb-3">Hoạt động: 3 bước phản ánh trong cuộc sống</h3>
+                            <p class="text-sm text-text-muted-light dark:text-text-muted-dark">Chọn 1 thành tựu sáng tạo (một thiết kế, một bài hát, một giải pháp kỹ thuật) và phân tích theo 3 bước phản ánh của ý thức: (1) Thông tin từ thực tế nào được thu nhận? (2) Mô hình ý tưởng được hình thành như thế nào? (3) Hiện thực hóa qua những bước thực tiễn nào?</p>
+                        </div>
+
+                        <div class="flex items-center justify-between">
+                            <button onclick="showLesson('M2-L2')" class="text-sm text-text-muted-light hover:text-primary flex items-center gap-1"><span class="material-symbols-outlined text-sm">arrow_back</span> Bài trước</button>
+                            <button onclick="completeLesson('M2-L3')" id="btn-complete-M2-L3" class="bg-primary hover:bg-purple-700 text-white font-semibold px-8 py-3 rounded-xl transition-colors flex items-center gap-2"><span class="material-symbols-outlined text-sm">check_circle</span> Hoàn thành</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BÀI 2.4: CÁC HÌNH THỨC PHẢN ÁNH -->
+            <div id="lesson-M2-L4" class="lesson-content hidden">
+                <div class="bg-surface-light dark:bg-surface-dark rounded-3xl border border-gray-100 dark:border-gray-700 shadow-sm overflow-hidden">
+                    <div class="lesson-header-academic">
+                        <div class="flex items-center gap-3 mb-3"><span class="text-3xl">📊</span><span class="text-cyan-100 text-sm font-semibold uppercase tracking-wider">Bài 2.4 — Module 2</span></div>
+                        <h2 class="font-display text-3xl font-bold text-white mb-2">Các hình thức phản ánh</h2>
+                        <p class="text-cyan-100 text-sm">🎯 <strong>Mục tiêu:</strong> Nắm 4 cấp độ phản ánh từ vô cơ đến ý thức người; hiểu tại sao ý thức là cấp cao nhất; phân biệt ý thức với tâm lý động vật.</p>
+                    </div>
+                    <div class="p-8 space-y-8">
+                        <div class="bg-cyan-50 dark:bg-cyan-900/20 border-l-4 border-cyan-500 rounded-r-2xl p-6">
+                            <p class="text-xs font-bold text-cyan-600 uppercase tracking-wider mb-2">📖 Trích dẫn kinh điển</p>
+                            <blockquote class="font-display text-base italic text-text-main-light dark:text-text-main-dark leading-relaxed">
+                                "Các kết cấu vật chất càng phát triển, hoàn thiện thì năng lực phản ánh của nó càng cao. Những đặc trưng cơ bản... cung cấp cơ sở để làm sáng tỏ nguồn gốc tự nhiên của ý thức."
+                            </blockquote>
+                            <p class="text-right text-sm text-text-muted-light dark:text-text-muted-dark mt-3">— CNDV biện chứng | <strong class="text-cyan-600">Triet.txt, dòng 523</strong></p>
+                        </div>
+
+                        <div class="space-y-5">
+                            <h3 class="font-display text-xl font-bold">4 Cấp độ phản ánh — Từ thấp đến cao</h3>
+                            <div class="space-y-3">
+                                <div class="flex gap-4 items-center p-4 bg-gray-100 dark:bg-gray-800/50 rounded-xl">
+                                    <div class="flex-shrink-0 w-10 h-10 rounded-full bg-gray-400 text-white flex items-center justify-center text-sm font-bold">1</div>
+                                    <div>
+                                        <strong class="text-sm">Phản ánh vật lý-hóa học</strong> <span class="text-xs text-gray-500 ml-2">Giới vô sinh</span>
+                                        <p class="text-xs text-text-muted-light dark:text-text-muted-dark">Thụ động, chưa có định hướng. VD: Đá bị mài mòn, sắt bị oxy hóa, ánh sáng khúc xạ.</p>
+                                    </div>
+                                </div>
+                                <div class="flex gap-4 items-center p-4 bg-green-50 dark:bg-green-900/20 rounded-xl">
+                                    <div class="flex-shrink-0 w-10 h-10 rounded-full bg-green-500 text-white flex items-center justify-center text-sm font-bold">2</div>
+                                    <div>
+                                        <strong class="text-sm">Kích thích</strong> <span class="text-xs text-gray-500 ml-2">Thực vật</span>
+                                        <p class="text-xs text-text-muted-light dark:text-text-muted-dark">Có định hướng, giúp sinh vật thích nghi. VD: Cây hướng về phía sáng, rễ phát triển về phía nước, lá cụp khi chạm.</p>
+                                    </div>
+                                </div>
+                                <div class="flex gap-4 items-center p-4 bg-blue-50 dark:bg-blue-900/20 rounded-xl">
+                                    <div class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-500 text-white flex items-center justify-center text-sm font-bold">3</div>
+                                    <div>
+                                        <strong class="text-sm">Phản xạ & Tâm lý</strong> <span class="text-xs text-gray-500 ml-2">Động vật</span>
+                                        <p class="text-xs text-text-muted-light dark:text-text-muted-dc">Phản xạ (không điều kiện + có điều kiện); động vật bậc cao có tâm lý, trí khôn. Nhưng vẫn là bản năng, không phải ý thức xã hội.</p>
+                                    </div>
+                                </div>
+                                <div class="flex gap-4 items-center p-4 bg-gradient-to-r from-purple-50 to-fuchsia-50 dark:from-purple-900/20 dark:to-fuchsia-900/20 rounded-xl border border-purple-200 dark:border-purple-800/30">
+                                    <div class="flex-shrink-0 w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center text-sm font-bold">4</div>
+                                    <div>
+                                        <strong class="text-sm text-primary">Ý thức ⭐ (cao nhất)</strong> <span class="text-xs text-gray-500 ml-2">Con người</span>
+                                        <p class="text-xs text-text-muted-light dark:text-text-muted-dark">Sáng tạo, có mục đích, gắn với thực tiễn xã hội. Phản ánh cả những cái chưa có, tương lai, quy luật trừu tượng.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="bg-amber-50 dark:bg-amber-900/10 border border-amber-200 rounded-2xl p-5">
+                                <h4 class="font-bold text-amber-700 mb-2">🐒 Sao tâm lý động vật CHƯA phải ý thức?</h4>
+                                <p class="text-sm text-text-muted-light dark:text-text-muted-dark">Dù tinh tinh biết dùng cành cây để lấy thức ăn hay vượn người biết "suy nghĩ" — đó vẫn là phản ánh bản năng, không có tính xã hội-lịch sử. Ý thức người: tạo ra công cụ mới chưa có, trao truyền qua ngôn ngữ, cải tạo có kế hoạch. "Kiến trúc sư tồi nhất cũng khác con ong ở chỗ: trước khi xây tổ, con người đã dựng nó lên trong trí óc." (C. Mác)</p>
+                            </div>
+                        </div>
+
+                        <div class="border-t border-gray-100 dark:border-gray-700 pt-6">
+                            <h3 class="font-display text-lg font-bold mb-4">Câu hỏi phản tư</h3>
+                            <div class="space-y-3">
+                                <div class="reflection-item">
+                                    <button onclick="toggleReflection(this)" class="w-full text-left p-4 bg-gray-50 dark:bg-gray-800 rounded-xl hover:bg-cyan-50 dark:hover:bg-cyan-900/20 transition-colors text-sm font-medium flex justify-between items-center">
+                                        <span>1. Một con chó được huấn luyện để cứu người bị chôn vùi trong tuyết. Đây là cấp độ phản ánh nào? Có phải ý thức không?</span>
+                                        <span class="material-symbols-outlined text-gray-400 flex-shrink-0 ml-2">expand_more</span>
+                                    </button>
+                                    <div class="reflection-answer p-4 text-sm text-text-muted-light dark:text-text-muted-dark">
+                                        <strong class="text-cyan-600 block mb-1">Gợi ý:</strong> Cấp độ 3 — tâm lý động vật (phản xạ có điều kiện được huấn luyện). Không phải ý thức vì: con chó không "hiểu" mục đích xã hội của việc cứu người, không thể đặt kế hoạch mới, không thể trao truyền "kỹ năng" này qua ngôn ngữ cho chó con. Con người huấn luyện = ý thức; con chó thực hiện = tâm lý động vật.
+                                    </div>
+                                </div>
+                                <div class="reflection-item">
+                                    <button onclick="toggleReflection(this)" class="w-full text-left p-4 bg-gray-50 dark:bg-gray-800 rounded-xl hover:bg-cyan-50 dark:hover:bg-cyan-900/20 transition-colors text-sm font-medium flex justify-between items-center">
+                                        <span>2. Cây nắp ấm (pitcher plant) "bẫy" côn trùng rất hiệu quả. Điều này có nghĩa là thực vật có "ý thức" không?</span>
+                                        <span class="material-symbols-outlined text-gray-400 flex-shrink-0 ml-2">expand_more</span>
+                                    </button>
+                                    <div class="reflection-answer p-4 text-sm text-text-muted-light dark:text-text-muted-dark">
+                                        <strong class="text-cyan-600 block mb-1">Gợi ý:</strong> Không — cấp độ 2 (kích thích thực vật). Mặc dù cơ chế bẫy rất tinh vi, nó là kết quả của tiến hóa sinh học (chọn lọc tự nhiên), không phải kế hoạch hay mục đích có ý thức. Cây không "biết" mình đang bắt côn trùng — chỉ phản ánh sinh học theo kích thích. Sự tinh vi của cơ chế không đồng nghĩa với ý thức.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-cyan-50 dark:bg-cyan-900/20 border border-cyan-200 rounded-2xl p-6">
+                            <h3 class="font-display text-lg font-bold mb-3">Hoạt động: Phân loại hình thức phản ánh</h3>
+                            <p class="text-sm text-text-muted-light dark:text-text-muted-dark mb-3">Phân loại mỗi hiện tượng vào cấp độ phản ánh phù hợp (1–4):</p>
+                            <div class="space-y-2 text-sm">
+                                <div class="flex gap-2 items-center p-2 bg-white dark:bg-gray-800 rounded-lg"><span>🌡️</span><span>Nhiệt kế thủy ngân nở ra khi nóng</span><span class="ml-auto text-xs text-gray-400">→ Cấp __</span></div>
+                                <div class="flex gap-2 items-center p-2 bg-white dark:bg-gray-800 rounded-lg"><span>🐝</span><span>Ong mật "nhảy" để thông báo vị trí hoa cho cả đàn</span><span class="ml-auto text-xs text-gray-400">→ Cấp __</span></div>
+                                <div class="flex gap-2 items-center p-2 bg-white dark:bg-gray-800 rounded-lg"><span>🌻</span><span>Hướng dương xoay theo mặt trời</span><span class="ml-auto text-xs text-gray-400">→ Cấp __</span></div>
+                                <div class="flex gap-2 items-center p-2 bg-white dark:bg-gray-800 rounded-lg"><span>🏗️</span><span>Kỹ sư thiết kế cầu chịu được động đất theo mô hình 3D</span><span class="ml-auto text-xs text-gray-400">→ Cấp __</span></div>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center justify-between">
+                            <button onclick="showLesson('M2-L3')" class="text-sm text-text-muted-light hover:text-primary flex items-center gap-1"><span class="material-symbols-outlined text-sm">arrow_back</span> Bài trước</button>
+                            <div class="flex gap-3">
+                                <button onclick="openFormativeQuiz('M2-FQ2')" class="bg-cyan-500 hover:bg-cyan-600 text-white font-semibold px-6 py-3 rounded-xl transition-colors flex items-center gap-2 text-sm">
+                                    <span class="material-symbols-outlined text-sm">quiz</span> Kiểm tra hình thành (Bài 2.3–2.4)
+                                </button>
+                                <button onclick="completeLesson('M2-L4')" id="btn-complete-M2-L4" class="bg-primary hover:bg-purple-700 text-white font-semibold px-6 py-3 rounded-xl transition-colors flex items-center gap-2 text-sm"><span class="material-symbols-outlined text-sm">check_circle</span> Hoàn thành</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BÀI 2.5: QUAN HỆ VẬT CHẤT–Ý THỨC -->
+            <div id="lesson-M2-L5" class="lesson-content hidden">
+                <div class="bg-surface-light dark:bg-surface-dark rounded-3xl border border-gray-100 dark:border-gray-700 shadow-sm overflow-hidden">
+                    <div class="lesson-header-academic">
+                        <div class="flex items-center gap-3 mb-3"><span class="text-3xl">⚖️</span><span class="text-orange-100 text-sm font-semibold uppercase tracking-wider">Bài 2.5 — Module 2</span></div>
+                        <h2 class="font-display text-3xl font-bold text-white mb-2">Mối quan hệ Vật chất–Ý thức</h2>
+                        <p class="text-orange-100 text-sm">🎯 <strong>Mục tiêu:</strong> Phân tích biện chứng vật chất quyết định ý thức và ý thức tác động trở lại; phê phán cả duy tâm lẫn duy vật siêu hình trong giải quyết vấn đề cơ bản của triết học.</p>
+                    </div>
+                    <div class="p-8 space-y-8">
+                        <div class="bg-orange-50 dark:bg-orange-900/20 border-l-4 border-orange-500 rounded-r-2xl p-6">
+                            <p class="text-xs font-bold text-orange-600 uppercase tracking-wider mb-2">📖 Nguyên tắc cốt lõi</p>
+                            <blockquote class="font-display text-lg italic text-text-main-light dark:text-text-main-dark leading-relaxed">
+                                "Mối quan hệ giữa vật chất và ý thức là 'Vấn đề cơ bản lớn của mọi triết học, đặc biệt là của triết học hiện đại.' Tùy theo lập trường thế giới quan khác nhau khi giải quyết mối quan hệ này mà hình thành hai đường lối cơ bản: CNDV và CNDT."
+                            </blockquote>
+                            <p class="text-right text-sm text-text-muted-light dark:text-text-muted-dark mt-3">— Ph. Ăngghen | <strong class="text-orange-600">Triet.txt, dòng 567–568</strong></p>
+                        </div>
+
+                        <div class="space-y-5">
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div>
+                                    <h3 class="font-display text-xl font-bold mb-3">Vật chất quyết định ý thức</h3>
+                                    <div class="space-y-2 text-sm">
+                                        <div class="flex gap-3 items-start p-3 bg-gray-50 dark:bg-gray-800 rounded-xl"><span class="text-primary flex-shrink-0">→</span><span>Ý thức có nguồn gốc từ vật chất (bộ óc + thực tiễn xã hội)</span></div>
+                                        <div class="flex gap-3 items-start p-3 bg-gray-50 dark:bg-gray-800 rounded-xl"><span class="text-primary flex-shrink-0">→</span><span>Nội dung phản ánh phụ thuộc thực tại vật chất</span></div>
+                                        <div class="flex gap-3 items-start p-3 bg-gray-50 dark:bg-gray-800 rounded-xl"><span class="text-primary flex-shrink-0">→</span><span>Điều kiện vật chất thay đổi → ý thức thay đổi theo</span></div>
+                                        <div class="flex gap-2 items-start p-3 bg-blue-50 dark:bg-blue-900/20 rounded-xl text-xs"><span>💡</span><span><strong>Ví dụ:</strong> Mức sống cao → ý thức tiêu dùng, giá trị, mối quan tâm đều thay đổi. "Ý thức không thể là gì khác hơn là sự tồn tại được ý thức." (C. Mác, dòng 566)</span></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h3 class="font-display text-xl font-bold mb-3">Ý thức tác động trở lại</h3>
+                                    <div class="space-y-2 text-sm">
+                                        <div class="flex gap-3 items-start p-3 bg-gray-50 dark:bg-gray-800 rounded-xl"><span class="text-secondary flex-shrink-0">→</span><span>Ý thức đúng đắn → hành động hiệu quả → cải tạo vật chất tốt hơn</span></div>
+                                        <div class="flex gap-3 items-start p-3 bg-gray-50 dark:bg-gray-800 rounded-xl"><span class="text-secondary flex-shrink-0">→</span><span>Ý thức sai lầm → hành động sai → kìm hãm hoặc phá hoại</span></div>
+                                        <div class="flex gap-3 items-start p-3 bg-gray-50 dark:bg-gray-800 rounded-xl"><span class="text-secondary flex-shrink-0">→</span><span>Sức mạnh của ý thức = hành động thực tiễn (không phải tư tưởng thuần túy)</span></div>
+                                        <div class="flex gap-2 items-start p-3 bg-green-50 dark:bg-green-900/20 rounded-xl text-xs"><span>💡</span><span><strong>Ví dụ:</strong> Cách mạng Tháng Mười 1917 — ý thức Mác-xít đúng đắn tác động vào thực tiễn xã hội, thay đổi hoàn toàn cấu trúc vật chất xã hội Nga.</span></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="grid md:grid-cols-2 gap-4">
+                                <div class="bg-red-50 dark:bg-red-900/10 border border-red-200 rounded-2xl p-5">
+                                    <h4 class="font-bold text-red-600 mb-2">⚠️ Sai lầm 1: Duy ý chí</h4>
+                                    <p class="text-sm text-text-muted-light dark:text-text-muted-dark">"Chỉ cần ý chí mạnh, điều kiện vật chất không thành vấn đề." → Phủ nhận tính khách quan của vật chất. Dẫn đến phiêu lưu, bỏ qua điều kiện thực tế.</p>
+                                </div>
+                                <div class="bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-2xl p-5">
+                                    <h4 class="font-bold text-gray-600 mb-2">⚠️ Sai lầm 2: Thụ động</h4>
+                                    <p class="text-sm text-text-muted-light dark:text-text-muted-dark">"Hoàn cảnh khó khăn thế này, tôi không làm được gì." → Phủ nhận vai trò tích cực của ý thức. Dẫn đến buông xuôi, mất động lực.</p>
+                                </div>
+                            </div>
+
+                            <div class="bg-gray-50 dark:bg-gray-800 rounded-2xl p-6">
+                                <h4 class="font-bold mb-3">💡 AI và câu hỏi về ý thức — Triet.txt, dòng 562–564</h4>
+                                <p class="text-sm text-text-muted-light dark:text-text-muted-dark">AI (ChatGPT, Gemini...) xử lý thông tin rất tinh vi — nhưng theo CNDV biện chứng, AI KHÔNG có ý thức vì: (1) Không có nguồn gốc xã hội-lịch sử của con người; (2) Không tự sáng tạo lại hiện thực trong bản thân theo cách con người làm; (3) Chỉ là "quá trình vật lý được lập trình". Con người lập trình AI = ý thức; AI thực thi = quá trình vật lý-điện tử.</p>
+                            </div>
+                        </div>
+
+                        <div class="border-t border-gray-100 dark:border-gray-700 pt-6">
+                            <h3 class="font-display text-lg font-bold mb-4">Câu hỏi phản tư</h3>
+                            <div class="space-y-3">
+                                <div class="reflection-item">
+                                    <button onclick="toggleReflection(this)" class="w-full text-left p-4 bg-gray-50 dark:bg-gray-800 rounded-xl hover:bg-orange-50 dark:hover:bg-orange-900/20 transition-colors text-sm font-medium flex justify-between items-center">
+                                        <span>1. "Đổi mới kinh tế phải đi trước đổi mới chính trị" — nguyên tắc này có phù hợp với CNDV biện chứng không?</span>
+                                        <span class="material-symbols-outlined text-gray-400 flex-shrink-0 ml-2">expand_more</span>
+                                    </button>
+                                    <div class="reflection-answer p-4 text-sm text-text-muted-light dark:text-text-muted-dark">
+                                        <strong class="text-orange-600 block mb-1">Gợi ý:</strong> Có, hoàn toàn phù hợp. CNDV biện chứng: kinh tế (cơ sở vật chất — hạ tầng) quyết định chính trị (kiến trúc thượng tầng — ý thức xã hội). Thay đổi nền tảng vật chất (cơ chế kinh tế) trước → tạo điều kiện để ý thức xã hội, hệ thống chính trị-pháp luật thích ứng theo. Đây là ứng dụng trực tiếp nguyên tắc vật chất quyết định ý thức vào thực tiễn cách mạng.
+                                    </div>
+                                </div>
+                                <div class="reflection-item">
+                                    <button onclick="toggleReflection(this)" class="w-full text-left p-4 bg-gray-50 dark:bg-gray-800 rounded-xl hover:bg-orange-50 dark:hover:bg-orange-900/20 transition-colors text-sm font-medium flex justify-between items-center">
+                                        <span>2. Tin giả (fake news) về dịch bệnh khiến người dân mua sạch hàng siêu thị — ý thức (sai) có tác động đến vật chất không? Điều này nói lên gì?</span>
+                                        <span class="material-symbols-outlined text-gray-400 flex-shrink-0 ml-2">expand_more</span>
+                                    </button>
+                                    <div class="reflection-answer p-4 text-sm text-text-muted-light dark:text-text-muted-dark">
+                                        <strong class="text-orange-600 block mb-1">Gợi ý:</strong> Có — và rất mạnh mẽ! Ý thức sai lầm (tin giả) → hành động mua tích trữ → thay đổi thực tế vật chất (hàng hóa, giá cả, chuỗi cung ứng). Xác nhận: ý thức tác động trở lại vật chất qua thực tiễn. Điều này nói lên: ý thức sai lầm gây hậu quả vật chất nghiêm trọng → cần chú trọng giáo dục tư duy phê phán, kiểm chứng thông tin.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-orange-50 dark:bg-orange-900/20 border border-orange-200 rounded-2xl p-6">
+                            <h3 class="font-display text-lg font-bold mb-3">Hoạt động: Mini-case vật chất–ý thức</h3>
+                            <p class="text-sm text-text-muted-light dark:text-text-muted-dark mb-3">Phân tích sự kiện sau theo 2 chiều của quan hệ vật chất–ý thức:</p>
+                            <div class="bg-white dark:bg-gray-800 rounded-xl p-4 text-sm">
+                                <p><strong>Tình huống:</strong> Đại dịch COVID-19 (2020–2022) thay đổi ý thức làm việc của người Việt Nam: nhiều người từ chối làm văn phòng 5 ngày/tuần, đòi làm từ xa, đánh giá lại cân bằng công việc-cuộc sống.</p>
+                                <p class="mt-2 text-gray-500">Phân tích: (1) Vật chất (đại dịch) tác động đến ý thức thế nào? (2) Ý thức mới (work-life balance) tác động trở lại điều kiện lao động vật chất thế nào?</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center justify-between">
+                            <button onclick="showLesson('M2-L4')" class="text-sm text-text-muted-light hover:text-primary flex items-center gap-1"><span class="material-symbols-outlined text-sm">arrow_back</span> Bài trước</button>
+                            <button onclick="completeLesson('M2-L5')" id="btn-complete-M2-L5" class="bg-primary hover:bg-purple-700 text-white font-semibold px-8 py-3 rounded-xl transition-colors flex items-center gap-2"><span class="material-symbols-outlined text-sm">check_circle</span> Hoàn thành</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BÀI 2.6: ỨNG DỤNG -->
+            <div id="lesson-M2-L6" class="lesson-content hidden">
+                <div class="bg-surface-light dark:bg-surface-dark rounded-3xl border border-gray-100 dark:border-gray-700 shadow-sm overflow-hidden">
+                    <div class="lesson-header-academic">
+                        <div class="flex items-center gap-3 mb-3"><span class="text-3xl">🎯</span><span class="text-rose-100 text-sm font-semibold uppercase tracking-wider">Bài 2.6 — Module 2</span></div>
+                        <h2 class="font-display text-3xl font-bold text-white mb-2">Ứng dụng: Ý thức trong hành động xã hội</h2>
+                        <p class="text-rose-100 text-sm">🎯 <strong>Mục tiêu:</strong> Rút ra nguyên tắc phương pháp luận từ CNDV biện chứng về ý thức; áp dụng vào phân tích hành động cá nhân và xã hội; hoàn thành mini-essay tổng kết module.</p>
+                    </div>
+                    <div class="p-8 space-y-8">
+                        <div class="bg-rose-50 dark:bg-rose-900/20 border-l-4 border-rose-500 rounded-r-2xl p-6">
+                            <p class="text-xs font-bold text-rose-600 uppercase tracking-wider mb-2">📖 Nguyên tắc phương pháp luận</p>
+                            <blockquote class="font-display text-lg italic text-text-main-light dark:text-text-main-dark leading-relaxed">
+                                "Ý thức [...] không bao giờ có thể là cái gì khác hơn là sự tồn tại được ý thức [...], và tồn tại của con người là quá trình đời sống hiện thực của con người."
+                            </blockquote>
+                            <p class="text-right text-sm text-text-muted-light dark:text-text-muted-dark mt-3">— C. Mác & Ph. Ăngghen | <em>Hệ tư tưởng Đức</em> | <strong class="text-rose-600">Triet.txt, dòng 566</strong></p>
+                        </div>
+
+                        <div class="space-y-5">
+                            <h3 class="font-display text-xl font-bold">3 Nguyên tắc ứng dụng từ Module 2</h3>
+                            <div class="grid md:grid-cols-3 gap-5">
+                                <div class="flex flex-col items-center text-center p-6 bg-surface-light dark:bg-surface-dark rounded-2xl border-2 border-primary/20">
+                                    <div class="w-16 h-16 rounded-full bg-primary/10 text-primary flex items-center justify-center text-xl font-bold mb-4">01</div>
+                                    <h4 class="font-bold text-primary mb-2">Hiểu nguồn gốc ý thức của mình</h4>
+                                    <p class="text-xs text-text-muted-light dark:text-text-muted-dark">Ý thức, giá trị, thành kiến của bạn đến từ đâu? Gia đình, môi trường, xã hội nào đã tạo ra chúng?</p>
+                                </div>
+                                <div class="flex flex-col items-center text-center p-6 bg-surface-light dark:bg-surface-dark rounded-2xl border-2 border-secondary/20">
+                                    <div class="w-16 h-16 rounded-full bg-secondary/10 text-secondary flex items-center justify-center text-xl font-bold mb-4">02</div>
+                                    <h4 class="font-bold text-secondary mb-2">Phát huy sáng tạo có định hướng</h4>
+                                    <p class="text-xs text-text-muted-light dark:text-text-muted-dark">Ý thức sáng tạo nhưng không thoát ly thực tế — luôn gắn với điều kiện vật chất cụ thể và nhu cầu xã hội thực tiễn.</p>
+                                </div>
+                                <div class="flex flex-col items-center text-center p-6 bg-surface-light dark:bg-surface-dark rounded-2xl border-2 border-accent/20">
+                                    <div class="w-16 h-16 rounded-full bg-accent/10 text-amber-600 flex items-center justify-center text-xl font-bold mb-4">03</div>
+                                    <h4 class="font-bold text-amber-600 mb-2">Thống nhất lý luận–thực tiễn</h4>
+                                    <p class="text-xs text-text-muted-light dark:text-text-muted-dark">Ý thức đúng → hành động đúng → thay đổi thực tế. Không có lý luận xa thực tiễn, không có thực tiễn mù lý luận.</p>
+                                </div>
+                            </div>
+
+                            <div class="bg-gradient-to-r from-primary/5 to-secondary/5 border border-primary/20 rounded-2xl p-6">
+                                <h4 class="font-bold mb-4">Kết cấu ý thức — Nhìn lại bản thân</h4>
+                                <div class="grid md:grid-cols-3 gap-4 text-sm">
+                                    <div class="bg-white dark:bg-gray-800 rounded-xl p-4">
+                                        <h5 class="font-bold text-primary mb-2">📚 Tri thức</h5>
+                                        <p class="text-xs text-text-muted-light dark:text-text-muted-dark">Tôi biết gì về lĩnh vực mình muốn cải tạo? Tri thức lý luận có gắn với tri thức thực tiễn không?</p>
+                                    </div>
+                                    <div class="bg-white dark:bg-gray-800 rounded-xl p-4">
+                                        <h5 class="font-bold text-rose-600 mb-2">❤️ Tình cảm</h5>
+                                        <p class="text-xs text-text-muted-light dark:text-text-muted-dark">Tôi có đủ động lực, nhiệt huyết không? Tình cảm thôi thúc tôi hành động hay kìm hãm?</p>
+                                    </div>
+                                    <div class="bg-white dark:bg-gray-800 rounded-xl p-4">
+                                        <h5 class="font-bold text-amber-600 mb-2">💪 Ý chí</h5>
+                                        <p class="text-xs text-text-muted-light dark:text-text-muted-dark">Tôi có đủ kiên định để vượt qua khó khăn không? Ý chí không phải cứng đầu mà là bền bỉ có định hướng.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="border-t border-gray-100 dark:border-gray-700 pt-6">
+                            <h3 class="font-display text-lg font-bold mb-4">Câu hỏi phản tư</h3>
+                            <div class="space-y-3">
+                                <div class="reflection-item">
+                                    <button onclick="toggleReflection(this)" class="w-full text-left p-4 bg-gray-50 dark:bg-gray-800 rounded-xl hover:bg-rose-50 dark:hover:bg-rose-900/20 transition-colors text-sm font-medium flex justify-between items-center">
+                                        <span>1. Bạn đang học triết học — điều này thay đổi ý thức của bạn như thế nào? Sự thay đổi ý thức đó có thể tác động ngược lại hành động thực tiễn của bạn không?</span>
+                                        <span class="material-symbols-outlined text-gray-400 flex-shrink-0 ml-2">expand_more</span>
+                                    </button>
+                                    <div class="reflection-answer p-4 text-sm text-text-muted-light dark:text-text-muted-dark">
+                                        <strong class="text-rose-600 block mb-1">Gợi ý cấu trúc:</strong> [1] Trước khi học: ý thức về X (ví dụ: "Law of Attraction", "vận mệnh"...) như thế nào? [2] Sau khi học Module 1-2: nhận ra điều gì sai/đúng? [3] Kế hoạch hành động thực tiễn cụ thể nào bạn sẽ thay đổi? Đây chính là vòng tròn: vật chất (giáo trình, giảng viên) → ý thức thay đổi → hành động thực tiễn thay đổi → thực tế thay đổi.
+                                    </div>
+                                </div>
+                                <div class="reflection-item">
+                                    <button onclick="toggleReflection(this)" class="w-full text-left p-4 bg-gray-50 dark:bg-gray-800 rounded-xl hover:bg-rose-50 dark:hover:bg-rose-900/20 transition-colors text-sm font-medium flex justify-between items-center">
+                                        <span>2. Mục tiêu "xây dựng con người mới XHCN" của Đảng Cộng sản Việt Nam — điều này có mâu thuẫn không khi "vật chất quyết định ý thức" nhưng lại chú trọng giáo dục tư tưởng?</span>
+                                        <span class="material-symbols-outlined text-gray-400 flex-shrink-0 ml-2">expand_more</span>
+                                    </button>
+                                    <div class="reflection-answer p-4 text-sm text-text-muted-light dark:text-text-muted-dark">
+                                        <strong class="text-rose-600 block mb-1">Gợi ý:</strong> Không mâu thuẫn — đây là phép biện chứng. CNDV biện chứng không phủ nhận vai trò của ý thức — chỉ xác định ý thức không quyết định cuối cùng. Để xây dựng con người mới: (1) Phải thay đổi nền tảng vật chất (kinh tế, điều kiện sống, giáo dục). (2) Song song đó phát triển ý thức XHCN bằng giáo dục — ý thức đúng sẽ thúc đẩy cải tạo vật chất hiệu quả hơn. Hai mặt bổ sung nhau trong biện chứng.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Mini-essay tổng kết -->
+                        <div class="bg-gradient-to-br from-rose-50 to-purple-50 dark:from-rose-900/10 dark:to-purple-900/10 border border-rose-200 dark:border-rose-800/30 rounded-2xl p-6">
+                            <h3 class="font-display text-lg font-bold mb-2 flex items-center gap-2"><span class="material-symbols-outlined text-rose-600">edit_note</span> Mini-essay tổng kết Module 2 (200–300 từ)</h3>
+                            <p class="text-sm text-text-muted-light dark:text-text-muted-dark mb-4">Trả lời câu hỏi: <em>"Nếu ý thức chỉ là sự phản ánh của vật chất, tại sao con người vẫn có thể vươn lên vượt khó hoàn cảnh?"</em> Câu trả lời phải: (1) Dùng ít nhất 1 trích dẫn từ Triet.txt, (2) Phân tích vai trò tích cực của ý thức, (3) Liên hệ thực tiễn cụ thể.</p>
+                            <textarea id="short-answer-M2-L6" class="short-answer-textarea w-full rounded-xl border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-800 p-4 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30" placeholder="Viết mini-essay của bạn ở đây (200–300 từ)..."></textarea>
+                            <div class="flex items-center justify-between mt-3">
+                                <span id="word-count-M2-L6" class="text-xs text-gray-400">0 từ</span>
+                                <button onclick="submitShortAnswer('M2-L6')" class="bg-rose-600 hover:bg-rose-700 text-white font-semibold px-6 py-2.5 rounded-xl transition-colors text-sm flex items-center gap-2">
+                                    <span class="material-symbols-outlined text-sm">send</span> Nộp mini-essay
+                                </button>
+                            </div>
+                            <div id="short-answer-feedback-M2-L6" class="hidden mt-4 p-4 bg-green-50 dark:bg-green-900/20 border border-green-200 rounded-xl text-sm text-green-700 dark:text-green-400"></div>
+                        </div>
+
+                        <div class="flex items-center justify-between">
+                            <button onclick="showLesson('M2-L5')" class="text-sm text-text-muted-light hover:text-primary flex items-center gap-1"><span class="material-symbols-outlined text-sm">arrow_back</span> Bài trước</button>
+                            <div class="flex gap-3">
+                                <button onclick="openFormativeQuiz('M2-FQ3')" class="bg-rose-500 hover:bg-rose-600 text-white font-semibold px-6 py-3 rounded-xl transition-colors flex items-center gap-2 text-sm">
+                                    <span class="material-symbols-outlined text-sm">quiz</span> Kiểm tra hình thành (Bài 2.5–2.6)
+                                </button>
+                                <button onclick="completeLesson('M2-L6')" id="btn-complete-M2-L6" class="bg-primary hover:bg-purple-700 text-white font-semibold px-6 py-3 rounded-xl transition-colors flex items-center gap-2 text-sm"><span class="material-symbols-outlined text-sm">check_circle</span> Hoàn thành</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MODULE QUIZ BANNER -->
+        <section id="module-quiz-banner" class="mb-16 hidden">
+            <div class="bg-gradient-to-r from-primary to-secondary rounded-3xl p-8 text-white text-center">
+                <span class="text-5xl mb-4 block">🏆</span>
+                <h2 class="font-display text-3xl font-bold mb-3">Bạn đã hoàn thành 6 bài học Module 2!</h2>
+                <p class="text-white/80 mb-6">Làm bài kiểm tra tổng kết (12 câu) để nhận thành tích <strong>Origin Analyst 🥈 +10 XP</strong>.</p>
+                <button onclick="openModuleQuiz()" class="bg-white text-primary hover:bg-purple-50 font-bold px-10 py-4 rounded-2xl transition-colors inline-flex items-center gap-2 text-lg shadow-lg">
+                    <span class="material-symbols-outlined">school</span> Làm bài kiểm tra Module 2
+                </button>
+            </div>
+        </section>
+
+        <!-- AI FAB -->
+        <div class="fixed bottom-6 right-6 z-40">
+            <button onclick="toggleAIPanel()" class="w-14 h-14 rounded-full bg-primary text-white shadow-xl hover:bg-purple-700 flex items-center justify-center transition-all hover:scale-105">
+                <span class="material-symbols-outlined">smart_toy</span>
+            </button>
+        </div>
+
+        <!-- AI PANEL -->
+        <div id="ai-panel" class="hidden-panel fixed right-0 top-0 h-full w-80 md:w-96 bg-surface-light dark:bg-surface-dark border-l border-gray-200 dark:border-gray-700 shadow-2xl z-50 flex flex-col">
+            <div class="p-4 border-b border-gray-200 dark:border-gray-700 flex items-center justify-between">
+                <div>
+                    <h3 class="font-bold text-sm">🤖 AI Triết học — Module 2</h3>
+                    <p class="text-xs text-text-muted-light dark:text-text-muted-dark">Trả lời kèm sourceRef từ Triet.txt Chương 2</p>
+                </div>
+                <button onclick="toggleAIPanel()" class="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full"><span class="material-symbols-outlined text-gray-500">close</span></button>
+            </div>
+            <div id="ai-chat-history" class="flex-1 overflow-y-auto p-4 space-y-3">
+                <div class="bg-purple-50 dark:bg-purple-900/20 rounded-xl p-3">
+                    <p class="text-xs font-bold text-primary mb-1">🤖 AI Triết học — Module 2</p>
+                    <p class="text-sm text-text-muted-light dark:text-text-muted-dark">Xin chào! Tôi sẵn sàng giải thích các khái niệm Module 2 — <strong>Ý thức: Nguồn gốc, Bản chất, Kết cấu & Quan hệ vật chất–ý thức</strong>. Mọi câu trả lời kèm trích dẫn từ <em>Triet.txt, Chương 2</em>.</p>
+                </div>
+                <div class="space-y-2">
+                    <p class="text-xs text-gray-400 font-medium">💡 Câu hỏi gợi ý:</p>
+                    <button onclick="sendAIPrompt('Ý thức là gì theo CNDV biện chứng?')" class="w-full text-left text-xs p-2.5 bg-gray-50 dark:bg-gray-800 rounded-lg hover:bg-purple-50 dark:hover:bg-purple-900/20 transition-colors">Ý thức là gì theo CNDV biện chứng?</button>
+                    <button onclick="sendAIPrompt('Nguồn gốc xã hội của ý thức là gì?')" class="w-full text-left text-xs p-2.5 bg-gray-50 dark:bg-gray-800 rounded-lg hover:bg-purple-50 dark:hover:bg-purple-900/20 transition-colors">Nguồn gốc xã hội của ý thức?</button>
+                    <button onclick="sendAIPrompt('Bản chất của ý thức — hình ảnh chủ quan có nghĩa gì?')" class="w-full text-left text-xs p-2.5 bg-gray-50 dark:bg-gray-800 rounded-lg hover:bg-purple-50 dark:hover:bg-purple-900/20 transition-colors">Bản chất: hình ảnh chủ quan là gì?</button>
+                    <button onclick="sendAIPrompt('4 cấp độ phản ánh từ vô cơ đến ý thức người')" class="w-full text-left text-xs p-2.5 bg-gray-50 dark:bg-gray-800 rounded-lg hover:bg-purple-50 dark:hover:bg-purple-900/20 transition-colors">4 cấp độ phản ánh?</button>
+                    <button onclick="sendAIPrompt('Quan hệ vật chất ý thức — vật chất quyết định ý thức')" class="w-full text-left text-xs p-2.5 bg-gray-50 dark:bg-gray-800 rounded-lg hover:bg-purple-50 dark:hover:bg-purple-900/20 transition-colors">Quan hệ vật chất & ý thức?</button>
+                </div>
+            </div>
+            <div class="p-4 border-t border-gray-200 dark:border-gray-700">
+                <div class="flex gap-2">
+                    <input id="ai-input" type="text" placeholder="Hỏi về Module 2..." class="flex-1 text-sm border border-gray-200 dark:border-gray-600 rounded-xl px-3 py-2 bg-gray-50 dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-primary/30" onkeypress="if(event.key==='Enter') sendAIMessage()">
+                    <button onclick="sendAIMessage()" class="bg-primary text-white rounded-xl px-4 hover:bg-purple-700 transition-colors"><span class="material-symbols-outlined text-sm">send</span></button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- QUIZ MODAL -->
+    <div id="quiz-modal" class="hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+        <div class="bg-surface-light dark:bg-surface-dark rounded-3xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            <div class="p-6 border-b border-gray-200 dark:border-gray-700 flex items-center justify-between">
+                <div>
+                    <h2 id="quiz-modal-title" class="text-xl font-bold">Kiểm tra hình thành</h2>
+                    <p id="quiz-modal-sub" class="text-sm text-text-muted-light dark:text-text-muted-dark"></p>
+                </div>
+                <button onclick="closeQuizModal()" class="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full"><span class="material-symbols-outlined text-gray-500">close</span></button>
+            </div>
+            <div id="quiz-modal-body" class="p-6"></div>
+        </div>
+    </div>
+
+    <!-- ACHIEVEMENT TOAST -->
+    <div id="achievement-toast" class="hidden fixed top-6 right-6 z-50 max-w-sm">
+        <div class="bg-gradient-to-r from-amber-400 to-yellow-300 rounded-2xl p-4 shadow-2xl flex items-center gap-4 achievement-earned">
+            <span id="achievement-icon" class="text-4xl">🥈</span>
+            <div>
+                <p class="font-bold text-amber-900 text-sm">Thành tích mới!</p>
+                <p id="achievement-name" class="font-display font-bold text-amber-900"></p>
+                <p id="achievement-desc" class="text-xs text-amber-800"></p>
+            </div>
+        </div>
+    </div>
+
+    <div id="footer-placeholder"></div>
+
+    <!-- Scripts -->
+    <script src="js/search-data-global.js"></script>
+    <script src="js/quiz-data.js"></script>
+    <script src="js/quiz-data-m2.js"></script>
+    <script src="js/load-components.js"></script>
+    <script src="js/search-init.js"></script>
+
+    <script>
+    // =============================================
+    // MODULE 2 STATE
+    // =============================================
+    const M2_STATE = {
+        completedLessons: new Set(),
+        currentLesson: null,
+        quizResults: {},
+        achievements: [],
+        shortAnswers: []
+    };
+    const M2_LESSONS = ['M2-L1','M2-L2','M2-L3','M2-L4','M2-L5','M2-L6'];
+
+    function loadM2State() {
+        try {
+            const saved = JSON.parse(localStorage.getItem('philo_quiz_results') || '{}');
+            if (saved.M2_completed) saved.M2_completed.forEach(id => M2_STATE.completedLessons.add(id));
+            M2_STATE.quizResults = saved.M2_quiz || {};
+        } catch(e) {}
+        try {
+            M2_STATE.shortAnswers = JSON.parse(localStorage.getItem('philo_short_answers') || '[]');
+        } catch(e) {}
+    }
+
+    function saveM2State() {
+        try {
+            const saved = JSON.parse(localStorage.getItem('philo_quiz_results') || '{}');
+            saved.M2_completed = [...M2_STATE.completedLessons];
+            saved.M2_quiz = M2_STATE.quizResults;
+            localStorage.setItem('philo_quiz_results', JSON.stringify(saved));
+        } catch(e) {}
+    }
+
+    // =============================================
+    // LESSON NAVIGATION
+    // =============================================
+    function showLesson(lessonId) {
+        document.querySelectorAll('.lesson-content').forEach(el => el.classList.add('hidden'));
+        document.querySelectorAll('.lesson-tab').forEach(el => {
+            el.classList.remove('border-primary', 'bg-purple-50', 'dark:bg-purple-900/20');
+            el.classList.add('border-gray-100', 'dark:border-gray-700');
+        });
+        const target = document.getElementById('lesson-' + lessonId);
+        if (target) { target.classList.remove('hidden'); M2_STATE.currentLesson = lessonId; }
+        const tab = document.getElementById('tab-' + lessonId);
+        if (tab) {
+            tab.classList.remove('border-gray-100', 'dark:border-gray-700');
+            tab.classList.add('border-primary', 'bg-purple-50', 'dark:bg-purple-900/20');
+        }
+        document.getElementById('lesson-area').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function completeLesson(lessonId) {
+        M2_STATE.completedLessons.add(lessonId);
+        saveM2State();
+        updateProgress();
+        const dot = document.getElementById('dot-' + lessonId);
+        if (dot) { dot.classList.remove('bg-gray-300','dark:bg-gray-600'); dot.classList.add('bg-primary'); }
+        const btn = document.getElementById('btn-complete-' + lessonId);
+        if (btn) {
+            btn.classList.remove('bg-primary','hover:bg-purple-700');
+            btn.classList.add('bg-green-500','hover:bg-green-600');
+            btn.innerHTML = '<span class="material-symbols-outlined">check_circle</span> Đã hoàn thành ✓';
+        }
+        const idx = M2_LESSONS.indexOf(lessonId);
+        if (idx >= 0 && idx < M2_LESSONS.length - 1) setTimeout(() => showLesson(M2_LESSONS[idx + 1]), 500);
+        if (M2_STATE.completedLessons.size === 6) {
+            const banner = document.getElementById('module-quiz-banner');
+            if (banner) banner.classList.remove('hidden');
+        }
+    }
+
+    function updateProgress() {
+        const count = M2_STATE.completedLessons.size;
+        const pct = Math.round((count / 6) * 100);
+        document.getElementById('m2-progress-label').textContent = count + ' / 6 bài hoàn thành';
+        document.getElementById('m2-progress-pct').textContent = pct + '%';
+        document.getElementById('m2-progress-bar').style.width = pct + '%';
+        M2_STATE.completedLessons.forEach(id => {
+            const dot = document.getElementById('dot-' + id);
+            if (dot) { dot.classList.remove('bg-gray-300','dark:bg-gray-600'); dot.classList.add('bg-primary'); }
+        });
+    }
+
+    // =============================================
+    // REFLECTION TOGGLES
+    // =============================================
+    function toggleReflection(btn) {
+        const answer = btn.nextElementSibling;
+        const icon = btn.querySelector('.material-symbols-outlined');
+        if (answer.classList.contains('open')) {
+            answer.classList.remove('open');
+            icon.textContent = 'expand_more';
+        } else {
+            answer.classList.add('open');
+            icon.textContent = 'expand_less';
+        }
+    }
+
+    // =============================================
+    // SHORT ANSWER SYSTEM
+    // =============================================
+    function countWords(text) {
+        return text.trim() === '' ? 0 : text.trim().split(/\s+/).length;
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        // Word counters
+        ['M2-L2','M2-L6'].forEach(lid => {
+            const ta = document.getElementById('short-answer-' + lid);
+            const counter = document.getElementById('word-count-' + lid);
+            if (ta && counter) {
+                ta.addEventListener('input', () => {
+                    const words = countWords(ta.value);
+                    counter.textContent = words + ' từ';
+                    const minMax = lid === 'M2-L6' ? [200, 300] : [150, 300];
+                    counter.className = words < minMax[0] ? 'text-xs text-gray-400' :
+                                        words > minMax[1] ? 'text-xs text-red-500' :
+                                        'text-xs text-green-500';
+                });
+            }
+        });
+
+        loadM2State();
+        updateProgress();
+
+        if (M2_STATE.completedLessons.size > 0) {
+            showLesson(M2_LESSONS[Math.min(M2_STATE.completedLessons.size, 5)]);
+        } else {
+            showLesson('M2-L1');
+        }
+
+        if (M2_STATE.completedLessons.size === 6) {
+            const banner = document.getElementById('module-quiz-banner');
+            if (banner) banner.classList.remove('hidden');
+        }
+
+        M2_STATE.completedLessons.forEach(id => {
+            const btn = document.getElementById('btn-complete-' + id);
+            if (btn) {
+                btn.classList.remove('bg-primary','hover:bg-purple-700');
+                btn.classList.add('bg-green-500','hover:bg-green-600');
+                btn.innerHTML = '<span class="material-symbols-outlined">check_circle</span> Đã hoàn thành ✓';
+            }
+        });
+    });
+
+    function submitShortAnswer(lessonId) {
+        const ta = document.getElementById('short-answer-' + lessonId);
+        const feedbackEl = document.getElementById('short-answer-feedback-' + lessonId);
+        if (!ta || !feedbackEl) return;
+        const text = ta.value.trim();
+        const words = countWords(text);
+        const minWords = lessonId === 'M2-L6' ? 200 : 150;
+        if (words < minWords) {
+            feedbackEl.className = 'mt-4 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 rounded-xl text-sm text-red-600';
+            feedbackEl.textContent = `Bài làm cần ít nhất ${minWords} từ. Hiện tại: ${words} từ.`;
+            feedbackEl.classList.remove('hidden');
+            return;
+        }
+        if (words > 300) {
+            feedbackEl.className = 'mt-4 p-4 bg-amber-50 dark:bg-amber-900/20 border border-amber-200 rounded-xl text-sm text-amber-700';
+            feedbackEl.textContent = `Bài làm vượt 300 từ (${words} từ). Hãy cắt gọn để đạt yêu cầu.`;
+            feedbackEl.classList.remove('hidden');
+        }
+        // Save to localStorage
+        try {
+            const saved = JSON.parse(localStorage.getItem('philo_short_answers') || '[]');
+            saved.push({
+                id: lessonId + '-' + Date.now(),
+                lessonId,
+                module: 'M2',
+                text,
+                wordCount: words,
+                timestamp: new Date().toISOString()
+            });
+            localStorage.setItem('philo_short_answers', JSON.stringify(saved));
+        } catch(e) {}
+        feedbackEl.className = 'mt-4 p-4 bg-green-50 dark:bg-green-900/20 border border-green-200 rounded-xl text-sm text-green-700 dark:text-green-400';
+        feedbackEl.innerHTML = `✅ <strong>Đã lưu bài làm!</strong> (${words} từ)<br><br>
+            <strong>Rubric tự đánh giá:</strong><br>
+            ☐ 1đ — Nêu được quan điểm của cả hai trường phái<br>
+            ☐ 1đ — Có trích dẫn/dẫn chứng từ giáo trình<br>
+            ☐ 1đ — Kết luận có lập luận rõ ràng<br><br>
+            <em class="text-xs">Bài làm sẽ được giảng viên xem xét và chấm theo rubric 3 điểm.</em>`;
+        feedbackEl.classList.remove('hidden');
+        ta.disabled = true;
+    }
+
+    // =============================================
+    // QUIZ SYSTEM (kế thừa từ module1.html, đã fix)
+    // =============================================
+    let currentQuizData = null;
+    let currentQuizAnswers = {};
+    let currentQuizSubmitted = false;
+
+    function openFormativeQuiz(quizId) {
+        if (!window.FORMATIVE_QUIZZES_M2) { alert('Quiz data chưa tải. Hãy thử lại.'); return; }
+        const quiz = window.FORMATIVE_QUIZZES_M2[quizId];
+        if (!quiz) { alert('Không tìm thấy quiz: ' + quizId); return; }
+        currentQuizData = { ...quiz, id: quizId };
+        currentQuizAnswers = {};
+        currentQuizSubmitted = false;
+        renderQuizModal(quiz);
+        document.getElementById('quiz-modal').classList.remove('hidden');
+    }
+
+    function openModuleQuiz() {
+        if (!window.MODULE_QUIZ_M2) { alert('Quiz data chưa tải.'); return; }
+        currentQuizData = window.MODULE_QUIZ_M2;
+        currentQuizAnswers = {};
+        currentQuizSubmitted = false;
+        renderQuizModal(window.MODULE_QUIZ_M2);
+        document.getElementById('quiz-modal').classList.remove('hidden');
+    }
+
+    function renderQuizModal(quiz) {
+        document.getElementById('quiz-modal-title').textContent = quiz.title;
+        document.getElementById('quiz-modal-sub').textContent = 'Cần đạt ' + quiz.passingScore + '% • ' + quiz.questions.length + ' câu hỏi';
+        let html = '<div class="space-y-6">';
+        quiz.questions.forEach((q, qi) => {
+            html += `<div class="quiz-question" data-qid="${q.id}">
+                <p class="font-medium text-sm mb-3">${qi+1}. ${q.text}</p>
+                <div class="space-y-2">`;
+            q.options.forEach(opt => {
+                html += `<label class="quiz-option flex items-start gap-3 p-3 rounded-xl border border-gray-200 dark:border-gray-600 cursor-pointer hover:border-primary hover:bg-purple-50 dark:hover:bg-purple-900/10 transition-all">
+                    <input type="radio" name="q_${q.id}" value="${opt.id}" onclick="selectAnswer('${q.id}','${opt.id}')" class="mt-0.5 flex-shrink-0">
+                    <span class="text-sm">${opt.text}</span>
+                </label>`;
+            });
+            html += `</div></div>`;
+        });
+        html += `</div>
+        <div class="mt-6 flex justify-end">
+            <button onclick="submitQuiz()" id="btn-submit-quiz" class="bg-gray-300 dark:bg-gray-600 text-gray-500 dark:text-gray-400 font-bold px-8 py-3 rounded-xl transition-all cursor-not-allowed" data-ready="false">
+                Nộp bài
+            </button>
+        </div>`;
+        document.getElementById('quiz-modal-body').innerHTML = html;
+    }
+
+    function selectAnswer(qId, optId) {
+        currentQuizAnswers[qId] = optId;
+        const allAnswered = currentQuizData.questions.every(q => currentQuizAnswers[q.id]);
+        const btn = document.getElementById('btn-submit-quiz');
+        if (btn) {
+            if (allAnswered) {
+                btn.setAttribute('data-ready', 'true');
+                btn.className = 'bg-primary hover:bg-purple-700 text-white font-bold px-8 py-3 rounded-xl transition-all cursor-pointer';
+            } else {
+                btn.setAttribute('data-ready', 'false');
+                btn.className = 'bg-gray-300 dark:bg-gray-600 text-gray-500 dark:text-gray-400 font-bold px-8 py-3 rounded-xl transition-all cursor-not-allowed';
+            }
+        }
+    }
+
+    function submitQuiz() {
+        const btn = document.getElementById('btn-submit-quiz');
+        if (btn && btn.getAttribute('data-ready') !== 'true') return;
+        if (currentQuizSubmitted) return;
+        currentQuizSubmitted = true;
+        const quiz = currentQuizData;
+        let correct = 0;
+
+        quiz.questions.forEach(q => {
+            const userAns = currentQuizAnswers[q.id];
+            const isCorrect = userAns === q.correctOptionId;
+            if (isCorrect) correct++;
+            const qEl = document.querySelector(`[data-qid="${q.id}"]`);
+            if (!qEl) return;
+            qEl.querySelectorAll('.quiz-option').forEach(label => {
+                const radio = label.querySelector('input');
+                if (!radio) return;
+                if (radio.value === q.correctOptionId) label.classList.add('border-green-400','bg-green-50','dark:bg-green-900/20');
+                if (radio.value === userAns && !isCorrect) label.classList.add('border-red-400','bg-red-50','dark:bg-red-900/20');
+            });
+            const rationaleEl = document.createElement('div');
+            rationaleEl.className = 'mt-2 p-3 bg-purple-50 dark:bg-purple-900/20 rounded-lg text-xs text-text-muted-light dark:text-text-muted-dark';
+            rationaleEl.innerHTML = '<strong class="text-primary">📖 Giải thích:</strong> ' + q.rationale;
+            qEl.appendChild(rationaleEl);
+        });
+
+        const score = Math.round((correct / quiz.questions.length) * 100);
+        const passed = score >= quiz.passingScore;
+
+        M2_STATE.quizResults[currentQuizData.id] = { score, correct, total: quiz.questions.length, passed, timestamp: Date.now() };
+        saveM2State();
+
+        // Unlock mini_challenge if formative quiz passed
+        if (passed && currentQuizData.id && currentQuizData.id.startsWith('M2-FQ')) {
+            try {
+                const qr = JSON.parse(localStorage.getItem('philo_quiz_results') || '{}');
+                if (!qr.mini_challenge_unlocked) qr.mini_challenge_unlocked = {};
+                qr.mini_challenge_unlocked.M2 = true;
+                localStorage.setItem('philo_quiz_results', JSON.stringify(qr));
+            } catch(e) {}
+        }
+
+        const resultHtml = `<div class="mb-6 p-4 rounded-2xl text-center ${passed ? 'bg-green-50 dark:bg-green-900/20 border border-green-200' : 'bg-red-50 dark:bg-red-900/20 border border-red-200'}">
+            <p class="text-4xl mb-2">${passed ? '🎉' : '📚'}</p>
+            <p class="text-2xl font-bold ${passed ? 'text-green-600' : 'text-red-600'}">${score}%</p>
+            <p class="text-sm font-medium">${correct}/${quiz.questions.length} câu đúng</p>
+            <p class="text-sm mt-1 ${passed ? 'text-green-600' : 'text-red-600'}">${passed ? '✅ Đạt!' : '❌ Chưa đạt. Hãy ôn lại và thử lại.'}</p>
+        </div>`;
+        const body = document.getElementById('quiz-modal-body');
+        body.insertAdjacentHTML('afterbegin', resultHtml);
+        document.getElementById('btn-submit-quiz').textContent = passed ? 'Tiếp tục ✓' : 'Thử lại';
+        document.getElementById('btn-submit-quiz').onclick = passed ? closeQuizModal : () => { closeQuizModal(); setTimeout(() => openModuleQuiz(), 300); };
+        if (passed && quiz.achievement) showAchievement(quiz.achievement);
+    }
+
+    function closeQuizModal() { document.getElementById('quiz-modal').classList.add('hidden'); }
+
+    // =============================================
+    // ACHIEVEMENTS
+    // =============================================
+    const M2_ACHIEVEMENTS = {
+        'consciousness-explorer': { name: 'Consciousness Explorer', icon: '🥉', desc: 'Hoàn thành kiểm tra hình thành đầu tiên Module 2 — +5 XP' },
+        'origin-analyst':        { name: 'Origin Analyst',          icon: '🥈', desc: 'Đạt ≥75% bài kiểm tra Module 2 — +10 XP' },
+        'matter-mind-sage':      { name: 'Matter-Mind Sage',        icon: '🥇', desc: 'Hoàn thành Module 2 + giải mâu thuẫn Worldview — Huy hiệu vàng' }
+    };
+
+    function showAchievement(slug) {
+        const ach = M2_ACHIEVEMENTS[slug];
+        if (!ach) return;
+        try {
+            const saved = JSON.parse(localStorage.getItem('philo_achievements') || '[]');
+            if (!saved.find(a => a.id === slug)) {
+                saved.push({ id: slug, slug, earnedAt: Date.now(), module: 'M2', xp: slug === 'origin-analyst' ? 10 : 5 });
+                localStorage.setItem('philo_achievements', JSON.stringify(saved));
+            }
+        } catch(e) {}
+        document.getElementById('achievement-icon').textContent = ach.icon;
+        document.getElementById('achievement-name').textContent = ach.name;
+        document.getElementById('achievement-desc').textContent = ach.desc;
+        const toast = document.getElementById('achievement-toast');
+        toast.classList.remove('hidden');
+        setTimeout(() => toast.classList.add('hidden'), 4500);
+    }
+
+    // =============================================
+    // AI PANEL
+    // =============================================
+    let aiPanelOpen = false;
+    function toggleAIPanel() {
+        aiPanelOpen = !aiPanelOpen;
+        document.getElementById('ai-panel').classList[aiPanelOpen ? 'remove' : 'add']('hidden-panel');
+    }
+
+    const AI_M2_RESPONSES = {
+        'ý thức là gì': {
+            answer: 'Theo CNDV biện chứng: "Ý thức là hình thức phản ánh cao nhất riêng có của óc người về hiện thực khách quan trên cơ sở thực tiễn xã hội–lịch sử." (dòng 545). Ý thức là thuộc tính của bộ óc người — không phải của mọi vật chất, cũng không phải thực thể độc lập như duy tâm quan niệm.',
+            sourceRef: 'Triet.txt, dòng 539–545'
+        },
+        'bản chất': {
+            answer: '"Bản chất của ý thức là hình ảnh chủ quan của thế giới khách quan, là quá trình phản ánh tích cực, sáng tạo hiện thực khách quan của óc người." (dòng 539). Nội dung phản ánh là khách quan; hình thức phản ánh là chủ quan (mang dấu ấn chủ thể). Sáng tạo là đặc trưng bản chất nhất.',
+            sourceRef: 'Triet.txt, dòng 539–544'
+        },
+        'nguồn gốc': {
+            answer: 'Ý thức có 2 nguồn gốc: (1) Tự nhiên: bộ óc người — điều kiện cần. (2) Xã hội: lao động + ngôn ngữ — điều kiện đủ. Ph. Ăngghen: "Trước hết là lao động; sau lao động và đồng thời với lao động là ngôn ngữ; đó là hai sức kích thích chủ yếu..." (dòng 528). C. Mác: ý thức "ngay từ đầu đã là một sản phẩm xã hội." (dòng 527).',
+            sourceRef: 'Triet.txt, dòng 513–534'
+        },
+        'phản ánh': {
+            answer: '4 cấp độ phản ánh (từ thấp đến cao): (1) Vật lý-hóa học (vô cơ — thụ động); (2) Kích thích (thực vật — có định hướng); (3) Phản xạ/tâm lý (động vật — bản năng); (4) Ý thức (người — sáng tạo, xã hội-lịch sử). "Các kết cấu vật chất càng phát triển... năng lực phản ánh càng cao." (dòng 523).',
+            sourceRef: 'Triet.txt, dòng 523–526'
+        },
+        'vật chất ý thức': {
+            answer: 'Quan hệ biện chứng: (1) Vật chất quyết định ý thức — ý thức là sự phản ánh thực tại vật chất (dòng 567+). (2) Ý thức tác động ngược lại vật chất qua thực tiễn — ý thức đúng thúc đẩy, sai lầm kìm hãm. Tránh: duy ý chí (đề cao ý thức quá mức) và thụ động (buông xuôi trước hoàn cảnh).',
+            sourceRef: 'Triet.txt, dòng 567–610'
+        },
+        'kết cấu': {
+            answer: 'Kết cấu ý thức theo chiều rộng (các lớp): (1) Tri thức — nội dung, phương thức tồn tại cơ bản; (2) Tình cảm — thái độ với đối tượng, động lực hoạt động; (3) Ý chí — nỗ lực vượt khó. Theo chiều sâu (cấp độ): tự ý thức, tiềm thức, vô thức. (Triet.txt, dòng 549–560)',
+            sourceRef: 'Triet.txt, dòng 549–561'
+        },
+        'trí tuệ nhân tạo': {
+            answer: 'Theo CNDV biện chứng: AI KHÔNG có ý thức. "Máy không thể sáng tạo lại hiện thực dưới dạng tinh thần trong bản thân nó. Năng lực đó chỉ có con người có ý thức mới thực hiện được." (dòng 563). AI là "quá trình vật lý được lập trình phỏng theo một số thao tác của tư duy con người" — không phải sản phẩm của thực tiễn xã hội-lịch sử.',
+            sourceRef: 'Triet.txt, dòng 562–564'
+        }
+    };
+
+    function getAIResponse(query) {
+        const q = query.toLowerCase();
+        for (const [key, resp] of Object.entries(AI_M2_RESPONSES)) {
+            if (q.includes(key.split(' ')[0]) || q.includes(key)) return resp;
+        }
+        // Check if it's about Module 1 topics
+        if (q.includes('vận động') || q.includes('không gian') || q.includes('thời gian')) {
+            return { answer: 'Câu hỏi này thuộc Module 1 (Vật chất & Vận động). Tôi là AI Module 2 chuyên về Ý thức. Hãy hỏi về: nguồn gốc ý thức, bản chất ý thức, các hình thức phản ánh, hoặc quan hệ vật chất–ý thức.', sourceRef: 'Module 2 — Triet.txt, dòng 511–610' };
+        }
+        return { answer: 'Module 2 tập trung vào: (1) Ý thức là gì? (2) Nguồn gốc ý thức (tự nhiên + xã hội). (3) Bản chất ý thức — hình ảnh chủ quan. (4) 4 cấp độ phản ánh. (5) Quan hệ vật chất–ý thức. (6) Kết cấu ý thức. Hãy hỏi về các chủ đề này!', sourceRef: 'Chương 2, mục 2 & 3 — Triet.txt, dòng 511–610' };
+    }
+
+    function sendAIPrompt(prompt) { document.getElementById('ai-input').value = prompt; sendAIMessage(); }
+
+    function sendAIMessage() {
+        const input = document.getElementById('ai-input');
+        const query = input.value.trim();
+        if (!query) return;
+        input.value = '';
+        const history = document.getElementById('ai-chat-history');
+        history.insertAdjacentHTML('beforeend', `<div class="flex justify-end"><div class="bg-primary text-white rounded-xl rounded-tr-sm p-3 max-w-[85%]"><p class="text-sm">${query}</p></div></div>`);
+        const loadingId = 'ai-load-' + Date.now();
+        history.insertAdjacentHTML('beforeend', `<div id="${loadingId}" class="bg-purple-50 dark:bg-purple-900/20 rounded-xl p-3"><p class="text-xs text-text-muted-light">⏳ Đang tra cứu Triet.txt...</p></div>`);
+        history.scrollTop = history.scrollHeight;
+        setTimeout(() => {
+            const resp = getAIResponse(query);
+            const loadEl = document.getElementById(loadingId);
+            if (loadEl) loadEl.outerHTML = `<div class="bg-purple-50 dark:bg-purple-900/20 rounded-xl p-3">
+                <p class="text-xs font-bold text-primary mb-1">🤖 AI Triết học — Module 2</p>
+                <p class="text-sm text-text-main-light dark:text-text-main-dark mb-2">${resp.answer}</p>
+                <p class="text-xs text-gray-400 border-t border-purple-100 dark:border-purple-800 pt-1 mt-1">📖 <em>${resp.sourceRef}</em></p>
+            </div>`;
+            history.scrollTop = history.scrollHeight;
+            try {
+                const aiHist = JSON.parse(localStorage.getItem('philoMapAiHistory') || '[]');
+                aiHist.push({ question: query, answer: resp.answer, sourceRef: resp.sourceRef, module: 'M2', timestamp: Date.now() });
+                if (aiHist.length > 50) aiHist.shift();
+                localStorage.setItem('philoMapAiHistory', JSON.stringify(aiHist));
+            } catch(e) {}
+        }, 700);
+    }
+    </script>
+</body>
+</html>

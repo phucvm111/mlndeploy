@@ -1,0 +1,1370 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Module 5: Quy luật Quan hệ Sản xuất & Lực lượng Sản xuất — PhiloVerse MLN111</title>
+    <meta name="description" content="Khám phá quy luật phổ biến của lịch sử: quan hệ sản xuất phải phù hợp với trình độ phát triển của lực lượng sản xuất — nền tảng lý luận của quản lý doanh nghiệp hiện đại." />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+    <script src="js/tailwind-config-global.js"></script>
+    <style>
+        .material-symbols-outlined { font-family: 'Material Symbols Outlined'; font-weight: normal; font-style: normal; font-size: 24px; display: inline-block; line-height: 1; text-transform: none; letter-spacing: normal; word-wrap: normal; white-space: nowrap; direction: ltr; font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        #m5-progress-bar { transition: width 0.6s ease; }
+        .reflection-answer { max-height: 0; overflow: hidden; transition: max-height 0.5s ease, opacity 0.3s; opacity: 0; }
+        .reflection-answer.open { max-height: 600px; opacity: 1; }
+        #ai-panel { transition: transform 0.35s ease, opacity 0.35s; }
+        #ai-panel.hidden-panel { transform: translateX(110%); opacity: 0; pointer-events: none; }
+        @keyframes badge-pulse { 0%,100%{ transform:scale(1); } 50%{ transform:scale(1.15); } }
+        .achievement-earned { animation: badge-pulse 0.5s ease 3; }
+        .short-answer-textarea { resize: vertical; min-height: 120px; }
+        /* Cycle diagram */
+        .cycle-node { padding: 12px 16px; border-radius: 16px; font-size: 12px; font-weight: 600; text-align: center; min-width: 130px; }
+        /* Accordion */
+        .accordion-body { max-height: 0; overflow: hidden; transition: max-height 0.4s ease, opacity 0.3s; opacity: 0; }
+        .accordion-body.open { max-height: 400px; opacity: 1; }
+        /* Triangle diagram */
+        .triangle-card { clip-path: none; }
+    </style>
+</head>
+
+<body class="bg-bg-light dark:bg-bg-dark text-text-main-light dark:text-text-main-dark font-body transition-colors duration-300 min-h-screen flex flex-col overflow-x-hidden">
+    <div id="header-placeholder"></div>
+
+    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 w-full">
+
+        <!-- MODULE HEADER -->
+        <header class="text-center mb-12 space-y-5 max-w-4xl mx-auto">
+            <div class="inline-flex items-center px-4 py-1.5 rounded-full bg-emerald-50 border border-emerald-100 dark:bg-emerald-900/20 dark:border-emerald-800 text-primary text-xs font-bold uppercase tracking-wider mb-4 gap-2">
+                <a href="home.html" class="hover:underline hover:text-emerald-700 transition-colors">TRANG CHỦ</a>
+                <span class="opacity-60">/</span>
+                <a href="home.html#overview" class="hover:underline hover:text-emerald-700 transition-colors">MODULES</a>
+                <span class="opacity-60">/</span>
+                <span>MODULE 5 • LLSX & QHSX</span>
+            </div>
+            <h1 class="font-display text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
+                Quy luật <span class="text-primary italic">Quan hệ Sản xuất</span> phù hợp với <span class="italic">Lực lượng Sản xuất</span>
+            </h1>
+            <p class="max-w-2xl mx-auto text-lg text-text-muted-light dark:text-text-muted-dark font-light leading-relaxed">
+                6 bài học về quy luật phổ biến nhất của lịch sử nhân loại: LLSX quyết định QHSX; QHSX tác động trở lại LLSX — nền tảng lý luận của quản lý doanh nghiệp hiện đại.
+            </p>
+            <div class="max-w-md mx-auto">
+                <div class="flex items-center justify-between text-xs text-text-muted-light dark:text-text-muted-dark mb-1.5">
+                    <span id="m5-progress-label">0 / 6 bài hoàn thành</span>
+                    <span id="m5-progress-pct">0%</span>
+                </div>
+                <div class="h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                    <div id="m5-progress-bar" class="h-full bg-gradient-to-r from-emerald-500 to-teal-500 rounded-full" style="width:0%"></div>
+                </div>
+            </div>
+        </header>
+
+        <!-- LESSON TABS -->
+        <section class="mb-10">
+            <div class="flex items-center gap-4 mb-6">
+                <span class="h-px bg-gray-200 dark:bg-gray-700 flex-1"></span>
+                <span class="font-display text-lg uppercase tracking-widest text-text-muted-light dark:text-text-muted-dark">6 Bài học</span>
+                <span class="h-px bg-gray-200 dark:bg-gray-700 flex-1"></span>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
+                <button onclick="showLesson('M5-L1')" id="tab-M5-L1" class="lesson-tab flex flex-col items-center gap-2 p-4 rounded-2xl bg-surface-light dark:bg-surface-dark border-2 border-gray-100 dark:border-gray-700 hover:border-emerald-500 transition-all duration-200 text-center">
+                    <span class="text-2xl">🏭</span><span class="text-xs font-semibold text-text-muted-light dark:text-text-muted-dark">Bài 5.1</span><span class="text-xs font-medium">Phương thức SX</span><span class="w-2 h-2 rounded-full bg-gray-300 dark:bg-gray-600 lesson-dot" id="dot-M5-L1"></span>
+                </button>
+                <button onclick="showLesson('M5-L2')" id="tab-M5-L2" class="lesson-tab flex flex-col items-center gap-2 p-4 rounded-2xl bg-surface-light dark:bg-surface-dark border-2 border-gray-100 dark:border-gray-700 hover:border-emerald-500 transition-all duration-200 text-center">
+                    <span class="text-2xl">⚙️</span><span class="text-xs font-semibold text-text-muted-light dark:text-text-muted-dark">Bài 5.2</span><span class="text-xs font-medium">Lực lượng SX</span><span class="w-2 h-2 rounded-full bg-gray-300 dark:bg-gray-600 lesson-dot" id="dot-M5-L2"></span>
+                </button>
+                <button onclick="showLesson('M5-L3')" id="tab-M5-L3" class="lesson-tab flex flex-col items-center gap-2 p-4 rounded-2xl bg-surface-light dark:bg-surface-dark border-2 border-gray-100 dark:border-gray-700 hover:border-emerald-500 transition-all duration-200 text-center">
+                    <span class="text-2xl">🤝</span><span class="text-xs font-semibold text-text-muted-light dark:text-text-muted-dark">Bài 5.3</span><span class="text-xs font-medium">Quan hệ SX</span><span class="w-2 h-2 rounded-full bg-gray-300 dark:bg-gray-600 lesson-dot" id="dot-M5-L3"></span>
+                </button>
+                <button onclick="showLesson('M5-L4')" id="tab-M5-L4" class="lesson-tab flex flex-col items-center gap-2 p-4 rounded-2xl bg-surface-light dark:bg-surface-dark border-2 border-gray-100 dark:border-gray-700 hover:border-emerald-500 transition-all duration-200 text-center">
+                    <span class="text-2xl">⚖️</span><span class="text-xs font-semibold text-text-muted-light dark:text-text-muted-dark">Bài 5.4</span><span class="text-xs font-medium">LLSX → QHSX</span><span class="w-2 h-2 rounded-full bg-gray-300 dark:bg-gray-600 lesson-dot" id="dot-M5-L4"></span>
+                </button>
+                <button onclick="showLesson('M5-L5')" id="tab-M5-L5" class="lesson-tab flex flex-col items-center gap-2 p-4 rounded-2xl bg-surface-light dark:bg-surface-dark border-2 border-gray-100 dark:border-gray-700 hover:border-emerald-500 transition-all duration-200 text-center">
+                    <span class="text-2xl">🔄</span><span class="text-xs font-semibold text-text-muted-light dark:text-text-muted-dark">Bài 5.5</span><span class="text-xs font-medium">Tác động trở lại</span><span class="w-2 h-2 rounded-full bg-gray-300 dark:bg-gray-600 lesson-dot" id="dot-M5-L5"></span>
+                </button>
+                <button onclick="showLesson('M5-L6')" id="tab-M5-L6" class="lesson-tab flex flex-col items-center gap-2 p-4 rounded-2xl bg-surface-light dark:bg-surface-dark border-2 border-gray-100 dark:border-gray-700 hover:border-emerald-500 transition-all duration-200 text-center">
+                    <span class="text-2xl">🏢</span><span class="text-xs font-semibold text-text-muted-light dark:text-text-muted-dark">Bài 5.6</span><span class="text-xs font-medium">Vận dụng DN</span><span class="w-2 h-2 rounded-full bg-gray-300 dark:bg-gray-600 lesson-dot" id="dot-M5-L6"></span>
+                </button>
+            </div>
+        </section>
+
+        <!-- LESSON CONTENT -->
+        <section id="lesson-area" class="mb-16 min-h-[500px]">
+
+            <!-- BÀI 5.1: PHƯƠNG THỨC SẢN XUẤT -->
+            <div id="lesson-M5-L1" class="lesson-content hidden">
+                <div class="bg-surface-light dark:bg-surface-dark rounded-3xl border border-gray-100 dark:border-gray-700 shadow-sm overflow-hidden">
+                    <div class="lesson-header-academic">
+                        <div class="flex items-center gap-3 mb-3"><span class="text-3xl">🏭</span><span class="text-emerald-100 text-sm font-semibold uppercase tracking-wider">Bài 5.1 — Module 5</span></div>
+                        <h2 class="font-display text-3xl font-bold text-white mb-2">Sản xuất Vật chất & Phương thức Sản xuất</h2>
+                        <p class="text-emerald-100 text-sm">🎯 <strong>Mục tiêu:</strong> Hiểu vai trò nền tảng của sản xuất vật chất; định nghĩa phương thức sản xuất; xác định hai mặt cấu thành: LLSX (nội dung, năng động) và QHSX (hình thức xã hội, ổn định tương đối). <em>Ước lượng: 10 phút đọc.</em></p>
+                    </div>
+                    <div class="p-8 space-y-8">
+                        <div class="bg-emerald-50 dark:bg-emerald-900/20 border-l-4 border-emerald-500 rounded-r-2xl p-6">
+                            <p class="text-xs font-bold text-emerald-700 uppercase tracking-wider mb-2">📖 Trích dẫn kinh điển — C. Mác, Triet.txt dòng 900</p>
+                            <blockquote class="font-display text-lg italic text-text-main-light dark:text-text-main-dark leading-relaxed">
+                                "Người ta không thể sản xuất được nếu không kết hợp với nhau theo một cách nào đó để hoạt động chung và để trao đổi hoạt động với nhau. Muốn sản xuất được, người ta phải có những mối liên hệ và quan hệ nhất định với nhau; và quan hệ của họ với giới tự nhiên, tức là việc sản xuất."
+                            </blockquote>
+                        </div>
+
+                        <div class="space-y-5">
+                            <h3 class="font-display text-xl font-bold">Sản xuất Vật chất — Nền tảng của Xã hội</h3>
+                            <p class="text-sm text-text-muted-light dark:text-text-muted-dark leading-relaxed">Sản xuất vật chất là hoạt động cơ bản nhất của con người — là cơ sở của mọi hoạt động xã hội. Không có sản xuất thì không có xã hội, không có lịch sử. Trong quá trình sản xuất, con người vừa tác động vào tự nhiên (quan hệ người-tự nhiên) vừa kết hợp với nhau (quan hệ người-người). Hai loại quan hệ "song trùng" này tạo thành phương thức sản xuất.</p>
+
+                            <div class="bg-emerald-50 dark:bg-emerald-900/20 rounded-2xl p-6">
+                                <h4 class="font-bold text-emerald-700 mb-4 text-center">📐 Sơ đồ: Phương thức Sản xuất = Hai mặt song trùng</h4>
+                                <div class="grid md:grid-cols-2 gap-4">
+                                    <div class="bg-white dark:bg-gray-800 rounded-2xl p-5 border-2 border-emerald-300">
+                                        <p class="text-center text-2xl mb-2">⚙️</p>
+                                        <p class="font-bold text-emerald-700 text-center mb-2">Lực lượng Sản xuất (LLSX)</p>
+                                        <p class="text-xs text-text-muted-light dark:text-text-muted-dark text-center mb-3">Quan hệ người ↔ Tự nhiên</p>
+                                        <ul class="text-xs text-text-muted-light dark:text-text-muted-dark space-y-1">
+                                            <li>• <strong>Nội dung</strong> của phương thức sản xuất</li>
+                                            <li>• Tính <strong>năng động, cách mạng</strong></li>
+                                            <li>• Thường xuyên vận động, phát triển</li>
+                                            <li>• <em>VD: Máy móc AI, kỹ năng lập trình, đội kỹ sư</em></li>
+                                        </ul>
+                                    </div>
+                                    <div class="bg-white dark:bg-gray-800 rounded-2xl p-5 border-2 border-teal-300">
+                                        <p class="text-center text-2xl mb-2">🤝</p>
+                                        <p class="font-bold text-teal-700 text-center mb-2">Quan hệ Sản xuất (QHSX)</p>
+                                        <p class="text-xs text-text-muted-light dark:text-text-muted-dark text-center mb-3">Quan hệ người ↔ Người</p>
+                                        <ul class="text-xs text-text-muted-light dark:text-text-muted-dark space-y-1">
+                                            <li>• <strong>Hình thức xã hội</strong> của phương thức sản xuất</li>
+                                            <li>• Tính <strong>ổn định tương đối</strong></li>
+                                            <li>• Thay đổi chậm hơn LLSX</li>
+                                            <li>• <em>VD: Cổ đông, hợp đồng lao động, bảng lương</em></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <p class="text-center text-xs text-gray-400 mt-4">Nguồn: Triet.txt, dòng 900–901</p>
+                            </div>
+
+                            <div class="bg-teal-50 dark:bg-teal-900/10 border border-teal-200 rounded-2xl p-5">
+                                <h4 class="font-bold text-teal-700 mb-2">💡 Tại sao phương thức sản xuất là khái niệm trung tâm?</h4>
+                                <p class="text-sm text-text-muted-light dark:text-text-muted-dark">C. Mác chỉ ra rằng phương thức sản xuất quyết định toàn bộ kết cấu của xã hội: hình thức nhà nước, pháp luật, ý thức hệ, văn hóa, đạo đức... Mỗi thời đại lịch sử được đặc trưng bởi một phương thức sản xuất nhất định (nô lệ, phong kiến, tư bản, xã hội chủ nghĩa). Hiểu PTSX = hiểu cơ sở của cả một thời đại.</p>
+                            </div>
+
+                            <div class="grid md:grid-cols-3 gap-4 text-sm">
+                                <div class="bg-gray-50 dark:bg-gray-800/50 rounded-2xl p-4 text-center">
+                                    <p class="text-xl mb-1">🌾</p>
+                                    <p class="font-bold text-amber-600">Phong kiến</p>
+                                    <p class="text-xs text-text-muted-light dark:text-text-muted-dark mt-1">LLSX: sức người + công cụ thủ công<br/>QHSX: địa chủ ↔ nông nô</p>
+                                </div>
+                                <div class="bg-gray-50 dark:bg-gray-800/50 rounded-2xl p-4 text-center">
+                                    <p class="text-xl mb-1">🏭</p>
+                                    <p class="font-bold text-blue-600">Tư bản</p>
+                                    <p class="text-xs text-text-muted-light dark:text-text-muted-dark mt-1">LLSX: máy móc + công nhân<br/>QHSX: tư sản ↔ vô sản</p>
+                                </div>
+                                <div class="bg-gray-50 dark:bg-gray-800/50 rounded-2xl p-4 text-center">
+                                    <p class="text-xl mb-1">🤖</p>
+                                    <p class="font-bold text-emerald-600">4.0 / Hiện đại</p>
+                                    <p class="text-xs text-text-muted-light dark:text-text-muted-dark mt-1">LLSX: AI + tri thức<br/>QHSX: đang chuyển đổi</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="border-t border-gray-100 dark:border-gray-700 pt-6">
+                            <h3 class="font-display text-lg font-bold mb-4">Câu hỏi phản tư</h3>
+                            <div class="space-y-3">
+                                <div class="reflection-item">
+                                    <button onclick="toggleReflection(this)" class="w-full text-left p-4 bg-gray-50 dark:bg-gray-800 rounded-xl hover:bg-emerald-50 dark:hover:bg-emerald-900/20 transition-colors text-sm font-medium flex justify-between items-center">
+                                        <span>1. Tại sao C. Mác nói sản xuất vật chất là "hoạt động thực tiễn cơ bản nhất"? Nếu không có sản xuất vật chất, xã hội loài người có tồn tại được không?</span>
+                                        <span class="material-symbols-outlined text-gray-400 flex-shrink-0 ml-2">expand_more</span>
+                                    </button>
+                                    <div class="reflection-answer p-4 text-sm text-text-muted-light dark:text-text-muted-dark">
+                                        <strong class="text-emerald-600 block mb-1">Gợi ý:</strong> Sản xuất vật chất là điều kiện để con người tồn tại: tạo ra thức ăn, quần áo, nhà ở — những thứ cơ bản nhất. Không có sản xuất = không có sinh tồn = không có xã hội, không có văn hóa, không có lịch sử. Đây là lý do CNDV lịch sử coi PTSX là "cơ sở hạ tầng" quyết định "kiến trúc thượng tầng" (sẽ học ở Module 6). (dòng 900–901)
+                                    </div>
+                                </div>
+                                <div class="reflection-item">
+                                    <button onclick="toggleReflection(this)" class="w-full text-left p-4 bg-gray-50 dark:bg-gray-800 rounded-xl hover:bg-emerald-50 dark:hover:bg-emerald-900/20 transition-colors text-sm font-medium flex justify-between items-center">
+                                        <span>2. Trong một startup công nghệ: phần mềm, thuật toán AI và đội kỹ sư thuộc về LLSX hay QHSX? Cơ cấu cổ phần và hợp đồng lao động thuộc về đâu?</span>
+                                        <span class="material-symbols-outlined text-gray-400 flex-shrink-0 ml-2">expand_more</span>
+                                    </button>
+                                    <div class="reflection-answer p-4 text-sm text-text-muted-light dark:text-text-muted-dark">
+                                        <strong class="text-emerald-600 block mb-1">Gợi ý:</strong> LLSX: phần mềm (công cụ lao động), thuật toán AI (công cụ lao động hiện đại), đội kỹ sư (người lao động), máy chủ dữ liệu (tư liệu sản xuất). QHSX: cơ cấu cổ phần (quan hệ sở hữu), phân công vai trò trong team (quan hệ tổ chức-quản lý), lương-thưởng-ESOPs (quan hệ phân phối). (dòng 900–912)
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-emerald-50 dark:bg-emerald-900/20 border border-emerald-200 rounded-2xl p-6">
+                            <h3 class="font-display text-lg font-bold mb-3">🎯 Hoạt động: Điền Sơ đồ Hai mặt PTSX</h3>
+                            <p class="text-sm text-text-muted-light dark:text-text-muted-dark mb-4">Chọn một tổ chức/doanh nghiệp bạn biết. Liệt kê ít nhất 3 yếu tố LLSX và 3 yếu tố QHSX của nó:</p>
+                            <div class="grid md:grid-cols-2 gap-4 text-sm">
+                                <div class="bg-white dark:bg-gray-800 rounded-xl p-4">
+                                    <p class="font-bold text-emerald-600 mb-2">⚙️ LLSX của tổ chức:</p>
+                                    <p class="text-xs text-gray-400">1. Người lao động (ai? trình độ gì?)</p>
+                                    <p class="text-xs text-gray-400">2. Công cụ lao động (thiết bị, phần mềm nào?)</p>
+                                    <p class="text-xs text-gray-400">3. Đối tượng lao động (tác động vào cái gì?)</p>
+                                </div>
+                                <div class="bg-white dark:bg-gray-800 rounded-xl p-4">
+                                    <p class="font-bold text-teal-600 mb-2">🤝 QHSX của tổ chức:</p>
+                                    <p class="text-xs text-gray-400">1. Sở hữu (ai sở hữu tư liệu SX?)</p>
+                                    <p class="text-xs text-gray-400">2. Tổ chức-quản lý (phân công lao động thế nào?)</p>
+                                    <p class="text-xs text-gray-400">3. Phân phối (lương, thưởng, cổ tức?)</p>
+                                </div>
+                            </div>
+                            <p class="text-xs text-gray-400 mt-3">Câu hỏi suy ngẫm: Hai mặt này có đang "phù hợp" với nhau không? (Sẽ trả lời sau khi học Bài 5.4)</p>
+                        </div>
+
+                        <div class="flex justify-end">
+                            <button onclick="completeLesson('M5-L1')" id="btn-complete-M5-L1" class="bg-primary hover:bg-emerald-700 text-white font-semibold px-8 py-3 rounded-xl transition-colors flex items-center gap-2">
+                                <span class="material-symbols-outlined">check_circle</span> Đánh dấu hoàn thành
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BÀI 5.2: LỰC LƯỢNG SẢN XUẤT -->
+            <div id="lesson-M5-L2" class="lesson-content hidden">
+                <div class="bg-surface-light dark:bg-surface-dark rounded-3xl border border-gray-100 dark:border-gray-700 shadow-sm overflow-hidden">
+                    <div class="lesson-header-academic">
+                        <div class="flex items-center gap-3 mb-3"><span class="text-3xl">⚙️</span><span class="text-teal-100 text-sm font-semibold uppercase tracking-wider">Bài 5.2 — Module 5</span></div>
+                        <h2 class="font-display text-3xl font-bold text-white mb-2">Lực lượng Sản xuất: Cấu trúc & Vai trò</h2>
+                        <p class="text-teal-100 text-sm">🎯 <strong>Mục tiêu:</strong> Xác định các yếu tố cấu thành LLSX; hiểu vai trò quyết định của người lao động và công cụ lao động; nhận biết khoa học là LLSX trực tiếp trong thời đại 4.0. <em>Ước lượng: 12 phút.</em></p>
+                    </div>
+                    <div class="p-8 space-y-8">
+                        <div class="bg-teal-50 dark:bg-teal-900/20 border-l-4 border-teal-500 rounded-r-2xl p-6">
+                            <p class="text-xs font-bold text-teal-700 uppercase tracking-wider mb-2">📖 Trích dẫn kinh điển — C. Mác, Triet.txt dòng 904</p>
+                            <blockquote class="font-display text-lg italic text-text-main-light dark:text-text-main-dark leading-relaxed">
+                                "Những thời đại kinh tế khác nhau không phải ở chỗ chúng sản xuất ra cái gì mà là ở chỗ chúng sản xuất bằng cách nào, với những tư liệu lao động nào."
+                            </blockquote>
+                        </div>
+
+                        <div class="space-y-5">
+                            <h3 class="font-display text-xl font-bold">Cấu trúc của Lực lượng Sản xuất</h3>
+                            <div class="bg-emerald-50 dark:bg-emerald-900/10 rounded-2xl p-6">
+                                <div class="grid md:grid-cols-2 gap-6">
+                                    <div class="space-y-3">
+                                        <div class="bg-emerald-600 text-white rounded-2xl p-4 text-center">
+                                            <p class="font-bold text-lg">👤 Người Lao động</p>
+                                            <p class="text-xs mt-1">Nhân tố HÀNG ĐẦU — Quyết định</p>
+                                        </div>
+                                        <div class="bg-white dark:bg-gray-800 rounded-xl p-3 text-xs text-text-muted-light dark:text-text-muted-dark space-y-1 border border-emerald-200">
+                                            <li>• Tri thức, kinh nghiệm, kỹ năng lao động</li>
+                                            <li>• Năng lực sáng tạo trong sản xuất</li>
+                                            <li>• Chủ thể sáng tạo VÀ sử dụng công cụ</li>
+                                            <li>• Nguồn gốc mọi sáng tạo trong SX vật chất</li>
+                                            <li>• <em>"Nguồn lực cơ bản, vô tận và đặc biệt"</em> (dòng 903)</li>
+                                        </div>
+                                    </div>
+                                    <div class="space-y-3">
+                                        <div class="bg-teal-600 text-white rounded-2xl p-4 text-center">
+                                            <p class="font-bold text-lg">🔧 Tư liệu Sản xuất</p>
+                                            <p class="text-xs mt-1">Điều kiện vật chất cần thiết</p>
+                                        </div>
+                                        <div class="bg-white dark:bg-gray-800 rounded-xl p-3 text-xs space-y-2 border border-teal-200">
+                                            <div class="bg-teal-50 dark:bg-teal-900/10 rounded-lg p-2">
+                                                <p class="font-bold text-teal-700">🏗️ Công cụ Lao động</p>
+                                                <p class="text-text-muted-light dark:text-text-muted-dark">Yếu tố CÁCH MẠNG NHẤT — thước đo trình độ thời đại (máy móc, phần mềm, AI...)</p>
+                                            </div>
+                                            <div class="bg-gray-50 dark:bg-gray-700/50 rounded-lg p-2">
+                                                <p class="font-bold text-gray-600">📦 Đối tượng Lao động</p>
+                                                <p class="text-text-muted-light dark:text-text-muted-dark">Những gì con người tác động vào (nguyên liệu, dữ liệu, đất đai...)</p>
+                                            </div>
+                                            <div class="bg-gray-50 dark:bg-gray-700/50 rounded-lg p-2">
+                                                <p class="font-bold text-gray-600">🚛 Phương tiện Lao động</p>
+                                                <p class="text-text-muted-light dark:text-text-muted-dark">Hỗ trợ quá trình sản xuất (nhà xưởng, hạ tầng, mạng internet...)</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="grid md:grid-cols-2 gap-5">
+                                <div class="bg-emerald-50 dark:bg-emerald-900/20 rounded-2xl p-5">
+                                    <h4 class="font-bold text-emerald-700 mb-2">🧬 Tại sao người lao động là "hàng đầu"?</h4>
+                                    <p class="text-sm text-text-muted-light dark:text-text-muted-dark">Người lao động là chủ thể sáng tạo và sử dụng công cụ. Công cụ chỉ là sản phẩm của lao động con người — không thể tự vận hành. Hơn nữa, trong quá trình lao động, người lao động không chỉ bù đắp hao phí mà còn tạo ra <strong>giá trị mới lớn hơn</strong> — điều mà công cụ không thể làm. (dòng 905)</p>
+                                </div>
+                                <div class="bg-teal-50 dark:bg-teal-900/20 rounded-2xl p-5">
+                                    <h4 class="font-bold text-teal-700 mb-2">⚡ Tại sao công cụ lao động là "cách mạng nhất"?</h4>
+                                    <p class="text-sm text-text-muted-light dark:text-text-muted-dark">Công cụ lao động là "nguyên nhân sâu xa của mọi biến đổi kinh tế-xã hội trong lịch sử" (dòng 904). Khi công cụ thay đổi (từ tay → hơi nước → điện → AI), toàn bộ phương thức sản xuất và cơ cấu xã hội thay đổi theo. Đây là lý do C. Mác lấy công cụ làm "tiêu chuẩn phân biệt các thời đại kinh tế".</p>
+                                </div>
+                            </div>
+
+                            <div class="bg-indigo-50 dark:bg-indigo-900/10 border border-indigo-200 rounded-2xl p-5">
+                                <h4 class="font-bold text-indigo-700 mb-3">🔬 Khoa học = Lực lượng Sản xuất trực tiếp trong thời đại 4.0</h4>
+                                <p class="text-sm text-text-muted-light dark:text-text-muted-dark mb-3">C. Mác sớm nhận ra: <em>"Tri thức xã hội phổ biến đã chuyển hóa đến mức độ nào thành lực lượng sản xuất trực tiếp"</em> (dòng 907). Ngày nay điều này biểu hiện rõ nhất:</p>
+                                <div class="grid md:grid-cols-3 gap-3 text-xs">
+                                    <div class="bg-white dark:bg-gray-800 rounded-xl p-3 text-center">
+                                        <p class="text-lg mb-1">🧑‍💻</p>
+                                        <p class="font-bold text-indigo-600">Người lao động</p>
+                                        <p class="text-text-muted-light dark:text-text-muted-dark">Tri thức KH vật hóa vào kỹ năng lập trình, kỹ năng AI</p>
+                                    </div>
+                                    <div class="bg-white dark:bg-gray-800 rounded-xl p-3 text-center">
+                                        <p class="text-lg mb-1">🤖</p>
+                                        <p class="font-bold text-indigo-600">Công cụ lao động</p>
+                                        <p class="text-text-muted-light dark:text-text-muted-dark">Thuật toán AI, phần mềm phân tích — tri thức vật hóa</p>
+                                    </div>
+                                    <div class="bg-white dark:bg-gray-800 rounded-xl p-3 text-center">
+                                        <p class="text-lg mb-1">📊</p>
+                                        <p class="font-bold text-indigo-600">Đối tượng lao động</p>
+                                        <p class="text-text-muted-light dark:text-text-muted-dark">Dữ liệu là nguyên liệu mới của kinh tế tri thức</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="border-t border-gray-100 dark:border-gray-700 pt-6">
+                            <h3 class="font-display text-lg font-bold mb-4">Câu hỏi phản tư</h3>
+                            <div class="space-y-3">
+                                <div class="reflection-item">
+                                    <button onclick="toggleReflection(this)" class="w-full text-left p-4 bg-gray-50 dark:bg-gray-800 rounded-xl hover:bg-teal-50 dark:hover:bg-teal-900/20 transition-colors text-sm font-medium flex justify-between items-center">
+                                        <span>1. Trong thời đại AI, khi robot có thể thay thế nhiều công việc của con người, người lao động có còn là "nhân tố hàng đầu" không? Lý luận của Mác có còn đúng không?</span>
+                                        <span class="material-symbols-outlined text-gray-400 flex-shrink-0 ml-2">expand_more</span>
+                                    </button>
+                                    <div class="reflection-answer p-4 text-sm text-text-muted-light dark:text-text-muted-dark">
+                                        <strong class="text-teal-600 block mb-1">Gợi ý:</strong> Lý luận của Mác vẫn đúng và sâu sắc hơn. AI (công cụ) do con người tạo ra, vận hành theo lập trình của con người, và cần con người để thiết kế, triển khai, giám sát. Hơn nữa, AI chỉ thực hiện những gì được lập trình — còn sáng tạo đột phá (phát minh thuật toán mới, đặt câu hỏi mới) vẫn là đặc trưng của con người. Câu hỏi đúng hơn là: loại tri thức, kỹ năng nào của người lao động sẽ là "nhân tố hàng đầu" trong thời đại 4.0? (dòng 905, 908)
+                                    </div>
+                                </div>
+                                <div class="reflection-item">
+                                    <button onclick="toggleReflection(this)" class="w-full text-left p-4 bg-gray-50 dark:bg-gray-800 rounded-xl hover:bg-teal-50 dark:hover:bg-teal-900/20 transition-colors text-sm font-medium flex justify-between items-center">
+                                        <span>2. Phân tích LLSX của một trường đại học: ai là "người lao động"? Đâu là "công cụ lao động"? Đâu là "đối tượng lao động"?</span>
+                                        <span class="material-symbols-outlined text-gray-400 flex-shrink-0 ml-2">expand_more</span>
+                                    </button>
+                                    <div class="reflection-answer p-4 text-sm text-text-muted-light dark:text-text-muted-dark">
+                                        <strong class="text-teal-600 block mb-1">Gợi ý:</strong> Người lao động: giảng viên, nhà nghiên cứu, cán bộ hành chính. Công cụ lao động: giáo trình, phần mềm LMS, phòng thí nghiệm, thư viện số. Đối tượng lao động: sinh viên (trong một nghĩa nào đó — kiến thức và kỹ năng của họ là "đầu ra" mà trường tác động vào và biến đổi). Hoặc: tri thức/nghiên cứu là đối tượng lao động của các nhà khoa học. (dòng 902–904)
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-teal-50 dark:bg-teal-900/20 border border-teal-200 rounded-2xl p-6">
+                            <h3 class="font-display text-lg font-bold mb-3">🎯 Hoạt động: Phân tích LLSX của một AI Startup</h3>
+                            <p class="text-sm text-text-muted-light dark:text-text-muted-dark mb-4">Giả sử bạn là đồng sáng lập một startup AI phát triển phần mềm nhận diện hình ảnh. Hãy phân tích và điền vào bảng sau:</p>
+                            <div class="overflow-x-auto">
+                                <table class="w-full text-xs border-collapse">
+                                    <thead>
+                                        <tr class="bg-teal-100 dark:bg-teal-900/30">
+                                            <th class="p-3 text-left border border-teal-200 dark:border-teal-800">Yếu tố LLSX</th>
+                                            <th class="p-3 text-left border border-teal-200 dark:border-teal-800">Ví dụ trong AI Startup</th>
+                                            <th class="p-3 text-left border border-teal-200 dark:border-teal-800">Mức độ quan trọng (1-5)</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="text-text-muted-light dark:text-text-muted-dark">
+                                        <tr><td class="p-3 border border-gray-200 dark:border-gray-700 font-medium">Người lao động</td><td class="p-3 border border-gray-200 dark:border-gray-700 italic">[Liệt kê vai trò cụ thể...]</td><td class="p-3 border border-gray-200 dark:border-gray-700 italic">[Xếp hạng]</td></tr>
+                                        <tr><td class="p-3 border border-gray-200 dark:border-gray-700 font-medium">Công cụ lao động</td><td class="p-3 border border-gray-200 dark:border-gray-700 italic">[GPU, TensorFlow, Python...]</td><td class="p-3 border border-gray-200 dark:border-gray-700 italic">[Xếp hạng]</td></tr>
+                                        <tr><td class="p-3 border border-gray-200 dark:border-gray-700 font-medium">Đối tượng lao động</td><td class="p-3 border border-gray-200 dark:border-gray-700 italic">[Dataset hình ảnh...]</td><td class="p-3 border border-gray-200 dark:border-gray-700 italic">[Xếp hạng]</td></tr>
+                                        <tr><td class="p-3 border border-gray-200 dark:border-gray-700 font-medium">Khoa học/Tri thức</td><td class="p-3 border border-gray-200 dark:border-gray-700 italic">[Thuật toán, paper nghiên cứu...]</td><td class="p-3 border border-gray-200 dark:border-gray-700 italic">[Xếp hạng]</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center justify-between">
+                            <button onclick="showLesson('M5-L1')" class="text-sm text-text-muted-light hover:text-primary flex items-center gap-1"><span class="material-symbols-outlined text-sm">arrow_back</span> Bài trước</button>
+                            <button onclick="completeLesson('M5-L2')" id="btn-complete-M5-L2" class="bg-primary hover:bg-emerald-700 text-white font-semibold px-8 py-3 rounded-xl transition-colors flex items-center gap-2 text-sm"><span class="material-symbols-outlined text-sm">check_circle</span> Hoàn thành</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BÀI 5.3: QUAN HỆ SẢN XUẤT -->
+            <div id="lesson-M5-L3" class="lesson-content hidden">
+                <div class="bg-surface-light dark:bg-surface-dark rounded-3xl border border-gray-100 dark:border-gray-700 shadow-sm overflow-hidden">
+                    <div class="lesson-header-academic">
+                        <div class="flex items-center gap-3 mb-3"><span class="text-3xl">🤝</span><span class="text-emerald-100 text-sm font-semibold uppercase tracking-wider">Bài 5.3 — Module 5</span></div>
+                        <h2 class="font-display text-3xl font-bold text-white mb-2">Quan hệ Sản xuất: Ba mặt & Vai trò</h2>
+                        <p class="text-emerald-100 text-sm">🎯 <strong>Mục tiêu:</strong> Định nghĩa QHSX; xác định 3 mặt (sở hữu, tổ chức-quản lý, phân phối); hiểu quan hệ sở hữu là quyết định nhất trong cả ba. <em>Ước lượng: 10 phút.</em></p>
+                    </div>
+                    <div class="p-8 space-y-8">
+                        <div class="bg-emerald-50 dark:bg-emerald-900/20 border-l-4 border-emerald-500 rounded-r-2xl p-6">
+                            <p class="text-xs font-bold text-emerald-700 uppercase tracking-wider mb-2">📖 Trích dẫn kinh điển — Triet.txt, dòng 909</p>
+                            <blockquote class="font-display text-lg italic text-text-main-light dark:text-text-main-dark leading-relaxed">
+                                "Quan hệ sản xuất bao gồm quan hệ về sở hữu đối với tư liệu sản xuất, quan hệ trong tổ chức quản lý và trao đổi hoạt động với nhau, quan hệ về phân phối sản phẩm lao động."
+                            </blockquote>
+                        </div>
+
+                        <div class="space-y-5">
+                            <h3 class="font-display text-xl font-bold">Ba mặt của Quan hệ Sản xuất</h3>
+                            <div class="space-y-4">
+                                <div class="flex gap-4 items-start p-5 bg-emerald-50 dark:bg-emerald-900/20 rounded-2xl border border-emerald-200 dark:border-emerald-800/30">
+                                    <div class="w-10 h-10 rounded-full bg-emerald-600 text-white flex items-center justify-center font-bold flex-shrink-0 text-lg">1</div>
+                                    <div>
+                                        <p class="font-bold text-emerald-700 mb-1">Quan hệ Sở hữu về Tư liệu Sản xuất — <span class="text-red-500">XUẤT PHÁT · CƠ BẢN · TRUNG TÂM</span></p>
+                                        <p class="text-sm text-text-muted-light dark:text-text-muted-dark mb-2">Ai nắm tư liệu sản xuất thì quyết định quản lý và phân phối. Đây là quan hệ quy định địa vị kinh tế-xã hội của mọi tập đoàn người.</p>
+                                        <div class="grid grid-cols-2 gap-2 text-xs">
+                                            <div class="bg-white dark:bg-gray-800 rounded-lg p-2"><strong>DN cổ phần:</strong> Cổ đông sở hữu → quyết định chiến lược</div>
+                                            <div class="bg-white dark:bg-gray-800 rounded-lg p-2"><strong>Hợp tác xã:</strong> Thành viên cùng sở hữu → quyết định tập thể</div>
+                                        </div>
+                                        <p class="text-xs text-gray-400 mt-1">Nguồn: dòng 909</p>
+                                    </div>
+                                </div>
+                                <div class="flex gap-4 items-start p-5 bg-teal-50 dark:bg-teal-900/20 rounded-2xl border border-teal-200 dark:border-teal-800/30">
+                                    <div class="w-10 h-10 rounded-full bg-teal-600 text-white flex items-center justify-center font-bold flex-shrink-0 text-lg">2</div>
+                                    <div>
+                                        <p class="font-bold text-teal-700 mb-1">Quan hệ Tổ chức & Quản lý Sản xuất</p>
+                                        <p class="text-sm text-text-muted-light dark:text-text-muted-dark mb-2">Quan hệ giữa các tập đoàn trong việc tổ chức sản xuất và phân công lao động. Có vai trò quyết định trực tiếp đến quy mô, tốc độ, hiệu quả sản xuất — có thể đẩy nhanh hoặc kìm hãm.</p>
+                                        <div class="text-xs bg-white dark:bg-gray-800 rounded-lg p-2"><strong>VD hiện đại:</strong> Agile vs. Waterfall trong quản lý dự án phần mềm — cùng một đội ngũ (LLSX), cách tổ chức khác nhau → hiệu quả khác nhau.</div>
+                                        <p class="text-xs text-gray-400 mt-1">Nguồn: dòng 910</p>
+                                    </div>
+                                </div>
+                                <div class="flex gap-4 items-start p-5 bg-green-50 dark:bg-green-900/20 rounded-2xl border border-green-200 dark:border-green-800/30">
+                                    <div class="w-10 h-10 rounded-full bg-green-600 text-white flex items-center justify-center font-bold flex-shrink-0 text-lg">3</div>
+                                    <div>
+                                        <p class="font-bold text-green-700 mb-1">Quan hệ Phân phối Sản phẩm Lao động</p>
+                                        <p class="text-sm text-text-muted-light dark:text-text-muted-dark mb-2">Ai được bao nhiêu trong tổng sản phẩm tạo ra? Đây là <strong>"chất xúc tác" kinh tế</strong> — kích thích trực tiếp lợi ích và động lực người lao động.</p>
+                                        <div class="text-xs bg-white dark:bg-gray-800 rounded-lg p-2"><strong>VD:</strong> Cơ chế thưởng ESOPs (cổ phiếu) cho nhân viên tech → tăng động lực sáng tạo; hoặc: phân phối bình quân mà không theo hiệu suất → kìm hãm.</div>
+                                        <p class="text-xs text-gray-400 mt-1">Nguồn: dòng 911</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="bg-amber-50 dark:bg-amber-900/10 border border-amber-200 rounded-2xl p-5">
+                                <h4 class="font-bold text-amber-700 mb-3">📊 So sánh: Công ty Cổ phần vs. Hợp tác xã</h4>
+                                <div class="overflow-x-auto">
+                                    <table class="w-full text-xs border-collapse">
+                                        <thead>
+                                            <tr class="bg-amber-100 dark:bg-amber-900/20">
+                                                <th class="p-3 text-left border border-amber-200">Mặt QHSX</th>
+                                                <th class="p-3 text-left border border-amber-200">🏢 Công ty Cổ phần</th>
+                                                <th class="p-3 text-left border border-amber-200">🤝 Hợp tác xã</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="text-text-muted-light dark:text-text-muted-dark">
+                                            <tr><td class="p-3 border border-gray-200 dark:border-gray-700 font-medium">① Sở hữu</td><td class="p-3 border border-gray-200 dark:border-gray-700">Cổ đông (tỷ lệ vốn góp)</td><td class="p-3 border border-gray-200 dark:border-gray-700">Thành viên (bình đẳng)</td></tr>
+                                            <tr><td class="p-3 border border-gray-200 dark:border-gray-700 font-medium">② Tổ chức-QL</td><td class="p-3 border border-gray-200 dark:border-gray-700">HĐQT → CEO → nhân viên (phân cấp)</td><td class="p-3 border border-gray-200 dark:border-gray-700">Đại hội thành viên → Hội đồng (dân chủ)</td></tr>
+                                            <tr><td class="p-3 border border-gray-200 dark:border-gray-700 font-medium">③ Phân phối</td><td class="p-3 border border-gray-200 dark:border-gray-700">Cổ tức (tỷ lệ sở hữu) + lương</td><td class="p-3 border border-gray-200 dark:border-gray-700">Theo vốn góp + lao động đóng góp</td></tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="border-t border-gray-100 dark:border-gray-700 pt-6">
+                            <h3 class="font-display text-lg font-bold mb-4">Câu hỏi phản tư</h3>
+                            <div class="space-y-3">
+                                <div class="reflection-item">
+                                    <button onclick="toggleReflection(this)" class="w-full text-left p-4 bg-gray-50 dark:bg-gray-800 rounded-xl hover:bg-emerald-50 dark:hover:bg-emerald-900/20 transition-colors text-sm font-medium flex justify-between items-center">
+                                        <span>1. Tại sao quan hệ sở hữu được coi là "xuất phát, cơ bản, trung tâm"? Nếu thay đổi cơ chế phân phối mà không thay đổi quan hệ sở hữu, có thể thay đổi bản chất QHSX không?</span>
+                                        <span class="material-symbols-outlined text-gray-400 flex-shrink-0 ml-2">expand_more</span>
+                                    </button>
+                                    <div class="reflection-answer p-4 text-sm text-text-muted-light dark:text-text-muted-dark">
+                                        <strong class="text-emerald-600 block mb-1">Gợi ý:</strong> Quan hệ sở hữu quyết định vì: ai nắm tư liệu sản xuất sẽ có quyền quyết định tổ chức và phân phối. Thay đổi phân phối mà không thay đổi sở hữu chỉ là cải cách bề mặt — bản chất vẫn giữ nguyên ai kiểm soát tư liệu sản xuất. VD: tăng lương cho nhân viên nhưng cơ cấu sở hữu vẫn tập trung → không thay đổi bản chất QHSX. (dòng 909)
+                                    </div>
+                                </div>
+                                <div class="reflection-item">
+                                    <button onclick="toggleReflection(this)" class="w-full text-left p-4 bg-gray-50 dark:bg-gray-800 rounded-xl hover:bg-emerald-50 dark:hover:bg-emerald-900/20 transition-colors text-sm font-medium flex justify-between items-center">
+                                        <span>2. Trong kinh tế gig (Grab, Shopee...), tài xế/người bán không có hợp đồng lao động chính thức. Ba mặt QHSX của họ với nền tảng là gì?</span>
+                                        <span class="material-symbols-outlined text-gray-400 flex-shrink-0 ml-2">expand_more</span>
+                                    </button>
+                                    <div class="reflection-answer p-4 text-sm text-text-muted-light dark:text-text-muted-dark">
+                                        <strong class="text-emerald-600 block mb-1">Gợi ý:</strong> Sở hữu: Nền tảng sở hữu thuật toán, dữ liệu khách hàng, hạ tầng kỹ thuật (tư liệu SX chính) — tài xế chỉ có xe là của mình. Tổ chức-quản lý: Nền tảng kiểm soát hoàn toàn qua thuật toán (xếp hạng, điều phối chuyến). Phân phối: Nền tảng quyết định tỷ lệ hoa hồng. Câu hỏi: Đây là QHSX kiểu mới — đang phù hợp hay không phù hợp với LLSX 4.0? (dòng 909–912)
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center justify-between">
+                            <button onclick="showLesson('M5-L2')" class="text-sm text-text-muted-light hover:text-primary flex items-center gap-1"><span class="material-symbols-outlined text-sm">arrow_back</span> Bài trước</button>
+                            <div class="flex gap-3">
+                                <button onclick="openFormativeQuiz('M5-FQ1')" class="bg-teal-600 hover:bg-teal-700 text-white font-semibold px-6 py-3 rounded-xl transition-colors flex items-center gap-2 text-sm">
+                                    <span class="material-symbols-outlined text-sm">quiz</span> Kiểm tra hình thành (Bài 5.1–5.3)
+                                </button>
+                                <button onclick="completeLesson('M5-L3')" id="btn-complete-M5-L3" class="bg-primary hover:bg-emerald-700 text-white font-semibold px-6 py-3 rounded-xl transition-colors flex items-center gap-2 text-sm"><span class="material-symbols-outlined text-sm">check_circle</span> Hoàn thành</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BÀI 5.4: LLSX QUYẾT ĐỊNH QHSX -->
+            <div id="lesson-M5-L4" class="lesson-content hidden">
+                <div class="bg-surface-light dark:bg-surface-dark rounded-3xl border border-gray-100 dark:border-gray-700 shadow-sm overflow-hidden">
+                    <div class="lesson-header-academic">
+                        <div class="flex items-center gap-3 mb-3"><span class="text-3xl">⚖️</span><span class="text-teal-100 text-sm font-semibold uppercase tracking-wider">Bài 5.4 — Module 5</span></div>
+                        <h2 class="font-display text-3xl font-bold text-white mb-2">Quy luật: LLSX Quyết định QHSX</h2>
+                        <p class="text-teal-100 text-sm">🎯 <strong>Mục tiêu:</strong> Hiểu nội dung cốt lõi của quy luật — LLSX quyết định sự ra đời, nội dung, tính chất QHSX; giải thích cơ chế vòng chu kỳ 3 giai đoạn. <em>Ước lượng: 12 phút + 15 phút bài tập.</em></p>
+                    </div>
+                    <div class="p-8 space-y-8">
+                        <div class="bg-teal-50 dark:bg-teal-900/20 border-l-4 border-teal-600 rounded-r-2xl p-6">
+                            <p class="text-xs font-bold text-teal-700 uppercase tracking-wider mb-2">📖 Trích dẫn kinh điển — C. Mác, Triet.txt dòng 925</p>
+                            <blockquote class="font-display text-lg italic text-text-main-light dark:text-text-main-dark leading-relaxed">
+                                "Tới một giai đoạn phát triển nào đó của chúng, các lực lượng sản xuất vật chất của xã hội mâu thuẫn với những quan hệ sản xuất hiện có... Từ chỗ là những hình thức phát triển của lực lượng sản xuất, những quan hệ ấy trở thành những xiềng xích của các lực lượng sản xuất. Khi đó bắt đầu thời đại một cuộc cách mạng xã hội."
+                            </blockquote>
+                        </div>
+
+                        <div class="space-y-6">
+                            <h3 class="font-display text-xl font-bold">LLSX Quyết định QHSX — Ba nội dung</h3>
+                            <div class="grid md:grid-cols-3 gap-4 text-sm">
+                                <div class="bg-emerald-50 dark:bg-emerald-900/20 rounded-2xl p-5 text-center">
+                                    <p class="text-2xl mb-2">🌱</p>
+                                    <p class="font-bold text-emerald-700 mb-2">① Quyết định SỰ RA ĐỜI</p>
+                                    <p class="text-xs text-text-muted-light dark:text-text-muted-dark">LLSX phát triển đến trình độ nhất định → đòi hỏi phải có kiểu QHSX mới tương ứng để "chứa đựng" và phát huy năng lực sản xuất mới đó.</p>
+                                </div>
+                                <div class="bg-teal-50 dark:bg-teal-900/20 rounded-2xl p-5 text-center">
+                                    <p class="text-2xl mb-2">📋</p>
+                                    <p class="font-bold text-teal-700 mb-2">② Quyết định NỘI DUNG</p>
+                                    <p class="text-xs text-text-muted-light dark:text-text-muted-dark">Trình độ LLSX quy định hình thức sở hữu, cách tổ chức quản lý, và cơ chế phân phối phù hợp.</p>
+                                </div>
+                                <div class="bg-green-50 dark:bg-green-900/20 rounded-2xl p-5 text-center">
+                                    <p class="text-2xl mb-2">🎭</p>
+                                    <p class="font-bold text-green-700 mb-2">③ Quyết định TÍNH CHẤT</p>
+                                    <p class="text-xs text-text-muted-light dark:text-text-muted-dark">LLSX có tính chất cá nhân hoặc xã hội hóa sẽ quy định QHSX mang tính chất tương ứng (tư hữu/công hữu).</p>
+                                </div>
+                            </div>
+
+                            <div class="bg-emerald-50 dark:bg-emerald-900/10 rounded-2xl p-6">
+                                <h4 class="font-bold text-emerald-700 mb-4 text-center">🔄 Vòng Chu kỳ Biện chứng: Phù hợp → Mâu thuẫn → Phù hợp mới</h4>
+                                <div class="flex flex-col md:flex-row items-center justify-center gap-2 md:gap-4">
+                                    <div class="cycle-node bg-emerald-600 text-white text-center px-5 py-4 rounded-2xl min-w-[140px]">
+                                        <p class="font-bold">✅ Phù hợp</p>
+                                        <p class="text-xs mt-1">QHSX là "hình thức phát triển" của LLSX → thúc đẩy SX</p>
+                                    </div>
+                                    <div class="flex items-center gap-1 text-gray-400">
+                                        <span class="text-sm font-medium text-text-muted-light">LLSX phát triển vượt →</span>
+                                        <span class="material-symbols-outlined">arrow_forward</span>
+                                    </div>
+                                    <div class="cycle-node bg-red-500 text-white text-center px-5 py-4 rounded-2xl min-w-[140px]">
+                                        <p class="font-bold">⛓️ Mâu thuẫn</p>
+                                        <p class="text-xs mt-1">QHSX trở thành "xiềng xích" kìm hãm LLSX</p>
+                                    </div>
+                                    <div class="flex items-center gap-1 text-gray-400">
+                                        <span class="text-sm font-medium text-text-muted-light">→ Cách mạng SX →</span>
+                                        <span class="material-symbols-outlined">arrow_forward</span>
+                                    </div>
+                                    <div class="cycle-node bg-teal-600 text-white text-center px-5 py-4 rounded-2xl min-w-[140px]">
+                                        <p class="font-bold">🚀 Phù hợp mới</p>
+                                        <p class="text-xs mt-1">QHSX mới ở trình độ cao hơn → chu kỳ tiếp theo</p>
+                                    </div>
+                                </div>
+                                <p class="text-center text-xs text-gray-400 mt-4">Nguồn: Triet.txt, dòng 925 — "từ phù hợp đến không phù hợp, rồi đến sự phù hợp mới ở trình độ cao hơn"</p>
+                            </div>
+
+                            <div class="grid md:grid-cols-2 gap-5">
+                                <div class="bg-amber-50 dark:bg-amber-900/10 border border-amber-200 rounded-2xl p-5">
+                                    <h4 class="font-bold text-amber-700 mb-3">🏛️ Ví dụ Lịch sử: C. Mác</h4>
+                                    <div class="space-y-3 text-sm">
+                                        <div class="flex gap-3 p-3 bg-white dark:bg-gray-800 rounded-xl">
+                                            <span class="text-2xl">🌾</span>
+                                            <div><p class="font-bold text-xs">Cối xay tay (LLSX thủ công)</p><p class="text-xs text-gray-400">→ QHSX phong kiến: lãnh chúa-nông nô</p></div>
+                                        </div>
+                                        <div class="text-center text-gray-300 text-lg">↓ LLSX cách mạng công nghiệp</div>
+                                        <div class="flex gap-3 p-3 bg-white dark:bg-gray-800 rounded-xl">
+                                            <span class="text-2xl">🏭</span>
+                                            <div><p class="font-bold text-xs">Cối xay hơi nước (LLSX công nghiệp)</p><p class="text-xs text-gray-400">→ QHSX tư bản: nhà tư bản-công nhân</p></div>
+                                        </div>
+                                    </div>
+                                    <p class="text-xs text-gray-400 mt-2">Triet.txt, dòng 917</p>
+                                </div>
+                                <div class="bg-indigo-50 dark:bg-indigo-900/10 border border-indigo-200 rounded-2xl p-5">
+                                    <h4 class="font-bold text-indigo-700 mb-3">🤖 Ví dụ Hiện đại: Cách mạng 4.0</h4>
+                                    <div class="space-y-3 text-sm">
+                                        <div class="flex gap-3 p-3 bg-white dark:bg-gray-800 rounded-xl">
+                                            <span class="text-2xl">🏭</span>
+                                            <div><p class="font-bold text-xs">Sản xuất truyền thống (LLSX cũ)</p><p class="text-xs text-gray-400">→ QHSX: quản lý theo cấp bậc, giờ hành chính</p></div>
+                                        </div>
+                                        <div class="text-center text-gray-300 text-lg">↓ AI & số hóa bùng nổ</div>
+                                        <div class="flex gap-3 p-3 bg-white dark:bg-gray-800 rounded-xl">
+                                            <span class="text-2xl">🌐</span>
+                                            <div><p class="font-bold text-xs">Kinh tế tri thức (LLSX 4.0)</p><p class="text-xs text-gray-400">→ Đòi hỏi QHSX mới: remote work, flat hierarchy, ESOPs</p></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="border-t border-gray-100 dark:border-gray-700 pt-6">
+                            <h3 class="font-display text-lg font-bold mb-4">Câu hỏi phản tư</h3>
+                            <div class="space-y-3">
+                                <div class="reflection-item">
+                                    <button onclick="toggleReflection(this)" class="w-full text-left p-4 bg-gray-50 dark:bg-gray-800 rounded-xl hover:bg-teal-50 dark:hover:bg-teal-900/20 transition-colors text-sm font-medium flex justify-between items-center">
+                                        <span>1. Giải thích tại sao sự ra đời của nền sản xuất tư bản chủ nghĩa từ cuối thế kỷ XV–XVI không phải do "ý muốn" của giai cấp tư sản mà là "yêu cầu khách quan" của LLSX đang phát triển.</span>
+                                        <span class="material-symbols-outlined text-gray-400 flex-shrink-0 ml-2">expand_more</span>
+                                    </button>
+                                    <div class="reflection-answer p-4 text-sm text-text-muted-light dark:text-text-muted-dark">
+                                        <strong class="text-teal-600 block mb-1">Gợi ý:</strong> Sản xuất hàng hóa phát triển, thị trường mở rộng → LLSX vượt qua khuôn khổ phong kiến (ruộng đất phân tán, lao động bị trói buộc). QHSX phong kiến trở thành "xiềng xích" kìm hãm LLSX đang phát triển → tất yếu phải có QHSX mới (hợp đồng lao động tự do, sở hữu tư nhân, thị trường). Giai cấp tư sản là "người thực hiện" yêu cầu khách quan này, chứ không phải "sáng tạo" ra nó từ không khí. (dòng 915–918)
+                                    </div>
+                                </div>
+                                <div class="reflection-item">
+                                    <button onclick="toggleReflection(this)" class="w-full text-left p-4 bg-gray-50 dark:bg-gray-800 rounded-xl hover:bg-teal-50 dark:hover:bg-teal-900/20 transition-colors text-sm font-medium flex justify-between items-center">
+                                        <span>2. Trong cuộc Cách mạng 4.0, LLSX nào đang phát triển nhanh nhất? QHSX nào đang trở thành "xiềng xích" tại Việt Nam?</span>
+                                        <span class="material-symbols-outlined text-gray-400 flex-shrink-0 ml-2">expand_more</span>
+                                    </button>
+                                    <div class="reflection-answer p-4 text-sm text-text-muted-light dark:text-text-muted-dark">
+                                        <strong class="text-teal-600 block mb-1">Gợi ý:</strong> LLSX phát triển nhanh: AI, dữ liệu lớn, kinh tế số, lao động tri thức. Các "xiềng xích" tiềm năng: Pháp lý chưa theo kịp (quy định về dữ liệu, tài sản số, hợp đồng lao động gig chưa rõ ràng); Cơ chế phân phối chưa khuyến khích đổi mới sáng tạo; Cơ cấu tổ chức doanh nghiệp còn phân cấp cứng nhắc không phù hợp với teamwork số. Đây là những "mâu thuẫn" cần giải quyết.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-teal-50 dark:bg-teal-900/20 border border-teal-200 rounded-2xl p-6">
+                            <h3 class="font-display text-lg font-bold mb-3">✍️ Mini-case: Phân tích Doanh nghiệp Chuyển đổi Số</h3>
+                            <p class="text-sm text-text-muted-light dark:text-text-muted-dark mb-4">Công ty ABC là công ty truyền thống trong lĩnh vực in ấn (thành lập 1995). Gần đây, nhu cầu thị trường dịch chuyển sang thiết kế số và marketing online. Công ty đã mua máy in kỹ thuật số và tuyển thêm nhân viên thiết kế AI. Tuy nhiên, cơ cấu quản lý vẫn theo cấp bậc cũ, phân phối lương theo thâm niên.</p>
+                            <div class="mb-4 grid md:grid-cols-3 gap-3 text-xs">
+                                <div class="bg-white dark:bg-gray-800 rounded-xl p-3 border-l-4 border-emerald-400">
+                                    <p class="font-bold text-emerald-600 mb-1">Bước 1: LLSX hiện tại</p>
+                                    <p class="text-gray-400">Xác định LLSX đang phát triển nào đang tạo ra yêu cầu mới...</p>
+                                </div>
+                                <div class="bg-white dark:bg-gray-800 rounded-xl p-3 border-l-4 border-red-400">
+                                    <p class="font-bold text-red-600 mb-1">Bước 2: QHSX "xiềng xích"</p>
+                                    <p class="text-gray-400">Chỉ ra mặt nào của QHSX đang kìm hãm LLSX mới...</p>
+                                </div>
+                                <div class="bg-white dark:bg-gray-800 rounded-xl p-3 border-l-4 border-teal-400">
+                                    <p class="font-bold text-teal-600 mb-1">Bước 3: Đề xuất điều chỉnh</p>
+                                    <p class="text-gray-400">QHSX mới nào cần được thiết lập để phù hợp LLSX 4.0...</p>
+                                </div>
+                            </div>
+                            <textarea id="short-answer-M5-L4" class="short-answer-textarea w-full p-4 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500" placeholder="Viết phân tích của bạn theo 3 bước trên (150–300 từ)..."></textarea>
+                            <div class="flex justify-between items-center mt-2">
+                                <span id="word-count-M5-L4" class="text-xs text-gray-400">0 từ</span>
+                                <button onclick="submitShortAnswer('M5-L4')" class="bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold px-5 py-2 rounded-xl transition-colors">Nộp bài tập</button>
+                            </div>
+                            <div id="short-answer-feedback-M5-L4" class="hidden"></div>
+                        </div>
+
+                        <div class="flex items-center justify-between">
+                            <button onclick="showLesson('M5-L3')" class="text-sm text-text-muted-light hover:text-primary flex items-center gap-1"><span class="material-symbols-outlined text-sm">arrow_back</span> Bài trước</button>
+                            <div class="flex gap-3">
+                                <button onclick="openFormativeQuiz('M5-FQ2')" class="bg-teal-600 hover:bg-teal-700 text-white font-semibold px-6 py-3 rounded-xl transition-colors flex items-center gap-2 text-sm">
+                                    <span class="material-symbols-outlined text-sm">quiz</span> Kiểm tra hình thành (Bài 5.4)
+                                </button>
+                                <button onclick="completeLesson('M5-L4')" id="btn-complete-M5-L4" class="bg-primary hover:bg-emerald-700 text-white font-semibold px-6 py-3 rounded-xl transition-colors flex items-center gap-2 text-sm"><span class="material-symbols-outlined text-sm">check_circle</span> Hoàn thành</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BÀI 5.5: TÁC ĐỘNG TRỞ LẠI & PHƯƠNG PHÁP LUẬN -->
+            <div id="lesson-M5-L5" class="lesson-content hidden">
+                <div class="bg-surface-light dark:bg-surface-dark rounded-3xl border border-gray-100 dark:border-gray-700 shadow-sm overflow-hidden">
+                    <div class="lesson-header-academic">
+                        <div class="flex items-center gap-3 mb-3"><span class="text-3xl">🔄</span><span class="text-emerald-100 text-sm font-semibold uppercase tracking-wider">Bài 5.5 — Module 5</span></div>
+                        <h2 class="font-display text-3xl font-bold text-white mb-2">Tác động Trở lại của QHSX & Phương pháp luận</h2>
+                        <p class="text-emerald-100 text-sm">🎯 <strong>Mục tiêu:</strong> Phân tích 2 chiều tác động của QHSX; rút ra 3 nguyên tắc phương pháp luận; tránh 2 sai lầm (đi sau / vượt trước). <em>Ước lượng: 10 phút.</em></p>
+                    </div>
+                    <div class="p-8 space-y-8">
+                        <div class="bg-emerald-50 dark:bg-emerald-900/20 border-l-4 border-emerald-600 rounded-r-2xl p-6">
+                            <p class="text-xs font-bold text-emerald-700 uppercase tracking-wider mb-2">📖 Trích dẫn kinh điển — Triet.txt, dòng 929</p>
+                            <blockquote class="font-display text-lg italic text-text-main-light dark:text-text-main-dark leading-relaxed">
+                                "Muốn phát triển kinh tế phải bắt đầu từ phát triển lực lượng sản xuất, trước hết là phát triển lực lượng lao động và công cụ lao động. Muốn xóa bỏ một quan hệ sản xuất cũ, thiết lập một quan hệ sản xuất mới phải căn cứ từ trình độ phát triển của lực lượng sản xuất."
+                            </blockquote>
+                        </div>
+
+                        <div class="space-y-5">
+                            <h3 class="font-display text-xl font-bold">2 Chiều Tác động của QHSX đối với LLSX</h3>
+                            <div class="grid md:grid-cols-2 gap-5">
+                                <div class="bg-green-50 dark:bg-green-900/20 rounded-2xl p-5 border-2 border-green-300">
+                                    <h4 class="font-bold text-green-700 mb-3">✅ Thúc đẩy — Khi QHSX PHÙ HỢP</h4>
+                                    <ul class="text-sm text-text-muted-light dark:text-text-muted-dark space-y-2">
+                                        <li class="flex gap-2">✔ <span>Nền sản xuất phát triển đúng hướng, quy mô mở rộng</span></li>
+                                        <li class="flex gap-2">✔ <span>Thành tựu KH-CN được áp dụng nhanh chóng</span></li>
+                                        <li class="flex gap-2">✔ <span>Người lao động nhiệt tình, hăng hái sáng tạo</span></li>
+                                        <li class="flex gap-2">✔ <span>Lợi ích người lao động được đảm bảo</span></li>
+                                    </ul>
+                                    <p class="text-xs text-gray-400 mt-3">Nguồn: dòng 924</p>
+                                </div>
+                                <div class="bg-red-50 dark:bg-red-900/20 rounded-2xl p-5 border-2 border-red-300">
+                                    <h4 class="font-bold text-red-700 mb-3">❌ Kìm hãm — Khi QHSX KHÔNG PHÙ HỢP</h4>
+                                    <ul class="text-sm text-text-muted-light dark:text-text-muted-dark space-y-2">
+                                        <li class="flex gap-2">✖ <span>Sản xuất kém hiệu quả, năng suất thấp</span></li>
+                                        <li class="flex gap-2">✖ <span>KH-CN không được áp dụng hoặc bị lãng phí</span></li>
+                                        <li class="flex gap-2">✖ <span>Người lao động thiếu động lực sáng tạo</span></li>
+                                        <li class="flex gap-2">✖ <span>Thậm chí phá hoại LLSX trong điều kiện nhất định</span></li>
+                                    </ul>
+                                    <p class="text-xs text-gray-400 mt-3">Nguồn: dòng 924</p>
+                                </div>
+                            </div>
+
+                            <div class="bg-amber-50 dark:bg-amber-900/10 border border-amber-200 rounded-2xl p-5">
+                                <h4 class="font-bold text-amber-700 mb-3">⚠️ Hai Sai lầm Cần Tránh (dòng 922)</h4>
+                                <div class="grid md:grid-cols-2 gap-4 text-sm">
+                                    <div class="bg-white dark:bg-gray-800 rounded-xl p-4">
+                                        <p class="font-bold text-orange-600 mb-2">🐢 Sai lầm "ĐI SAU"</p>
+                                        <p class="text-xs text-text-muted-light dark:text-text-muted-dark">QHSX giữ nguyên khi LLSX đã phát triển vượt trước → QHSX cũ trở thành "xiềng xích". <em>VD: Giữ nguyên mô hình quản lý thủ công khi nhà máy đã tự động hóa hoàn toàn.</em></p>
+                                    </div>
+                                    <div class="bg-white dark:bg-gray-800 rounded-xl p-4">
+                                        <p class="font-bold text-rose-600 mb-2">🐇 Sai lầm "VƯỢT TRƯỚC"</p>
+                                        <p class="text-xs text-text-muted-light dark:text-text-muted-dark">Áp đặt QHSX mà LLSX chưa đủ điều kiện để vận hành → chủ quan duy ý chí. <em>VD: Áp dụng cơ cấu quản trị flat hierarchy khi nhân lực chưa đủ tự chủ và kỷ luật.</em></p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <h3 class="font-display text-xl font-bold">3 Nguyên tắc Phương pháp luận</h3>
+                            <div class="space-y-4">
+                                <div class="flex gap-4 items-start p-5 bg-emerald-50 dark:bg-emerald-900/20 rounded-2xl">
+                                    <div class="w-10 h-10 rounded-full bg-emerald-600 text-white flex items-center justify-center font-bold flex-shrink-0">1</div>
+                                    <div>
+                                        <p class="font-bold text-emerald-700 mb-1">Phát triển LLSX là nền tảng, là điểm xuất phát</p>
+                                        <p class="text-sm text-text-muted-light dark:text-text-muted-dark">Muốn phát triển kinh tế → phát triển người lao động (nâng cao kỹ năng, tri thức) và công cụ lao động (đổi mới công nghệ, chuyển đổi số). Đây là nền tảng khách quan, không thể bỏ qua.</p>
+                                        <p class="text-xs text-gray-400 mt-1">Ứng dụng: Ngân sách đào tạo nhân viên + R&D công nghệ phải được ưu tiên.</p>
+                                    </div>
+                                </div>
+                                <div class="flex gap-4 items-start p-5 bg-teal-50 dark:bg-teal-900/20 rounded-2xl">
+                                    <div class="w-10 h-10 rounded-full bg-teal-600 text-white flex items-center justify-center font-bold flex-shrink-0">2</div>
+                                    <div>
+                                        <p class="font-bold text-teal-700 mb-1">Thay đổi QHSX phải căn cứ từ trình độ LLSX thực tế</p>
+                                        <p class="text-sm text-text-muted-light dark:text-text-muted-dark">Không thể áp đặt QHSX mới theo ý muốn chủ quan hay mệnh lệnh hành chính — phải xuất phát từ tính tất yếu kinh tế, yêu cầu khách quan của LLSX. Tránh chủ quan duy ý chí.</p>
+                                        <p class="text-xs text-gray-400 mt-1">Ứng dụng: Thiết kế cơ chế phân phối phù hợp với trình độ và văn hóa tổ chức hiện có.</p>
+                                    </div>
+                                </div>
+                                <div class="flex gap-4 items-start p-5 bg-green-50 dark:bg-green-900/20 rounded-2xl">
+                                    <div class="w-10 h-10 rounded-full bg-green-600 text-white flex items-center justify-center font-bold flex-shrink-0">3</div>
+                                    <div>
+                                        <p class="font-bold text-green-700 mb-1">Phù hợp là tương đối, trong vận động — luôn nảy sinh mâu thuẫn mới</p>
+                                        <p class="text-sm text-text-muted-light dark:text-text-muted-dark">Không có trạng thái "hoàn toàn phù hợp" cố định. Phù hợp chứa đựng mâu thuẫn và cần liên tục điều chỉnh. Không được chủ quan cho rằng QHSX đã thiết lập là hoàn hảo mãi mãi.</p>
+                                        <p class="text-xs text-gray-400 mt-1">Ứng dụng: Review định kỳ cơ cấu tổ chức và chính sách nhân sự khi môi trường kinh doanh thay đổi.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="border-t border-gray-100 dark:border-gray-700 pt-6">
+                            <h3 class="font-display text-lg font-bold mb-4">Câu hỏi phản tư</h3>
+                            <div class="space-y-3">
+                                <div class="reflection-item">
+                                    <button onclick="toggleReflection(this)" class="w-full text-left p-4 bg-gray-50 dark:bg-gray-800 rounded-xl hover:bg-emerald-50 dark:hover:bg-emerald-900/20 transition-colors text-sm font-medium flex justify-between items-center">
+                                        <span>1. Trong lịch sử Việt Nam trước Đổi mới 1986, cơ chế bao cấp là ví dụ của sai lầm "vượt trước" hay "đi sau"? Giải thích.</span>
+                                        <span class="material-symbols-outlined text-gray-400 flex-shrink-0 ml-2">expand_more</span>
+                                    </button>
+                                    <div class="reflection-answer p-4 text-sm text-text-muted-light dark:text-text-muted-dark">
+                                        <strong class="text-emerald-600 block mb-1">Gợi ý:</strong> Chủ yếu là "vượt trước": Cơ chế sản xuất theo kế hoạch tập trung và phân phối bình quân được áp đặt khi LLSX (trình độ sản xuất, cơ sở hạ tầng kinh tế) chưa đủ điều kiện để vận hành mô hình kinh tế đó. Kết quả: QHSX không phù hợp với LLSX → không kích thích được sáng tạo, thiếu hụt hàng hóa, năng suất thấp → kìm hãm LLSX → phải Đổi mới 1986 để thiết lập QHSX mới (kinh tế thị trường) phù hợp hơn với trình độ LLSX thực tế.
+                                    </div>
+                                </div>
+                                <div class="reflection-item">
+                                    <button onclick="toggleReflection(this)" class="w-full text-left p-4 bg-gray-50 dark:bg-gray-800 rounded-xl hover:bg-emerald-50 dark:hover:bg-emerald-900/20 transition-colors text-sm font-medium flex justify-between items-center">
+                                        <span>2. Ứng dụng nguyên tắc số 2: Nếu bạn là CEO, khi nào thì phù hợp để chuyển từ mô hình quản lý phân cấp sang flat hierarchy?</span>
+                                        <span class="material-symbols-outlined text-gray-400 flex-shrink-0 ml-2">expand_more</span>
+                                    </button>
+                                    <div class="reflection-answer p-4 text-sm text-text-muted-light dark:text-text-muted-dark">
+                                        <strong class="text-emerald-600 block mb-1">Gợi ý:</strong> Theo nguyên tắc 2: phải căn cứ từ LLSX thực tế. Điều kiện để flat hierarchy phù hợp: (1) Nhân viên có kỹ năng cao, tự chủ tốt (trình độ người lao động); (2) Có công cụ hỗ trợ collaboration hiệu quả (Slack, Notion, project mgmt tools); (3) Văn hóa tổ chức đã sẵn sàng chịu trách nhiệm. Nếu áp đặt flat hierarchy khi chưa có các điều kiện này → sai lầm "vượt trước" → hỗn loạn.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center justify-between">
+                            <button onclick="showLesson('M5-L4')" class="text-sm text-text-muted-light hover:text-primary flex items-center gap-1"><span class="material-symbols-outlined text-sm">arrow_back</span> Bài trước</button>
+                            <button onclick="completeLesson('M5-L5')" id="btn-complete-M5-L5" class="bg-primary hover:bg-emerald-700 text-white font-semibold px-8 py-3 rounded-xl transition-colors flex items-center gap-2 text-sm"><span class="material-symbols-outlined text-sm">check_circle</span> Hoàn thành</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BÀI 5.6: VẬN DỤNG QUẢN LÝ DOANH NGHIỆP & TỔNG KẾT -->
+            <div id="lesson-M5-L6" class="lesson-content hidden">
+                <div class="bg-surface-light dark:bg-surface-dark rounded-3xl border border-gray-100 dark:border-gray-700 shadow-sm overflow-hidden">
+                    <div class="lesson-header-academic">
+                        <div class="flex items-center gap-3 mb-3"><span class="text-3xl">🏢</span><span class="text-teal-100 text-sm font-semibold uppercase tracking-wider">Bài 5.6 — Module 5</span></div>
+                        <h2 class="font-display text-3xl font-bold text-white mb-2">Vận dụng vào Quản lý Doanh nghiệp & Tổng kết</h2>
+                        <p class="text-teal-100 text-sm">🎯 <strong>Mục tiêu:</strong> Áp dụng quy luật QHSX-LLSX vào 3 lĩnh vực quản lý doanh nghiệp; hiểu vận dụng của Đảng CSVN; viết mini-essay tổng kết. <em>Ước lượng: 10 phút + 20 phút bài tập.</em></p>
+                    </div>
+                    <div class="p-8 space-y-8">
+                        <div class="bg-teal-50 dark:bg-teal-900/20 border-l-4 border-teal-500 rounded-r-2xl p-6">
+                            <p class="text-xs font-bold text-teal-700 uppercase tracking-wider mb-2">📖 Trích dẫn kinh điển — Triet.txt, dòng 930</p>
+                            <blockquote class="font-display text-lg italic text-text-main-light dark:text-text-main-dark leading-relaxed">
+                                "Nền kinh tế thị trường định hướng xã hội chủ nghĩa là mô hình kinh tế tổng quát, là sự vận dụng quy luật quan hệ sản xuất phù hợp với trình độ phát triển của lực lượng sản xuất trong phát triển kinh tế ở Việt Nam hiện nay."
+                            </blockquote>
+                        </div>
+
+                        <div class="space-y-6">
+                            <h3 class="font-display text-xl font-bold">3 Lĩnh vực Vận dụng trong Quản lý Doanh nghiệp</h3>
+                            <div class="grid md:grid-cols-3 gap-5">
+                                <div class="bg-emerald-50 dark:bg-emerald-900/20 rounded-2xl p-5 border border-emerald-200">
+                                    <div class="text-3xl mb-3 text-center">🏛️</div>
+                                    <h4 class="font-bold text-emerald-700 text-center mb-3">① Quan hệ Sở hữu & Quản trị</h4>
+                                    <ul class="text-xs text-text-muted-light dark:text-text-muted-dark space-y-2">
+                                        <li>• Chọn mô hình sở hữu phù hợp quy mô LLSX: 1 chủ → hợp danh → cổ phần → ESOP</li>
+                                        <li>• Cơ chế quản trị: HĐQT tập trung vs. phi tập trung phải phù hợp năng lực nhân lực</li>
+                                        <li>• Khi LLSX (con người, công nghệ) phát triển → điều chỉnh cơ cấu sở hữu (trao quyền, cổ phần hóa)</li>
+                                    </ul>
+                                </div>
+                                <div class="bg-teal-50 dark:bg-teal-900/20 rounded-2xl p-5 border border-teal-200">
+                                    <div class="text-3xl mb-3 text-center">⚙️</div>
+                                    <h4 class="font-bold text-teal-700 text-center mb-3">② Tổ chức & Phân công Lao động</h4>
+                                    <ul class="text-xs text-text-muted-light dark:text-text-muted-dark space-y-2">
+                                        <li>• Cơ cấu tổ chức phù hợp trình độ công nghệ và kỹ năng nhân sự</li>
+                                        <li>• Phân công lao động kết hợp AI → con người đảm nhận công việc sáng tạo cao hơn</li>
+                                        <li>• Agile/flat hierarchy phù hợp với LLSX tri thức; phân cấp rõ ràng phù hợp LLSX sản xuất truyền thống</li>
+                                    </ul>
+                                </div>
+                                <div class="bg-green-50 dark:bg-green-900/20 rounded-2xl p-5 border border-green-200">
+                                    <div class="text-3xl mb-3 text-center">💰</div>
+                                    <h4 class="font-bold text-green-700 text-center mb-3">③ Cơ chế Phân phối Thu nhập</h4>
+                                    <ul class="text-xs text-text-muted-light dark:text-text-muted-dark space-y-2">
+                                        <li>• Thiết kế lương-thưởng phù hợp vai trò và đóng góp thực tế (kết nối với LLSX)</li>
+                                        <li>• Cơ chế kích thích sáng tạo: ESOPs, profit-sharing cho lao động tri thức</li>
+                                        <li>• Phân phối không phù hợp → người tài rời đi, LLSX suy yếu</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="bg-indigo-50 dark:bg-indigo-900/10 border border-indigo-200 rounded-2xl p-5">
+                                <h4 class="font-bold text-indigo-700 mb-3">🇻🇳 Vận dụng của Đảng CSVN: Đổi mới 1986 → Đến nay</h4>
+                                <p class="text-sm text-text-muted-light dark:text-text-muted-dark mb-3">Đảng CSVN đã vận dụng quy luật QHSX-LLSX qua việc xây dựng nền kinh tế thị trường định hướng XHCN — thay đổi QHSX (từ bao cấp sang thị trường) cho phù hợp với trình độ LLSX thực tế, đồng thời phát triển LLSX (đào tạo nguồn nhân lực, thu hút FDI, ứng dụng KH-CN). (dòng 930)</p>
+                                <div class="grid md:grid-cols-3 gap-3 text-xs text-center">
+                                    <div class="bg-white dark:bg-gray-800 rounded-xl p-3"><p class="font-bold text-indigo-600">Sở hữu</p><p class="text-gray-400">Đa thành phần → phù hợp LLSX đa dạng trình độ</p></div>
+                                    <div class="bg-white dark:bg-gray-800 rounded-xl p-3"><p class="font-bold text-indigo-600">Tổ chức-QL</p><p class="text-gray-400">Tự chủ DN → phát huy sáng tạo, cạnh tranh lành mạnh</p></div>
+                                    <div class="bg-white dark:bg-gray-800 rounded-xl p-3"><p class="font-bold text-indigo-600">Phân phối</p><p class="text-gray-400">Theo lao động + hiệu quả → kích thích LLSX</p></div>
+                                </div>
+                            </div>
+
+                            <div class="bg-purple-50 dark:bg-purple-900/10 border border-purple-200 rounded-2xl p-5">
+                                <h4 class="font-bold text-purple-700 mb-2">🔗 Kết nối sang Module 6: Cơ sở Hạ tầng — Kiến trúc Thượng tầng</h4>
+                                <p class="text-sm text-text-muted-light dark:text-text-muted-dark">Từ quy luật QHSX-LLSX → ta hiểu được tại sao kinh tế quyết định chính trị, pháp luật, văn hóa. Toàn bộ quan hệ sản xuất (QHSX) tạo thành "cơ sở hạ tầng" (CSHT) của xã hội. CSHT quyết định "kiến trúc thượng tầng" (KTTT) — nhà nước, pháp luật, hệ tư tưởng. Đây là nội dung Module 6.</p>
+                                <div class="mt-3 flex justify-end">
+                                    <a href="module6.html" class="text-xs text-purple-600 hover:text-purple-800 font-semibold flex items-center gap-1">Module 6: CSHT-KTTT <span class="material-symbols-outlined text-sm">arrow_forward</span></a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="border-t border-gray-100 dark:border-gray-700 pt-6">
+                            <h3 class="font-display text-lg font-bold mb-4">Câu hỏi phản tư</h3>
+                            <div class="space-y-3">
+                                <div class="reflection-item">
+                                    <button onclick="toggleReflection(this)" class="w-full text-left p-4 bg-gray-50 dark:bg-gray-800 rounded-xl hover:bg-teal-50 dark:hover:bg-teal-900/20 transition-colors text-sm font-medium flex justify-between items-center">
+                                        <span>1. Tại sao "nền kinh tế thị trường định hướng XHCN" được coi là "sự vận dụng quy luật QHSX-LLSX"? Phân tích ba mặt QHSX trong mô hình này.</span>
+                                        <span class="material-symbols-outlined text-gray-400 flex-shrink-0 ml-2">expand_more</span>
+                                    </button>
+                                    <div class="reflection-answer p-4 text-sm text-text-muted-light dark:text-text-muted-dark">
+                                        <strong class="text-teal-600 block mb-1">Gợi ý:</strong> Mô hình này thừa nhận: (1) Sở hữu: đa thành phần — phù hợp với LLSX đa dạng trình độ (từ nông nghiệp thủ công đến công nghệ cao), với sở hữu nhà nước giữ vai trò chủ đạo trong LLSX chiến lược; (2) Tổ chức-QL: thị trường là cơ chế phân bổ nguồn lực chính — phù hợp hơn bao cấp tập trung với LLSX có tính sáng tạo; (3) Phân phối: theo lao động + hiệu quả sản xuất kinh doanh — kích thích LLSX. Đây là QHSX phù hợp trình độ LLSX Việt Nam hiện nay. (dòng 930)
+                                    </div>
+                                </div>
+                                <div class="reflection-item">
+                                    <button onclick="toggleReflection(this)" class="w-full text-left p-4 bg-gray-50 dark:bg-gray-800 rounded-xl hover:bg-teal-50 dark:hover:bg-teal-900/20 transition-colors text-sm font-medium flex justify-between items-center">
+                                        <span>2. Nhìn lại 6 bài học Module 5: quy luật nào bạn thấy ứng dụng thiết thực nhất với nghề nghiệp tương lai của bạn? Tại sao?</span>
+                                        <span class="material-symbols-outlined text-gray-400 flex-shrink-0 ml-2">expand_more</span>
+                                    </button>
+                                    <div class="reflection-answer p-4 text-sm text-text-muted-light dark:text-text-muted-dark">
+                                        <strong class="text-teal-600 block mb-1">Gợi ý:</strong> Câu hỏi mở — không có đáp án duy nhất. Gợi ý: Nếu làm quản lý → nguyên tắc "thay đổi QHSX phải căn cứ LLSX thực tế" giúp tránh áp đặt cơ chế không phù hợp. Nếu làm khởi nghiệp → hiểu LLSX là nền tảng, QHSX là điều kiện → thiết kế cơ cấu sở hữu và phân phối phù hợp trình độ đội ngũ. Nếu làm công nghệ → hiểu rằng đổi mới công nghệ (LLSX) sẽ đòi hỏi thay đổi cách tổ chức và phân phối (QHSX).
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-emerald-50 dark:bg-emerald-900/20 border border-emerald-200 rounded-2xl p-6">
+                            <h3 class="font-display text-lg font-bold mb-3">✍️ Mini-essay Tổng kết Module 5</h3>
+                            <p class="text-sm text-text-muted-light dark:text-text-muted-dark mb-4">Chọn một doanh nghiệp, tổ chức hoặc ngành kinh tế bạn quan tâm. Phân tích: (1) LLSX hiện tại của tổ chức đó; (2) QHSX hiện có (3 mặt); (3) Hai mặt đang phù hợp hay mâu thuẫn? (4) Nếu có mâu thuẫn, đề xuất điều chỉnh QHSX theo đúng nguyên tắc phương pháp luận của quy luật.</p>
+                            <textarea id="short-answer-M5-L6" class="short-answer-textarea w-full p-4 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500" placeholder="Viết mini-essay (200–300 từ)..."></textarea>
+                            <div class="flex justify-between items-center mt-2">
+                                <span id="word-count-M5-L6" class="text-xs text-gray-400">0 từ</span>
+                                <button onclick="submitShortAnswer('M5-L6')" class="bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold px-5 py-2 rounded-xl transition-colors">Nộp mini-essay</button>
+                            </div>
+                            <div id="short-answer-feedback-M5-L6" class="hidden"></div>
+                        </div>
+
+                        <div class="flex items-center justify-between">
+                            <button onclick="showLesson('M5-L5')" class="text-sm text-text-muted-light hover:text-primary flex items-center gap-1"><span class="material-symbols-outlined text-sm">arrow_back</span> Bài trước</button>
+                            <div class="flex gap-3">
+                                <button onclick="openFormativeQuiz('M5-FQ3')" class="bg-teal-600 hover:bg-teal-700 text-white font-semibold px-6 py-3 rounded-xl transition-colors flex items-center gap-2 text-sm">
+                                    <span class="material-symbols-outlined text-sm">quiz</span> Kiểm tra hình thành (Bài 5.5–5.6)
+                                </button>
+                                <button onclick="completeLesson('M5-L6')" id="btn-complete-M5-L6" class="bg-primary hover:bg-emerald-700 text-white font-semibold px-6 py-3 rounded-xl transition-colors flex items-center gap-2 text-sm"><span class="material-symbols-outlined text-sm">check_circle</span> Hoàn thành</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- MODULE QUIZ BANNER -->
+        <section id="module-quiz-banner" class="hidden mb-10">
+            <div class="bg-gradient-to-r from-emerald-600 to-teal-500 rounded-3xl p-8 text-white text-center shadow-lg">
+                <p class="text-4xl mb-3">🎓</p>
+                <h2 class="font-display text-2xl font-bold mb-2">Chúc mừng! Bạn đã hoàn thành 6 bài học Module 5!</h2>
+                <p class="text-emerald-100 mb-6">Hãy kiểm tra toàn bộ kiến thức về Quy luật QHSX-LLSX với 12 câu hỏi tổng kết.</p>
+                <button onclick="openModuleQuiz()" class="bg-white text-emerald-700 hover:bg-emerald-50 font-bold px-10 py-4 rounded-2xl transition-colors text-lg">
+                    📝 Làm bài kiểm tra Module 5
+                </button>
+            </div>
+        </section>
+
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <!-- QUIZ MODAL -->
+    <div id="quiz-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
+        <div class="bg-white dark:bg-gray-900 rounded-3xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            <div class="sticky top-0 bg-white dark:bg-gray-900 p-6 border-b border-gray-100 dark:border-gray-700 flex justify-between items-start z-10">
+                <div>
+                    <h2 id="quiz-modal-title" class="font-display text-xl font-bold"></h2>
+                    <p id="quiz-modal-sub" class="text-xs text-text-muted-light dark:text-text-muted-dark mt-1"></p>
+                </div>
+                <button onclick="closeQuizModal()" class="text-gray-400 hover:text-gray-600 flex-shrink-0 ml-4">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+            <div id="quiz-modal-body" class="p-6"></div>
+        </div>
+    </div>
+
+    <!-- ACHIEVEMENT TOAST -->
+    <div id="achievement-toast" class="hidden fixed top-4 right-4 z-50 bg-white dark:bg-gray-800 rounded-2xl shadow-2xl border border-emerald-200 dark:border-emerald-700 p-4 max-w-xs">
+        <div class="flex items-center gap-3">
+            <span id="achievement-icon" class="text-3xl achievement-earned"></span>
+            <div>
+                <p class="text-xs font-bold text-emerald-600 uppercase tracking-wider">Thành tích mới!</p>
+                <p id="achievement-name" class="font-bold text-sm"></p>
+                <p id="achievement-desc" class="text-xs text-text-muted-light dark:text-text-muted-dark"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- AI PANEL FAB -->
+    <button onclick="toggleAIPanel()" class="fixed bottom-6 right-6 z-40 bg-emerald-600 hover:bg-emerald-700 text-white rounded-2xl shadow-lg w-14 h-14 flex items-center justify-center transition-all hover:scale-105">
+        <span class="material-symbols-outlined">smart_toy</span>
+    </button>
+
+    <!-- AI PANEL -->
+    <aside id="ai-panel" class="hidden-panel fixed right-0 top-0 h-full w-80 bg-white dark:bg-gray-900 border-l border-gray-200 dark:border-gray-700 z-40 flex flex-col shadow-2xl">
+        <div class="bg-gradient-to-r from-emerald-700 to-teal-600 p-5 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <span class="material-symbols-outlined text-white">smart_toy</span>
+                <div>
+                    <p class="text-white font-bold text-sm">AI Triết học — Module 5</p>
+                    <p class="text-emerald-100 text-xs">Hỏi về LLSX, QHSX & Quy luật</p>
+                </div>
+            </div>
+            <button onclick="toggleAIPanel()" class="text-emerald-100 hover:text-white">
+                <span class="material-symbols-outlined text-sm">close</span>
+            </button>
+        </div>
+        <div class="p-4 border-b border-gray-100 dark:border-gray-700">
+            <p class="text-xs font-semibold text-text-muted-light dark:text-text-muted-dark mb-2">Gợi ý nhanh:</p>
+            <div class="flex flex-wrap gap-2">
+                <button onclick="sendAIPrompt('Lực lượng sản xuất là gì?')" class="text-xs bg-emerald-50 dark:bg-emerald-900/20 text-emerald-700 dark:text-emerald-300 px-2 py-1 rounded-lg hover:bg-emerald-100 transition-colors">LLSX là gì?</button>
+                <button onclick="sendAIPrompt('Quan hệ sản xuất gồm mấy mặt?')" class="text-xs bg-emerald-50 dark:bg-emerald-900/20 text-emerald-700 dark:text-emerald-300 px-2 py-1 rounded-lg hover:bg-emerald-100 transition-colors">Ba mặt QHSX?</button>
+                <button onclick="sendAIPrompt('Giải thích quy luật QHSX phù hợp với LLSX')" class="text-xs bg-emerald-50 dark:bg-emerald-900/20 text-emerald-700 dark:text-emerald-300 px-2 py-1 rounded-lg hover:bg-emerald-100 transition-colors">Quy luật?</button>
+                <button onclick="sendAIPrompt('Tại sao QHSX kìm hãm LLSX?')" class="text-xs bg-teal-50 dark:bg-teal-900/20 text-teal-700 dark:text-teal-300 px-2 py-1 rounded-lg hover:bg-teal-100 transition-colors">Kìm hãm?</button>
+                <button onclick="sendAIPrompt('Vận dụng vào quản lý doanh nghiệp như thế nào?')" class="text-xs bg-teal-50 dark:bg-teal-900/20 text-teal-700 dark:text-teal-300 px-2 py-1 rounded-lg hover:bg-teal-100 transition-colors">Vận dụng DN?</button>
+            </div>
+        </div>
+        <div id="ai-chat-history" class="flex-grow overflow-y-auto p-4 space-y-4 text-sm">
+            <div class="bg-emerald-50 dark:bg-emerald-900/20 rounded-xl p-3">
+                <p class="text-xs font-bold text-emerald-700 mb-1">🤖 AI Triết học — Module 5</p>
+                <p class="text-sm text-text-main-light dark:text-text-main-dark">Xin chào! Tôi là trợ lý AI của Module 5. Tôi có thể trả lời các câu hỏi về: lực lượng sản xuất, quan hệ sản xuất, phương thức sản xuất, quy luật phù hợp, kìm hãm LLSX, và vận dụng vào quản lý doanh nghiệp.</p>
+                <p class="text-xs text-gray-400 mt-1">📖 Dựa trên: Triet.txt, dòng 900–930</p>
+            </div>
+        </div>
+        <div class="p-4 border-t border-gray-100 dark:border-gray-700">
+            <div class="flex gap-2">
+                <input id="ai-input" type="text" placeholder="Hỏi về quy luật LLSX-QHSX..." class="flex-grow text-sm p-3 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500" onkeydown="if(event.key==='Enter') sendAIMessage()" />
+                <button onclick="sendAIMessage()" class="bg-emerald-600 hover:bg-emerald-700 text-white p-3 rounded-xl transition-colors">
+                    <span class="material-symbols-outlined text-sm">send</span>
+                </button>
+            </div>
+        </div>
+    </aside>
+
+    <script src="js/load-components.js"></script>
+    <script src="js/quiz-data.js"></script>
+    <script src="js/quiz-data-m5.js"></script>
+    <script>
+    // =============================================
+    // STATE & PERSISTENCE
+    // =============================================
+    const M5_LESSONS = ['M5-L1','M5-L2','M5-L3','M5-L4','M5-L5','M5-L6'];
+
+    let M5_STATE = {
+        completedLessons: new Set(),
+        quizResults: {}
+    };
+
+    function loadM5State() {
+        try {
+            const raw = localStorage.getItem('philo_quiz_results');
+            if (!raw) return;
+            const data = JSON.parse(raw);
+            if (data.M5_completed) M5_STATE.completedLessons = new Set(data.M5_completed);
+            if (data.M5_quiz) M5_STATE.quizResults = data.M5_quiz;
+        } catch(e) {}
+    }
+
+    function saveM5State() {
+        try {
+            const existing = JSON.parse(localStorage.getItem('philo_quiz_results') || '{}');
+            existing.M5_completed = [...M5_STATE.completedLessons];
+            existing.M5_quiz = M5_STATE.quizResults;
+            localStorage.setItem('philo_quiz_results', JSON.stringify(existing));
+        } catch(e) {}
+    }
+
+    // =============================================
+    // LESSON NAVIGATION
+    // =============================================
+    function showLesson(id) {
+        document.querySelectorAll('.lesson-content').forEach(el => el.classList.add('hidden'));
+        const el = document.getElementById('lesson-' + id);
+        if (el) { el.classList.remove('hidden'); el.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+        document.querySelectorAll('.lesson-tab').forEach(t => {
+            t.classList.remove('border-emerald-500','bg-emerald-50','dark:bg-emerald-900/10');
+            t.classList.add('border-gray-100','dark:border-gray-700');
+        });
+        const tab = document.getElementById('tab-' + id);
+        if (tab) {
+            tab.classList.add('border-emerald-500','bg-emerald-50','dark:bg-emerald-900/10');
+            tab.classList.remove('border-gray-100','dark:border-gray-700');
+        }
+    }
+
+    function completeLesson(id) {
+        M5_STATE.completedLessons.add(id);
+        saveM5State();
+        updateProgress();
+        const dot = document.getElementById('dot-' + id);
+        if (dot) { dot.classList.remove('bg-gray-300','dark:bg-gray-600'); dot.classList.add('bg-emerald-500'); }
+        const btn = document.getElementById('btn-complete-' + id);
+        if (btn) {
+            btn.classList.remove('bg-primary','hover:bg-emerald-700');
+            btn.classList.add('bg-green-500','hover:bg-green-600');
+            btn.innerHTML = '<span class="material-symbols-outlined">check_circle</span> Đã hoàn thành ✓';
+        }
+        const idx = M5_LESSONS.indexOf(id);
+        if (idx < 5) {
+            setTimeout(() => showLesson(M5_LESSONS[idx + 1]), 300);
+        }
+        if (M5_STATE.completedLessons.size === 6) {
+            document.getElementById('module-quiz-banner').classList.remove('hidden');
+        }
+    }
+
+    function updateProgress() {
+        const done = M5_STATE.completedLessons.size;
+        const pct = Math.round((done / 6) * 100);
+        const bar = document.getElementById('m5-progress-bar');
+        const label = document.getElementById('m5-progress-label');
+        const pctEl = document.getElementById('m5-progress-pct');
+        if (bar) bar.style.width = pct + '%';
+        if (label) label.textContent = done + ' / 6 bài hoàn thành';
+        if (pctEl) pctEl.textContent = pct + '%';
+    }
+
+    function toggleReflection(btn) {
+        const answer = btn.nextElementSibling;
+        const icon = btn.querySelector('.material-symbols-outlined');
+        if (answer) {
+            answer.classList.toggle('open');
+            if (icon) icon.textContent = answer.classList.contains('open') ? 'expand_less' : 'expand_more';
+        }
+    }
+
+    // =============================================
+    // SHORT ANSWERS
+    // =============================================
+    function countWords(text) {
+        return text.trim() ? text.trim().split(/\s+/).length : 0;
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        ['M5-L4','M5-L6'].forEach(lid => {
+            const ta = document.getElementById('short-answer-' + lid);
+            const counter = document.getElementById('word-count-' + lid);
+            if (ta && counter) {
+                ta.addEventListener('input', () => {
+                    const words = countWords(ta.value);
+                    const minMax = lid === 'M5-L6' ? [200, 300] : [150, 300];
+                    counter.textContent = words + ' từ';
+                    counter.className = words < minMax[0] ? 'text-xs text-gray-400' :
+                                        words > minMax[1] ? 'text-xs text-red-500' :
+                                        'text-xs text-green-500';
+                });
+            }
+        });
+
+        loadM5State();
+        updateProgress();
+
+        if (M5_STATE.completedLessons.size > 0) {
+            showLesson(M5_LESSONS[Math.min(M5_STATE.completedLessons.size, 5)]);
+        } else {
+            showLesson('M5-L1');
+        }
+
+        if (M5_STATE.completedLessons.size === 6) {
+            document.getElementById('module-quiz-banner').classList.remove('hidden');
+        }
+
+        M5_STATE.completedLessons.forEach(id => {
+            const dot = document.getElementById('dot-' + id);
+            if (dot) { dot.classList.remove('bg-gray-300','dark:bg-gray-600'); dot.classList.add('bg-emerald-500'); }
+            const btn = document.getElementById('btn-complete-' + id);
+            if (btn) {
+                btn.classList.remove('bg-primary','hover:bg-emerald-700');
+                btn.classList.add('bg-green-500','hover:bg-green-600');
+                btn.innerHTML = '<span class="material-symbols-outlined">check_circle</span> Đã hoàn thành ✓';
+            }
+        });
+    });
+
+    function submitShortAnswer(lessonId) {
+        const ta = document.getElementById('short-answer-' + lessonId);
+        const feedbackEl = document.getElementById('short-answer-feedback-' + lessonId);
+        if (!ta || !feedbackEl) return;
+        const text = ta.value.trim();
+        const words = countWords(text);
+        const minWords = lessonId === 'M5-L6' ? 200 : 150;
+        if (words < minWords) {
+            feedbackEl.className = 'mt-4 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 rounded-xl text-sm text-red-600';
+            feedbackEl.textContent = `Bài làm cần ít nhất ${minWords} từ. Hiện tại: ${words} từ.`;
+            feedbackEl.classList.remove('hidden'); return;
+        }
+        try {
+            const saved = JSON.parse(localStorage.getItem('philo_short_answers') || '[]');
+            saved.push({ id: lessonId + '-' + Date.now(), lessonId, module: 'M5', text, wordCount: words, timestamp: new Date().toISOString() });
+            localStorage.setItem('philo_short_answers', JSON.stringify(saved));
+        } catch(e) {}
+        const rubric = lessonId === 'M5-L4'
+            ? '☐ 1đ — Xác định đúng LLSX đang phát triển<br>☐ 1đ — Chỉ ra QHSX đang kìm hãm (mặt nào?)<br>☐ 1đ — Đề xuất điều chỉnh QHSX phù hợp LLSX mới'
+            : '☐ 1đ — Phân tích đúng LLSX và ba mặt QHSX<br>☐ 1đ — Đánh giá phù hợp/mâu thuẫn có dẫn chứng<br>☐ 1đ — Đề xuất điều chỉnh dựa trên nguyên tắc phương pháp luận';
+        feedbackEl.className = 'mt-4 p-4 bg-green-50 dark:bg-green-900/20 border border-green-200 rounded-xl text-sm text-green-700 dark:text-green-400';
+        feedbackEl.innerHTML = `✅ <strong>Đã lưu bài làm!</strong> (${words} từ)<br><br>
+            <strong>Rubric tự đánh giá:</strong><br>${rubric}<br><br>
+            <em class="text-xs">Bài làm đã lưu vào localStorage — module: 'M5'.</em>`;
+        feedbackEl.classList.remove('hidden');
+        ta.disabled = true;
+    }
+
+    // =============================================
+    // QUIZ SYSTEM
+    // =============================================
+    let currentQuizData = null;
+    let currentQuizAnswers = {};
+    let currentQuizSubmitted = false;
+
+    function openFormativeQuiz(quizId) {
+        if (!window.FORMATIVE_QUIZZES_M5) { alert('Quiz data chưa tải. Hãy thử lại.'); return; }
+        const quiz = window.FORMATIVE_QUIZZES_M5[quizId];
+        if (!quiz) { alert('Không tìm thấy quiz: ' + quizId); return; }
+        currentQuizData = { ...quiz, id: quizId };
+        currentQuizAnswers = {};
+        currentQuizSubmitted = false;
+        renderQuizModal(quiz);
+        document.getElementById('quiz-modal').classList.remove('hidden');
+    }
+
+    function openModuleQuiz() {
+        if (!window.MODULE_QUIZ_M5) { alert('Quiz data chưa tải.'); return; }
+        currentQuizData = window.MODULE_QUIZ_M5;
+        currentQuizAnswers = {};
+        currentQuizSubmitted = false;
+        renderQuizModal(window.MODULE_QUIZ_M5);
+        document.getElementById('quiz-modal').classList.remove('hidden');
+    }
+
+    function renderQuizModal(quiz) {
+        document.getElementById('quiz-modal-title').textContent = quiz.title;
+        document.getElementById('quiz-modal-sub').textContent = 'Cần đạt ' + quiz.passingScore + '% • ' + quiz.questions.length + ' câu hỏi';
+        let html = '<div class="space-y-6">';
+        quiz.questions.forEach((q, qi) => {
+            html += `<div class="quiz-question" data-qid="${q.id}">
+                <p class="font-medium text-sm mb-3">${qi+1}. ${q.text}</p>
+                <div class="space-y-2">`;
+            q.options.forEach(opt => {
+                html += `<label class="quiz-option flex items-start gap-3 p-3 rounded-xl border border-gray-200 dark:border-gray-600 cursor-pointer hover:border-emerald-500 hover:bg-emerald-50 dark:hover:bg-emerald-900/10 transition-all">
+                    <input type="radio" name="q_${q.id}" value="${opt.id}" onclick="selectAnswer('${q.id}','${opt.id}')" class="mt-0.5 flex-shrink-0">
+                    <span class="text-sm">${opt.text}</span>
+                </label>`;
+            });
+            html += `</div></div>`;
+        });
+        html += `</div><div class="mt-6 flex justify-end">
+            <button onclick="submitQuiz()" id="btn-submit-quiz" class="bg-gray-300 dark:bg-gray-600 text-gray-500 dark:text-gray-400 font-bold px-8 py-3 rounded-xl transition-all cursor-not-allowed" data-ready="false">
+                Nộp bài
+            </button></div>`;
+        document.getElementById('quiz-modal-body').innerHTML = html;
+    }
+
+    function selectAnswer(qId, optId) {
+        currentQuizAnswers[qId] = optId;
+        const allAnswered = currentQuizData.questions.every(q => currentQuizAnswers[q.id]);
+        const btn = document.getElementById('btn-submit-quiz');
+        if (btn) {
+            if (allAnswered) {
+                btn.setAttribute('data-ready', 'true');
+                btn.className = 'bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-8 py-3 rounded-xl transition-all cursor-pointer';
+            } else {
+                btn.setAttribute('data-ready', 'false');
+                btn.className = 'bg-gray-300 dark:bg-gray-600 text-gray-500 dark:text-gray-400 font-bold px-8 py-3 rounded-xl transition-all cursor-not-allowed';
+            }
+        }
+    }
+
+    function submitQuiz() {
+        const btn = document.getElementById('btn-submit-quiz');
+        if (btn && btn.getAttribute('data-ready') !== 'true') return;
+        if (currentQuizSubmitted) return;
+        currentQuizSubmitted = true;
+        const quiz = currentQuizData;
+        let correct = 0;
+        quiz.questions.forEach(q => {
+            const userAns = currentQuizAnswers[q.id];
+            const isCorrect = userAns === q.correctOptionId;
+            if (isCorrect) correct++;
+            const qEl = document.querySelector(`[data-qid="${q.id}"]`);
+            if (!qEl) return;
+            qEl.querySelectorAll('.quiz-option').forEach(label => {
+                const radio = label.querySelector('input');
+                if (!radio) return;
+                if (radio.value === q.correctOptionId) label.classList.add('border-green-400','bg-green-50','dark:bg-green-900/20');
+                if (radio.value === userAns && !isCorrect) label.classList.add('border-red-400','bg-red-50','dark:bg-red-900/20');
+            });
+            const rationaleEl = document.createElement('div');
+            rationaleEl.className = 'mt-2 p-3 bg-emerald-50 dark:bg-emerald-900/20 rounded-lg text-xs text-text-muted-light dark:text-text-muted-dark';
+            rationaleEl.innerHTML = '<strong class="text-emerald-700">📖 Giải thích:</strong> ' + q.rationale;
+            qEl.appendChild(rationaleEl);
+        });
+        const score = Math.round((correct / quiz.questions.length) * 100);
+        const passed = score >= quiz.passingScore;
+        M5_STATE.quizResults[currentQuizData.id] = { score, correct, total: quiz.questions.length, passed, timestamp: Date.now() };
+        saveM5State();
+        if (passed && currentQuizData.id && currentQuizData.id.startsWith('M5-FQ')) {
+            try {
+                const qr = JSON.parse(localStorage.getItem('philo_quiz_results') || '{}');
+                if (!qr.mini_challenge_unlocked) qr.mini_challenge_unlocked = {};
+                qr.mini_challenge_unlocked.M5 = true;
+                localStorage.setItem('philo_quiz_results', JSON.stringify(qr));
+            } catch(e) {}
+        }
+        const resultHtml = `<div class="mb-6 p-4 rounded-2xl text-center ${passed ? 'bg-green-50 dark:bg-green-900/20 border border-green-200' : 'bg-red-50 dark:bg-red-900/20 border border-red-200'}">
+            <p class="text-4xl mb-2">${passed ? '🎉' : '📚'}</p>
+            <p class="text-2xl font-bold ${passed ? 'text-green-600' : 'text-red-600'}">${score}%</p>
+            <p class="text-sm font-medium">${correct}/${quiz.questions.length} câu đúng</p>
+            <p class="text-sm mt-1 ${passed ? 'text-green-600' : 'text-red-600'}">${passed ? '✅ Đạt!' : '❌ Chưa đạt — hãy ôn lại và thử lại.'}</p>
+        </div>`;
+        document.getElementById('quiz-modal-body').insertAdjacentHTML('afterbegin', resultHtml);
+        document.getElementById('btn-submit-quiz').textContent = passed ? 'Tiếp tục ✓' : 'Đóng';
+        document.getElementById('btn-submit-quiz').onclick = closeQuizModal;
+        if (passed && quiz.achievement) showAchievement(quiz.achievement);
+        if (passed && currentQuizData.id === 'M5-FINAL') checkThreeLawsScholar();
+    }
+
+    function closeQuizModal() { document.getElementById('quiz-modal').classList.add('hidden'); }
+
+    // =============================================
+    // ACHIEVEMENTS
+    // =============================================
+    const M5_ACHIEVEMENTS = {
+        'production-analyst':    { name: 'Production Analyst',    icon: '🥉', desc: 'Pass M5-FQ1: Nhận diện đúng LLSX & QHSX — +5 XP' },
+        'production-law-master': { name: 'Production Law Master', icon: '🥈', desc: '≥75% Module Quiz M5: Nắm vững quy luật QHSX-LLSX — +10 XP' },
+        'three-laws-scholar':    { name: 'Three Laws Scholar',    icon: '🥇', desc: 'Hoàn thành cả ba quy luật: M3 + M4 + M5 — +20 XP' }
+    };
+
+    function showAchievement(slug) {
+        const ach = M5_ACHIEVEMENTS[slug];
+        if (!ach) return;
+        try {
+            const saved = JSON.parse(localStorage.getItem('philo_achievements') || '[]');
+            if (!saved.find(a => a.id === slug)) {
+                const xpMap = { 'production-analyst': 5, 'production-law-master': 10, 'three-laws-scholar': 20 };
+                const module = slug === 'three-laws-scholar' ? 'cross' : 'M5';
+                saved.push({ id: slug, slug, earnedAt: Date.now(), module, xp: xpMap[slug] || 5 });
+                localStorage.setItem('philo_achievements', JSON.stringify(saved));
+            }
+        } catch(e) {}
+        document.getElementById('achievement-icon').textContent = ach.icon;
+        document.getElementById('achievement-name').textContent = ach.name;
+        document.getElementById('achievement-desc').textContent = ach.desc;
+        const toast = document.getElementById('achievement-toast');
+        toast.classList.remove('hidden');
+        setTimeout(() => toast.classList.add('hidden'), 4500);
+    }
+
+    function checkThreeLawsScholar() {
+        try {
+            const qr = JSON.parse(localStorage.getItem('philo_quiz_results') || '{}');
+            const m3done = qr.M3_quiz && Object.values(qr.M3_quiz).some(r => r.passed && r.total >= 10);
+            const m4done = qr.M4_quiz && Object.values(qr.M4_quiz).some(r => r.passed && r.total >= 10);
+            const m5done = M5_STATE.quizResults['M5-FINAL'] && M5_STATE.quizResults['M5-FINAL'].passed;
+            if (m3done && m4done && m5done) {
+                setTimeout(() => showAchievement('three-laws-scholar'), 2000);
+            }
+        } catch(e) {}
+    }
+
+    // =============================================
+    // AI PANEL
+    // =============================================
+    let aiPanelOpen = false;
+    function toggleAIPanel() {
+        aiPanelOpen = !aiPanelOpen;
+        document.getElementById('ai-panel').classList[aiPanelOpen ? 'remove' : 'add']('hidden-panel');
+    }
+
+    const AI_M5_RESPONSES = {
+        'lực lượng sản xuất': {
+            keywords: ['lực lượng sản xuất', 'llsx', 'người lao động', 'công cụ lao động', 'tư liệu'],
+            answer: '"Lực lượng sản xuất là sự kết hợp giữa người lao động với tư liệu sản xuất, tạo ra sức sản xuất và năng lực thực tiễn làm biến đổi các đối tượng vật chất." (dòng 902). Gồm: Người lao động (nhân tố hàng đầu, chủ thể sáng tạo) + Tư liệu sản xuất (công cụ LĐ — yếu tố cách mạng nhất; đối tượng LĐ; phương tiện LĐ). Khoa học là LLSX trực tiếp trong thời đại 4.0 (dòng 907).',
+            sourceRef: 'Triet.txt, dòng 902–908'
+        },
+        'quan hệ sản xuất': {
+            keywords: ['quan hệ sản xuất', 'qhsx', 'sở hữu', 'phân phối', 'tổ chức quản lý', 'ba mặt'],
+            answer: '"Quan hệ sản xuất là tổng hợp các quan hệ kinh tế-vật chất giữa người với người trong quá trình sản xuất vật chất." (dòng 909). Gồm 3 mặt: ① Sở hữu tư liệu sản xuất (xuất phát, cơ bản, trung tâm); ② Tổ chức-quản lý sản xuất; ③ Phân phối sản phẩm ("chất xúc tác" kinh tế). Quan hệ sở hữu quyết định các quan hệ còn lại.',
+            sourceRef: 'Triet.txt, dòng 909–912'
+        },
+        'phương thức sản xuất': {
+            keywords: ['phương thức sản xuất', 'ptsx', 'hai mặt'],
+            answer: '"Phương thức sản xuất là cách thức con người tiến hành quá trình sản xuất vật chất ở những giai đoạn lịch sử nhất định... là sự thống nhất giữa lực lượng sản xuất với một trình độ nhất định và quan hệ sản xuất tương ứng." (dòng 900–901). LLSX = nội dung năng động; QHSX = hình thức xã hội ổn định tương đối.',
+            sourceRef: 'Triet.txt, dòng 900–901'
+        },
+        'quy luật': {
+            keywords: ['quy luật', 'quy luat', 'phù hợp với trình độ', 'phổ biến'],
+            answer: '"Quy luật quan hệ sản xuất phù hợp với trình độ phát triển của lực lượng sản xuất là quy luật phổ biến tác động trong toàn bộ tiến trình lịch sử nhân loại." (dòng 926). LLSX quyết định QHSX (ra đời, nội dung, tính chất). QHSX tác động trở lại: thúc đẩy (khi phù hợp) hoặc kìm hãm (khi không phù hợp).',
+            sourceRef: 'Triet.txt, dòng 913–926'
+        },
+        'phù hợp': {
+            keywords: ['phù hợp', 'tương thích', 'thúc đẩy', 'hình thức phát triển'],
+            answer: '"Sự phù hợp của QHSX với LLSX là một trạng thái trong đó quan hệ sản xuất là \"hình thức phát triển\" của lực lượng sản xuất và \"tạo địa bàn đầy đủ\" cho lực lượng sản xuất phát triển." (dòng 921). Khi phù hợp: nền sản xuất đúng hướng, người lao động nhiệt tình, KH-CN áp dụng nhanh.',
+            sourceRef: 'Triet.txt, dòng 921–923'
+        },
+        'kìm hãm': {
+            keywords: ['kìm hãm', 'xiềng xích', 'không phù hợp', 'cản trở', 'phá hoại'],
+            answer: '"Khi đó bắt đầu thời đại một cuộc cách mạng xã hội." — C. Mác (dòng 925). Khi QHSX không phù hợp với LLSX (đi sau hoặc vượt trước), QHSX sẽ kìm hãm, thậm chí phá hoại LLSX. Từ chỗ là "hình thức phát triển", QHSX trở thành "xiềng xích" của LLSX. Yêu cầu tất yếu: xóa bỏ QHSX cũ, thiết lập QHSX mới phù hợp.',
+            sourceRef: 'Triet.txt, dòng 924–925'
+        },
+        'quản lý doanh nghiệp': {
+            keywords: ['quản lý', 'doanh nghiệp', 'vận dụng', 'thực tiễn', 'startup', 'công ty'],
+            answer: 'Vận dụng quy luật QHSX-LLSX vào quản lý doanh nghiệp: ① Sở hữu phù hợp quy mô LLSX (cổ phần, ESOP khi nhân lực tri thức). ② Tổ chức-QL phù hợp công nghệ (Agile khi LLSX số, phân cấp khi LLSX truyền thống). ③ Phân phối kích thích LLSX (lương-thưởng theo hiệu suất, chia sẻ giá trị với người lao động). Thay đổi QHSX phải căn cứ trình độ LLSX — không chủ quan. (dòng 929–930)',
+            sourceRef: 'Triet.txt, dòng 929–930'
+        }
+    };
+
+    function getAIResponse(query) {
+        const q = query.toLowerCase();
+        for (const [key, resp] of Object.entries(AI_M5_RESPONSES)) {
+            const matchKeywords = resp.keywords || [key];
+            if (matchKeywords.some(kw => q.includes(kw))) return resp;
+        }
+        if (q.includes('mâu thuẫn') || q.includes('module 4')) {
+            return { answer: 'Câu hỏi này liên quan Module 4 (Mâu thuẫn biện chứng). Tuy nhiên, M4 và M5 có liên hệ: mâu thuẫn LLSX↔QHSX là nguồn gốc cách mạng sản xuất! Hãy hỏi về: LLSX, QHSX, phương thức SX, quy luật, phù hợp, kìm hãm, quản lý doanh nghiệp.', sourceRef: 'Module 5 — Triet.txt, dòng 900–930' };
+        }
+        return { answer: 'Module 5 tập trung vào Quy luật QHSX phù hợp với LLSX. Tôi có thể trả lời về: (1) Lực lượng sản xuất là gì? (2) Ba mặt của quan hệ sản xuất? (3) Nội dung quy luật và vòng chu kỳ? (4) Tác động trở lại của QHSX? (5) 3 nguyên tắc phương pháp luận? (6) Vận dụng vào quản lý doanh nghiệp?', sourceRef: 'Triet.txt, dòng 900–930' };
+    }
+
+    function sendAIPrompt(prompt) { document.getElementById('ai-input').value = prompt; sendAIMessage(); }
+
+    function sendAIMessage() {
+        const input = document.getElementById('ai-input');
+        const query = input.value.trim();
+        if (!query) return;
+        input.value = '';
+        const history = document.getElementById('ai-chat-history');
+        history.insertAdjacentHTML('beforeend', `<div class="flex justify-end"><div class="bg-emerald-700 text-white rounded-xl rounded-tr-sm p-3 max-w-[85%]"><p class="text-sm">${query}</p></div></div>`);
+        const loadingId = 'ai-load-' + Date.now();
+        history.insertAdjacentHTML('beforeend', `<div id="${loadingId}" class="bg-emerald-50 dark:bg-emerald-900/20 rounded-xl p-3"><p class="text-xs text-text-muted-light">⏳ Đang tra cứu Triet.txt dòng 900–930...</p></div>`);
+        history.scrollTop = history.scrollHeight;
+        setTimeout(() => {
+            const resp = getAIResponse(query);
+            const loadEl = document.getElementById(loadingId);
+            if (loadEl) loadEl.outerHTML = `<div class="bg-emerald-50 dark:bg-emerald-900/20 rounded-xl p-3">
+                <p class="text-xs font-bold text-emerald-700 mb-1">🤖 AI Triết học — Module 5</p>
+                <p class="text-sm text-text-main-light dark:text-text-main-dark mb-2">${resp.answer}</p>
+                <p class="text-xs text-gray-400 border-t border-emerald-100 dark:border-emerald-800 pt-1 mt-1">📖 <em>${resp.sourceRef}</em></p>
+            </div>`;
+            history.scrollTop = history.scrollHeight;
+            try {
+                const aiHist = JSON.parse(localStorage.getItem('philoMapAiHistory') || '[]');
+                aiHist.push({ question: query, answer: resp.answer, sourceRef: resp.sourceRef, module: 'M5', timestamp: Date.now() });
+                if (aiHist.length > 50) aiHist.shift();
+                localStorage.setItem('philoMapAiHistory', JSON.stringify(aiHist));
+            } catch(e) {}
+        }, 700);
+    }
+    </script>
+</body>
+</html>

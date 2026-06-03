@@ -1,0 +1,350 @@
+/* 
+ * PhiloMap Academy Premium Stylesheet
+ * Inspired by libraries, ancient manuscripts, and prestigious universities.
+ * Crafted with Vanilla CSS for maximum architectural flexibility and aesthetics.
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
+
+:root {
+  /* Premium Design Tokens */
+  --primary-navy: #0F172A;
+  --secondary-gold: #D4A017;
+  --bg-ivory: #FAF8F3;
+  --accent-brown: #8B6F47;
+  --surface-white: #FFFFFF;
+  --border-color: rgba(139, 111, 71, 0.15);
+  
+  /* Text & Semantic Colors */
+  --text-main: #1E293B;
+  --text-muted: #64748B;
+  --primary-glow: rgba(212, 160, 23, 0.15);
+  --gold-glow: rgba(212, 160, 23, 0.3);
+  
+  /* Fonts */
+  --font-serif: 'Lora', 'Georgia', serif;
+  --font-sans: 'Lexend', 'Inter', sans-serif;
+  
+  /* Transitions */
+  --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-fast: all 0.2s ease;
+}
+
+/* Dark Mode Overrides */
+html.dark {
+  --primary-navy: #FAF8F3;
+  --secondary-gold: #F5C542; /* Slightly brighter gold for reading contrast */
+  --bg-ivory: #0A0F1D; /* Highly premium deep dark slate background */
+  --accent-brown: #A88D65;
+  --surface-white: #121826; /* Deep navy card surface */
+  --border-color: rgba(245, 197, 66, 0.15);
+  
+  --text-main: #FAF8F3; /* Ivory text in dark mode */
+  --text-muted: #94A3B8;
+  --primary-glow: rgba(245, 197, 66, 0.08);
+  --gold-glow: rgba(245, 197, 66, 0.25);
+}
+
+/* Base Style Restructures */
+body {
+  background-color: var(--bg-ivory) !important;
+  color: var(--text-main) !important;
+  font-family: var(--font-sans);
+  transition: background-color 0.5s ease, color 0.3s ease;
+}
+
+/* Scholarly Headings */
+h1, h2, h3, h4, .font-serif-academy {
+  font-family: var(--font-serif) !important;
+  font-weight: 700;
+}
+
+/* Elegant Manuscript Details */
+.double-border {
+  position: relative;
+  border: 1px solid var(--accent-brown);
+  padding: 4px;
+}
+
+.double-border::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  right: 3px;
+  bottom: 3px;
+  border: 1px solid var(--accent-brown);
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* Glassmorphism Academic Panel */
+.glass-academy {
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(139, 111, 71, 0.18);
+  box-shadow: 0 10px 40px -10px rgba(15, 23, 42, 0.05);
+}
+
+html.dark .glass-academy {
+  background: rgba(18, 24, 38, 0.7);
+  border: 1px solid rgba(245, 197, 66, 0.12);
+  box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.3);
+}
+
+/* Astrolabe Drop Shadows */
+.astrolabe-shadow {
+  box-shadow: 0 20px 50px -15px rgba(139, 111, 71, 0.12),
+              0 0 40px -5px rgba(212, 160, 23, 0.05);
+}
+
+html.dark .astrolabe-shadow {
+  box-shadow: 0 20px 50px -15px rgba(0, 0, 0, 0.5),
+              0 0 40px -5px rgba(245, 197, 66, 0.05);
+}
+
+/* Golden Underline Hover Animation */
+.link-gold-hover {
+  position: relative;
+}
+
+.link-gold-hover::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--secondary-gold);
+  transition: var(--transition-smooth);
+}
+
+.link-gold-hover:hover::after {
+  width: 100%;
+}
+
+/* Socratic Mind Map Visual Enhancements */
+.node-circle-premium {
+  border: 2px solid var(--secondary-gold) !important;
+  background-color: var(--surface-white) !important;
+  color: var(--secondary-gold) !important;
+  box-shadow: 0 8px 24px -6px rgba(15, 23, 42, 0.1);
+  transition: var(--transition-smooth) !important;
+}
+
+.node-circle-premium:hover {
+  transform: scale(1.1) translateY(-2px) !important;
+  background-color: var(--secondary-gold) !important;
+  color: var(--bg-ivory) !important;
+  box-shadow: 0 12px 30px -4px var(--gold-glow) !important;
+}
+
+.node-label-premium {
+  background-color: rgba(255, 255, 255, 0.85) !important;
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--border-color) !important;
+  color: var(--text-main) !important;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition-smooth) !important;
+}
+
+html.dark .node-label-premium {
+  background-color: rgba(18, 24, 38, 0.85) !important;
+  border: 1px solid rgba(245, 197, 66, 0.2) !important;
+}
+
+/* Classical Timeline Layout */
+.timeline-stem {
+  position: relative;
+}
+
+.timeline-stem::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 2px;
+  background: linear-gradient(to bottom, transparent, var(--secondary-gold) 15%, var(--secondary-gold) 85%, transparent);
+  transform: translateX(-50%);
+}
+
+@media (max-width: 768px) {
+  .timeline-stem::before {
+    left: 20px;
+  }
+}
+
+.timeline-node {
+  position: relative;
+  transition: var(--transition-smooth);
+}
+
+.timeline-node-dot {
+  position: absolute;
+  left: 50%;
+  top: 24px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: var(--bg-ivory);
+  border: 3px solid var(--secondary-gold);
+  transform: translateX(-50%);
+  z-index: 10;
+  transition: var(--transition-smooth);
+}
+
+@media (max-width: 768px) {
+  .timeline-node-dot {
+    left: 20px;
+    transform: none;
+  }
+}
+
+.timeline-node:hover .timeline-node-dot {
+  background-color: var(--secondary-gold);
+  box-shadow: 0 0 12px var(--secondary-gold);
+  transform: translateX(-50%) scale(1.2);
+}
+
+@media (max-width: 768px) {
+  .timeline-node:hover .timeline-node-dot {
+    transform: scale(1.2);
+  }
+}
+
+/* Scholarly Drop Caps */
+.drop-cap::first-letter {
+  font-family: var(--font-serif);
+  font-size: 3.5rem;
+  font-weight: 700;
+  float: left;
+  line-height: 1;
+  padding-right: 8px;
+  color: var(--secondary-gold);
+  text-shadow: 1px 1px 0px rgba(139, 111, 71, 0.2);
+}
+
+/* Modern Quote Box */
+.quote-box {
+  position: relative;
+  padding: 2.5rem;
+  background-color: var(--surface-white);
+  border-left: 4px solid var(--secondary-gold);
+  border-radius: 4px 16px 16px 4px;
+  box-shadow: var(--shadow-sm);
+}
+
+.quote-box::before {
+  content: '“';
+  position: absolute;
+  top: 10px;
+  left: 20px;
+  font-family: var(--font-serif);
+  font-size: 8rem;
+  color: var(--secondary-gold);
+  opacity: 0.12;
+  line-height: 1;
+}
+
+/* Micro-animations */
+.hover-lift {
+  transition: var(--transition-smooth);
+}
+
+.hover-lift:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px -10px rgba(15, 23, 42, 0.08);
+}
+
+html.dark .hover-lift:hover {
+  box-shadow: 0 15px 35px -10px rgba(0, 0, 0, 0.4);
+}
+
+/* astrolabe custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-ivory);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--accent-brown);
+  border-radius: 4px;
+  opacity: 0.6;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--secondary-gold);
+}
+
+/* Debate Forum Mock Details */
+.debate-card {
+  border: 1px solid var(--border-color);
+  background-color: var(--surface-white);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  transition: var(--transition-smooth);
+}
+
+.debate-card:hover {
+  border-color: var(--secondary-gold);
+  box-shadow: 0 8px 30px rgba(212, 160, 23, 0.04);
+}
+
+/* Astrolabe Theme Toggle Button */
+.astrolabe-toggle {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1px solid var(--border-color);
+  background-color: var(--surface-white);
+  color: var(--secondary-gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  box-shadow: var(--shadow-sm);
+}
+
+.astrolabe-toggle:hover {
+  border-color: var(--secondary-gold);
+  background-color: rgba(212, 160, 23, 0.05);
+  transform: rotate(30deg);
+}
+
+/* Elegant Buttons */
+.btn-academic-gold {
+  background-color: var(--secondary-gold);
+  color: #FAF8F3 !important;
+  font-weight: 600;
+  border: 1px solid var(--secondary-gold);
+  transition: var(--transition-smooth);
+  box-shadow: 0 4px 14px var(--primary-glow);
+}
+
+.btn-academic-gold:hover {
+  background-color: transparent;
+  color: var(--secondary-gold) !important;
+  box-shadow: 0 4px 20px var(--gold-glow);
+}
+
+.btn-academic-outline {
+  background-color: transparent;
+  color: var(--text-main) !important;
+  font-weight: 600;
+  border: 1.5px solid var(--border-color);
+  transition: var(--transition-smooth);
+}
+
+.btn-academic-outline:hover {
+  border-color: var(--secondary-gold);
+  color: var(--secondary-gold) !important;
+  box-shadow: 0 4px 14px var(--primary-glow);
+}

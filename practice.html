@@ -1,0 +1,1548 @@
+<!doctype html>
+<html class="light" lang="vi">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>PhiloVerse - Thực hành tư duy</title>
+  <link href="https://fonts.googleapis.com" rel="preconnect" />
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&amp;family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;display=swap"
+    rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+    rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script src="js/tailwind-config-global.js"></script>
+  <style>
+    .material-symbols-outlined {
+      font-family: "Material Symbols Outlined";
+      font-weight: normal;
+      font-style: normal;
+      font-size: 24px;
+      display: inline-block;
+      line-height: 1;
+      text-transform: none;
+      letter-spacing: normal;
+      word-wrap: normal;
+      white-space: nowrap;
+      direction: ltr;
+      font-variation-settings:
+        "FILL" 0,
+        "wght" 400,
+        "GRAD" 0,
+        "opsz" 24;
+    }
+
+    .hide-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+
+    .hide-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    .card-hover {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .card-hover:hover {
+      transform: translateY(-4px);
+      box-shadow:
+        0 20px 25px -5px rgba(0, 0, 0, 0.1),
+        0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    }
+
+    /* Tabs active indicators */
+    .tab-btn {
+      transition: all 0.3s ease;
+    }
+    
+    .tab-btn.active {
+      background-color: var(--secondary-gold) !important;
+      color: #FAF8F3 !important;
+      box-shadow: 0 4px 14px rgba(212, 160, 23, 0.25);
+    }
+
+    /* Glowing animations */
+    @keyframes glow-pulse {
+      0%, 100% {
+        box-shadow: 0 0 5px rgba(212, 160, 23, 0.4), 0 0 10px rgba(212, 160, 23, 0.2);
+      }
+      50% {
+        box-shadow: 0 0 20px rgba(212, 160, 23, 0.8), 0 0 30px rgba(212, 160, 23, 0.4);
+      }
+    }
+    .leap-ready {
+      animation: glow-pulse 1.5s infinite;
+    }
+
+    /* Spiral path animation */
+    @keyframes draw-path {
+      to {
+        stroke-dashoffset: 0;
+      }
+    }
+    .spiral-path {
+      stroke-dasharray: 1000;
+      stroke-dashoffset: 1000;
+      transition: stroke-dashoffset 2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .spiral-draw {
+      stroke-dashoffset: 0;
+    }
+
+    /* Pulse scale animation */
+    @keyframes pulse-scale {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.05);
+      }
+    }
+    .animate-pulse-scale {
+      animation: pulse-scale 2s ease-in-out infinite;
+    }
+
+    /* Confetti canvas */
+    #confetti-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    /* Glassmorphism utility */
+    .glass-card {
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+  </style>
+</head>
+
+<body class="bg-background-light text-slate-800 font-sans min-h-screen flex flex-col overflow-x-hidden">
+  <!-- Confetti Canvas for Leap Effect -->
+  <canvas id="confetti-canvas"></canvas>
+
+  <!-- Header Placeholder -->
+  <div id="header-placeholder"></div>
+
+  <main class="flex-grow w-full max-w-7xl mx-auto px-4 md:px-10 py-10">
+    <!-- Hero Section -->
+    <section class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-6">
+      <div class="flex flex-col gap-4 items-start">
+        <div
+          class="inline-flex items-center px-4 py-1.5 rounded-full bg-blue-50 border border-blue-100 dark:bg-blue-900/20 dark:border-blue-800 text-primary text-xs font-bold uppercase tracking-wider gap-2">
+          <a href="home.html" class="hover:underline hover:text-blue-600 transition-colors">TRANG CHỦ</a>
+          <span class="opacity-60">/</span>
+          <span>THỰC HÀNH TƯ DUY</span>
+        </div>
+        <h1 class="text-3xl md:text-4xl font-serif font-bold text-slate-900 leading-tight max-w-3xl">
+          Thực hành tư duy triết học<br /><span class="text-slate-500 italic font-normal">cho đời sống cá nhân</span>
+        </h1>
+        <p class="text-slate-600 max-w-2xl">
+          Chào mừng bạn đến với <strong>Phòng thực hành Triết học Tương tác</strong>. Tại đây, những lý thuyết trừu tượng sẽ trở thành các mô phỏng trực quan giúp bạn phản tư cuộc sống và rèn luyện tư duy mỗi ngày.
+        </p>
+      </div>
+      <a href="assets/docs/1. Giao trinh Triet hoc Mac - Lenin 2021.doc.pdf" download="SGK_Triet_Hoc.pdf">
+        <button
+          class="flex items-center gap-2 px-6 py-3 bg-slate-900 text-white rounded-xl shadow-lg hover:bg-primary transition-colors font-medium shrink-0 group">
+          <span class="material-symbols-outlined group-hover:animate-bounce">download</span>
+          <span>Tải tài liệu SGK Triết Học PDF</span>
+        </button>
+      </a>
+    </section>
+
+    <!-- Interactive Dashboard Cards -->
+    <section class="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-10">
+      <div class="bg-white p-6 rounded-2xl shadow-soft border border-slate-100 flex items-center gap-4">
+        <div class="size-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center">
+          <span class="material-symbols-outlined text-2xl">eco</span>
+        </div>
+        <div>
+          <h4 class="text-xs text-slate-400 font-bold uppercase tracking-wider">Vườn ươm Phản tư</h4>
+          <p id="dashboard-garden-count" class="text-lg font-bold text-slate-800">🌱 0 hạt giống</p>
+        </div>
+      </div>
+      <div class="bg-white p-6 rounded-2xl shadow-soft border border-slate-100 flex items-center gap-4">
+        <div class="size-12 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center">
+          <span class="material-symbols-outlined text-2xl">explore</span>
+        </div>
+        <div>
+          <h4 class="text-xs text-slate-400 font-bold uppercase tracking-wider">Thế giới quan của bạn</h4>
+          <p id="dashboard-worldview-title" class="text-sm font-bold text-slate-800 truncate max-w-[200px]">Chưa trắc nghiệm</p>
+        </div>
+      </div>
+      <div class="bg-white p-6 rounded-2xl shadow-soft border border-slate-100 flex items-center gap-4">
+        <div class="size-12 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center">
+          <span class="material-symbols-outlined text-2xl">insights</span>
+        </div>
+        <div>
+          <h4 class="text-xs text-slate-400 font-bold uppercase tracking-wider">Trình độ Biện chứng</h4>
+          <p id="dashboard-dialectics-level" class="text-lg font-bold text-slate-800">Cấp 1: Sơ cấp</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Main Navigation Tab Bar -->
+    <div class="flex flex-wrap gap-2 border-b border-gray-200 pb-4 mb-8">
+      <button onclick="switchTab('sandbox')" id="tab-sandbox"
+        class="tab-btn active flex items-center gap-2 px-5 py-3 rounded-xl font-bold text-sm text-slate-600 hover:bg-slate-100">
+        <span class="material-symbols-outlined text-[20px]">science</span>
+        1. Hộp cát Quy luật Biện chứng
+      </button>
+      <button onclick="switchTab('compass')" id="tab-compass"
+        class="tab-btn flex items-center gap-2 px-5 py-3 rounded-xl font-bold text-sm text-slate-600 hover:bg-slate-100">
+        <span class="material-symbols-outlined text-[20px]">explore</span>
+        2. Bản đồ Thế giới quan
+      </button>
+      <button onclick="switchTab('greenhouse')" id="tab-greenhouse"
+        class="tab-btn flex items-center gap-2 px-5 py-3 rounded-xl font-bold text-sm text-slate-600 hover:bg-slate-100">
+        <span class="material-symbols-outlined text-[20px]">yard</span>
+        3. Vườn ươm Phản tư Triết học
+      </button>
+    </div>
+
+    <!-- TAB 1: DIALECTICAL LAW SANDBOX -->
+    <div id="content-sandbox" class="tab-content block">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        <!-- Sidebar controls -->
+        <div class="lg:col-span-4 flex flex-col gap-4">
+          <div class="bg-white p-6 rounded-2xl shadow-soft border border-slate-100">
+            <h3 class="text-lg font-serif font-bold text-slate-900 mb-4 flex items-center gap-2">
+              <span class="text-primary material-symbols-outlined">tune</span>
+              Chọn quy luật giả lập
+            </h3>
+            <div class="flex flex-col gap-2">
+              <button onclick="switchSandboxLaw('quantity')" id="law-btn-quantity"
+                class="w-full text-left p-3.5 rounded-xl border border-blue-100 bg-blue-50 text-blue-600 font-bold text-sm flex items-center gap-3 transition-all hover:bg-blue-100">
+                <span class="material-symbols-outlined text-lg">water_drop</span>
+                Quy luật Lượng - Chất
+              </button>
+              <button onclick="switchSandboxLaw('contradiction')" id="law-btn-contradiction"
+                class="w-full text-left p-3.5 rounded-xl border border-slate-100 text-slate-700 font-semibold text-sm flex items-center gap-3 transition-all hover:bg-slate-50">
+                <span class="material-symbols-outlined text-lg">balance</span>
+                Quy luật Mâu thuẫn
+              </button>
+              <button onclick="switchSandboxLaw('negation')" id="law-btn-negation"
+                class="w-full text-left p-3.5 rounded-xl border border-slate-100 text-slate-700 font-semibold text-sm flex items-center gap-3 transition-all hover:bg-slate-50">
+                <span class="material-symbols-outlined text-lg">cyclone</span>
+                Phủ định của phủ định
+              </button>
+            </div>
+          </div>
+          
+          <div class="bg-blue-50/50 p-6 rounded-2xl border border-blue-100 text-slate-700 text-xs leading-relaxed">
+            <span class="font-bold text-blue-600 text-sm block mb-1">💡 Hướng dẫn</span>
+            Hãy chọn một trong ba quy luật lớn của Phép biện chứng để tương tác. Các tính năng giả lập trực quan sinh động giúp bạn thấu hiểu cơ chế vận động của vạn vật và con người theo góc nhìn triết học Mác - Lênin.
+          </div>
+        </div>
+
+        <!-- Simulator View Area -->
+        <div class="lg:col-span-8">
+          <!-- SUB-LAW 1: QUANTITY AND QUALITY -->
+          <div id="sandbox-quantity" class="law-sandbox-content block bg-white rounded-3xl p-8 shadow-card border border-slate-100">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6">
+              <div>
+                <span class="text-xs font-bold text-blue-500 uppercase tracking-widest block">QUY LUẬT BIỆN CHỨNG CƠ BẢN</span>
+                <h4 class="text-2xl font-serif font-bold text-slate-900">Sự biến đổi về Lượng dẫn đến sự thay đổi về Chất</h4>
+              </div>
+              <div class="px-3.5 py-1.5 bg-amber-50 border border-amber-100 text-amber-700 text-xs font-bold rounded-lg">
+                Chất hiện tại: <span id="current-quality-badge" class="uppercase">Sơ cấp (Beginner)</span>
+              </div>
+            </div>
+            
+            <p class="text-slate-600 text-sm mb-8 leading-relaxed">
+              Mọi sự vật đều có sự thống nhất giữa chất và lượng. Hãy tích lũy kiến thức biện chứng thông qua các hoạt động thực tiễn để tăng <strong>Lượng</strong>. Khi lượng tích lũy đạt tới <strong>Điểm Nút (100)</strong>, bạn sẽ thực hiện một <strong>Bước Nhảy</strong> để biến đổi <strong>Chất</strong> của tư duy!
+            </p>
+
+            <!-- Visual simulation tank -->
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center mb-8">
+              <div class="md:col-span-4 flex justify-center">
+                <div class="relative w-28 h-60 bg-slate-100 border-4 border-slate-700 rounded-b-2xl rounded-t-lg overflow-hidden shadow-inner flex flex-col justify-end">
+                  <!-- Measurement markings -->
+                  <div class="absolute inset-y-0 right-1.5 flex flex-col justify-between text-[9px] text-slate-400 py-4 font-mono select-none">
+                    <span>- 100 (Điểm Nút)</span>
+                    <span>- 75</span>
+                    <span>- 50</span>
+                    <span>- 25</span>
+                    <span>- 0</span>
+                  </div>
+                  <!-- Liquid / Energy level -->
+                  <div id="liquid-energy" class="w-full bg-gradient-to-t from-blue-600 to-cyan-400 transition-all duration-500 shadow-lg relative" style="height: 0%;">
+                    <!-- Bubbles or glowing effect inside -->
+                    <div class="absolute inset-0 bg-white/20 animate-pulse"></div>
+                  </div>
+                  <!-- Level text -->
+                  <div class="absolute inset-0 flex items-center justify-center font-bold text-lg text-slate-800 mix-blend-difference" id="tank-percent-text">
+                    0 / 100
+                  </div>
+                </div>
+              </div>
+              
+              <div class="md:col-span-8 flex flex-col gap-4">
+                <h5 class="text-xs font-bold uppercase text-slate-400 tracking-wider">Hành động tích lũy (Lượng)</h5>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                  <button onclick="addQuantity(10)" class="p-4 bg-slate-50 border border-slate-200 rounded-2xl text-left hover:border-primary hover:bg-blue-50/30 transition-all group">
+                    <span class="size-9 rounded-lg bg-blue-50 text-blue-500 flex items-center justify-center mb-2 font-bold group-hover:scale-110 transition-transform">+10</span>
+                    <span class="font-bold text-slate-800 text-xs block mb-1">Đọc giáo trình</span>
+                    <span class="text-[10px] text-slate-500 leading-tight block">Tích lũy kiến thức lý luận cơ bản</span>
+                  </button>
+                  <button onclick="addQuantity(15)" class="p-4 bg-slate-50 border border-slate-200 rounded-2xl text-left hover:border-primary hover:bg-blue-50/30 transition-all group">
+                    <span class="size-9 rounded-lg bg-indigo-50 text-indigo-500 flex items-center justify-center mb-2 font-bold group-hover:scale-110 transition-transform">+15</span>
+                    <span class="font-bold text-slate-800 text-xs block mb-1">Thực tế hóa</span>
+                    <span class="text-[10px] text-slate-500 leading-tight block">Trải nghiệm hoạt động xã hội thực tế</span>
+                  </button>
+                  <button onclick="addQuantity(20)" class="p-4 bg-slate-50 border border-slate-200 rounded-2xl text-left hover:border-primary hover:bg-blue-50/30 transition-all group">
+                    <span class="size-9 rounded-lg bg-purple-50 text-purple-500 flex items-center justify-center mb-2 font-bold group-hover:scale-110 transition-transform">+20</span>
+                    <span class="font-bold text-slate-800 text-xs block mb-1">Tranh biện</span>
+                    <span class="text-[10px] text-slate-500 leading-tight block">Phản biện khoa học & Thảo luận sâu</span>
+                  </button>
+                </div>
+
+                <!-- Leap control -->
+                <div class="mt-4 pt-4 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-4">
+                  <div class="text-xs text-slate-500 text-center sm:text-left">
+                    Nhấn các nút trên để tích lũy. Khi bình năng lượng đầy 100%, nút <strong>Thực hiện Bước nhảy</strong> sẽ phát sáng!
+                  </div>
+                  <button id="leap-btn" disabled onclick="executeLeap()"
+                    class="px-6 py-3 bg-slate-200 text-slate-500 rounded-xl font-bold text-sm cursor-not-allowed transition-all shadow-md shrink-0 flex items-center gap-2">
+                    <span class="material-symbols-outlined text-lg">bolt</span>
+                    Thực hiện Bước nhảy
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Leap Success Panel (Hidden by default) -->
+            <div id="leap-success-panel" class="hidden bg-gradient-to-r from-amber-500/10 to-orange-500/10 p-6 rounded-2xl border border-amber-200 flex flex-col md:flex-row items-center gap-6 animate-pulse-scale">
+              <div class="size-16 bg-gradient-to-br from-amber-400 to-orange-500 rounded-full flex items-center justify-center text-white shrink-0 shadow-lg">
+                <span class="material-symbols-outlined text-3xl">emoji_events</span>
+              </div>
+              <div class="flex-grow text-center md:text-left">
+                <h4 class="font-bold text-slate-900 text-md">🎉 Chúc mừng bạn đã thực hiện thành công BƯỚC NHẢY!</h4>
+                <p id="leap-explanation" class="text-xs text-slate-600 leading-relaxed mt-1">
+                  Đang phân tích tác động biện chứng...
+                </p>
+              </div>
+              <button onclick="dismissLeapPanel()" class="text-xs text-slate-400 hover:text-slate-600 font-bold shrink-0 self-end md:self-center border border-slate-200 px-3 py-1.5 rounded-lg bg-white">Đóng</button>
+            </div>
+          </div>
+
+          <!-- SUB-LAW 2: CONTRADICTION -->
+          <div id="sandbox-contradiction" class="law-sandbox-content hidden bg-white rounded-3xl p-8 shadow-card border border-slate-100">
+            <span class="text-xs font-bold text-purple-500 uppercase tracking-widest block mb-1">NGUỒN GỐC CỦA SỰ PHÁT TRIỂN</span>
+            <h4 class="text-2xl font-serif font-bold text-slate-900 mb-4">Quy luật thống nhất và đấu tranh của các mặt đối lập</h4>
+            <p class="text-slate-600 text-sm mb-6 leading-relaxed">
+              Mọi sự vật đều chứa đựng mâu thuẫn bên trong (sự liên hệ, tác động qua lại của các mặt đối lập). Sự <strong>đấu tranh</strong> của các mặt đối lập chính là nguồn gốc, động lực nội tại đẩy sự vật vận động đi lên.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center py-6">
+              <!-- Visual conflict representation -->
+              <div class="md:col-span-6 flex flex-col items-center justify-center relative min-h-[220px] bg-slate-50 border border-slate-200/60 rounded-3xl overflow-hidden p-6">
+                <!-- Opposing Orb Left -->
+                <div id="orb-left" class="absolute w-14 h-14 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-full shadow-lg left-10 flex items-center justify-center text-white text-[10px] font-bold text-center p-1 transition-all duration-1000 z-10">
+                  Mặt đối lập A
+                </div>
+                <!-- Clash / Shockwave effect (hidden initially) -->
+                <div id="orb-shockwave" class="absolute w-20 h-20 rounded-full border-4 border-yellow-400 scale-0 opacity-0 transition-all duration-700 z-20"></div>
+                <!-- Opposing Orb Right -->
+                <div id="orb-right" class="absolute w-14 h-14 bg-gradient-to-br from-red-500 to-orange-600 rounded-full shadow-lg right-10 flex items-center justify-center text-white text-[10px] font-bold text-center p-1 transition-all duration-1000 z-10">
+                  Mặt đối lập B
+                </div>
+                <!-- Unified result (hidden initially) -->
+                <div id="orb-unified" class="absolute w-18 h-18 bg-gradient-to-br from-yellow-400 to-amber-500 rounded-full shadow-2xl scale-0 opacity-0 flex flex-col items-center justify-center text-slate-900 text-[10px] font-extrabold text-center p-2 transition-all duration-1000 z-30">
+                  Chất mới phát triển
+                </div>
+                <div class="text-[10px] text-slate-400 absolute bottom-4">Mô phỏng Động lực phát triển</div>
+              </div>
+
+              <!-- Interactive Controls -->
+              <div class="md:col-span-6 flex flex-col gap-4">
+                <div>
+                  <label class="text-xs font-bold text-slate-400 block mb-2 uppercase tracking-wide">Mẫu mâu thuẫn mẫu</label>
+                  <select id="contradiction-preset" onchange="applyContradictionPreset()"
+                    class="w-full text-sm border-gray-200 rounded-xl focus:border-primary focus:ring-1 focus:ring-primary shadow-sm">
+                    <option value="custom">-- Tự thiết lập mâu thuẫn --</option>
+                    <option value="laziness" selected>Sự lười biếng vs. Khát vọng thành công (Cá nhân)</option>
+                    <option value="theory">Lý thuyết hàn lâm vs. Thực tiễn cuộc sống (Học tập)</option>
+                    <option value="economy">Mục tiêu tăng trưởng vs. Bảo vệ môi trường (Xã hội)</option>
+                  </select>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-4">
+                  <div>
+                    <label class="text-[10px] font-bold text-slate-400 block mb-1 uppercase">Mặt đối lập A (Tiêu cực / Bảo thủ)</label>
+                    <input type="text" id="opp-a-input" value="Sự lười biếng" oninput="updateOpporOrbs()"
+                      class="w-full text-xs border-gray-200 rounded-xl focus:border-primary focus:ring-1 focus:ring-primary" />
+                  </div>
+                  <div>
+                    <label class="text-[10px] font-bold text-slate-400 block mb-1 uppercase">Mặt đối lập B (Tích cực / Phát triển)</label>
+                    <input type="text" id="opp-b-input" value="Khát vọng vươn lên" oninput="updateOpporOrbs()"
+                      class="w-full text-xs border-gray-200 rounded-xl focus:border-primary focus:ring-1 focus:ring-primary" />
+                  </div>
+                </div>
+
+                <button onclick="simulateContradictionConflict()"
+                  class="mt-2 w-full py-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl font-bold text-sm shadow-md transition-all flex items-center justify-center gap-2">
+                  <span class="material-symbols-outlined text-lg">bolt</span>
+                  Đấu tranh & Thống nhất
+                </button>
+              </div>
+            </div>
+
+            <!-- Contradiction analysis feedback -->
+            <div id="contradiction-analysis-box" class="hidden bg-slate-50 p-5 rounded-2xl border border-slate-200 text-xs text-slate-600 leading-relaxed mt-4">
+              <span class="font-bold text-slate-900 text-sm block mb-1">🔬 Giải thích biện chứng:</span>
+              <p id="contradiction-explanation-text">Đang tổng hợp đấu tranh các mặt đối lập...</p>
+            </div>
+          </div>
+
+          <!-- SUB-LAW 3: NEGATION OF NEGATION -->
+          <div id="sandbox-negation" class="law-sandbox-content hidden bg-white rounded-3xl p-8 shadow-card border border-slate-100">
+            <span class="text-xs font-bold text-emerald-500 uppercase tracking-widest block mb-1">KHUYNH HƯỚNG CỦA SỰ PHÁT TRIỂN</span>
+            <h4 class="text-2xl font-serif font-bold text-slate-900 mb-4">Quy luật Phủ định của Phủ định (Đường xoắn ốc)</h4>
+            <p class="text-slate-600 text-sm mb-6 leading-relaxed">
+              Quy luật này chỉ ra khuynh hướng đi lên của sự phát triển. Qua hai lần phủ định biện chứng, sự vật dường như lặp lại chất cũ nhưng trên một cơ sở mới cao hơn, hoàn thiện hơn - biểu thị bằng **Đường xoắn ốc (Developmental Spiral)**.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+              <!-- Visual Spiral representation -->
+              <div class="md:col-span-5 flex justify-center bg-slate-50 border border-slate-200/60 rounded-3xl p-4">
+                <svg id="spiral-svg" width="220" height="220" viewBox="0 0 200 200" class="overflow-visible">
+                  <!-- Main spiral path -->
+                  <path id="development-spiral-path" d="M 100,100 A 10,10 0 0,0 90,90 A 20,20 0 0,1 110,80 A 30,30 0 0,0 80,60 A 45,45 0 0,1 125,45 A 60,60 0 0,0 65,25 A 75,75 0 0,1 140,15"
+                    fill="none" stroke="#cbd5e1" stroke-width="3" class="spiral-path" />
+                  
+                  <!-- Spiral Progress Path (Colored) -->
+                  <path id="development-spiral-progress" d="M 100,100 A 10,10 0 0,0 90,90 A 20,20 0 0,1 110,80 A 30,30 0 0,0 80,60 A 45,45 0 0,1 125,45 A 60,60 0 0,0 65,25 A 75,75 0 0,1 140,15"
+                    fill="none" stroke="url(#spiral-grad)" stroke-width="4.5" stroke-linecap="round" class="spiral-path" />
+                  
+                  <defs>
+                    <linearGradient id="spiral-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#308ce8" />
+                      <stop offset="50%" stop-color="#8b5cf6" />
+                      <stop offset="100%" stop-color="#10b981" />
+                    </linearGradient>
+                  </defs>
+
+                  <!-- Node labels along spiral -->
+                  <circle cx="100" cy="100" r="5" fill="#308ce8" id="spiral-node-start" class="transition-transform duration-500 scale-0" />
+                  <circle cx="90" cy="90" r="5.5" fill="#8b5cf6" id="spiral-node-neg1" class="transition-transform duration-500 scale-0" />
+                  <circle cx="125" cy="45" r="6" fill="#10b981" id="spiral-node-neg2" class="transition-transform duration-500 scale-0" />
+
+                  <!-- Tiny glowing pointer -->
+                  <circle cx="100" cy="100" r="8" fill="#f59e0b" id="spiral-pointer" class="hidden animate-ping" />
+                </svg>
+              </div>
+
+              <!-- Interactive steps -->
+              <div class="md:col-span-7 flex flex-col gap-4">
+                <div class="bg-slate-50 border border-slate-200/50 p-4 rounded-xl relative">
+                  <div class="flex items-start gap-3">
+                    <span class="size-6 bg-blue-500 text-white flex items-center justify-center rounded-full text-xs font-bold shrink-0 mt-0.5">1</span>
+                    <div>
+                      <h5 class="text-xs font-bold text-slate-800 mb-1">Điểm bắt đầu (Chất cũ ban đầu)</h5>
+                      <p class="text-[10px] text-slate-500 leading-normal">Đầy rẫy mâu thuẫn tiềm ẩn, thiếu kinh nghiệm lý luận.</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="bg-slate-50 border border-slate-200/50 p-4 rounded-xl relative group">
+                  <div class="flex items-start gap-3">
+                    <span class="size-6 bg-purple-500 text-white flex items-center justify-center rounded-full text-xs font-bold shrink-0 mt-0.5">2</span>
+                    <div>
+                      <h5 class="text-xs font-bold text-slate-800 mb-1">Phủ định lần 1 (Kế thừa biện chứng)</h5>
+                      <p class="text-[10px] text-slate-500 leading-normal mb-2">Phủ định định kiến cũ, giữ lại hạt nhân hợp lý, hình thành lý luận mới.</p>
+                      <button id="negation-btn-1" onclick="applyNegation(1)"
+                        class="px-3 py-1 bg-purple-50 hover:bg-purple-100 border border-purple-200 text-purple-600 font-bold text-[10px] rounded-lg transition-colors">
+                        Trải nghiệm Phủ định 1
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="bg-slate-50 border border-slate-200/50 p-4 rounded-xl relative group">
+                  <div class="flex items-start gap-3">
+                    <span class="size-6 bg-emerald-500 text-white flex items-center justify-center rounded-full text-xs font-bold shrink-0 mt-0.5">3</span>
+                    <div>
+                      <h5 class="text-xs font-bold text-slate-800 mb-1">Phủ định lần 2 (Phủ định của phủ định)</h5>
+                      <p class="text-[10px] text-slate-500 leading-normal mb-2">Biến lý luận thành thực tiễn sâu rộng. Vừa quay lại điểm xuất phát (cực kỳ tự nhiên) nhưng ở tầm nhận thức uyên bác vượt bậc.</p>
+                      <button id="negation-btn-2" disabled onclick="applyNegation(2)"
+                        class="px-3 py-1 bg-slate-100 border border-slate-200 text-slate-400 font-bold text-[10px] rounded-lg transition-colors cursor-not-allowed">
+                        Trải nghiệm Phủ định 2
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Spiral Summary text (hidden by default) -->
+            <div id="negation-summary-box" class="hidden bg-emerald-50 border border-emerald-200 p-5 rounded-2xl text-xs text-slate-600 leading-relaxed mt-6 flex gap-4 items-start">
+              <span class="material-symbols-outlined text-emerald-600 text-2xl shrink-0">cyclone</span>
+              <div>
+                <span class="font-bold text-emerald-700 text-sm block mb-1">🌀 Tổng kết Đường xoắn ốc:</span>
+                <p id="negation-explanation-text">Quy luật Phủ định của phủ định chứng minh sự phát triển tựa như vòng lặp vô tận, nhưng mỗi vòng lặp sau lại nâng cao tinh hoa, loại bỏ tạp chất. Con đường học tập của bạn chính là đường xoắn ốc tuyệt vời này!</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 2: WORLDVIEW COMPASS -->
+    <div id="content-compass" class="tab-content hidden">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        <!-- Coordinate and Results view -->
+        <div class="lg:col-span-6 bg-white rounded-3xl p-8 shadow-card border border-slate-100 flex flex-col">
+          <span class="text-xs font-bold text-purple-500 uppercase tracking-widest block mb-1">HỆ THỐNG PHÂN PHÁP TRIẾT HỌC</span>
+          <h4 class="text-2xl font-serif font-bold text-slate-900 mb-4">Đồ thị Thế giới quan & Phương pháp luận</h4>
+          
+          <p class="text-slate-600 text-sm mb-6 leading-relaxed">
+            Hệ trục tọa độ 2D đo lường hai chiều tư duy cơ bản của bạn: 
+            Trục ngang biểu thị trường phái từ <strong>Duy tâm (Ý thức quyết định vật chất)</strong> đến <strong>Duy vật (Vật chất quyết định ý thức)</strong>. 
+            Trục đứng biểu thị phương pháp luận từ <strong>Siêu hình (Nhìn tĩnh lặng, tách rời)</strong> đến <strong>Biện chứng (Nhìn chuyển động, mâu thuẫn)</strong>.
+          </p>
+
+          <!-- SVG Graph -->
+          <div class="flex justify-center items-center py-6 bg-slate-50 border border-slate-200/50 rounded-2xl relative">
+            <svg id="compass-svg" width="300" height="300" viewBox="0 0 200 200" class="overflow-visible select-none">
+              <!-- Grid lines -->
+              <line x1="20" y1="100" x2="180" y2="100" stroke="#cbd5e1" stroke-width="1.5" />
+              <line x1="100" y1="20" x2="100" y2="180" stroke="#cbd5e1" stroke-width="1.5" />
+              
+              <!-- Dotted helper lines -->
+              <line x1="20" y1="20" x2="180" y2="20" stroke="#f1f5f9" stroke-width="1" stroke-dasharray="2,2" />
+              <line x1="20" y1="180" x2="180" y2="180" stroke="#f1f5f9" stroke-width="1" stroke-dasharray="2,2" />
+              <line x1="20" y1="20" x2="20" y2="180" stroke="#f1f5f9" stroke-width="1" stroke-dasharray="2,2" />
+              <line x1="180" y1="20" x2="180" y2="180" stroke="#f1f5f9" stroke-width="1" stroke-dasharray="2,2" />
+              
+              <!-- Direction labels -->
+              <text x="188" y="103" fill="#308ce8" font-size="6.5" font-weight="bold">Duy vật</text>
+              <text x="12" y="103" fill="#d97706" font-size="6.5" font-weight="bold">Duy tâm</text>
+              <text x="100" y="13" fill="#10b981" font-size="6.5" font-weight="bold" text-anchor="middle">Biện chứng</text>
+              <text x="100" y="193" fill="#64748b" font-size="6.5" font-weight="bold" text-anchor="middle">Siêu hình</text>
+
+              <!-- Quadrant text markers (light grey) -->
+              <text x="140" y="60" fill="#e2e8f0" font-size="5" font-weight="extrabold" text-anchor="middle">Duy vật Biện chứng</text>
+              <text x="60" y="60" fill="#e2e8f0" font-size="5" font-weight="extrabold" text-anchor="middle">Duy tâm Biện chứng</text>
+              <text x="140" y="140" fill="#e2e8f0" font-size="5" font-weight="extrabold" text-anchor="middle">Duy vật Siêu hình</text>
+              <text x="60" y="140" fill="#e2e8f0" font-size="5" font-weight="extrabold" text-anchor="middle">Duy tâm Siêu hình</text>
+
+              <!-- Plotted Point (Hidden initially) -->
+              <circle cx="100" cy="100" r="6" fill="#8b5cf6" id="compass-plot-dot" class="hidden transition-all duration-1000 ease-out" style="filter: drop-shadow(0 0 8px rgba(139, 92, 246, 0.8));" />
+              <circle cx="100" cy="100" r="12" fill="none" stroke="#8b5cf6" stroke-width="1" id="compass-plot-ring" class="hidden animate-ping" />
+            </svg>
+          </div>
+
+          <!-- Analysis of plotted coordinates (Hidden initially) -->
+          <div id="compass-result-panel" class="hidden mt-6 bg-slate-50 border border-slate-200 p-5 rounded-2xl">
+            <span class="text-[10px] font-bold text-purple-600 block uppercase tracking-wider mb-1">Kết quả phân tích thế giới quan</span>
+            <div class="flex items-center gap-3 mb-3">
+              <span class="material-symbols-outlined text-purple-600">psychology</span>
+              <h5 class="text-base font-bold text-slate-800" id="result-title">Nhà Cách mạng Biện chứng Duy vật</h5>
+            </div>
+            <p id="result-desc" class="text-xs text-slate-600 leading-relaxed mb-4">
+              Đặc điểm: Bạn nhìn thế giới bằng thực tiễn sinh động, thấu hiểu vật chất quyết định ý thức đồng thời tin tưởng vào quy luật vận động mâu thuẫn để phát triển không ngừng...
+            </p>
+            <div class="bg-white p-3.5 rounded-xl border border-slate-100 text-[10px] text-slate-500 italic flex gap-3">
+              <span class="font-bold text-purple-600 shrink-0">Trích dẫn:</span>
+              <span id="result-quote">"Các triết gia đã chỉ giải thích thế giới bằng nhiều cách khác nhau, song vấn đề là cải tạo thế giới." - Karl Marx</span>
+            </div>
+            <button onclick="resetCompassTest()" class="mt-4 w-full py-2.5 bg-slate-100 hover:bg-slate-200 border border-slate-200 text-slate-600 text-xs font-bold rounded-xl transition-all">Làm lại bài trắc nghiệm</button>
+          </div>
+        </div>
+
+        <!-- Assessment Area -->
+        <div class="lg:col-span-6 bg-white rounded-3xl p-8 shadow-card border border-slate-100">
+          <div id="compass-intro">
+            <h4 class="text-xl font-serif font-bold text-slate-900 mb-4">Tìm kiếm điểm Tọa độ Thế giới quan của bạn</h4>
+            <p class="text-slate-600 text-sm leading-relaxed mb-6">
+              Bạn có thực sự hiểu rõ trường phái triết học nào đang âm thầm dẫn dắt các quyết định và thế giới quan của bản thân trong đời sống hàng ngày? Hãy trả lời 5 tình huống thực tế sau để khám phá!
+            </p>
+            
+            <div class="bg-gradient-to-r from-blue-500 to-purple-600 p-6 rounded-2xl text-white mb-6">
+              <ul class="space-y-3 text-xs leading-normal">
+                <li class="flex gap-2.5"><span class="font-bold">•</span> <span><strong>5 Tình huống cụ thể</strong> thực tiễn cuộc sống</span></li>
+                <li class="flex gap-2.5"><span class="font-bold">•</span> <span><strong>Không có đáp án sai</strong> - chỉ có lăng kính tư duy phù hợp nhất</span></li>
+                <li class="flex gap-2.5"><span class="font-bold">•</span> <span><strong>Đo lường & Phân tích chuyên sâu</strong> dựa trên triết thuyết biện chứng duy vật</span></li>
+              </ul>
+            </div>
+
+            <button onclick="startCompassTest()" class="w-full py-3.5 bg-slate-900 text-white rounded-xl font-bold text-sm hover:bg-primary shadow-lg transition-all flex items-center justify-center gap-2">
+              <span class="material-symbols-outlined text-lg">play_arrow</span>
+              Bắt đầu Trắc nghiệm
+            </button>
+          </div>
+
+          <!-- Active Question Container -->
+          <div id="compass-test-box" class="hidden flex-col h-full">
+            <!-- Progress bar -->
+            <div class="flex justify-between items-center text-xs text-slate-400 mb-4">
+              <span>Tiến trình trắc nghiệm</span>
+              <span id="question-progress-text">Câu 1/5</span>
+            </div>
+            <div class="w-full h-1.5 bg-slate-100 rounded-full mb-6 overflow-hidden">
+              <div id="question-progress-bar" class="h-full bg-gradient-to-r from-blue-500 to-purple-600 transition-all duration-300" style="width: 20%;"></div>
+            </div>
+
+            <!-- Question statement -->
+            <h5 id="question-statement" class="text-md font-bold text-slate-800 mb-6 leading-snug">
+              Câu hỏi mẫu đang được tải...
+            </h5>
+
+            <!-- Options buttons list -->
+            <div class="flex flex-col gap-3 flex-grow" id="options-container">
+              <!-- Dynamically populated options -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 3: REFLECTION GREENHOUSE -->
+    <div id="content-greenhouse" class="tab-content hidden">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        <!-- Planting section (Left) -->
+        <div class="lg:col-span-5 bg-white rounded-3xl p-8 shadow-card border border-slate-100">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="size-10 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center">
+              <span class="material-symbols-outlined">psychology_alt</span>
+            </div>
+            <h3 class="text-xl font-serif font-bold text-slate-900">
+              Gieo hạt mầm phản tư
+            </h3>
+          </div>
+          
+          <p class="text-slate-600 text-sm leading-relaxed mb-6">
+            Lý luận không có thực tiễn là lý luận suông. Hãy gieo một <strong>Hạt mầm Phản tư</strong> để phân tích bản thân, học tập, công việc theo thế giới quan biện chứng. Cây non của bạn sẽ sinh trưởng qua quá trình tưới nước bằng hành động cụ thể!
+          </p>
+
+          <form id="plant-seed-form" onsubmit="plantSeed(event)" class="space-y-4">
+            <div>
+              <label class="text-xs font-bold text-slate-400 block mb-2 uppercase tracking-wide">Chủ đề phản tư</label>
+              <select id="reflection-topic" onchange="updateReflectionPrompts()"
+                class="w-full text-sm border-gray-200 rounded-xl focus:border-primary focus:ring-1 focus:ring-primary shadow-sm">
+                <option value="quantity-quality">Tích lũy Lượng - Đổi Chất trong bản thân</option>
+                <option value="contradiction">Mâu thuẫn biện chứng trong nội tâm</option>
+                <option value="negation">Sự phủ định biện chứng để trưởng thành</option>
+                <option value="theory-practice">Hành đi đôi với Học (Thực tiễn & Lý luận)</option>
+                <option value="self">Bản chất tôi là gì? (Nhận diện bản ngã)</option>
+              </select>
+            </div>
+
+            <!-- Dynamic guide bullet prompts -->
+            <div class="bg-amber-50/50 p-4 rounded-xl border border-amber-100/50">
+              <span class="text-[10px] font-bold text-amber-800 uppercase tracking-widest block mb-2">🧭 Định hướng Phản tư Biện chứng</span>
+              <ul id="reflection-guide-bullets" class="space-y-2 text-xs text-slate-600 leading-normal">
+                <!-- Bullet list items populated by script -->
+              </ul>
+            </div>
+
+            <div>
+              <label class="text-xs font-bold text-slate-400 block mb-2 uppercase tracking-wide">Nội dung chiêm nghiệm</label>
+              <textarea id="reflection-content" required rows="5"
+                class="w-full text-sm border-gray-200 rounded-xl focus:border-primary focus:ring-1 focus:ring-primary shadow-sm"
+                placeholder="Hãy viết suy ngẫm chân thật của bạn theo hướng dẫn phía trên..."></textarea>
+            </div>
+
+            <button type="submit"
+              class="w-full py-3 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl font-bold text-sm shadow-md transition-all flex items-center justify-center gap-2">
+              <span class="material-symbols-outlined text-lg">eco</span>
+              Gieo hạt phản tư 🌱
+            </button>
+          </form>
+        </div>
+
+        <!-- Greenhouse Grid View (Right) -->
+        <div class="lg:col-span-7 flex flex-col">
+          <div class="flex items-center justify-between mb-4">
+            <div class="flex items-center gap-3">
+              <div class="size-10 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center">
+                <span class="material-symbols-outlined">yard</span>
+              </div>
+              <h3 class="text-xl font-serif font-bold text-slate-900">
+                Khu vườn Tri thức Phản tư
+              </h3>
+            </div>
+            <div class="text-xs font-medium text-slate-400" id="garden-statistics">
+              Đang tính toán...
+            </div>
+          </div>
+
+          <!-- Empty state illustration -->
+          <div id="greenhouse-empty-state" class="hidden flex-col items-center justify-center bg-white border border-dashed border-slate-200 rounded-3xl p-12 text-center flex-grow">
+            <span class="material-symbols-outlined text-5xl text-slate-300 mb-3">yard</span>
+            <h4 class="font-bold text-slate-700 text-sm">Khu vườn hiện đang trống</h4>
+            <p class="text-xs text-slate-400 max-w-sm mt-1">
+              Hãy viết bài chiêm nghiệm đầu tiên ở bảng bên cạnh để gieo những hạt giống biện chứng đầu tiên vào mảnh đất tri thức!
+            </p>
+          </div>
+
+          <!-- Plant cards list -->
+          <div id="greenhouse-plants-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-4 overflow-y-auto max-h-[580px] pr-2 hide-scrollbar flex-grow">
+            <!-- Populated dynamically via JS -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Modal to View/Edit details -->
+  <div id="view-reflection-modal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-lg w-full overflow-hidden shadow-2xl border border-slate-100 flex flex-col max-h-[90vh]">
+      <div class="p-6 border-b border-slate-100 flex justify-between items-start">
+        <div>
+          <span id="modal-tag" class="px-2.5 py-1 bg-emerald-50 text-emerald-600 text-[10px] font-bold rounded-md uppercase tracking-wider">CHỦ ĐỀ</span>
+          <h4 id="modal-title" class="text-lg font-serif font-bold text-slate-900 mt-2">Tiêu đề suy ngẫm</h4>
+          <span id="modal-date" class="text-[10px] text-slate-400 block mt-1">📅 Ngày gieo hạt: 01/01/2026</span>
+        </div>
+        <button onclick="closeReflectionModal()" class="text-slate-400 hover:text-slate-600">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+      <div class="p-6 overflow-y-auto flex-grow text-sm text-slate-700 leading-relaxed whitespace-pre-line" id="modal-content">
+        Nội dung chi tiết...
+      </div>
+      <div class="p-6 bg-slate-50 border-t border-slate-100 flex justify-between items-center gap-3">
+        <button onclick="closeReflectionModal()" class="px-4 py-2 border border-slate-200 bg-white rounded-xl text-slate-600 font-bold text-xs hover:bg-slate-50 transition-colors">Đóng</button>
+        <button id="modal-water-btn" class="px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-bold text-xs shadow flex items-center gap-2 transition-colors">
+          <span class="material-symbols-outlined text-sm">water_drop</span>
+          Tưới nước Thực tiễn
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer Placeholder -->
+  <div id="footer-placeholder"></div>
+
+  <!-- Javascript Logic for PhiloLab -->
+  <script>
+    // ------------------------------------------------------------------------
+    // TAB MANAGEMENT
+    // ------------------------------------------------------------------------
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('active');
+        btn.classList.remove('bg-primary', 'text-white');
+        btn.classList.add('text-slate-600', 'hover:bg-slate-100');
+      });
+      document.querySelectorAll('.tab-content').forEach(content => {
+        content.classList.add('hidden');
+        content.classList.remove('block');
+      });
+
+      const activeBtn = document.getElementById('tab-' + tabId);
+      activeBtn.classList.add('active');
+      activeBtn.classList.add('bg-primary', 'text-white');
+      activeBtn.classList.remove('text-slate-600', 'hover:bg-slate-100');
+      
+      const activeContent = document.getElementById('content-' + tabId);
+      activeContent.classList.remove('hidden');
+      activeContent.classList.add('block');
+      
+      if (tabId === 'greenhouse') {
+        renderGreenhouse();
+      }
+    }
+
+    // ------------------------------------------------------------------------
+    // TABS FOR DIALECTICAL LAWS SIMULATOR
+    // ------------------------------------------------------------------------
+    function switchSandboxLaw(lawId) {
+      document.querySelectorAll('.law-sandbox-content').forEach(content => {
+        content.classList.add('hidden');
+        content.classList.remove('block');
+      });
+
+      document.getElementById('sandbox-' + lawId).classList.remove('hidden');
+      document.getElementById('sandbox-' + lawId).classList.add('block');
+
+      // Update sidebar buttons style
+      const lawBtns = {
+        quantity: document.getElementById('law-btn-quantity'),
+        contradiction: document.getElementById('law-btn-contradiction'),
+        negation: document.getElementById('law-btn-negation')
+      };
+
+      Object.keys(lawBtns).forEach(key => {
+        if (key === lawId) {
+          lawBtns[key].className = "w-full text-left p-3.5 rounded-xl border border-blue-100 bg-blue-50 text-blue-600 font-bold text-sm flex items-center gap-3 transition-all hover:bg-blue-100";
+        } else {
+          lawBtns[key].className = "w-full text-left p-3.5 rounded-xl border border-slate-100 text-slate-700 font-semibold text-sm flex items-center gap-3 transition-all hover:bg-slate-50";
+        }
+      });
+
+      if (lawId === 'negation') {
+        resetSpiral();
+      }
+    }
+
+    // ------------------------------------------------------------------------
+    // LAW 1: QUANTITY AND QUALITY
+    // ------------------------------------------------------------------------
+    let quantityValue = parseInt(localStorage.getItem('philosophyQty')) || 0;
+    let qualityLevel = parseInt(localStorage.getItem('philosophyQualLevel')) || 1;
+    const qualityTitles = ["Sơ cấp (Beginner)", "Trung cấp (Practitioner)", "Cao cấp (Scholar)", "Hiền triết (Sage)"];
+
+    function updateQuantityUI() {
+      const liquid = document.getElementById('liquid-energy');
+      const text = document.getElementById('tank-percent-text');
+      const leapBtn = document.getElementById('leap-btn');
+      const dialLevelText = document.getElementById('dashboard-dialectics-level');
+      
+      // Update local storage
+      localStorage.setItem('philosophyQty', quantityValue);
+      localStorage.setItem('philosophyQualLevel', qualityLevel);
+
+      // Clamp values
+      quantityValue = Math.min(100, Math.max(0, quantityValue));
+
+      // Visual progress fill
+      liquid.style.height = quantityValue + "%";
+      text.innerText = quantityValue + " / 100";
+      
+      // Badges
+      const qualTitle = qualityTitles[qualityLevel - 1] || qualityTitles[0];
+      document.getElementById('current-quality-badge').innerText = qualTitle;
+      dialLevelText.innerText = `Cấp ${qualityLevel}: ${qualTitle.split(' ')[0]}`;
+
+      // Enable leap when full
+      if (quantityValue >= 100) {
+        leapBtn.removeAttribute('disabled');
+        leapBtn.className = "px-6 py-3 bg-gradient-to-r from-amber-500 to-orange-500 text-white rounded-xl font-bold text-sm transition-all shadow-lg hover:shadow-2xl hover:scale-105 shrink-0 flex items-center gap-2 leap-ready animate-pulse-scale";
+      } else {
+        leapBtn.setAttribute('disabled', 'true');
+        leapBtn.className = "px-6 py-3 bg-slate-200 text-slate-500 rounded-xl font-bold text-sm cursor-not-allowed transition-all shadow-md shrink-0 flex items-center gap-2";
+      }
+    }
+
+    function addQuantity(amount) {
+      if (quantityValue >= 100) return;
+      quantityValue += amount;
+      updateQuantityUI();
+    }
+
+    function executeLeap() {
+      if (quantityValue < 100) return;
+      
+      // Upgrade Quality level
+      const oldLevel = qualityLevel;
+      if (qualityLevel < 4) {
+        qualityLevel++;
+      } else {
+        qualityLevel = 1; // loop back for gameplay
+      }
+
+      quantityValue = 0; // Reset quantity
+      updateQuantityUI();
+
+      // Trigger Confetti
+      startConfetti();
+
+      // Show success explanation
+      const successPanel = document.getElementById('leap-success-panel');
+      const expText = document.getElementById('leap-explanation');
+      successPanel.classList.remove('hidden');
+
+      const explanations = [
+        "", // index 0 unused
+        "Chúc mừng! Bạn quay lại cấp độ Sơ cấp để tái định hình toàn bộ lượng kiến thức. Vòng lặp phát triển bắt đầu lại với nhận thức hoàn toàn mới mẻ!",
+        "Qua Bước Nhảy biện chứng này, Chất tư duy của bạn đã nâng lên tầm TRUNG CẤP. Bạn có khả năng nhận diện các mâu thuẫn phức tạp trong đời sống và lý giải chúng bằng lượng chất tích lũy thực tiễn.",
+        "XUẤT SẮC! Đạt cấp độ CAO CẤP. Nhận thức của bạn đã đạt đến độ tự phê bình biện chứng sắc bén, biết kết hợp hài hòa giữa lý luận sâu xa và thực hành xã hội.",
+        "PHI THƯỜNG! Bạn đã vươn tới cấp bậc HIỀN TRIẾT (SAGE). Thế giới quan duy vật biện chứng hoàn hảo giúp bạn thấu suốt mọi quy luật vận động của tự nhiên, xã hội và tư duy!"
+      ];
+
+      expText.innerText = explanations[qualityLevel] || "Bạn vừa chuyển hóa thành công lượng thành chất!";
+      
+      // Auto dismiss success panel in 12s
+      setTimeout(dismissLeapPanel, 12000);
+    }
+
+    function dismissLeapPanel() {
+      document.getElementById('leap-success-panel').classList.add('hidden');
+    }
+
+    // ------------------------------------------------------------------------
+    // LAW 2: CONTRADICTION SIMULATION
+    // ------------------------------------------------------------------------
+    function applyContradictionPreset() {
+      const select = document.getElementById('contradiction-preset');
+      const oppAInput = document.getElementById('opp-a-input');
+      const oppBInput = document.getElementById('opp-b-input');
+
+      const presets = {
+        laziness: { a: "Sự lười biếng", b: "Khát vọng thành công" },
+        theory: { a: "Lý thuyết sách vở", b: "Thực tiễn cuộc sống" },
+        economy: { a: "Tăng trưởng kinh tế", b: "Bảo vệ môi trường" }
+      };
+
+      if (select.value in presets) {
+        oppAInput.value = presets[select.value].a;
+        oppBInput.value = presets[select.value].b;
+      }
+      updateOpporOrbs();
+    }
+
+    function updateOpporOrbs() {
+      const aVal = document.getElementById('opp-a-input').value || "Mặt đối lập A";
+      const bVal = document.getElementById('opp-b-input').value || "Mặt đối lập B";
+      document.getElementById('orb-left').innerText = aVal;
+      document.getElementById('orb-right').innerText = bVal;
+      
+      // Reset state if inputs change
+      document.getElementById('orb-left').style.left = "2.5rem";
+      document.getElementById('orb-right').style.right = "2.5rem";
+      document.getElementById('orb-shockwave').className = "absolute w-20 h-20 rounded-full border-4 border-yellow-400 scale-0 opacity-0 transition-all duration-700 z-20";
+      document.getElementById('orb-unified').className = "absolute w-18 h-18 bg-gradient-to-br from-yellow-400 to-amber-500 rounded-full shadow-2xl scale-0 opacity-0 flex flex-col items-center justify-center text-slate-900 text-[10px] font-extrabold text-center p-2 transition-all duration-1000 z-30";
+      document.getElementById('contradiction-analysis-box').classList.add('hidden');
+    }
+
+    function simulateContradictionConflict() {
+      const orbLeft = document.getElementById('orb-left');
+      const orbRight = document.getElementById('orb-right');
+      const shockwave = document.getElementById('orb-shockwave');
+      const unified = document.getElementById('orb-unified');
+      const analysisBox = document.getElementById('contradiction-analysis-box');
+      const expText = document.getElementById('contradiction-explanation-text');
+
+      const aVal = document.getElementById('opp-a-input').value || "Mặt đối lập A";
+      const bVal = document.getElementById('opp-b-input').value || "Mặt đối lập B";
+
+      // 1. Trigger movements - collision
+      orbLeft.style.left = "calc(50% - 28px)";
+      orbRight.style.right = "calc(50% - 28px)";
+
+      // 2. Trigger shockwave and merge
+      setTimeout(() => {
+        shockwave.classList.remove('scale-0', 'opacity-0');
+        shockwave.classList.add('scale-150', 'opacity-100');
+        
+        // Hide opposing orbs
+        orbLeft.style.opacity = "0";
+        orbRight.style.opacity = "0";
+      }, 900);
+
+      // 3. Show unified orb
+      setTimeout(() => {
+        unified.classList.remove('scale-0', 'opacity-0');
+        unified.classList.add('scale-100', 'opacity-100');
+        unified.innerHTML = `<span class="font-bold text-xs text-amber-950">Giải quyết<br>Mâu thuẫn</span>`;
+      }, 1300);
+
+      // 4. Render explanation text
+      setTimeout(() => {
+        analysisBox.classList.remove('hidden');
+        
+        const explanations = {
+          laziness: `Sự lười biếng (tâm lý bảo thủ) trì hoãn khát vọng thành công của bạn. Khi hai mặt này xung đột đỉnh điểm, thông qua kỷ luật tự thân (đấu tranh), sự lười biếng bị loại bỏ, khát vọng dẫn dắt để đưa bạn tới một **Chất mới cao hơn** - một phiên bản hành động mạnh mẽ, trưởng thành hơn!`,
+          theory: `Lý thuyết sách vở khô khan và Thực tiễn xã hội đầy biến động luôn mâu thuẫn. Đọc sách không áp dụng dẫn tới giáo điều, thực hành không lý luận dẫn tới mù quáng. Khi hai mặt này thống nhất trong **Nhận thức biện chứng**, bạn sẽ thấu suốt lý thuyết sâu xa để hành động đúng đắn nhất.`,
+          economy: `Tăng trưởng kinh tế đòi hỏi tài nguyên, bảo vệ môi trường đòi hỏi sự hạn chế. Mâu thuẫn này thúc đẩy các cuộc cải cách khoa học. Sự thống nhất và giải quyết mâu thuẫn này sinh ra giải pháp **Phát triển xanh bền vững** - Chất lượng kinh tế xã hội ở tầm cao mới.`
+        };
+
+        expText.innerHTML = explanations[document.getElementById('contradiction-preset').value] || 
+          `Mặt đối lập **"${aVal}"** xung đột dữ dội với **"${bVal}"**. Trong triết học Mác - Lênin, mâu thuẫn này không tiêu diệt sự vật, mà thông qua quá trình đấu tranh tích cực, các mặt tiêu cực bị loại bỏ, hạt nhân tích cực được kế thừa để tạo nên giải pháp dung hòa vượt bậc. Đây chính là động lực đi lên của bản thân bạn!`;
+      }, 1600);
+    }
+
+    // ------------------------------------------------------------------------
+    // LAW 3: NEGATION OF NEGATION
+    // ------------------------------------------------------------------------
+    function resetSpiral() {
+      const p1 = document.getElementById('development-spiral-progress');
+      const ns = document.getElementById('spiral-node-start');
+      const n1 = document.getElementById('spiral-node-neg1');
+      const n2 = document.getElementById('spiral-node-neg2');
+      const btn2 = document.getElementById('negation-btn-2');
+      const pointer = document.getElementById('spiral-pointer');
+
+      p1.style.strokeDashoffset = "1000";
+      ns.classList.remove('scale-100');
+      ns.classList.add('scale-0');
+      n1.classList.remove('scale-100');
+      n1.classList.add('scale-0');
+      n2.classList.remove('scale-100');
+      n2.classList.add('scale-0');
+      
+      btn2.setAttribute('disabled', 'true');
+      btn2.className = "px-3 py-1 bg-slate-100 border border-slate-200 text-slate-400 font-bold text-[10px] rounded-lg transition-colors cursor-not-allowed";
+
+      pointer.classList.add('hidden');
+      document.getElementById('negation-summary-box').classList.add('hidden');
+    }
+
+    function applyNegation(step) {
+      const p1 = document.getElementById('development-spiral-progress');
+      const ns = document.getElementById('spiral-node-start');
+      const n1 = document.getElementById('spiral-node-neg1');
+      const n2 = document.getElementById('spiral-node-neg2');
+      const btn2 = document.getElementById('negation-btn-2');
+      const pointer = document.getElementById('spiral-pointer');
+
+      if (step === 1) {
+        // Draw first half of spiral
+        p1.style.strokeDashoffset = "600";
+        ns.classList.remove('scale-0');
+        ns.classList.add('scale-100');
+        
+        setTimeout(() => {
+          n1.classList.remove('scale-0');
+          n1.classList.add('scale-100');
+          pointer.classList.remove('hidden');
+          pointer.setAttribute('cx', '90');
+          pointer.setAttribute('cy', '90');
+
+          btn2.removeAttribute('disabled');
+          btn2.className = "px-3 py-1 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 text-emerald-600 font-bold text-[10px] rounded-lg transition-colors";
+        }, 1000);
+      } else if (step === 2) {
+        // Draw rest of spiral
+        p1.style.strokeDashoffset = "0";
+        
+        setTimeout(() => {
+          n2.classList.remove('scale-0');
+          n2.classList.add('scale-100');
+          pointer.setAttribute('cx', '125');
+          pointer.setAttribute('cy', '45');
+          
+          document.getElementById('negation-summary-box').classList.remove('hidden');
+        }, 1000);
+      }
+    }
+
+    // ------------------------------------------------------------------------
+    // COMPASS: WORLDVIEW & METHODOLOGY COMPASS ASSESSMENT
+    // ------------------------------------------------------------------------
+    let worldviewCoords = JSON.parse(localStorage.getItem('philosophyWorldviewCoords')) || null;
+    let compassAnswers = [];
+    let currentQuestionIdx = 0;
+
+    const compassQuestions = [
+      {
+        text: "1. Khi bạn bắt đầu thực hiện một dự án học tập lớn, đâu là yếu tố bạn tin tưởng và ưu tiên chuẩn bị trước tiên?",
+        options: [
+          { text: "A. Xây dựng động lực tinh thần, niềm tin mãnh liệt vào bản thân để vượt qua rào cản.", mv: -2, mc: 1 },
+          { text: "B. Tìm kiếm các tài liệu, cơ sở dữ liệu hữu hình và kế hoạch phân phối thời gian logic.", mv: 2, mc: -1 },
+          { text: "C. Xây dựng phương pháp thực hành kết hợp phân tích sâu sắc các trở ngại có thể phát sinh.", mv: 1, mc: 2 },
+          { text: "D. Tập trung toàn bộ vào mục tiêu tối cao, tin rằng vũ trụ sẽ đưa đến giải pháp phù hợp.", mv: -2, mc: -2 }
+        ]
+      },
+      {
+        text: "2. Khi đối mặt với một thất bại hoặc biến cố lớn đột ngột xảy ra trong cuộc sống cá nhân, phản ứng nào biểu thị con người bạn?",
+        options: [
+          { text: "A. Coi đó là một bước lùi ngẫu nhiên, tự trách bản ngã hoặc số mệnh đã không may mắn.", mv: -1, mc: -2 },
+          { text: "B. Phân tích xem sự thay đổi lượng chất nào của mình dẫn tới kết quả này và bắt đầu khắc phục mâu thuẫn.", mv: 2, mc: 2 },
+          { text: "C. Tìm hiểu nguyên nhân vật chất thực tế gây nên sự cố và áp dụng quy trình cứng nhắc để sửa chữa.", mv: 2, mc: -1 },
+          { text: "D. Tin tưởng đây là bài học thử thách tinh thần của đấng tối cao giúp rèn giũa tâm hồn mình.", mv: -2, mc: 1 }
+        ]
+      },
+      {
+        text: "3. Nhận thức của con người về chân lý và kiến thức theo quan điểm của bạn bắt nguồn từ đâu?",
+        options: [
+          { text: "A. Từ tư duy thuần túy, những suy ngẫm trừu tượng và sự thấu suốt sâu thẳm tâm trí lý tính.", mv: -2, mc: -1 },
+          { text: "B. Từ sự tích lũy kinh nghiệm cảm giác trực quan thụ động về các sự vật xung quanh.", mv: 1, mc: -2 },
+          { text: "C. Từ quá trình hoạt động thực tiễn cải tạo thế giới, qua đó kiểm nghiệm lý luận liên tục.", mv: 2, mc: 2 },
+          { text: "D. Chân lý là tuyệt đối có sẵn từ vũ trụ, con người chỉ đang khám phá lại mà thôi.", mv: -2, mc: -2 }
+        ]
+      },
+      {
+        text: "4. Khi nhận xét hoặc đánh giá năng lực của một người đồng nghiệp / người bạn sau một thời gian dài không gặp:",
+        options: [
+          { text: "A. Giữ nguyên ấn tượng cũ của quá khứ, vì cho rằng bản chất con người rất khó thay đổi.", mv: 1, mc: -2 },
+          { text: "B. Quan sát họ trong sự tương tác thực tế hiện tại, thấu hiểu rằng họ đã thay đổi do môi trường vật chất.", mv: 2, mc: 2 },
+          { text: "C. Cho rằng họ tiến bộ hay thụt lùi hoàn toàn là do sự thức tỉnh ý chí tinh thần bên trong họ.", mv: -2, mc: 1 },
+          { text: "D. Nhìn nhận sự phát triển của họ một cách chung chung phiến diện, không rõ nguyên nhân.", mv: -1, mc: -1 }
+        ]
+      },
+      {
+        text: "5. Lịch sử xã hội loài người phát triển và thay đổi động lực chủ đạo là từ đâu?",
+        options: [
+          { text: "A. Sự phát triển vượt bậc của lực lượng sản xuất vật chất và sự đấu tranh giai cấp thực tế.", mv: 2, mc: 2 },
+          { text: "B. Do các tư tưởng vĩ đại, những triết lý lớn của các bậc vĩ nhân dẫn dắt nhân loại.", mv: -2, mc: 1 },
+          { text: "C. Sự tiến hóa ngẫu nhiên không có quy luật cố định nào của các cá nhân sinh học.", mv: 1, mc: -2 },
+          { text: "D. Định mệnh lịch sử đã được sắp đặt sẵn bởi dòng chảy thời gian vũ trụ vô hình.", mv: -1, mc: -2 }
+        ]
+      }
+    ];
+
+    function startCompassTest() {
+      document.getElementById('compass-intro').classList.add('hidden');
+      document.getElementById('compass-test-box').classList.remove('hidden');
+      document.getElementById('compass-test-box').classList.add('flex');
+      
+      compassAnswers = [];
+      currentQuestionIdx = 0;
+      showCompassQuestion();
+    }
+
+    function showCompassQuestion() {
+      const q = compassQuestions[currentQuestionIdx];
+      const progText = document.getElementById('question-progress-text');
+      const progBar = document.getElementById('question-progress-bar');
+      const statement = document.getElementById('question-statement');
+      const optionsBox = document.getElementById('options-container');
+
+      progText.innerText = `Câu ${currentQuestionIdx + 1}/${compassQuestions.length}`;
+      progBar.style.width = ((currentQuestionIdx + 1) / compassQuestions.length * 100) + "%";
+      statement.innerText = q.text;
+
+      optionsBox.innerHTML = "";
+      q.options.forEach((opt, idx) => {
+        const btn = document.createElement('button');
+        btn.className = "w-full text-left p-4 border border-slate-200 hover:border-primary hover:bg-blue-50/20 rounded-2xl text-xs font-medium text-slate-700 transition-all active:scale-[0.98]";
+        btn.innerText = opt.text;
+        btn.onclick = () => selectCompassOption(opt.mv, opt.mc);
+        optionsBox.appendChild(btn);
+      });
+    }
+
+    function selectCompassOption(mv, mc) {
+      compassAnswers.push({ mv, mc });
+      
+      if (currentQuestionIdx < compassQuestions.length - 1) {
+        currentQuestionIdx++;
+        showCompassQuestion();
+      } else {
+        calculateCompassResult();
+      }
+    }
+
+    function calculateCompassResult() {
+      // Sum up points
+      let totalMV = 0; // Materialism vs Idealism
+      let totalMC = 0; // Dialectics vs Metaphysics
+
+      compassAnswers.forEach(ans => {
+        totalMV += ans.mv;
+        totalMC += ans.mc;
+      });
+
+      // Map scale from -10 to +10
+      // Maximum score possible in absolute: 5 questions * 2 points = 10. Perfect!
+      
+      worldviewCoords = { x: totalMV, y: totalMC };
+      localStorage.setItem('philosophyWorldviewCoords', JSON.stringify(worldviewCoords));
+
+      // Close test box, display result
+      document.getElementById('compass-test-box').classList.remove('flex');
+      document.getElementById('compass-test-box').classList.add('hidden');
+      
+      renderCompassPlot();
+    }
+
+    function renderCompassPlot() {
+      if (!worldviewCoords) return;
+
+      const dot = document.getElementById('compass-plot-dot');
+      const ring = document.getElementById('compass-plot-ring');
+      const panel = document.getElementById('compass-result-panel');
+      const dbTitle = document.getElementById('dashboard-worldview-title');
+
+      // Convert coordinate -10 to +10 into SVG coordinates 20 to 180 (Center is 100)
+      // x: -10 -> 20, 0 -> 100, +10 -> 180 => (x + 10) * 8 + 20
+      // y: -10 -> 180, 0 -> 100, +10 -> 20 (Note Y axis goes down, so invert Y) => 100 - (y * 8)
+      
+      const svgX = (worldviewCoords.x + 10) * 8;
+      const svgY = 100 - (worldviewCoords.y * 8);
+
+      dot.classList.remove('hidden');
+      ring.classList.remove('hidden');
+
+      dot.setAttribute('cx', svgX);
+      dot.setAttribute('cy', svgY);
+      ring.setAttribute('cx', svgX);
+      ring.setAttribute('cy', svgY);
+
+      // Determine quadrant and feedback
+      let title = "";
+      let desc = "";
+      let quote = "";
+
+      const x = worldviewCoords.x;
+      const y = worldviewCoords.y;
+
+      if (x >= 0 && y >= 0) {
+        title = "Nhà Cách mạng Biện chứng Duy vật";
+        desc = "Đặc điểm: Bạn sở hữu thế giới quan vững chãi nhất của Triết học Mác - Lênin. Bạn hiểu rằng thực tại vật chất xung quanh quyết định ý thức con người, nhưng đồng thời nhìn mọi sự vật trong trạng thái vận động, liên hệ và biến đổi mâu thuẫn để liên tục nâng cao bản thân bằng thực tiễn.";
+        quote = '"Các triết gia đã chỉ giải thích thế giới bằng nhiều cách khác nhau, song vấn đề là cải tạo thế giới." - Karl Marx';
+      } else if (x < 0 && y >= 0) {
+        title = "Nhà Tư tưởng Biện chứng Duy tâm";
+        desc = "Đặc điểm: Bạn tin tưởng sâu sắc vào các giá trị tinh thần, ý chí và tư tưởng quyết định số phận, nhưng bạn áp dụng tư duy biện chứng rất tốt - nhìn nhận sự phát triển của bản ngã theo chu kỳ biến đổi và giải quyết xung đột ý chí nội tâm để tiến lên.";
+        quote = '"Mọi sự vật đều là sự tự biểu hiện của ý niệm tuyệt đối tự phủ định để tự phát triển." - G.W.F. Hegel';
+      } else if (x >= 0 && y < 0) {
+        title = "Nhà Khoa học Duy vật Siêu hình";
+        desc = "Đặc điểm: Bạn cực kỳ thực tế, tin vào số liệu, khoa học kỹ thuật và cơ sở vật chất rõ ràng. Tuy nhiên, phương pháp luận của bạn có thiên hướng cơ học và tĩnh lặng (siêu hình), dễ nhìn sự vật độc lập, cô lập mà chưa liên kết chúng trong mối quan hệ biện chứng chuyển dịch.";
+        quote = '"Cơ thể con người không gì khác hơn là một cỗ máy tự vận hành cực kỳ tinh vi." - Julien de La Mettrie';
+      } else {
+        title = "Nhà Thần học Siêu hình";
+        desc = "Đặc điểm: Bạn có xu hướng tin vào các ý niệm định mệnh, tín ngưỡng tĩnh lặng tuyệt đối hoặc sự ngẫu nhiên của vũ trụ. Bạn đánh giá mọi sự vật tách rời và tin tưởng ý chí tâm linh dẫn dắt cuộc sống mà thiếu đi sự gắn kết với điều kiện vật chất khách quan và thực tiễn hoạt động.";
+        quote = '"Không có gì tồn tại ngoài những ý niệm trong tâm trí chủ quan của chúng ta." - George Berkeley';
+      }
+
+      document.getElementById('result-title').innerText = title;
+      document.getElementById('result-desc').innerText = desc;
+      document.getElementById('result-quote').innerText = quote;
+      
+      dbTitle.innerText = title;
+      dbTitle.title = title;
+
+      panel.classList.remove('hidden');
+    }
+
+    function resetCompassTest() {
+      worldviewCoords = null;
+      localStorage.removeItem('philosophyWorldviewCoords');
+
+      // Hide results & dots
+      document.getElementById('compass-plot-dot').classList.add('hidden');
+      document.getElementById('compass-plot-ring').classList.add('hidden');
+      document.getElementById('compass-result-panel').classList.add('hidden');
+      document.getElementById('dashboard-worldview-title').innerText = "Chưa trắc nghiệm";
+
+      // Show intro
+      document.getElementById('compass-intro').classList.remove('hidden');
+    }
+
+    // ------------------------------------------------------------------------
+    // GREENHOUSE: GAMIFIED REFLECTION JOURNAL
+    // ------------------------------------------------------------------------
+    let greenhouseReflections = JSON.parse(localStorage.getItem('philosophyGreenhouseReflections')) || [];
+
+    const reflectionPrompts = {
+      "quantity-quality": [
+        "1. Xác định lượng kiến thức/trải nghiệm cụ thể bạn đã tích lũy gần đây trong chủ đề này?",
+        "2. Đâu là 'Điểm nút' (giới hạn) bạn cảm thấy mình cần vượt qua để bứt phá lên cấp độ mới?",
+        "3. Kế hoạch thực hiện 'Bước nhảy' (hành động đột phá thực tế) của bạn là gì?"
+      ],
+      "contradiction": [
+        "1. Đâu là hai mặt đối lập (mặt tích cực & tiêu cực) đang xung đột gay gắt nhất trong nội tâm của bạn?",
+        "2. Bạn tìm thấy sự thống nhất (mối liên hệ tương hỗ) giữa hai mặt đối lập này ở điểm nào?",
+        "3. Giải pháp cụ thể bạn sẽ thực hiện để giải quyết mâu thuẫn này thúc đẩy bản thân đi lên?"
+      ],
+      "negation": [
+        "1. Định kiến cũ, thói quen cũ lạc hậu nào bạn vừa phát hiện ra cần phải phủ định?",
+        "2. Điểm tích cực, cốt lõi lành mạnh nào bạn muốn kế thừa biện chứng từ thói quen cũ đó?",
+        "3. Bạn sẽ nâng tầm phiên bản mới của mình lên một nấc thang xoắn ốc cao hơn như thế nào?"
+      ],
+      "theory-practice": [
+        "1. Lý luận triết học / kiến thức khoa học nào bạn vừa đọc được trên giảng đường?",
+        "2. Thực tiễn cuộc sống đã kiểm nghiệm lý thuyết đó sai lệch hay chính xác ra sao?",
+        "3. Bạn rút ra chân lý biện chứng thực tiễn nào để áp dụng ngược lại vào hành động?"
+      ],
+      "self": [
+        "1. Về mặt vật chất (sức khỏe, môi trường sống, kinh tế) đang chi phối tâm trạng bạn thế nào?",
+        "2. Về mặt ý thức (mơ ước, mục tiêu tinh thần) bạn đang có hoài bão gì?",
+        "3. Bạn sẽ cân bằng vật chất - ý thức để định hình 'Chất' cá nhân ra sao?"
+      ]
+    };
+
+    function updateReflectionPrompts() {
+      const topic = document.getElementById('reflection-topic').value;
+      const bulletsBox = document.getElementById('reflection-guide-bullets');
+      
+      bulletsBox.innerHTML = "";
+      const guides = reflectionPrompts[topic] || [];
+      guides.forEach(text => {
+        const li = document.createElement('li');
+        li.className = "flex gap-2 items-start";
+        li.innerHTML = `<span class="text-amber-600 font-bold shrink-0">•</span><span class="text-slate-600 text-xs">${text}</span>`;
+        bulletsBox.appendChild(li);
+      });
+    }
+
+    function plantSeed(event) {
+      event.preventDefault();
+      
+      const topicSelect = document.getElementById('reflection-topic');
+      const contentArea = document.getElementById('reflection-content');
+      
+      const newSeed = {
+        id: 'seed_' + new Date().getTime(),
+        topic: topicSelect.value,
+        topicText: topicSelect.options[topicSelect.selectedIndex].text,
+        content: contentArea.value,
+        stage: 1, // Stage 1: Seed 🌱, 2: Sprout 🌿, 3: Bloom 🌳
+        date: new Date().toLocaleDateString('vi-VN'),
+        waterCount: 0
+      };
+
+      greenhouseReflections.unshift(newSeed);
+      localStorage.setItem('philosophyGreenhouseReflections', JSON.stringify(greenhouseReflections));
+      
+      contentArea.value = "";
+      renderGreenhouse();
+      
+      // Flash a quick alert
+      alert("Bạn đã gieo hạt giống phản tư thành công! Hãy theo dõi hạt mầm lớn lên ở bảng bên cạnh.");
+    }
+
+    function deleteSeed(id) {
+      if (confirm("Bạn có chắc chắn muốn nhổ bỏ cây phản tư này không? Dữ liệu chiêm nghiệm sẽ mất vĩnh viễn!")) {
+        greenhouseReflections = greenhouseReflections.filter(item => item.id !== id);
+        localStorage.setItem('philosophyGreenhouseReflections', JSON.stringify(greenhouseReflections));
+        renderGreenhouse();
+      }
+    }
+
+    function waterSeed(id) {
+      const idx = greenhouseReflections.findIndex(item => item.id === id);
+      if (idx > -1) {
+        const item = greenhouseReflections[idx];
+        item.waterCount++;
+        
+        if (item.waterCount >= 3) {
+          item.stage = 3; // Fully grown bloom
+        } else if (item.waterCount >= 1) {
+          item.stage = 2; // Sprout
+        }
+        
+        localStorage.setItem('philosophyGreenhouseReflections', JSON.stringify(greenhouseReflections));
+        renderGreenhouse();
+        
+        // Visual trigger for modal button if open
+        const modalBtn = document.getElementById('modal-water-btn');
+        if (modalBtn && modalBtn.dataset.id === id) {
+          modalBtn.innerHTML = `💧 Đã tưới (${item.waterCount} lần)`;
+        }
+      }
+    }
+
+    let activeModalSeedId = null;
+    function openReflectionModal(id) {
+      const item = greenhouseReflections.find(seed => seed.id === id);
+      if (!item) return;
+
+      activeModalSeedId = id;
+      document.getElementById('modal-tag').innerText = item.topicText;
+      document.getElementById('modal-title').innerText = `Chiêm nghiệm ngày ${item.date}`;
+      document.getElementById('modal-date').innerText = `📅 Tiến trình tưới nước: ${item.waterCount} lần thực tiễn.`;
+      document.getElementById('modal-content').innerText = item.content;
+
+      const waterBtn = document.getElementById('modal-water-btn');
+      waterBtn.dataset.id = id;
+      waterBtn.innerHTML = `💧 Tưới nước Thực tiễn (${item.waterCount})`;
+      waterBtn.onclick = () => {
+        waterSeed(id);
+        waterBtn.innerHTML = `💧 Đã tưới (${item.waterCount} lần)`;
+      };
+
+      document.getElementById('view-reflection-modal').classList.remove('hidden');
+      document.getElementById('view-reflection-modal').classList.add('flex');
+    }
+
+    function closeReflectionModal() {
+      document.getElementById('view-reflection-modal').classList.add('hidden');
+      document.getElementById('view-reflection-modal').classList.remove('flex');
+      activeModalSeedId = null;
+    }
+
+    function renderGreenhouse() {
+      const emptyState = document.getElementById('greenhouse-empty-state');
+      const grid = document.getElementById('greenhouse-plants-grid');
+      const stats = document.getElementById('garden-statistics');
+      const dbGardenCount = document.getElementById('dashboard-garden-count');
+
+      // Update counters
+      dbGardenCount.innerText = `🌱 ${greenhouseReflections.length} hạt giống`;
+      stats.innerText = `${greenhouseReflections.length} Cây phản tư`;
+
+      if (greenhouseReflections.length === 0) {
+        emptyState.classList.remove('hidden');
+        grid.classList.add('hidden');
+        return;
+      }
+
+      emptyState.classList.add('hidden');
+      grid.classList.remove('hidden');
+
+      grid.innerHTML = "";
+      greenhouseReflections.forEach(seed => {
+        const card = document.createElement('div');
+        card.className = "bg-white p-5 rounded-2xl border border-slate-200/80 shadow-soft hover:shadow-card hover:border-emerald-300 transition-all flex flex-col justify-between group relative overflow-hidden";
+        
+        // Define SVG plant graphic depending on stage
+        let plantSvg = "";
+        let stageBadge = "";
+        
+        if (seed.stage === 1) {
+          stageBadge = `<span class="px-2 py-0.5 bg-amber-50 text-amber-600 text-[9px] font-bold rounded">🌱 HẠT MẦM</span>`;
+          plantSvg = `
+            <svg class="size-16" viewBox="0 0 64 64" fill="none">
+              <!-- Seed in ground -->
+              <ellipse cx="32" cy="52" rx="16" ry="6" fill="#78350f" opacity="0.3"/>
+              <circle cx="32" cy="46" r="4" fill="#a16207" />
+              <path d="M30 46 Q26 40 24 38 Q22 36 20 40" stroke="#10b981" stroke-width="2" stroke-linecap="round" fill="none"/>
+              <path d="M32 46 Q34 38 38 36" stroke="#10b981" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+            </svg>
+          `;
+        } else if (seed.stage === 2) {
+          stageBadge = `<span class="px-2 py-0.5 bg-blue-50 text-blue-600 text-[9px] font-bold rounded">🌿 CÂY NON</span>`;
+          plantSvg = `
+            <svg class="size-16" viewBox="0 0 64 64" fill="none">
+              <ellipse cx="32" cy="52" rx="18" ry="6" fill="#78350f" opacity="0.3"/>
+              <!-- Stems -->
+              <path d="M32 50 C32 40 28 30 24 24" stroke="#059669" stroke-width="3" stroke-linecap="round" fill="none"/>
+              <path d="M32 50 C34 42 38 34 42 30" stroke="#059669" stroke-width="2" stroke-linecap="round" fill="none"/>
+              <!-- Leaves -->
+              <path d="M24 24 Q18 20 18 26 Q24 28 24 24" fill="#10b981" stroke="#059669" stroke-width="1"/>
+              <path d="M42 30 Q48 28 46 34 Q42 34 42 30" fill="#10b981" stroke="#059669" stroke-width="1"/>
+            </svg>
+          `;
+        } else {
+          stageBadge = `<span class="px-2 py-0.5 bg-emerald-50 text-emerald-600 text-[9px] font-bold rounded">🌳 TRƯỞNG THÀNH</span>`;
+          plantSvg = `
+            <svg class="size-16" viewBox="0 0 64 64" fill="none" class="animate-pulse-scale">
+              <ellipse cx="32" cy="52" rx="20" ry="6" fill="#78350f" opacity="0.3"/>
+              <!-- Main Trunk -->
+              <path d="M32 50 C32 36 32 26 32 20" stroke="#78350f" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+              <!-- Branches & Foliage -->
+              <circle cx="32" cy="18" r="14" fill="#10b981" opacity="0.9"/>
+              <circle cx="24" cy="20" r="10" fill="#059669" opacity="0.95"/>
+              <circle cx="40" cy="22" r="9" fill="#34d399" opacity="0.95"/>
+              <!-- Flowers/Fruit -->
+              <circle cx="32" cy="12" r="2.5" fill="#f59e0b"/>
+              <circle cx="20" cy="22" r="2.5" fill="#f59e0b"/>
+              <circle cx="38" cy="20" r="2" fill="#ef4444"/>
+            </svg>
+          `;
+        }
+
+        card.innerHTML = `
+          <div class="flex justify-between items-start gap-4 mb-4">
+            <div class="flex-grow">
+              <div class="flex flex-wrap gap-2 items-center mb-2">
+                ${stageBadge}
+                <span class="text-[9px] text-slate-400">📅 ${seed.date}</span>
+              </div>
+              <h4 class="font-bold text-slate-800 text-xs line-clamp-1">${seed.topicText}</h4>
+              <p class="text-[10px] text-slate-500 line-clamp-2 mt-1 leading-normal">${seed.content}</p>
+            </div>
+            <div class="shrink-0">
+              ${plantSvg}
+            </div>
+          </div>
+          
+          <div class="flex items-center justify-between border-t border-slate-100 pt-3 mt-auto">
+            <div class="flex items-center gap-1.5">
+              <button onclick="waterSeed('${seed.id}')" 
+                class="size-8 rounded-lg bg-blue-50 hover:bg-blue-100 text-blue-600 flex items-center justify-center transition-colors"
+                title="Tưới nước thực tiễn (Đưa lý thuyết áp dụng thực tế)">
+                <span class="material-symbols-outlined text-base">water_drop</span>
+              </button>
+              <button onclick="openReflectionModal('${seed.id}')" 
+                class="size-8 rounded-lg bg-slate-50 hover:bg-slate-100 text-slate-600 flex items-center justify-center transition-colors"
+                title="Đọc chi tiết">
+                <span class="material-symbols-outlined text-base">visibility</span>
+              </button>
+            </div>
+            
+            <button onclick="deleteSeed('${seed.id}')" 
+              class="size-8 rounded-lg bg-red-50 hover:bg-red-100 text-red-600 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
+              title="Xóa suy ngẫm">
+              <span class="material-symbols-outlined text-base">delete</span>
+            </button>
+          </div>
+        `;
+        
+        grid.appendChild(card);
+      });
+    }
+
+    // ------------------------------------------------------------------------
+    // CONFETTI EFFECTS (PURE CANVAS SCRIPT)
+    // ------------------------------------------------------------------------
+    const canvas = document.getElementById("confetti-canvas");
+    const ctx = canvas.getContext("2d");
+    let confettiParticles = [];
+    let isConfettiRunning = false;
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener("resize", resizeCanvas);
+    resizeCanvas();
+
+    function startConfetti() {
+      confettiParticles = [];
+      for (let i = 0; i < 150; i++) {
+        confettiParticles.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height - canvas.height,
+          size: Math.random() * 8 + 4,
+          color: `hsl(${Math.random() * 360}, 90%, 60%)`,
+          speed: Math.random() * 4 + 3,
+          angle: Math.random() * 2 * Math.PI,
+          spin: Math.random() * 0.2 - 0.1
+        });
+      }
+      
+      if (!isConfettiRunning) {
+        isConfettiRunning = true;
+        animateConfetti();
+      }
+      
+      // Stop spawning and fade out confetti after 4 seconds
+      setTimeout(() => {
+        isConfettiRunning = false;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+      }, 4000);
+    }
+
+    function animateConfetti() {
+      if (!isConfettiRunning) return;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      confettiParticles.forEach(p => {
+        p.y += p.speed;
+        p.angle += p.spin;
+        p.x += Math.sin(p.angle) * 1.5;
+
+        ctx.fillStyle = p.color;
+        ctx.save();
+        ctx.translate(p.x, p.y);
+        ctx.rotate(p.angle);
+        ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size);
+        ctx.restore();
+      });
+
+      // Filter out off-screen particles
+      confettiParticles = confettiParticles.filter(p => p.y < canvas.height);
+
+      if (confettiParticles.length > 0 && isConfettiRunning) {
+        requestAnimationFrame(animateConfetti);
+      } else {
+        isConfettiRunning = false;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+      }
+    }
+
+    // ------------------------------------------------------------------------
+    // PAGE INITIALIZATION
+    // ------------------------------------------------------------------------
+    document.addEventListener("DOMContentLoaded", function () {
+      updateQuantityUI();
+      updateReflectionPrompts();
+      renderGreenhouse();
+
+      if (worldviewCoords) {
+        renderCompassPlot();
+      }
+    });
+  </script>
+
+  <!-- Component Loader -->
+  <script src="js/load-components.js"></script>
+  <script src="js/tet-effect.js"></script>
+</body>
+
+</html>

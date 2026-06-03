@@ -1,0 +1,2160 @@
+<!doctype html>
+<html class="light" lang="vi">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Module 6: Biện chứng CSHT &amp; KTTT — PhiloVerse MLN111</title>
+  <meta name="description"
+    content="Học về quy luật biện chứng Cơ sở Hạ tầng và Kiến trúc Thượng tầng — nền tảng của Chủ nghĩa Duy vật Lịch sử. Module 6 môn MLN111." />
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+    rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script src="js/tailwind-config-global.js"></script>
+  <style>
+    * {
+      font-family: 'Lexend', sans-serif;
+    }
+
+    .serif-text {
+      font-family: 'Lora', serif;
+    }
+
+    /* ── Scrollbar ── */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--bg-ivory);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--accent-brown);
+      border-radius: 3px;
+    }
+
+    /* ── Lesson tabs ── */
+    .lesson-tab {
+      transition: all .2s ease;
+    }
+
+    .lesson-tab.active {
+      background: linear-gradient(135deg, var(--secondary-gold), var(--accent-brown));
+      color: #fff;
+      box-shadow: 0 4px 14px var(--gold-glow);
+    }
+
+    .lesson-tab:not(.active):hover {
+      background: rgba(212, 160, 23, 0.08);
+      color: var(--secondary-gold);
+      transform: translateY(-2px);
+    }
+
+    /* ── Progress dot ── */
+    .progress-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #d1d5db;
+      border: 2px solid #9ca3af;
+      transition: all .3s;
+    }
+
+    .progress-dot.done {
+      background: var(--secondary-gold);
+      border-color: var(--accent-brown);
+      box-shadow: 0 0 8px var(--gold-glow);
+    }
+
+    /* ── Content reveal ── */
+    .lesson-content {
+      display: none;
+      animation: fadeSlide .4s ease;
+    }
+
+    .lesson-content.active {
+      display: block;
+    }
+
+    @keyframes fadeSlide {
+      from {
+        opacity: 0;
+        transform: translateY(12px)
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0)
+      }
+    }
+
+    /* ── Quote ── */
+    .canonical-quote {
+      border-left: 4px solid var(--secondary-gold);
+      background: var(--surface-white);
+      border: 1px solid var(--border-color);
+      border-left-width: 4px;
+    }
+
+    /* ── Cards ── */
+    .concept-card {
+      transition: transform .2s, box-shadow .2s;
+    }
+
+    .concept-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px var(--gold-glow);
+    }
+
+    /* ── Diagram rings ── */
+    .ring-outer {
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      background: rgba(212, 160, 23, 0.05);
+      border: 3px dashed var(--secondary-gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .ring-mid {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background: var(--bg-ivory);
+      border: 3px dashed var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .ring-inner {
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary-navy), var(--accent-brown));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .ring-label {
+      font-size: 11px;
+      font-weight: 700;
+      text-align: center;
+      line-height: 1.3;
+    }
+
+    /* ── AI panel ── */
+    #ai-panel {
+      transition: transform .35s cubic-bezier(.4, 0, .2, 1), opacity .35s;
+    }
+
+    #ai-panel.hidden-panel {
+      transform: translateX(120%) translateY(0);
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .ai-bubble-user {
+      background: linear-gradient(135deg, var(--primary-navy), var(--accent-brown));
+      color: #fff;
+      border-radius: 18px 18px 4px 18px;
+    }
+
+    .ai-bubble-bot {
+      background: var(--surface-white);
+      color: var(--text-main);
+      border: 1px solid var(--border-color);
+      border-radius: 18px 18px 18px 4px;
+    }
+
+    /* ── Quiz modal ── */
+    #quiz-modal {
+      animation: fadeSlide .25s ease;
+    }
+
+    .quiz-option {
+      transition: all .18s;
+      cursor: pointer;
+    }
+
+    .quiz-option:hover {
+      border-color: var(--secondary-gold);
+      background: rgba(212, 160, 23, 0.04);
+    }
+
+    .quiz-option.selected {
+      border-color: var(--secondary-gold);
+      background: rgba(212, 160, 23, 0.08);
+    }
+
+    .quiz-option.correct {
+      border-color: #16a34a;
+      background: #dcfce7;
+    }
+
+    .quiz-option.wrong {
+      border-color: #dc2626;
+      background: #fee2e2;
+    }
+
+    /* ── Achievement toast ── */
+    #achievement-toast {
+      transition: all .5s cubic-bezier(.34, 1.56, .64, 1);
+    }
+
+    /* ── Accordion ── */
+    .accordion-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .35s ease;
+    }
+
+    .accordion-body.open {
+      max-height: 600px;
+    }
+
+    /* ── Short answer ── */
+    .word-count-bar {
+      height: 4px;
+      border-radius: 2px;
+      transition: width .3s, background .3s;
+    }
+
+    /* ── Sort activity ── */
+    .sort-item {
+      transition: all .2s;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .sort-item:hover {
+      transform: scale(1.03);
+    }
+
+    .sort-item.placed {
+      opacity: .5;
+      pointer-events: none;
+    }
+
+    /* ── Callout ── */
+    .callout-warning {
+      border-left: 4px solid #f59e0b;
+      background: #fffbeb;
+    }
+
+    .callout-info {
+      border-left: 4px solid #4f46e5;
+      background: #eef2ff;
+    }
+
+    .callout-danger {
+      border-left: 4px solid #dc2626;
+      background: #fef2f2;
+    }
+  </style>
+</head>
+
+<body class="bg-gradient-to-br from-indigo-50 via-white to-slate-100 min-h-screen font-display">
+
+  <!-- ─────────────────── HEADER ─────────────────── -->
+  <div id="header-placeholder"></div>
+
+  <!-- ─────────────────── PAGE HEADER ─────────────────── -->
+  <header class="bg-gradient-to-r from-indigo-700 via-indigo-600 to-slate-600 text-white shadow-xl">
+    <div class="max-w-6xl mx-auto px-4 py-8">
+      <!-- Breadcrumb -->
+      <nav class="flex items-center gap-2 text-xs mb-4">
+        <a href="home.html" class="text-yellow-200 hover:text-white bg-white/10 hover:bg-white/20 px-2 py-0.5 rounded-md transition-all font-semibold">🏠 Trang chủ</a>
+        <span class="text-indigo-300">›</span>
+        <a href="home.html#overview" class="text-yellow-200 hover:text-white bg-white/10 hover:bg-white/20 px-2 py-0.5 rounded-md transition-all font-semibold">Modules</a>
+        <span class="text-indigo-300">›</span>
+        <span class="text-white font-bold">Module 6 · CSHT &amp; KTTT</span>
+      </nav>
+      <div class="flex items-center gap-4 mb-4">
+        <div
+          class="w-16 h-16 rounded-2xl bg-white/20 backdrop-blur flex items-center justify-center text-3xl shadow-lg">
+          🏛️</div>
+        <div>
+          <p class="text-indigo-200 text-sm font-medium uppercase tracking-wider">Chủ nghĩa Duy vật Lịch sử · Module 6
+          </p>
+          <h1 class="text-2xl md:text-3xl font-black">Biện chứng Cơ sở Hạ tầng &amp; Kiến trúc Thượng tầng</h1>
+        </div>
+      </div>
+      <!-- Progress bar -->
+      <div class="bg-white/20 rounded-full h-3 overflow-hidden mb-2">
+        <div id="progress-bar"
+          class="h-full bg-gradient-to-r from-indigo-300 to-white rounded-full transition-all duration-700"
+          style="width:0%"></div>
+      </div>
+      <div class="flex justify-between items-center">
+        <div class="flex gap-2" id="progress-dots">
+          <div class="progress-dot" id="dot-M6-L1" title="Bài 6.1"></div>
+          <div class="progress-dot" id="dot-M6-L2" title="Bài 6.2"></div>
+          <div class="progress-dot" id="dot-M6-L3" title="Bài 6.3"></div>
+          <div class="progress-dot" id="dot-M6-L4" title="Bài 6.4"></div>
+          <div class="progress-dot" id="dot-M6-L5" title="Bài 6.5"></div>
+          <div class="progress-dot" id="dot-M6-L6" title="Bài 6.6"></div>
+        </div>
+        <span id="progress-label" class="text-indigo-100 text-sm font-semibold">0/6 bài hoàn thành</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ─────────────────── LESSON TABS ─────────────────── -->
+  <div class="sticky top-0 z-30 bg-white/95 backdrop-blur shadow-md">
+    <div class="max-w-6xl mx-auto px-4 py-3">
+      <div class="grid grid-cols-3 md:grid-cols-6 gap-2">
+        <button id="tab-M6-L1" onclick="showLesson('M6-L1')"
+          class="lesson-tab active rounded-xl px-2 py-2.5 text-xs font-bold text-center transition-all">
+          🏛️<br><span class="hidden md:inline">Giới thiệu</span><span class="md:hidden">6.1</span>
+        </button>
+        <button id="tab-M6-L2" onclick="showLesson('M6-L2')"
+          class="lesson-tab rounded-xl px-2 py-2.5 text-xs font-bold text-center bg-white border border-slate-200 text-slate-600 transition-all">
+          🏗️<br><span class="hidden md:inline">Cơ sở HT</span><span class="md:hidden">6.2</span>
+        </button>
+        <button id="tab-M6-L3" onclick="showLesson('M6-L3')"
+          class="lesson-tab rounded-xl px-2 py-2.5 text-xs font-bold text-center bg-white border border-slate-200 text-slate-600 transition-all">
+          ⚖️<br><span class="hidden md:inline">Kiến trúc TT</span><span class="md:hidden">6.3</span>
+        </button>
+        <button id="tab-M6-L4" onclick="showLesson('M6-L4')"
+          class="lesson-tab rounded-xl px-2 py-2.5 text-xs font-bold text-center bg-white border border-slate-200 text-slate-600 transition-all">
+          🔩<br><span class="hidden md:inline">CSHT Quyết định</span><span class="md:hidden">6.4</span>
+        </button>
+        <button id="tab-M6-L5" onclick="showLesson('M6-L5')"
+          class="lesson-tab rounded-xl px-2 py-2.5 text-xs font-bold text-center bg-white border border-slate-200 text-slate-600 transition-all">
+          🔄<br><span class="hidden md:inline">Tác động TL</span><span class="md:hidden">6.5</span>
+        </button>
+        <button id="tab-M6-L6" onclick="showLesson('M6-L6')"
+          class="lesson-tab rounded-xl px-2 py-2.5 text-xs font-bold text-center bg-white border border-slate-200 text-slate-600 transition-all">
+          🇻🇳<br><span class="hidden md:inline">Vận dụng</span><span class="md:hidden">6.6</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─────────────────── MAIN CONTENT ─────────────────── -->
+  <main class="max-w-6xl mx-auto px-4 py-8 space-y-8">
+
+    <!-- ══════════════════════════════════════════════════
+         BÀI 6.1 — GIỚI THIỆU & VỊ TRÍ QUY LUẬT
+    ═══════════════════════════════════════════════════ -->
+    <section id="lesson-M6-L1" class="lesson-content active">
+      <!-- Hero -->
+      <div class="lesson-header-academic">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="text-4xl">🏛️</span>
+          <div>
+            <p class="text-indigo-200 text-sm font-medium uppercase tracking-wider">Bài 6.1 · 10 phút</p>
+            <h2 class="text-2xl font-black">Giới thiệu &amp; Vị trí Quy luật</h2>
+          </div>
+        </div>
+        <blockquote class="border-l-4 border-indigo-300 pl-4 italic text-indigo-100 serif-text text-lg">
+          "Đây là quy luật cơ bản tác động ở mọi hình thái kinh tế - xã hội trong lịch sử."
+        </blockquote>
+        <p class="text-indigo-200 text-xs mt-2">— Giáo trình Triết học Mác-Lênin, dòng 932</p>
+      </div>
+
+      <!-- Bridge từ M5 -->
+      <div class="bg-indigo-50 border border-indigo-200 rounded-2xl p-6 mb-6 callout-info">
+        <h3 class="font-bold text-indigo-800 mb-3 flex items-center gap-2">
+          <span class="w-7 h-7 bg-indigo-600 text-white rounded-lg flex items-center justify-center text-sm">🔗</span>
+          Kết nối từ Module 5
+        </h3>
+        <p class="text-indigo-700 text-sm mb-4">Trong Module 5, bạn đã học về quan hệ <strong>Lực lượng Sản xuất ↔ Quan
+            hệ Sản xuất</strong>. Module 6 tiếp tục: toàn bộ Quan hệ Sản xuất hợp thành <strong>Cơ sở Hạ tầng</strong>,
+          và CSHT quyết định <strong>Kiến trúc Thượng tầng</strong>.</p>
+        <div class="flex flex-wrap items-center gap-2 text-sm font-bold">
+          <div class="bg-blue-100 text-blue-800 px-3 py-1.5 rounded-full">⚙️ Lực lượng Sản xuất (M5)</div>
+          <span class="text-slate-400">→</span>
+          <div class="bg-emerald-100 text-emerald-800 px-3 py-1.5 rounded-full">🔗 Quan hệ Sản xuất (M5)</div>
+          <span class="text-slate-400">→</span>
+          <div class="bg-indigo-200 text-indigo-900 px-3 py-1.5 rounded-full font-black">🏗️ CSHT (M6)</div>
+          <span class="text-slate-400">→</span>
+          <div class="bg-slate-200 text-slate-800 px-3 py-1.5 rounded-full font-black">⚖️ KTTT (M6)</div>
+        </div>
+      </div>
+
+      <!-- Sơ đồ 3 quy luật CNDVLS -->
+      <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+        <h3 class="font-bold text-slate-800 mb-4 text-lg">3 Quy luật Nền tảng của CNDV Lịch sử</h3>
+        <div class="grid md:grid-cols-3 gap-4">
+          <div class="bg-blue-50 border-2 border-blue-200 rounded-xl p-4 opacity-70">
+            <div class="text-2xl mb-2">⚙️</div>
+            <p class="font-bold text-blue-800 text-sm mb-1">Quy luật 1 (M4–M5)</p>
+            <p class="text-blue-700 text-xs">Lực lượng Sản xuất ↔ Quan hệ Sản xuất</p>
+          </div>
+          <div class="bg-indigo-100 border-2 border-indigo-400 rounded-xl p-4 ring-2 ring-indigo-300 ring-offset-2">
+            <div class="text-2xl mb-2">🏛️</div>
+            <p class="font-bold text-indigo-900 text-sm mb-1">Quy luật 2 (M6) ← Bạn đang ở đây</p>
+            <p class="text-indigo-800 text-xs">Cơ sở Hạ tầng ↔ Kiến trúc Thượng tầng</p>
+          </div>
+          <div class="bg-slate-50 border-2 border-slate-200 rounded-xl p-4 opacity-70">
+            <div class="text-2xl mb-2">🌐</div>
+            <p class="font-bold text-slate-700 text-sm mb-1">Quy luật 3 (M7+)</p>
+            <p class="text-slate-600 text-xs">Hình thái Kinh tế – Xã hội</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Ví dụ khởi động -->
+      <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+        <h3 class="font-bold text-slate-800 mb-3 flex items-center gap-2">
+          <span class="text-xl">💡</span> Câu hỏi khởi động
+        </h3>
+        <div class="bg-amber-50 border border-amber-200 rounded-xl p-4 mb-4">
+          <p class="text-amber-900 font-medium text-sm">🤔 Tại sao Việt Nam phải thay đổi Hiến pháp sau Đổi mới 1986?
+            Điều gì bắt buộc phải thay đổi trước — kinh tế hay pháp luật?</p>
+        </div>
+        <p class="text-slate-600 text-sm">Câu trả lời nằm ở quy luật CSHT-KTTT: <span
+            class="text-indigo-700 font-semibold">Kinh tế (CSHT) thay đổi trước, pháp luật và chính trị (KTTT) phải thay
+            đổi theo.</span> Bạn sẽ hiểu sâu hơn qua bài học này.</p>
+      </div>
+
+      <!-- ⚠️ CALLOUT quan trọng: CSHT ≠ hạ tầng vật lý (AC-10) -->
+      <div class="callout-warning rounded-2xl p-5 mb-6">
+        <div class="flex items-start gap-3">
+          <span class="text-2xl">⚠️</span>
+          <div>
+            <h4 class="font-bold text-amber-900 mb-1">Chú ý: CSHT ≠ "Hạ tầng vật lý"!</h4>
+            <p class="text-amber-800 text-sm">Đây là nhầm lẫn phổ biến nhất. Trong <strong>triết học Mác-Lênin</strong>,
+              "Cơ sở Hạ tầng" (CSHT) <strong>KHÔNG phải</strong> nhà máy, đường sá, cầu cống hay hệ thống điện nước.
+              CSHT là toàn bộ <strong>Quan hệ Sản xuất</strong> — mối quan hệ giữa người với người trong quá trình sản
+              xuất (sở hữu tư liệu, phân phối, trao đổi).</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Activity: Phân loại -->
+      <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+        <h3 class="font-bold text-slate-800 mb-2 flex items-center gap-2">
+          <span class="text-xl">🎮</span> Hoạt động: CSHT hay KTTT?
+        </h3>
+        <p class="text-slate-500 text-sm mb-4">Click vào mỗi thẻ để xem nó thuộc CSHT hay KTTT:</p>
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-3" id="sort-activity">
+          <div onclick="revealSort(this,'KTTT','Nhà nước là thiết chế quan trọng nhất của KTTT')"
+            class="sort-item bg-slate-100 rounded-xl p-3 text-center text-sm font-medium text-slate-700 border-2 border-transparent hover:border-indigo-400">
+            ⚖️ Nhà nước</div>
+          <div onclick="revealSort(this,'CSHT','Quyền sở hữu đất đai là quan hệ sản xuất cơ bản')"
+            class="sort-item bg-slate-100 rounded-xl p-3 text-center text-sm font-medium text-slate-700 border-2 border-transparent hover:border-indigo-400">
+            🌾 Quyền sở hữu đất đai</div>
+          <div onclick="revealSort(this,'KTTT','Tôn giáo là bộ phận tư tưởng của KTTT')"
+            class="sort-item bg-slate-100 rounded-xl p-3 text-center text-sm font-medium text-slate-700 border-2 border-transparent hover:border-indigo-400">
+            ⛪ Tôn giáo</div>
+          <div onclick="revealSort(this,'CSHT','Quan hệ giữa chủ thuê và người lao động là QHSX')"
+            class="sort-item bg-slate-100 rounded-xl p-3 text-center text-sm font-medium text-slate-700 border-2 border-transparent hover:border-indigo-400">
+            💼 Quan hệ thuê lao động</div>
+          <div onclick="revealSort(this,'KTTT','Đảng phái chính trị là thiết chế KTTT')"
+            class="sort-item bg-slate-100 rounded-xl p-3 text-center text-sm font-medium text-slate-700 border-2 border-transparent hover:border-indigo-400">
+            🏛️ Đảng phái chính trị</div>
+          <div onclick="revealSort(this,'CSHT','Phân phối sản phẩm là quan hệ sản xuất')"
+            class="sort-item bg-slate-100 rounded-xl p-3 text-center text-sm font-medium text-slate-700 border-2 border-transparent hover:border-indigo-400">
+            📊 Quan hệ phân phối</div>
+        </div>
+      </div>
+
+      <!-- Phản tư -->
+      <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+        <h3 class="font-bold text-slate-800 mb-4">💭 Câu hỏi Phản tư</h3>
+        <div class="space-y-3">
+          <details class="bg-indigo-50 rounded-xl p-4 cursor-pointer group">
+            <summary class="font-medium text-indigo-800 list-none flex items-center justify-between">
+              <span>1. Tại sao quy luật CSHT-KTTT được gọi là "quy luật cơ bản" của mọi HTKT-XH?</span>
+              <span class="text-indigo-400 group-open:rotate-90 transition-transform">▶</span>
+            </summary>
+            <p class="mt-3 text-slate-600 text-sm">Vì nó chi phối sự vận động và phát triển của <em>tất cả</em> mọi hình
+              thái kinh tế - xã hội — từ cộng sản nguyên thủy đến hiện đại. Mỗi xã hội đều có CSHT riêng (kiểu QHSX) và
+              KTTT tương ứng. Khi CSHT thay đổi, KTTT buộc phải thay đổi theo — đây là động lực cơ bản của lịch sử.</p>
+          </details>
+          <details class="bg-indigo-50 rounded-xl p-4 cursor-pointer group">
+            <summary class="font-medium text-indigo-800 list-none flex items-center justify-between">
+              <span>2. Điểm khác biệt cơ bản giữa quy luật M5 (LLSX-QHSX) và M6 (CSHT-KTTT) là gì?</span>
+              <span class="text-indigo-400 group-open:rotate-90 transition-transform">▶</span>
+            </summary>
+            <p class="mt-3 text-slate-600 text-sm">M5 giải thích sự vận động <em>bên trong</em> phương thức sản xuất
+              (sức sản xuất vs. quan hệ người-người trong SX). M6 giải thích mối quan hệ giữa <em>toàn bộ nền kinh
+                tế</em> (CSHT = tổng QHSX) với <em>toàn bộ đời sống tinh thần-chính trị</em> (KTTT). M6 là tầng quy luật
+              cao hơn, bao quát hơn.</p>
+          </details>
+        </div>
+      </div>
+
+      <div class="flex justify-end">
+        <button onclick="completeLesson('M6-L1')"
+          class="bg-gradient-to-r from-indigo-600 to-slate-600 text-white px-8 py-3 rounded-xl font-bold hover:from-indigo-700 hover:to-slate-700 transition-all shadow-lg hover:shadow-xl">
+          ✅ Hoàn thành Bài 6.1 →
+        </button>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════
+         BÀI 6.2 — CƠ SỞ HẠ TẦNG
+    ═══════════════════════════════════════════════════ -->
+    <section id="lesson-M6-L2" class="lesson-content">
+      <div class="lesson-header-academic">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="text-4xl">🏗️</span>
+          <div>
+            <p class="text-indigo-200 text-sm font-medium uppercase tracking-wider">Bài 6.2 · 10 phút</p>
+            <h2 class="text-2xl font-black">Cơ sở Hạ tầng: Định nghĩa &amp; Cấu trúc</h2>
+          </div>
+        </div>
+        <blockquote class="border-l-4 border-indigo-300 pl-4 italic text-indigo-100 serif-text">
+          "Toàn bộ những quan hệ sản xuất ấy hợp thành cơ cấu kinh tế của xã hội, tức là cái cơ sở hiện thực trên đó
+          dựng lên một kiến trúc thượng tầng pháp lý và chính trị..."
+        </blockquote>
+        <p class="text-indigo-300 text-xs mt-2">— C. Mác, dòng 935</p>
+      </div>
+
+      <!-- Định nghĩa -->
+      <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+        <h3 class="font-bold text-slate-800 text-lg mb-4 flex items-center gap-2">
+          <span
+            class="w-8 h-8 bg-indigo-600 text-white rounded-lg flex items-center justify-center text-sm font-black">1</span>
+          Định nghĩa Cơ sở Hạ tầng
+        </h3>
+        <div class="bg-indigo-50 rounded-xl p-5 border border-indigo-200 mb-4">
+          <p class="text-indigo-900 font-semibold text-base serif-text leading-relaxed">
+            "Cơ sở hạ tầng là <span class="underline decoration-indigo-400 decoration-2">toàn bộ những quan hệ sản
+              xuất</span> của một xã hội trong sự vận động hiện thực của chúng hợp thành <span
+              class="underline decoration-indigo-400 decoration-2">cơ cấu kinh tế</span> của xã hội đó."
+          </p>
+          <p class="text-indigo-600 text-xs mt-2">— Triet.txt, dòng 934</p>
+        </div>
+        <div class="callout-warning rounded-xl p-4">
+          <p class="text-amber-900 text-sm font-semibold mb-1">⚠️ Nhớ quan trọng:</p>
+          <div class="grid grid-cols-2 gap-3 text-sm">
+            <div class="bg-red-50 border border-red-200 rounded-lg p-3">
+              <p class="font-bold text-red-700 mb-1">❌ KHÔNG phải:</p>
+              <p class="text-red-600">Nhà máy, đường sá, cầu cống, hệ thống điện nước, công trình vật chất</p>
+            </div>
+            <div class="bg-green-50 border border-green-200 rounded-lg p-3">
+              <p class="font-bold text-green-700 mb-1">✅ ĐÚNG là:</p>
+              <p class="text-green-600">Toàn bộ QUAN HỆ SẢN XUẤT (sở hữu, phân phối, trao đổi) của xã hội</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Diagram 3 loại QHSX (AC-2) -->
+      <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+        <h3 class="font-bold text-slate-800 text-lg mb-4 flex items-center gap-2">
+          <span
+            class="w-8 h-8 bg-indigo-600 text-white rounded-lg flex items-center justify-center text-sm font-black">2</span>
+          Cấu trúc CSHT: 3 Loại Quan hệ Sản xuất
+        </h3>
+        <p class="text-slate-600 text-sm mb-6">Trong một CSHT, tồn tại đồng thời 3 loại QHSX (dòng 936):</p>
+        <!-- 3-ring diagram -->
+        <div class="flex justify-center mb-6">
+          <div class="ring-outer flex flex-col items-center justify-center relative">
+            <div class="absolute top-3 left-1/2 -translate-x-1/2 text-center">
+              <span class="text-indigo-600 text-xs font-bold">🌱 QHSX Mầm mống</span>
+              <p class="text-indigo-500 text-xs">(đang hình thành)</p>
+            </div>
+            <div class="ring-mid flex flex-col items-center justify-center relative">
+              <div class="absolute top-2 left-1/2 -translate-x-1/2 text-center">
+                <span class="text-slate-600 text-xs font-bold">🍂 QHSX Tàn dư</span>
+                <p class="text-slate-400 text-xs">(đang tàn lụi)</p>
+              </div>
+              <div class="ring-inner flex flex-col items-center justify-center text-white text-center px-2">
+                <span class="text-sm font-black">⭐</span>
+                <span class="text-xs font-black leading-tight">QHSX Thống trị</span>
+                <span class="text-xs opacity-80">(đặc trưng)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Cards 3 loại -->
+        <div class="grid md:grid-cols-3 gap-4">
+          <div class="bg-gradient-to-br from-indigo-600 to-indigo-800 text-white rounded-xl p-4 concept-card">
+            <div class="text-2xl mb-2">⭐</div>
+            <h4 class="font-bold mb-1">QHSX Thống trị</h4>
+            <p class="text-indigo-200 text-xs">Đặc trưng cho xã hội đó. Quyết định tính chất của toàn bộ CSHT. Ví dụ VN:
+              kinh tế thị trường định hướng XHCN với vai trò chủ đạo của kinh tế nhà nước.</p>
+          </div>
+          <div class="bg-slate-100 border border-slate-300 rounded-xl p-4 concept-card">
+            <div class="text-2xl mb-2">🍂</div>
+            <h4 class="font-bold text-slate-700 mb-1">QHSX Tàn dư</h4>
+            <p class="text-slate-500 text-xs">QHSX của xã hội cũ còn sót lại. Đang dần biến mất. Ví dụ VN: một số quan
+              hệ kinh tế tự cấp tự túc ở vùng sâu vùng xa.</p>
+          </div>
+          <div class="bg-teal-50 border border-teal-300 rounded-xl p-4 concept-card">
+            <div class="text-2xl mb-2">🌱</div>
+            <h4 class="font-bold text-teal-700 mb-1">QHSX Mầm mống</h4>
+            <p class="text-teal-600 text-xs">QHSX mới đang hình thành, chưa chiếm ưu thế. Ví dụ VN: kinh tế số, quan hệ
+              nền tảng gig, AI trong sản xuất.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Ví dụ Việt Nam -->
+      <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+        <h3 class="font-bold text-slate-800 mb-4 flex items-center gap-2">
+          <span class="text-xl">🇻🇳</span> Ví dụ: CSHT Việt Nam hiện nay
+        </h3>
+        <p class="text-slate-600 text-sm mb-4">Kinh tế thị trường định hướng XHCN — CSHT của VN có cả 3 loại QHSX:</p>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="bg-indigo-600 text-white">
+                <th class="text-left p-3 rounded-tl-lg">Loại QHSX</th>
+                <th class="text-left p-3">Biểu hiện tại VN</th>
+                <th class="text-left p-3 rounded-tr-lg">Xu hướng</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="bg-indigo-50">
+                <td class="p-3 font-bold text-indigo-800">⭐ Thống trị</td>
+                <td class="p-3">Kinh tế thị trường, sở hữu đa dạng (nhà nước, tư nhân, FDI)</td>
+                <td class="p-3 text-green-600 font-medium">Đang phát triển</td>
+              </tr>
+              <tr class="bg-slate-50">
+                <td class="p-3 font-bold text-slate-600">🍂 Tàn dư</td>
+                <td class="p-3">Kinh tế tự cấp tự túc, trao đổi hiện vật ở vùng xa</td>
+                <td class="p-3 text-red-500 font-medium">Đang thu hẹp</td>
+              </tr>
+              <tr class="bg-teal-50">
+                <td class="p-3 font-bold text-teal-700">🌱 Mầm mống</td>
+                <td class="p-3">Kinh tế số, gig economy, fintech, AI economy</td>
+                <td class="p-3 text-blue-600 font-medium">Đang nổi lên</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Phản tư -->
+      <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+        <h3 class="font-bold text-slate-800 mb-4">💭 Câu hỏi Phản tư</h3>
+        <div class="space-y-3">
+          <details class="bg-indigo-50 rounded-xl p-4 cursor-pointer group">
+            <summary class="font-medium text-indigo-800 list-none flex items-center justify-between">
+              <span>1. Vì sao QHSX thống trị mới là "đặc trưng" của CSHT, không phải QHSX mầm mống?</span>
+              <span class="text-indigo-400 group-open:rotate-90 transition-transform">▶</span>
+            </summary>
+            <p class="mt-3 text-slate-600 text-sm">QHSX thống trị chiếm ưu thế về số lượng, quyết định phương thức phân
+              phối của cải, phân chia giai cấp và lợi ích kinh tế chủ yếu. Nó định hình tính chất của cả CSHT. QHSX mầm
+              mống dù là tương lai nhưng chưa chiếm ưu thế — chưa thể đặc trưng cho xã hội đó.</p>
+          </details>
+          <details class="bg-indigo-50 rounded-xl p-4 cursor-pointer group">
+            <summary class="font-medium text-indigo-800 list-none flex items-center justify-between">
+              <span>2. Trong kinh tế số, QHSX mầm mống nào đang hình thành tại Việt Nam?</span>
+              <span class="text-indigo-400 group-open:rotate-90 transition-transform">▶</span>
+            </summary>
+            <p class="mt-3 text-slate-600 text-sm">Các QHSX mầm mống tiêu biểu: quan hệ giữa nền tảng kỹ thuật số (chủ
+              sở hữu dữ liệu) và người dùng/lao động gig; quan hệ sở hữu trí tuệ trong nền kinh tế sáng tạo; quan hệ
+              giữa thuật toán AI và lao động con người. Đây sẽ là QHSX thống trị của CSHT số trong tương lai gần.</p>
+          </details>
+        </div>
+      </div>
+
+      <div class="flex justify-end">
+        <button onclick="completeLesson('M6-L2')"
+          class="bg-gradient-to-r from-indigo-600 to-slate-600 text-white px-8 py-3 rounded-xl font-bold hover:from-indigo-700 hover:to-slate-700 transition-all shadow-lg hover:shadow-xl">
+          ✅ Hoàn thành Bài 6.2 →
+        </button>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════
+         BÀI 6.3 — KIẾN TRÚC THƯỢNG TẦNG
+    ═══════════════════════════════════════════════════ -->
+    <section id="lesson-M6-L3" class="lesson-content">
+      <div class="lesson-header-academic">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="text-4xl">⚖️</span>
+          <div>
+            <p class="text-slate-300 text-sm font-medium uppercase tracking-wider">Bài 6.3 · 10 phút</p>
+            <h2 class="text-2xl font-black">Kiến trúc Thượng tầng: Định nghĩa &amp; Cấu trúc</h2>
+          </div>
+        </div>
+        <blockquote class="border-l-4 border-slate-400 pl-4 italic text-slate-200 serif-text text-sm">
+          "Kiến trúc thượng tầng là toàn bộ những quan điểm, tư tưởng xã hội với những thiết chế xã hội tương ứng cùng
+          những quan hệ nội tại của thượng tầng hình thành trên một cơ sở hạ tầng nhất định."
+        </blockquote>
+        <p class="text-slate-400 text-xs mt-2">— Giáo trình Triết học Mác-Lênin, dòng 937</p>
+      </div>
+
+      <!-- 2 thành phần KTTT (AC-3) -->
+      <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+        <h3 class="font-bold text-slate-800 text-lg mb-4 flex items-center gap-2">
+          <span
+            class="w-8 h-8 bg-slate-700 text-white rounded-lg flex items-center justify-center text-sm font-black">2</span>
+          2 Thành phần của Kiến trúc Thượng tầng
+        </h3>
+        <div class="grid md:grid-cols-2 gap-4 mb-4">
+          <!-- Tư tưởng -->
+          <div class="bg-indigo-50 border-2 border-indigo-200 rounded-xl p-4">
+            <h4 class="font-bold text-indigo-800 mb-3 flex items-center gap-2">
+              <span
+                class="w-7 h-7 bg-indigo-600 text-white rounded-lg flex items-center justify-center text-xs font-black">①</span>
+              Quan điểm / Tư tưởng
+            </h4>
+            <div class="space-y-2">
+              <div class="flex items-center gap-2 text-sm text-indigo-700">
+                <span class="w-6 h-6 bg-indigo-100 rounded-full flex items-center justify-center text-xs">🗳️</span>
+                Tư tưởng chính trị
+              </div>
+              <div class="flex items-center gap-2 text-sm text-indigo-700">
+                <span class="w-6 h-6 bg-indigo-100 rounded-full flex items-center justify-center text-xs">⚖️</span>
+                Tư tưởng pháp quyền
+              </div>
+              <div class="flex items-center gap-2 text-sm text-indigo-700">
+                <span class="w-6 h-6 bg-indigo-100 rounded-full flex items-center justify-center text-xs">🤝</span>
+                Đạo đức
+              </div>
+              <div class="flex items-center gap-2 text-sm text-indigo-700">
+                <span class="w-6 h-6 bg-indigo-100 rounded-full flex items-center justify-center text-xs">⛪</span>
+                Tôn giáo
+              </div>
+              <div class="flex items-center gap-2 text-sm text-indigo-700">
+                <span class="w-6 h-6 bg-indigo-100 rounded-full flex items-center justify-center text-xs">🎨</span>
+                Nghệ thuật
+              </div>
+              <div class="flex items-center gap-2 text-sm text-indigo-700">
+                <span class="w-6 h-6 bg-indigo-100 rounded-full flex items-center justify-center text-xs">🔬</span>
+                Triết học
+              </div>
+            </div>
+          </div>
+          <!-- Thiết chế -->
+          <div class="bg-slate-50 border-2 border-slate-300 rounded-xl p-4">
+            <h4 class="font-bold text-slate-800 mb-3 flex items-center gap-2">
+              <span
+                class="w-7 h-7 bg-slate-700 text-white rounded-lg flex items-center justify-center text-xs font-black">②</span>
+              Thiết chế / Tổ chức
+            </h4>
+            <div class="space-y-2">
+              <div class="flex items-center gap-2 text-sm text-slate-700">
+                <span class="w-6 h-6 bg-slate-200 rounded-full flex items-center justify-center text-xs">🏛️</span>
+                Nhà nước
+                <span class="ml-auto text-xs bg-indigo-100 text-indigo-700 px-1.5 py-0.5 rounded-full font-bold">Mạnh
+                  nhất ⭐</span>
+              </div>
+              <div class="flex items-center gap-2 text-sm text-slate-700">
+                <span class="w-6 h-6 bg-slate-200 rounded-full flex items-center justify-center text-xs">🎖️</span>
+                Đảng phái chính trị
+              </div>
+              <div class="flex items-center gap-2 text-sm text-slate-700">
+                <span class="w-6 h-6 bg-slate-200 rounded-full flex items-center justify-center text-xs">⛪</span>
+                Giáo hội / Tổ chức tôn giáo
+              </div>
+              <div class="flex items-center gap-2 text-sm text-slate-700">
+                <span class="w-6 h-6 bg-slate-200 rounded-full flex items-center justify-center text-xs">👥</span>
+                Đoàn thể, tổ chức xã hội
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Liên hệ trực tiếp / gián tiếp -->
+      <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+        <h3 class="font-bold text-slate-800 mb-4">🔗 Liên hệ với CSHT: Trực tiếp vs. Gián tiếp</h3>
+        <div class="grid md:grid-cols-2 gap-4">
+          <div class="bg-green-50 border border-green-200 rounded-xl p-4">
+            <h4 class="font-bold text-green-700 mb-2">⚡ Liên hệ TRỰC TIẾP</h4>
+            <p class="text-green-600 text-sm mb-2">Phản ánh và tác động trực tiếp vào kinh tế:</p>
+            <ul class="text-green-700 text-sm space-y-1">
+              <li>• Tư tưởng và thể chế chính trị</li>
+              <li>• Tư tưởng và thể chế pháp lý</li>
+            </ul>
+          </div>
+          <div class="bg-blue-50 border border-blue-200 rounded-xl p-4">
+            <h4 class="font-bold text-blue-700 mb-2">🔄 Liên hệ GIÁN TIẾP</h4>
+            <p class="text-blue-600 text-sm mb-2">Phản ánh qua nhiều tầng trung gian:</p>
+            <ul class="text-blue-700 text-sm space-y-1">
+              <li>• Tôn giáo, nghệ thuật</li>
+              <li>• Đạo đức, triết học</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Nhà nước: bộ phận mạnh nhất (AC-8 dòng 941) -->
+      <div class="bg-gradient-to-br from-indigo-600 to-slate-700 rounded-2xl p-6 text-white mb-6 shadow-lg">
+        <div class="flex items-start gap-4">
+          <span class="text-3xl">🏛️</span>
+          <div>
+            <h3 class="font-black text-lg mb-2">Nhà nước — Bộ phận Quyền lực Mạnh nhất</h3>
+            <p class="text-indigo-200 text-sm mb-3">Dòng 941: "Nhà nước là tổ chức quyền lực chính trị đặc biệt — chính
+              nhờ nhà nước mà tư tưởng của giai cấp thống trị trở thành sức mạnh thống trị toàn bộ đời sống xã hội."</p>
+            <div class="grid grid-cols-3 gap-2">
+              <div class="bg-white/15 rounded-lg p-2 text-center">
+                <p class="text-xs text-indigo-200">Nắm bộ máy</p>
+                <p class="text-xs font-bold text-white">Hành pháp</p>
+              </div>
+              <div class="bg-white/15 rounded-lg p-2 text-center">
+                <p class="text-xs text-indigo-200">Ban hành</p>
+                <p class="text-xs font-bold text-white">Lập pháp</p>
+              </div>
+              <div class="bg-white/15 rounded-lg p-2 text-center">
+                <p class="text-xs text-indigo-200">Phán xét</p>
+                <p class="text-xs font-bold text-white">Tư pháp</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Phản tư -->
+      <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+        <h3 class="font-bold text-slate-800 mb-4">💭 Câu hỏi Phản tư</h3>
+        <div class="space-y-3">
+          <details class="bg-slate-50 rounded-xl p-4 cursor-pointer group">
+            <summary class="font-medium text-slate-800 list-none flex items-center justify-between">
+              <span>1. Hệ tư tưởng Mác-Lênin được xem là KTTT của CSHT nào?</span>
+              <span class="text-slate-400 group-open:rotate-90 transition-transform">▶</span>
+            </summary>
+            <p class="mt-3 text-slate-600 text-sm">Hệ tư tưởng Mác-Lênin là KTTT tư tưởng của CSHT XHCN (chế độ công hữu
+              về tư liệu sản xuất chiếm ưu thế). Nó phản ánh và bảo vệ lợi ích của giai cấp công nhân và nhân dân lao
+              động — những người là chủ CSHT XHCN. Đây là ví dụ điển hình về CSHT sinh ra KTTT tương ứng.</p>
+          </details>
+          <details class="bg-slate-50 rounded-xl p-4 cursor-pointer group">
+            <summary class="font-medium text-slate-800 list-none flex items-center justify-between">
+              <span>2. Tại sao mạng xã hội (Facebook, TikTok) lại có thể tác động đến KTTT?</span>
+              <span class="text-indigo-400 group-open:rotate-90 transition-transform">▶</span>
+            </summary>
+            <p class="mt-3 text-slate-600 text-sm">Mạng xã hội là phần của KTTT (tư tưởng/văn hóa) nhưng lại được tạo ra
+              bởi CSHT mới (nền kinh tế số). Chúng tác động mạnh đến ý thức, tư tưởng, thậm chí cả thể chế chính trị
+              (trào lưu chính trị, phong trào xã hội). Đây là ví dụ điển hình về KTTT tác động trở lại CSHT trong thời
+              đại số.</p>
+          </details>
+        </div>
+      </div>
+
+      <!-- FQ1 Button -->
+      <div class="bg-indigo-50 border border-indigo-200 rounded-2xl p-5 mb-6">
+        <div class="flex items-center justify-between flex-wrap gap-4">
+          <div>
+            <h4 class="font-bold text-indigo-800">📝 Kiểm tra Hình thành — Bài 6.1–6.3</h4>
+            <p class="text-indigo-600 text-sm">4 câu hỏi về CSHT, KTTT, cấu trúc và Nhà nước. Cần ≥70% để qua.</p>
+          </div>
+          <button id="btn-M6-FQ1" onclick="openFormativeQuiz('M6-FQ1')"
+            class="bg-indigo-600 text-white px-6 py-2.5 rounded-xl font-bold hover:bg-indigo-700 transition-all shadow-md">
+            🧠 Làm kiểm tra FQ1
+          </button>
+        </div>
+      </div>
+
+      <div class="flex justify-end">
+        <button onclick="completeLesson('M6-L3')"
+          class="bg-gradient-to-r from-indigo-600 to-slate-600 text-white px-8 py-3 rounded-xl font-bold hover:from-indigo-700 hover:to-slate-700 transition-all shadow-lg hover:shadow-xl">
+          ✅ Hoàn thành Bài 6.3 →
+        </button>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════
+         BÀI 6.4 — CSHT QUYẾT ĐỊNH KTTT
+    ═══════════════════════════════════════════════════ -->
+    <section id="lesson-M6-L4" class="lesson-content">
+      <div class="lesson-header-academic">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="text-4xl">🔩</span>
+          <div>
+            <p class="text-indigo-200 text-sm font-medium uppercase tracking-wider">Bài 6.4 · 12 phút</p>
+            <h2 class="text-2xl font-black">CSHT Quyết định KTTT</h2>
+          </div>
+        </div>
+        <blockquote class="border-l-4 border-indigo-300 pl-4 italic text-indigo-100 serif-text text-sm">
+          "Cơ sở kinh tế thay đổi thì toàn bộ cái kiến trúc thượng tầng đồ sộ cũng bị đảo lộn ít nhiều nhanh chóng."
+        </blockquote>
+        <p class="text-indigo-300 text-xs mt-2">— C. Mác, dòng 948</p>
+      </div>
+
+      <!-- Lý do CSHT quyết định -->
+      <div class="callout-info rounded-2xl p-5 mb-6">
+        <h4 class="font-bold text-indigo-800 mb-2">🔍 Tại sao CSHT lại quyết định KTTT?</h4>
+        <p class="text-indigo-700 text-sm">Dòng 945: <em>"Vì quan hệ vật chất quyết định quan hệ tinh thần; tính tất yếu
+            kinh tế xét đến cùng quyết định tính tất yếu chính trị - xã hội."</em> Đây là nguyên lý cốt lõi của CNDVLS.
+        </p>
+      </div>
+
+      <!-- 3 nội dung quyết định -->
+      <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+        <h3 class="font-bold text-slate-800 text-lg mb-4">3 Nội dung Quyết định của CSHT (dòng 946)</h3>
+        <div class="grid md:grid-cols-3 gap-4">
+          <div
+            class="bg-gradient-to-br from-indigo-50 to-indigo-100 border border-indigo-200 rounded-xl p-4 concept-card">
+            <div
+              class="w-10 h-10 bg-indigo-600 text-white rounded-xl flex items-center justify-center font-black text-lg mb-3">
+              ①</div>
+            <h4 class="font-bold text-indigo-800 mb-2">Quyết định KIỂU KTTT</h4>
+            <p class="text-indigo-700 text-xs">CSHT thuộc loại nào → KTTT thuộc loại đó. CSHT phong kiến → KTTT phong
+              kiến; CSHT TBCN → KTTT TBCN; CSHT XHCN → KTTT XHCN.</p>
+          </div>
+          <div class="bg-gradient-to-br from-slate-50 to-slate-100 border border-slate-200 rounded-xl p-4 concept-card">
+            <div
+              class="w-10 h-10 bg-slate-600 text-white rounded-xl flex items-center justify-center font-black text-lg mb-3">
+              ②</div>
+            <h4 class="font-bold text-slate-800 mb-2">Quyết định CƠ CẤU &amp; TÍNH CHẤT</h4>
+            <p class="text-slate-600 text-xs">CSHT có tính đối kháng → KTTT có tính đối kháng giai cấp. CSHT XHCN không
+              đối kháng → KTTT XHCN nhất trí chính trị-tinh thần.</p>
+          </div>
+          <div
+            class="bg-gradient-to-br from-violet-50 to-violet-100 border border-violet-200 rounded-xl p-4 concept-card">
+            <div
+              class="w-10 h-10 bg-violet-600 text-white rounded-xl flex items-center justify-center font-black text-lg mb-3">
+              ③</div>
+            <h4 class="font-bold text-violet-800 mb-2">Quyết định VẬN ĐỘNG &amp; PHÁT TRIỂN</h4>
+            <p class="text-violet-700 text-xs">Khi CSHT thay đổi, KTTT phải thay đổi theo. CSHT mới → áp lực buộc KTTT
+              cũ phải thay đổi hoặc bị thay thế.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Giai cấp thống trị KT = thống trị CT+TT -->
+      <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+        <h3 class="font-bold text-slate-800 mb-4 flex items-center gap-2">
+          <span class="text-xl">⚔️</span> Giai cấp Thống trị Kinh tế = Thống trị Chính trị + Tư tưởng
+        </h3>
+        <div class="bg-amber-50 border border-amber-200 rounded-xl p-4 mb-4">
+          <p class="text-amber-900 text-sm italic serif-text">Dòng 947: "Trong xã hội có đối kháng giai cấp, giai cấp
+            nào chiếm địa vị thống trị về kinh tế thì cũng chiếm địa vị thống trị trong đời sống chính trị, tinh thần
+            của xã hội."</p>
+        </div>
+        <div class="flex items-center gap-3 overflow-x-auto py-2">
+          <div class="min-w-fit bg-red-100 border border-red-300 rounded-xl p-3 text-center">
+            <p class="text-red-700 font-bold text-sm">Thống trị KINH TẾ</p>
+            <p class="text-red-500 text-xs">(Sở hữu TLSX)</p>
+          </div>
+          <span class="text-slate-400 text-xl font-black">⟹</span>
+          <div class="min-w-fit bg-orange-100 border border-orange-300 rounded-xl p-3 text-center">
+            <p class="text-orange-700 font-bold text-sm">Thống trị CHÍNH TRỊ</p>
+            <p class="text-orange-500 text-xs">(Nắm nhà nước)</p>
+          </div>
+          <span class="text-slate-400 text-xl font-black">+</span>
+          <div class="min-w-fit bg-yellow-100 border border-yellow-300 rounded-xl p-3 text-center">
+            <p class="text-yellow-700 font-bold text-sm">Thống trị TƯ TƯỞNG</p>
+            <p class="text-yellow-500 text-xs">(Hệ tư tưởng)</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bảng tốc độ thay đổi KTTT -->
+      <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+        <h3 class="font-bold text-slate-800 mb-4">⏱️ Tốc độ Thay đổi của các Bộ phận KTTT (dòng 949)</h3>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="bg-indigo-600 text-white">
+                <th class="text-left p-3 rounded-tl-lg">Tốc độ</th>
+                <th class="text-left p-3">Bộ phận KTTT</th>
+                <th class="text-left p-3 rounded-tr-lg">Ví dụ (VN sau 1975)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="bg-green-50">
+                <td class="p-3"><span class="bg-green-100 text-green-700 px-2 py-1 rounded-full text-xs font-bold">⚡
+                    Nhanh</span></td>
+                <td class="p-3 text-slate-700">Chính trị, pháp luật</td>
+                <td class="p-3 text-slate-600">Hiến pháp mới, luật doanh nghiệp, pháp luật thị trường</td>
+              </tr>
+              <tr class="bg-yellow-50">
+                <td class="p-3"><span class="bg-yellow-100 text-yellow-700 px-2 py-1 rounded-full text-xs font-bold">🐌
+                    Chậm</span></td>
+                <td class="p-3 text-slate-700">Tôn giáo, nghệ thuật</td>
+                <td class="p-3 text-slate-600">Tín ngưỡng dân gian, phong tục tập quán vẫn tồn tại lâu dài</td>
+              </tr>
+              <tr class="bg-blue-50">
+                <td class="p-3"><span class="bg-blue-100 text-blue-700 px-2 py-1 rounded-full text-xs font-bold">🔄 Kế
+                    thừa</span></td>
+                <td class="p-3 text-slate-700">Một số yếu tố KTTT cũ</td>
+                <td class="p-3 text-slate-600">Triết học, văn học cổ điển, một số chuẩn mực đạo đức truyền thống</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Short Answer (AC-5) -->
+      <div class="bg-white rounded-2xl shadow-lg p-6 mb-6" id="short-answer-L4-container">
+        <h3 class="font-bold text-slate-800 mb-2 flex items-center gap-2">
+          <span class="text-xl">✍️</span> Phân tích Ngắn: CSHT-KTTT tại Việt Nam 1986–1992
+        </h3>
+        <p class="text-slate-500 text-sm mb-4">Viết phân tích theo 3 bước: (1) CSHT nào đang thay đổi; (2) KTTT nào cần
+          thay đổi theo; (3) Tiến trình thực tế diễn ra như thế nào.</p>
+        <div class="bg-indigo-50 rounded-xl p-3 mb-3 text-xs text-indigo-700">
+          <strong>Gợi ý:</strong> Đổi mới 1986 → chuyển từ kinh tế kế hoạch hóa tập trung sang kinh tế thị trường → CSHT
+          thay đổi → Hiến pháp 1992, Luật Doanh nghiệp, Luật Đầu tư... phải thay đổi.
+        </div>
+        <textarea id="short-answer-L4" placeholder="Nhập phân tích của bạn ở đây (tối thiểu 150 từ)..." rows="8"
+          class="w-full border border-slate-200 rounded-xl p-4 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-400 resize-y"></textarea>
+        <div class="flex items-center justify-between mt-2">
+          <div class="flex items-center gap-2">
+            <div class="w-32 bg-slate-200 rounded-full h-1.5 overflow-hidden">
+              <div id="wc-bar-L4" class="word-count-bar h-full bg-slate-300" style="width:0%"></div>
+            </div>
+            <span id="wc-count-L4" class="text-xs text-slate-500">0 từ</span>
+          </div>
+          <button id="submit-L4-btn" onclick="submitShortAnswer('M6-L4')"
+            class="bg-indigo-600 text-white px-5 py-2 rounded-xl text-sm font-bold hover:bg-indigo-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed">
+            💾 Lưu Phân tích
+          </button>
+        </div>
+        <div id="submit-L4-feedback" class="mt-3 hidden rounded-xl p-3 text-sm"></div>
+      </div>
+
+      <!-- FQ2 button -->
+      <div class="bg-indigo-50 border border-indigo-200 rounded-2xl p-5 mb-6">
+        <div class="flex items-center justify-between flex-wrap gap-4">
+          <div>
+            <h4 class="font-bold text-indigo-800">📝 Kiểm tra Hình thành — Bài 6.4–6.5</h4>
+            <p class="text-indigo-600 text-sm">4 câu hỏi về 3 nội dung quyết định, C. Mác, 2 chiều tác động, 2 sai lầm.
+            </p>
+          </div>
+          <button id="btn-M6-FQ2" onclick="openFormativeQuiz('M6-FQ2')"
+            class="bg-indigo-600 text-white px-6 py-2.5 rounded-xl font-bold hover:bg-indigo-700 transition-all shadow-md">
+            🧠 Làm kiểm tra FQ2
+          </button>
+        </div>
+      </div>
+
+      <!-- Phản tư -->
+      <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+        <h3 class="font-bold text-slate-800 mb-4">💭 Câu hỏi Phản tư</h3>
+        <div class="space-y-3">
+          <details class="bg-indigo-50 rounded-xl p-4 cursor-pointer group">
+            <summary class="font-medium text-indigo-800 list-none flex items-center justify-between">
+              <span>1. Tại sao tôn giáo thay đổi chậm hơn pháp luật khi CSHT thay đổi?</span>
+              <span class="text-indigo-400 group-open:rotate-90 transition-transform">▶</span>
+            </summary>
+            <p class="mt-3 text-slate-600 text-sm">Tôn giáo gắn với niềm tin sâu xa, tình cảm cộng đồng, truyền thống
+              hàng ngàn năm — thay đổi đòi hỏi nhiều thế hệ. Pháp luật có thể được ban hành và thay đổi ngay bằng quyết
+              định nhà nước. Điều này minh họa "tính độc lập tương đối" của KTTT (sẽ học ở Bài 6.5).</p>
+          </details>
+          <details class="bg-indigo-50 rounded-xl p-4 cursor-pointer group">
+            <summary class="font-medium text-indigo-800 list-none flex items-center justify-between">
+              <span>2. Khi nào thì một KTTT mới xuất hiện trước CSHT tương ứng?</span>
+              <span class="text-indigo-400 group-open:rotate-90 transition-transform">▶</span>
+            </summary>
+            <p class="mt-3 text-slate-600 text-sm">Không bao giờ về cơ bản — CSHT luôn quyết định. Tuy nhiên, các tư
+              tưởng, học thuyết tiến bộ có thể xuất hiện trước như "mầm mống" KTTT, phản ánh xu hướng phát triển của
+              CSHT mới đang hình thành (QHSX mầm mống). Ví dụ: tư tưởng tư bản xuất hiện khi CSHT phong kiến vẫn đang
+              thống trị nhưng QHSX tư bản đã nổi lên.</p>
+          </details>
+        </div>
+      </div>
+
+      <div class="flex justify-end">
+        <button onclick="completeLesson('M6-L4')"
+          class="bg-gradient-to-r from-indigo-600 to-slate-600 text-white px-8 py-3 rounded-xl font-bold hover:from-indigo-700 hover:to-slate-700 transition-all shadow-lg hover:shadow-xl">
+          ✅ Hoàn thành Bài 6.4 →
+        </button>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════
+         BÀI 6.5 — TÁC ĐỘNG TRỞ LẠI + NHÀ NƯỚC
+    ═══════════════════════════════════════════════════ -->
+    <section id="lesson-M6-L5" class="lesson-content">
+      <div class="lesson-header-academic">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="text-4xl">🔄</span>
+          <div>
+            <p class="text-slate-300 text-sm font-medium uppercase tracking-wider">Bài 6.5 · 12 phút</p>
+            <h2 class="text-2xl font-black">Tác động Trở lại của KTTT &amp; Vai trò Nhà nước</h2>
+          </div>
+        </div>
+        <blockquote class="border-l-4 border-slate-400 pl-4 italic text-slate-200 serif-text text-sm">
+          "Chính trị là sự biểu hiện tập trung của kinh tế... Chính trị không thể không chiếm địa vị hàng đầu so với
+          kinh tế."
+        </blockquote>
+        <p class="text-slate-400 text-xs mt-2">— V.I. Lênin, dòng 960</p>
+      </div>
+
+      <!-- Tính độc lập tương đối -->
+      <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+        <h3 class="font-bold text-slate-800 text-lg mb-3">"Tính Độc lập Tương đối" của KTTT (dòng 951)</h3>
+        <p class="text-slate-600 text-sm mb-4">KTTT không chỉ phản ánh thụ động CSHT — nó có khả năng tác động trở lại
+          mạnh mẽ. Ph. Ăngghen: tác động "<em>trong giới hạn nhất định</em>" — không tuyệt đối, nhưng cũng rất đáng kể.
+        </p>
+        <div class="grid md:grid-cols-3 gap-3">
+          <div class="bg-indigo-50 rounded-xl p-3 text-center">
+            <div class="text-xl mb-1">🧠</div>
+            <p class="text-xs font-bold text-indigo-700">Quy luật nội tại</p>
+            <p class="text-xs text-indigo-600">Lĩnh vực ý thức có logic vận động riêng</p>
+          </div>
+          <div class="bg-slate-50 rounded-xl p-3 text-center">
+            <div class="text-xl mb-1">💪</div>
+            <p class="text-xs font-bold text-slate-700">Vai trò tích cực</p>
+            <p class="text-xs text-slate-600">Tư tưởng, ý thức có vai trò tự giác, chủ động</p>
+          </div>
+          <div class="bg-violet-50 rounded-xl p-3 text-center">
+            <div class="text-xl mb-1">⚙️</div>
+            <p class="text-xs font-bold text-violet-700">Sức mạnh thiết chế</p>
+            <p class="text-xs text-violet-600">Nhà nước, pháp luật, tổ chức có sức mạnh vật chất thực sự</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3 chức năng KTTT với CSHT -->
+      <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+        <h3 class="font-bold text-slate-800 mb-4">🔧 3 Chức năng của KTTT đối với CSHT (dòng 952)</h3>
+        <div class="space-y-3">
+          <div class="flex items-start gap-3 bg-green-50 rounded-xl p-3">
+            <span
+              class="w-8 h-8 bg-green-500 text-white rounded-lg flex items-center justify-center font-black text-sm flex-shrink-0">①</span>
+            <div>
+              <p class="font-bold text-green-800 text-sm">Củng cố, hoàn thiện và bảo vệ CSHT sinh ra nó</p>
+              <p class="text-green-600 text-xs">Ví dụ: Nhà nước TBCN ban hành luật bảo vệ quyền tư hữu tư liệu sản xuất
+              </p>
+            </div>
+          </div>
+          <div class="flex items-start gap-3 bg-orange-50 rounded-xl p-3">
+            <span
+              class="w-8 h-8 bg-orange-500 text-white rounded-lg flex items-center justify-center font-black text-sm flex-shrink-0">②</span>
+            <div>
+              <p class="font-bold text-orange-800 text-sm">Ngăn chặn CSHT mới / xóa tàn dư CSHT cũ</p>
+              <p class="text-orange-600 text-xs">Ví dụ: Pháp luật cản trở hình thức kinh tế mới hoặc ngược lại xóa bỏ
+                phong kiến</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-3 bg-blue-50 rounded-xl p-3">
+            <span
+              class="w-8 h-8 bg-blue-500 text-white rounded-lg flex items-center justify-center font-black text-sm flex-shrink-0">③</span>
+            <div>
+              <p class="font-bold text-blue-800 text-sm">Định hướng, tổ chức, xây dựng chế độ kinh tế</p>
+              <p class="text-orange-600 text-xs">Ví dụ: Nhà nước XHCN VN định hướng phát triển kinh tế thị trường theo
+                định hướng XHCN</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2 chiều tác động -->
+      <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+        <h3 class="font-bold text-slate-800 mb-4">↕️ 2 Chiều Tác động của KTTT (dòng 953)</h3>
+        <div class="grid md:grid-cols-2 gap-4">
+          <div class="bg-green-50 border-2 border-green-300 rounded-xl p-4">
+            <div class="flex items-center gap-2 mb-3">
+              <span class="text-2xl">🚀</span>
+              <h4 class="font-bold text-green-700">THÚC ĐẨY (Cùng chiều)</h4>
+            </div>
+            <p class="text-green-600 text-sm mb-2">Khi KTTT phản ánh đúng tính tất yếu kinh tế, các quy luật khách quan
+              của CSHT:</p>
+            <ul class="text-green-700 text-xs space-y-1">
+              <li>✅ Đẩy nhanh phát triển CSHT</li>
+              <li>✅ Tạo môi trường thuận lợi cho kinh tế</li>
+              <li>✅ Ví dụ: Luật doanh nghiệp 1999 → thúc đẩy kinh tế tư nhân VN</li>
+            </ul>
+          </div>
+          <div class="bg-red-50 border-2 border-red-300 rounded-xl p-4">
+            <div class="flex items-center gap-2 mb-3">
+              <span class="text-2xl">⛔</span>
+              <h4 class="font-bold text-red-700">KÌM HÃM (Ngược chiều)</h4>
+            </div>
+            <p class="text-red-600 text-sm mb-2">Khi KTTT không phản ánh đúng tính tất yếu kinh tế, đi ngược quy luật
+              khách quan:</p>
+            <ul class="text-red-700 text-xs space-y-1">
+              <li>❌ Cản trở phát triển lực lượng SX</li>
+              <li>❌ Tạo rào cản thể chế cho kinh tế</li>
+              <li>❌ Ví dụ: Cơ chế tập trung bao cấp trước 1986 kìm hãm kinh tế VN</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Vai trò đặc biệt Nhà nước -->
+      <div class="bg-gradient-to-br from-slate-700 to-indigo-800 text-white rounded-2xl p-6 mb-6">
+        <h3 class="font-black text-lg mb-4">🏛️ Vai trò Đặc biệt của Nhà nước (dòng 954)</h3>
+        <blockquote class="bg-white/10 rounded-xl p-4 mb-4 italic serif-text text-sm">
+          "Bạo lực [tức là quyền lực nhà nước] — cũng là một sức mạnh kinh tế." — Ph. Ăngghen
+        </blockquote>
+        <div class="grid grid-cols-3 gap-3">
+          <div class="bg-white/15 rounded-xl p-3 text-center">
+            <div class="text-xl mb-1">🚀</div>
+            <p class="text-xs font-bold">Thúc đẩy</p>
+            <p class="text-indigo-200 text-xs">Khi cùng hướng phát triển KT</p>
+          </div>
+          <div class="bg-white/15 rounded-xl p-3 text-center">
+            <div class="text-xl mb-1">⛔</div>
+            <p class="text-xs font-bold">Kìm hãm</p>
+            <p class="text-indigo-200 text-xs">Khi ngược chiều với phát triển KT</p>
+          </div>
+          <div class="bg-white/15 rounded-xl p-3 text-center">
+            <div class="text-xl mb-1">🔀</div>
+            <p class="text-xs font-bold">Định hướng</p>
+            <p class="text-indigo-200 text-xs">Ngăn cản rồi hướng vào con đường khác</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2 sai lầm cần tránh (dòng 961) -->
+      <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+        <h3 class="font-bold text-slate-800 mb-4">⚠️ 2 Sai lầm Phổ biến Cần Tránh (dòng 961)</h3>
+        <div class="grid md:grid-cols-2 gap-4">
+          <div class="bg-orange-50 border-2 border-orange-300 rounded-xl p-4">
+            <h4 class="font-bold text-orange-800 mb-2 flex items-center gap-2">
+              <span
+                class="bg-orange-500 text-white w-6 h-6 rounded-full flex items-center justify-center text-xs font-black">1</span>
+              Tuyệt đối hóa KINH TẾ
+            </h4>
+            <p class="text-orange-700 text-xs mb-2"><strong>Tên gọi:</strong> Duy vật kinh tế thô thiển / Kinh tế quyết
+              định luận</p>
+            <p class="text-orange-600 text-xs mb-2"><strong>Biểu hiện:</strong> Hạ thấp, coi thường vai trò của chính
+              trị, pháp luật, tư tưởng</p>
+            <p class="text-red-700 text-xs font-semibold"><strong>Hậu quả:</strong> Vô chính phủ, bất chấp kỷ cương, mất
+              định hướng chính trị</p>
+          </div>
+          <div class="bg-rose-50 border-2 border-rose-300 rounded-xl p-4">
+            <h4 class="font-bold text-rose-800 mb-2 flex items-center gap-2">
+              <span
+                class="bg-rose-500 text-white w-6 h-6 rounded-full flex items-center justify-center text-xs font-black">2</span>
+              Tuyệt đối hóa CHÍNH TRỊ
+            </h4>
+            <p class="text-rose-700 text-xs mb-2"><strong>Tên gọi:</strong> Duy tâm / Duy ý chí về chính trị</p>
+            <p class="text-rose-600 text-xs mb-2"><strong>Biểu hiện:</strong> Coi chính trị có thể tự ý thay đổi kinh
+              tế, bỏ qua quy luật kinh tế khách quan</p>
+            <p class="text-red-700 text-xs font-semibold"><strong>Hậu quả:</strong> Nôn nóng, chủ quan, đốt cháy giai
+              đoạn, thất bại kinh tế</p>
+          </div>
+        </div>
+        <div class="callout-info rounded-xl p-3 mt-4">
+          <p class="text-indigo-700 text-sm"><strong>✅ Quan điểm đúng:</strong> CSHT quyết định KTTT, nhưng KTTT tác
+            động trở lại tích cực và mạnh mẽ. Phải coi trọng cả hai, nhận thức được sự quyết định của kinh tế <em>xét
+              đến cùng</em> — không phải tức thì và máy móc.</p>
+        </div>
+      </div>
+
+      <!-- Phản tư -->
+      <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+        <h3 class="font-bold text-slate-800 mb-4">💭 Câu hỏi Phản tư</h3>
+        <div class="space-y-3">
+          <details class="bg-slate-50 rounded-xl p-4 cursor-pointer group">
+            <summary class="font-medium text-slate-800 list-none flex items-center justify-between">
+              <span>1. Lênin nói "Chính trị chiếm địa vị hàng đầu" — có mâu thuẫn với "kinh tế quyết định" không?</span>
+              <span class="text-slate-400 group-open:rotate-90 transition-transform">▶</span>
+            </summary>
+            <p class="mt-3 text-slate-600 text-sm">Không mâu thuẫn. Câu của Lênin chỉ nhấn mạnh: trong cuộc đấu tranh
+              giai cấp thực tiễn, <em>giành và giữ</em> quyền lực chính trị (Nhà nước) phải là ưu tiên hàng đầu — vì chỉ
+              có qua nhà nước mới có thể thay đổi CSHT kinh tế. Kinh tế vẫn quyết định về mặt xét đến cùng của lịch sử,
+              còn chính trị là công cụ thực tiễn hàng đầu.</p>
+          </details>
+          <details class="bg-slate-50 rounded-xl p-4 cursor-pointer group">
+            <summary class="font-medium text-slate-800 list-none flex items-center justify-between">
+              <span>2. Cơ chế tập trung bao cấp trước 1986 là ví dụ của "kìm hãm" hay "thúc đẩy"?</span>
+              <span class="text-slate-400 group-open:rotate-90 transition-transform">▶</span>
+            </summary>
+            <p class="mt-3 text-slate-600 text-sm">Là ví dụ điển hình của KTTT <strong>kìm hãm</strong> CSHT. KTTT (nhà
+              nước bao cấp, hệ thống kế hoạch hóa) không phản ánh đúng quy luật kinh tế khách quan, đi ngược tính tất
+              yếu của quan hệ hàng hóa-tiền tệ → kìm hãm mạnh mẽ sự phát triển CSHT → buộc phải Đổi mới 1986.</p>
+          </details>
+        </div>
+      </div>
+
+      <div class="flex justify-end">
+        <button onclick="completeLesson('M6-L5')"
+          class="bg-gradient-to-r from-indigo-600 to-slate-600 text-white px-8 py-3 rounded-xl font-bold hover:from-indigo-700 hover:to-slate-700 transition-all shadow-lg hover:shadow-xl">
+          ✅ Hoàn thành Bài 6.5 →
+        </button>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════
+         BÀI 6.6 — VẬN DỤNG: ĐỔI MỚI VN & QUẢN TRỊ 4.0
+    ═══════════════════════════════════════════════════ -->
+    <section id="lesson-M6-L6" class="lesson-content">
+      <div
+        class="bg-gradient-to-br from-indigo-600 via-indigo-700 to-slate-700 rounded-3xl p-8 text-white mb-6 shadow-xl">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="text-4xl">🇻🇳</span>
+          <div>
+            <p class="text-indigo-200 text-sm font-medium uppercase tracking-wider">Bài 6.6 · 10 phút + Bài tập</p>
+            <h2 class="text-2xl font-black">Vận dụng: Đổi mới Việt Nam &amp; Quản trị Hiện đại</h2>
+          </div>
+        </div>
+        <blockquote class="border-l-4 border-indigo-300 pl-4 italic text-indigo-100 serif-text text-sm">
+          "Đảng Cộng sản Việt Nam chủ trương đổi mới toàn diện cả kinh tế và chính trị, trong đó đổi mới kinh tế là
+          trung tâm, đồng thời đổi mới chính trị từng bước thận trọng vững chắc."
+        </blockquote>
+        <p class="text-indigo-300 text-xs mt-2">— Dòng 962</p>
+      </div>
+
+      <!-- Case study Đổi mới 1986 -->
+      <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+        <h3 class="font-bold text-slate-800 text-lg mb-4 flex items-center gap-2">
+          <span class="text-xl">📜</span> Case Study: Đổi mới Việt Nam 1986–1992
+        </h3>
+        <p class="text-slate-500 text-sm mb-4">Phân tích theo quy luật CSHT-KTTT:</p>
+        <div class="space-y-3">
+          <div class="flex items-start gap-3">
+            <div class="w-16 text-center flex-shrink-0">
+              <span class="bg-red-100 text-red-700 text-xs font-bold px-2 py-1 rounded-full">Trước 1986</span>
+            </div>
+            <div class="bg-red-50 rounded-xl p-3 flex-1">
+              <p class="text-sm text-red-800 font-semibold">CSHT: Kinh tế kế hoạch hóa tập trung, công hữu toàn bộ</p>
+              <p class="text-sm text-red-600">KTTT: Nhà nước bao cấp, hệ thống phân phối tem phiếu, pháp luật kinh tế
+                hạn chế</p>
+              <p class="text-xs text-red-500 mt-1">⚠️ KTTT kìm hãm → kinh tế trì trệ, khủng hoảng trầm trọng</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-3 pl-8">
+            <div class="w-0.5 h-8 bg-indigo-300 ml-7"></div>
+            <span class="text-indigo-600 font-bold text-sm">⬇️ Đổi mới CSHT (kinh tế)</span>
+          </div>
+          <div class="flex items-start gap-3">
+            <div class="w-16 text-center flex-shrink-0">
+              <span class="bg-blue-100 text-blue-700 text-xs font-bold px-2 py-1 rounded-full">1986–1989</span>
+            </div>
+            <div class="bg-blue-50 rounded-xl p-3 flex-1">
+              <p class="text-sm text-blue-800 font-semibold">CSHT mới: Kinh tế nhiều thành phần, thị trường tự do hơn
+              </p>
+              <p class="text-sm text-blue-600">Khoán 10 trong nông nghiệp, tư nhân hóa từng phần, mở cửa FDI</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-3 pl-8">
+            <div class="w-0.5 h-8 bg-indigo-300 ml-7"></div>
+            <span class="text-indigo-600 font-bold text-sm">⬇️ CSHT mới → áp lực thay đổi KTTT</span>
+          </div>
+          <div class="flex items-start gap-3">
+            <div class="w-16 text-center flex-shrink-0">
+              <span class="bg-green-100 text-green-700 text-xs font-bold px-2 py-1 rounded-full">1989–1992</span>
+            </div>
+            <div class="bg-green-50 rounded-xl p-3 flex-1">
+              <p class="text-sm text-green-800 font-semibold">KTTT thay đổi theo: Hiến pháp 1992, luật kinh tế mới</p>
+              <p class="text-sm text-green-600">Luật Doanh nghiệp tư nhân (1990), Luật Đầu tư nước ngoài, Hiến pháp 1992
+                công nhận kinh tế thị trường</p>
+              <p class="text-xs text-green-700 mt-1">✅ KTTT mới → thúc đẩy CSHT → kinh tế VN tăng trưởng mạnh</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3 thách thức 4.0 (AC-9) -->
+      <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+        <h3 class="font-bold text-slate-800 text-lg mb-4 flex items-center gap-2">
+          <span class="text-xl">🤖</span> 3 Thách thức Quản trị trong Thời đại 4.0
+        </h3>
+        <p class="text-slate-500 text-sm mb-4">CSHT số hóa đang hình thành nhanh chóng — KTTT nào cần thay đổi? Click để
+          xem phân tích:</p>
+
+        <!-- Accordion 1 -->
+        <div class="border border-slate-200 rounded-xl mb-3 overflow-hidden">
+          <button onclick="toggleAccordion('acc-1')"
+            class="w-full p-4 text-left flex items-center justify-between bg-slate-50 hover:bg-slate-100 transition-colors">
+            <div class="flex items-center gap-3">
+              <span class="text-xl">💻</span>
+              <span class="font-bold text-slate-800">① Kinh tế Số → Luật Dữ liệu & Nền tảng</span>
+            </div>
+            <span id="acc-1-icon" class="text-slate-400 text-lg transition-transform">▼</span>
+          </button>
+          <div id="acc-1" class="accordion-body">
+            <div class="p-4 bg-white border-t border-slate-100">
+              <div class="grid md:grid-cols-2 gap-4 text-sm">
+                <div>
+                  <p class="font-bold text-indigo-700 mb-1">🏗️ CSHT mới (đang hình thành):</p>
+                  <p class="text-slate-600">Nền kinh tế dữ liệu, nền tảng kỹ thuật số (Facebook, TikTok, Shopee), quan
+                    hệ sở hữu dữ liệu cá nhân</p>
+                </div>
+                <div>
+                  <p class="font-bold text-slate-700 mb-1">⚖️ KTTT cần thay đổi:</p>
+                  <p class="text-slate-600">Luật dữ liệu cá nhân, quy định nền tảng số, thuế kinh tế số, chống độc quyền
+                    dữ liệu</p>
+                </div>
+              </div>
+              <div class="mt-3 bg-amber-50 rounded-lg p-3">
+                <p class="text-amber-700 text-xs">⚠️ Nếu KTTT (luật pháp) không thay đổi kịp → các tập đoàn công nghệ
+                  lớn sẽ khai thác dữ liệu người dùng VN không bị kiểm soát.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Accordion 2 -->
+        <div class="border border-slate-200 rounded-xl mb-3 overflow-hidden">
+          <button onclick="toggleAccordion('acc-2')"
+            class="w-full p-4 text-left flex items-center justify-between bg-slate-50 hover:bg-slate-100 transition-colors">
+            <div class="flex items-center gap-3">
+              <span class="text-xl">🚗</span>
+              <span class="font-bold text-slate-800">② Gig Economy → Bảo hiểm Lao động</span>
+            </div>
+            <span id="acc-2-icon" class="text-slate-400 text-lg transition-transform">▼</span>
+          </button>
+          <div id="acc-2" class="accordion-body">
+            <div class="p-4 bg-white border-t border-slate-100">
+              <div class="grid md:grid-cols-2 gap-4 text-sm">
+                <div>
+                  <p class="font-bold text-indigo-700 mb-1">🏗️ CSHT mới:</p>
+                  <p class="text-slate-600">Quan hệ lao động gig — Grab, Shopee Food, Ahamove... Người lao động là "đối
+                    tác" không phải "nhân viên"</p>
+                </div>
+                <div>
+                  <p class="font-bold text-slate-700 mb-1">⚖️ KTTT cần thay đổi:</p>
+                  <p class="text-slate-600">Luật lao động gig, bảo hiểm xã hội cho lao động nền tảng, quy định thuế thu
+                    nhập cá nhân mới</p>
+                </div>
+              </div>
+              <div class="mt-3 bg-amber-50 rounded-lg p-3">
+                <p class="text-amber-700 text-xs">⚠️ Luật lao động cũ (KTTT cũ) không bao phủ được hàng triệu lao động
+                  gig → không có bảo hiểm, không có bảo vệ pháp lý.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Accordion 3 -->
+        <div class="border border-slate-200 rounded-xl overflow-hidden">
+          <button onclick="toggleAccordion('acc-3')"
+            class="w-full p-4 text-left flex items-center justify-between bg-slate-50 hover:bg-slate-100 transition-colors">
+            <div class="flex items-center gap-3">
+              <span class="text-xl">🤖</span>
+              <span class="font-bold text-slate-800">③ AI → Đạo đức Pháp lý &amp; Giáo dục</span>
+            </div>
+            <span id="acc-3-icon" class="text-slate-400 text-lg transition-transform">▼</span>
+          </button>
+          <div id="acc-3" class="accordion-body">
+            <div class="p-4 bg-white border-t border-slate-100">
+              <div class="grid md:grid-cols-2 gap-4 text-sm">
+                <div>
+                  <p class="font-bold text-indigo-700 mb-1">🏗️ CSHT mới:</p>
+                  <p class="text-slate-600">Nền kinh tế AI — quan hệ giữa thuật toán và lao động con người, sở hữu trí
+                    tuệ AI, tự động hóa</p>
+                </div>
+                <div>
+                  <p class="font-bold text-slate-700 mb-1">⚖️ KTTT cần thay đổi:</p>
+                  <p class="text-slate-600">Luật sở hữu trí tuệ AI, đạo đức AI, chuẩn chương trình giáo dục, chính sách
+                    tái đào tạo lao động</p>
+                </div>
+              </div>
+              <div class="mt-3 bg-amber-50 rounded-lg p-3">
+                <p class="text-amber-700 text-xs">⚠️ AI thay thế hàng triệu việc làm — nếu KTTT (hệ thống giáo dục, bảo
+                  hiểm thất nghiệp) không thay đổi kịp → khủng hoảng xã hội.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mini-essay -->
+      <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+        <h3 class="font-bold text-slate-800 mb-2 flex items-center gap-2">
+          <span class="text-xl">✍️</span> Mini-Essay Tổng kết
+        </h3>
+        <p class="text-slate-500 text-sm mb-3">Chọn một thể chế quản trị hiện đại và phân tích: CSHT nào tạo ra yêu cầu
+          đó? KTTT đang phản ứng thế nào? Đang thúc đẩy hay kìm hãm? (tối thiểu 200 từ)</p>
+        <div class="bg-indigo-50 rounded-xl p-3 mb-3 text-xs text-indigo-700">
+          <strong>Gợi ý chủ đề:</strong> Luật an ninh mạng VN 2018 (phân tích: đây là KTTT thúc đẩy hay kìm hãm CSHT
+          số?), hoặc chính sách AI của Chính phủ VN 2024, hoặc Luật giao dịch điện tử sửa đổi.
+        </div>
+        <textarea id="short-answer-L6" placeholder="Viết mini-essay của bạn ở đây..." rows="10"
+          class="w-full border border-slate-200 rounded-xl p-4 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-400 resize-y"></textarea>
+        <div class="flex items-center justify-between mt-2">
+          <div class="flex items-center gap-2">
+            <div class="w-32 bg-slate-200 rounded-full h-1.5 overflow-hidden">
+              <div id="wc-bar-L6" class="word-count-bar h-full bg-slate-300" style="width:0%"></div>
+            </div>
+            <span id="wc-count-L6" class="text-xs text-slate-500">0 từ</span>
+          </div>
+          <button onclick="submitShortAnswer('M6-L6')"
+            class="bg-indigo-600 text-white px-5 py-2 rounded-xl text-sm font-bold hover:bg-indigo-700 transition-all">
+            💾 Lưu Essay
+          </button>
+        </div>
+        <div id="submit-L6-feedback" class="mt-3 hidden rounded-xl p-3 text-sm"></div>
+      </div>
+
+      <!-- FQ3 button -->
+      <div class="bg-indigo-50 border border-indigo-200 rounded-2xl p-5 mb-6">
+        <div class="flex items-center justify-between flex-wrap gap-4">
+          <div>
+            <h4 class="font-bold text-indigo-800">📝 Kiểm tra Hình thành — Bài 6.6</h4>
+            <p class="text-indigo-600 text-sm">4 câu: Lenin, Đổi mới VN, CNXH, Quản trị 4.0. Cần ≥70%.</p>
+          </div>
+          <button id="btn-M6-FQ3" onclick="openFormativeQuiz('M6-FQ3')"
+            class="bg-indigo-600 text-white px-6 py-2.5 rounded-xl font-bold hover:bg-indigo-700 transition-all shadow-md">
+            🧠 Làm kiểm tra FQ3
+          </button>
+        </div>
+      </div>
+
+      <!-- Phản tư -->
+      <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+        <h3 class="font-bold text-slate-800 mb-4">💭 Câu hỏi Phản tư</h3>
+        <div class="space-y-3">
+          <details class="bg-indigo-50 rounded-xl p-4 cursor-pointer group">
+            <summary class="font-medium text-indigo-800 list-none flex items-center justify-between">
+              <span>1. Tại sao ĐCSVN chọn "đổi mới kinh tế trước, chính trị từng bước"? Nếu làm ngược lại thì
+                sao?</span>
+              <span class="text-indigo-400 group-open:rotate-90 transition-transform">▶</span>
+            </summary>
+            <p class="mt-3 text-slate-600 text-sm">Vì theo quy luật: CSHT (kinh tế) quyết định KTTT (chính trị). Nếu đổi
+              mới chính trị trước khi CSHT kinh tế sẵn sàng → thiếu nền tảng vật chất → KTTT mới "treo lơ lửng" không có
+              CSHT tương ứng → bất ổn. Kinh nghiệm Đông Âu (1989): đổi mới chính trị quá nhanh khi CSHT chưa sẵn sàng →
+              sụp đổ kinh tế và xã hội.</p>
+          </details>
+          <details class="bg-indigo-50 rounded-xl p-4 cursor-pointer group">
+            <summary class="font-medium text-indigo-800 list-none flex items-center justify-between">
+              <span>2. Liên kết M5-M6: Khi AI tạo ra QHSX mới (mầm mống), điều gì sẽ xảy ra với KTTT hiện tại?</span>
+              <span class="text-indigo-400 group-open:rotate-90 transition-transform">▶</span>
+            </summary>
+            <p class="mt-3 text-slate-600 text-sm">Theo chuỗi M5-M6: AI → LLSX mới (M5) → QHSX mới (mầm mống) → khi đủ
+              lớn thành QHSX thống trị mới → CSHT thay đổi → toàn bộ KTTT hiện tại (luật lao động, hệ thống thuế, giáo
+              dục, đạo đức nghề nghiệp) phải thay đổi theo. Đây là cuộc cách mạng xã hội trong tương lai gần.</p>
+          </details>
+        </div>
+      </div>
+
+      <!-- Bridge sang M7 (AC-9) -->
+      <div class="bg-gradient-to-br from-violet-600 to-purple-700 text-white rounded-2xl p-5 mb-6">
+        <div class="flex items-center justify-between flex-wrap gap-3">
+          <div>
+            <p class="text-violet-200 text-xs uppercase tracking-wider mb-1">Tiếp theo trong CNDVLS</p>
+            <h4 class="font-bold text-lg">Module 7: Giai cấp, Dân tộc &amp; Nhà nước →</h4>
+            <p class="text-violet-200 text-sm mt-1">Phân tích giai cấp xã hội, cuộc đấu tranh giai cấp và vai trò của
+              nhà nước trong lịch sử</p>
+          </div>
+          <a href="module7.html"
+            class="bg-white text-violet-700 px-5 py-2.5 rounded-xl font-bold hover:bg-violet-50 transition-all text-sm">
+            Đến Module 7 →
+          </a>
+        </div>
+      </div>
+
+      <div class="flex justify-end">
+        <button onclick="completeLesson('M6-L6')"
+          class="bg-gradient-to-r from-indigo-600 to-slate-600 text-white px-8 py-3 rounded-xl font-bold hover:from-indigo-700 hover:to-slate-700 transition-all shadow-lg hover:shadow-xl">
+          ✅ Hoàn thành Bài 6.6
+        </button>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════
+         MODULE QUIZ BANNER (shown after all 6 lessons)
+    ═══════════════════════════════════════════════════ -->
+    <section id="module-quiz-banner" class="hidden">
+      <div
+        class="bg-gradient-to-br from-indigo-600 via-slate-600 to-indigo-800 rounded-3xl p-8 text-white text-center shadow-2xl">
+        <div class="text-5xl mb-4">🎉</div>
+        <h2 class="text-2xl font-black mb-2">Chúc mừng! Bạn đã hoàn thành cả 6 bài học Module 6!</h2>
+        <p class="text-indigo-200 mb-6">Sẵn sàng kiểm tra toàn bộ kiến thức về Biện chứng CSHT &amp; KTTT?</p>
+        <div class="bg-white/15 rounded-2xl p-4 mb-6">
+          <div class="grid grid-cols-3 gap-4 text-center">
+            <div>
+              <p class="text-2xl font-black">12</p>
+              <p class="text-indigo-200 text-xs">Câu hỏi</p>
+            </div>
+            <div>
+              <p class="text-2xl font-black">75%</p>
+              <p class="text-indigo-200 text-xs">Ngưỡng đạt</p>
+            </div>
+            <div>
+              <p class="text-2xl font-black">🥈</p>
+              <p class="text-indigo-200 text-xs">Thành tích</p>
+            </div>
+          </div>
+        </div>
+        <button onclick="openModuleQuiz()"
+          class="bg-white text-indigo-700 font-black text-lg px-10 py-4 rounded-2xl hover:bg-indigo-50 transition-all shadow-xl hover:shadow-2xl hover:-translate-y-1">
+          📝 Làm Bài Kiểm tra Module 6
+        </button>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ─────────────────── FOOTER ─────────────────── -->
+  <div id="footer-placeholder"></div>
+
+  <!-- ─────────────────── QUIZ MODAL ─────────────────── -->
+  <div id="quiz-modal-overlay"
+    class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div id="quiz-modal"
+      class="bg-white rounded-3xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-hidden flex flex-col">
+      <!-- Modal Header -->
+      <div class="bg-gradient-to-r from-indigo-600 to-slate-600 p-6 text-white flex-shrink-0">
+        <div class="flex items-center justify-between">
+          <h3 id="quiz-modal-title" class="font-black text-lg">Quiz</h3>
+          <button onclick="closeQuizModal()"
+            class="w-8 h-8 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center text-white transition-colors">✕</button>
+        </div>
+        <div id="quiz-modal-progress" class="mt-3 text-indigo-200 text-sm"></div>
+      </div>
+      <!-- Modal Body -->
+      <div id="quiz-modal-body" class="flex-1 overflow-y-auto p-6"></div>
+      <!-- Modal Footer -->
+      <div class="p-4 border-t border-slate-100 flex-shrink-0 flex items-center justify-between">
+        <div id="quiz-modal-score" class="text-sm text-slate-500"></div>
+        <div class="flex gap-2">
+          <button id="quiz-submit-btn" onclick="submitQuiz()"
+            class="bg-indigo-600 text-white px-6 py-2.5 rounded-xl font-bold hover:bg-indigo-700 transition-all opacity-50 cursor-not-allowed"
+            disabled>
+            Nộp bài ✓
+          </button>
+          <button id="quiz-close-btn" onclick="closeQuizModal()"
+            class="hidden bg-slate-100 text-slate-700 px-5 py-2.5 rounded-xl font-bold hover:bg-slate-200 transition-all">
+            Đóng
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─────────────────── ACHIEVEMENT TOAST ─────────────────── -->
+  <div id="achievement-toast" class="fixed bottom-6 right-6 z-50 hidden">
+    <div class="bg-gradient-to-r from-indigo-700 to-slate-700 text-white rounded-2xl p-4 shadow-2xl max-w-sm">
+      <div class="flex items-center gap-3">
+        <span id="toast-icon" class="text-3xl">🏆</span>
+        <div>
+          <p class="text-indigo-200 text-xs font-medium uppercase tracking-wider">Thành tích mở khóa!</p>
+          <p id="toast-name" class="font-black text-lg"></p>
+          <p id="toast-desc" class="text-indigo-200 text-xs"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─────────────────── AI PANEL FAB ─────────────────── -->
+  <button onclick="toggleAIPanel()" id="ai-fab"
+    class="fixed bottom-6 left-6 z-40 w-14 h-14 bg-gradient-to-br from-indigo-600 to-slate-700 text-white rounded-full shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all flex items-center justify-center text-2xl">
+    🤖
+  </button>
+
+  <!-- AI Panel -->
+  <div id="ai-panel"
+    class="hidden-panel fixed bottom-24 left-6 z-40 w-80 bg-white rounded-2xl shadow-2xl overflow-hidden border border-indigo-100">
+    <!-- Panel Header -->
+    <div class="bg-gradient-to-r from-indigo-700 to-slate-600 p-4 text-white">
+      <div class="flex items-center justify-between mb-2">
+        <div class="flex items-center gap-2">
+          <span class="text-xl">🤖</span>
+          <span class="font-bold text-sm">Trợ lý Module 6</span>
+        </div>
+        <button onclick="toggleAIPanel()"
+          class="w-6 h-6 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center text-xs transition-colors">✕</button>
+      </div>
+      <p class="text-indigo-200 text-xs">Hỏi về CSHT, KTTT, và Nhà nước</p>
+    </div>
+    <!-- Suggested questions -->
+    <div class="p-3 bg-indigo-50 border-b border-indigo-100">
+      <p class="text-xs text-indigo-600 font-medium mb-2">Gợi ý:</p>
+      <div class="flex flex-wrap gap-1.5">
+        <button onclick="sendAIPrompt('Cơ sở hạ tầng là gì?')"
+          class="text-xs bg-white border border-indigo-200 text-indigo-700 px-2.5 py-1 rounded-full hover:bg-indigo-100 transition-colors">CSHT
+          là gì?</button>
+        <button onclick="sendAIPrompt('Kiến trúc thượng tầng gồm những gì?')"
+          class="text-xs bg-white border border-indigo-200 text-indigo-700 px-2.5 py-1 rounded-full hover:bg-indigo-100 transition-colors">KTTT
+          gồm gì?</button>
+        <button onclick="sendAIPrompt('Nhà nước có vai trò gì trong kiến trúc thượng tầng?')"
+          class="text-xs bg-white border border-indigo-200 text-indigo-700 px-2.5 py-1 rounded-full hover:bg-indigo-100 transition-colors">Vai
+          trò Nhà nước</button>
+        <button onclick="sendAIPrompt('CSHT quyết định KTTT như thế nào?')"
+          class="text-xs bg-white border border-indigo-200 text-indigo-700 px-2.5 py-1 rounded-full hover:bg-indigo-100 transition-colors">CSHT
+          quyết định?</button>
+        <button onclick="sendAIPrompt('Vận dụng quy luật vào Đổi mới Việt Nam')"
+          class="text-xs bg-white border border-indigo-200 text-indigo-700 px-2.5 py-1 rounded-full hover:bg-indigo-100 transition-colors">Đổi
+          mới VN</button>
+      </div>
+    </div>
+    <!-- Chat messages -->
+    <div id="ai-chat-messages" class="p-3 h-56 overflow-y-auto space-y-3">
+      <div class="ai-bubble-bot text-xs p-3 max-w-[85%]">
+        Xin chào! Tôi là trợ lý Module 6. Bạn muốn hỏi gì về CSHT, KTTT, hay quy luật biện chứng của chúng? 🏛️
+      </div>
+    </div>
+    <!-- Input -->
+    <div class="p-3 border-t border-slate-100 flex gap-2">
+      <input id="ai-input" type="text" placeholder="Hỏi về CSHT, KTTT..."
+        class="flex-1 border border-slate-200 rounded-xl px-3 py-2 text-xs focus:outline-none focus:ring-2 focus:ring-indigo-400"
+        onkeydown="if(event.key==='Enter') sendAIMessage()" />
+      <button onclick="sendAIMessage()"
+        class="w-8 h-8 bg-indigo-600 text-white rounded-xl flex items-center justify-center hover:bg-indigo-700 transition-colors">
+        <span class="text-sm">→</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- ─────────────────── SCRIPTS ─────────────────── -->
+  <script src="js/load-components.js"></script>
+  <script src="js/quiz-data-m6.js"></script>
+  <script>
+    // ═══════════════════════════════════════════════════
+    // STATE MANAGEMENT
+    // ═══════════════════════════════════════════════════
+    const M6_LESSONS = ['M6-L1', 'M6-L2', 'M6-L3', 'M6-L4', 'M6-L5', 'M6-L6'];
+
+    let M6_STATE = {
+      completedLessons: new Set(),
+      quizResults: {}
+    };
+
+    const M6_ACHIEVEMENTS = {
+      'base-analyst': { name: 'Base Analyst', icon: '🥉', desc: 'Hoàn thành kiểm tra CSHT-KTTT cơ bản — +5 XP', xp: 5 },
+      'governance-scholar': { name: 'Governance Scholar', icon: '🥈', desc: '≥75% Bài kiểm tra Module 6 — +10 XP', xp: 10 },
+      'historical-materialist': { name: 'Historical Materialist', icon: '🥇', desc: 'Hoàn thành toàn bộ M1–M6 CNDVLS — +25 XP', xp: 25 }
+    };
+
+    // ─── Load state from localStorage ───
+    function loadM6State() {
+      try {
+        const qr = JSON.parse(localStorage.getItem('philo_quiz_results') || '{}');
+        const completed = qr.M6_completed || [];
+        M6_STATE.completedLessons = new Set(completed);
+        M6_STATE.quizResults = qr.M6_quiz || {};
+        completed.forEach(id => {
+          const dot = document.getElementById('dot-' + id);
+          if (dot) dot.classList.add('done');
+        });
+        updateProgress();
+        // Restore quiz button states
+        ['M6-FQ1', 'M6-FQ2', 'M6-FQ3'].forEach(qid => {
+          if (M6_STATE.quizResults[qid]?.passed) {
+            const btn = document.getElementById('btn-' + qid);
+            if (btn) {
+              btn.textContent = '✅ Đã hoàn thành';
+              btn.classList.replace('bg-indigo-600', 'bg-green-600');
+              btn.classList.replace('hover:bg-indigo-700', 'hover:bg-green-700');
+            }
+          }
+        });
+        // Show quiz banner if all done
+        if (M6_STATE.completedLessons.size === 6) {
+          document.getElementById('module-quiz-banner').classList.remove('hidden');
+        }
+      } catch (e) { }
+    }
+
+    // ─── Save state to localStorage ───
+    function saveM6State() {
+      try {
+        const qr = JSON.parse(localStorage.getItem('philo_quiz_results') || '{}');
+        qr.M6_completed = [...M6_STATE.completedLessons];
+        qr.M6_quiz = M6_STATE.quizResults;
+        localStorage.setItem('philo_quiz_results', JSON.stringify(qr));
+      } catch (e) { }
+    }
+
+    // ─── Update progress bar ───
+    function updateProgress() {
+      const done = M6_STATE.completedLessons.size;
+      const pct = (done / 6) * 100;
+      document.getElementById('progress-bar').style.width = pct + '%';
+      document.getElementById('progress-label').textContent = done + '/6 bài hoàn thành';
+    }
+
+    // ─── Show lesson ───
+    function showLesson(id) {
+      document.querySelectorAll('.lesson-content').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('.lesson-tab').forEach(el => el.classList.remove('active'));
+      const lesson = document.getElementById('lesson-' + id);
+      const tab = document.getElementById('tab-' + id);
+      if (lesson) lesson.classList.add('active');
+      if (tab) tab.classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // ─── Complete lesson ───
+    function completeLesson(id) {
+      M6_STATE.completedLessons.add(id);
+      const dot = document.getElementById('dot-' + id);
+      if (dot) dot.classList.add('done');
+      updateProgress();
+      saveM6State();
+      // Auto-advance
+      const idx = M6_LESSONS.indexOf(id);
+      if (idx < M6_LESSONS.length - 1) {
+        showLesson(M6_LESSONS[idx + 1]);
+      } else {
+        // All done
+        document.getElementById('module-quiz-banner').classList.remove('hidden');
+        document.getElementById('module-quiz-banner').scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+
+    // ═══════════════════════════════════════════════════
+    // SORT ACTIVITY
+    // ═══════════════════════════════════════════════════
+    function revealSort(el, type, explanation) {
+      if (el.classList.contains('placed')) return;
+      const color = type === 'CSHT' ? 'bg-indigo-200 border-indigo-500 text-indigo-900' : 'bg-slate-200 border-slate-500 text-slate-900';
+      el.className = `sort-item placed rounded-xl p-3 text-center text-xs font-medium border-2 ${color}`;
+      el.innerHTML = `<div class="font-bold">${type}</div><div class="text-xs opacity-70 mt-0.5">${explanation}</div>`;
+    }
+
+    // ═══════════════════════════════════════════════════
+    // SHORT ANSWERS
+    // ═══════════════════════════════════════════════════
+    function countWords(text) {
+      return text.trim().split(/\s+/).filter(Boolean).length;
+    }
+
+    function setupWordCount(lessonKey) {
+      const ta = document.getElementById('short-answer-' + lessonKey);
+      const bar = document.getElementById('wc-bar-' + lessonKey);
+      const cnt = document.getElementById('wc-count-' + lessonKey);
+      const minWords = lessonKey === 'L4' ? 150 : 200;
+      const maxWords = lessonKey === 'L4' ? 300 : 300;
+      if (!ta) return;
+      ta.addEventListener('input', () => {
+        const w = countWords(ta.value);
+        cnt.textContent = w + ' từ';
+        const pct = Math.min((w / minWords) * 100, 100);
+        bar.style.width = pct + '%';
+        if (w < minWords * 0.5) { bar.className = 'word-count-bar h-full bg-red-400'; }
+        else if (w < minWords) { bar.className = 'word-count-bar h-full bg-yellow-400'; }
+        else { bar.className = 'word-count-bar h-full bg-green-500'; }
+      });
+    }
+
+    function submitShortAnswer(lessonId) {
+      const key = lessonId.split('-')[1]; // 'L4' or 'L6'
+      const ta = document.getElementById('short-answer-' + key);
+      const fb = document.getElementById('submit-' + key + '-feedback');
+      if (!ta) return;
+      const minWords = key === 'L4' ? 150 : 200;
+      const w = countWords(ta.value);
+      if (w < minWords) {
+        fb.className = 'mt-3 rounded-xl p-3 text-sm bg-red-50 text-red-700';
+        fb.textContent = `❌ Cần ít nhất ${minWords} từ. Hiện tại: ${w} từ.`;
+        fb.classList.remove('hidden');
+        return;
+      }
+      // Save to philo_short_answers
+      try {
+        const arr = JSON.parse(localStorage.getItem('philo_short_answers') || '[]');
+        arr.push({
+          id: lessonId + '-' + Date.now(),
+          lessonId: lessonId,
+          module: 'M6',
+          text: ta.value,
+          wordCount: w,
+          timestamp: new Date().toISOString()
+        });
+        localStorage.setItem('philo_short_answers', JSON.stringify(arr));
+      } catch (e) { }
+      fb.className = 'mt-3 rounded-xl p-3 text-sm bg-green-50 text-green-700';
+      fb.textContent = `✅ Đã lưu phân tích (${w} từ). Bạn có thể tiếp tục hoặc chỉnh sửa thêm.`;
+      fb.classList.remove('hidden');
+    }
+
+    // ═══════════════════════════════════════════════════
+    // ACCORDION
+    // ═══════════════════════════════════════════════════
+    function toggleAccordion(id) {
+      const body = document.getElementById(id);
+      const icon = document.getElementById(id + '-icon');
+      if (body.classList.contains('open')) {
+        body.classList.remove('open');
+        if (icon) icon.style.transform = 'rotate(0deg)';
+      } else {
+        body.classList.add('open');
+        if (icon) icon.style.transform = 'rotate(180deg)';
+      }
+    }
+
+    // ═══════════════════════════════════════════════════
+    // QUIZ ENGINE
+    // ═══════════════════════════════════════════════════
+    let currentQuiz = null;
+    let currentAnswers = {};
+    let currentQuizSubmitted = false;
+
+    function openFormativeQuiz(qid) {
+      const quizzes = window.FORMATIVE_QUIZZES_M6;
+      if (!quizzes || !quizzes[qid]) { alert('Dữ liệu quiz chưa tải. Vui lòng thử lại.'); return; }
+      openQuizModal(quizzes[qid]);
+    }
+
+    function openModuleQuiz() {
+      const quiz = window.MODULE_QUIZ_M6;
+      if (!quiz) { alert('Dữ liệu quiz chưa tải. Vui lòng thử lại.'); return; }
+      openQuizModal(quiz);
+    }
+
+    function openQuizModal(quiz) {
+      currentQuiz = quiz;
+      currentAnswers = {};
+      currentQuizSubmitted = false;
+      document.getElementById('quiz-modal-title').textContent = quiz.title;
+      document.getElementById('quiz-modal-progress').textContent = `${quiz.questions.length} câu hỏi · Cần ≥${quiz.passingScore}% để đạt`;
+      document.getElementById('quiz-modal-score').textContent = '';
+      document.getElementById('quiz-submit-btn').disabled = true;
+      document.getElementById('quiz-submit-btn').classList.add('opacity-50', 'cursor-not-allowed');
+      document.getElementById('quiz-close-btn').classList.add('hidden');
+
+      const body = document.getElementById('quiz-modal-body');
+      body.innerHTML = quiz.questions.map((q, qi) => `
+      <div class="mb-6" id="qblock-${q.id}">
+        <p class="font-bold text-slate-800 mb-3 text-sm">
+          <span class="inline-flex items-center justify-center w-6 h-6 bg-indigo-100 text-indigo-700 rounded-full font-black text-xs mr-2">${qi + 1}</span>
+          ${q.text}
+        </p>
+        <div class="space-y-2">
+          ${q.options.map(opt => `
+            <label id="opt-${q.id}-${opt.id}" onclick="selectAnswer('${q.id}','${opt.id}')"
+              class="quiz-option flex items-start gap-3 border-2 border-slate-200 rounded-xl p-3 cursor-pointer">
+              <span class="w-5 h-5 rounded-full border-2 border-slate-300 flex items-center justify-center text-xs font-bold text-slate-500 flex-shrink-0 mt-0.5">${opt.id.toUpperCase()}</span>
+              <span class="text-sm text-slate-700">${opt.text}</span>
+            </label>
+          `).join('')}
+        </div>
+        <div id="rationale-${q.id}" class="hidden mt-3 bg-indigo-50 border border-indigo-200 rounded-xl p-3 text-xs text-indigo-800"></div>
+      </div>
+    `).join('');
+
+      document.getElementById('quiz-modal-overlay').classList.remove('hidden');
+      document.getElementById('quiz-modal-overlay').classList.add('flex');
+    }
+
+    function selectAnswer(qid, optId) {
+      if (currentQuizSubmitted) return;
+      currentAnswers[qid] = optId;
+      // Highlight selected
+      const q = currentQuiz.questions.find(q => q.id === qid);
+      q.options.forEach(opt => {
+        const el = document.getElementById(`opt-${qid}-${opt.id}`);
+        if (el) {
+          el.classList.remove('selected');
+          el.classList.remove('border-indigo-500', 'bg-indigo-50');
+        }
+      });
+      const sel = document.getElementById(`opt-${qid}-${optId}`);
+      if (sel) { sel.classList.add('selected', 'border-indigo-500', 'bg-indigo-50'); }
+      // Enable submit if all answered
+      if (Object.keys(currentAnswers).length === currentQuiz.questions.length) {
+        const btn = document.getElementById('quiz-submit-btn');
+        btn.disabled = false;
+        btn.classList.remove('opacity-50', 'cursor-not-allowed');
+      }
+    }
+
+    function submitQuiz() {
+      if (currentQuizSubmitted || !currentQuiz) return;
+      currentQuizSubmitted = true;
+      let correct = 0;
+      currentQuiz.questions.forEach(q => {
+        const userAns = currentAnswers[q.id];
+        const isCorrect = userAns === q.correctOptionId;
+        if (isCorrect) correct++;
+        // Mark options
+        q.options.forEach(opt => {
+          const el = document.getElementById(`opt-${q.id}-${opt.id}`);
+          if (!el) return;
+          if (opt.id === q.correctOptionId) { el.classList.add('correct'); el.classList.remove('selected'); }
+          else if (opt.id === userAns && !isCorrect) { el.classList.add('wrong'); }
+        });
+        // Show rationale
+        const rat = document.getElementById(`rationale-${q.id}`);
+        if (rat) { rat.textContent = '💡 ' + q.rationale; rat.classList.remove('hidden'); }
+      });
+
+      const total = currentQuiz.questions.length;
+      const score = Math.round((correct / total) * 100);
+      const passed = score >= currentQuiz.passingScore;
+
+      // Save result
+      M6_STATE.quizResults[currentQuiz.id] = { score, correct, total, passed, timestamp: Date.now() };
+      saveM6State();
+
+      // Update challenge unlock flag
+      if (currentQuiz.id === 'M6-FQ1' && passed) {
+        try {
+          const qr = JSON.parse(localStorage.getItem('philo_quiz_results') || '{}');
+          if (!qr.mini_challenge_unlocked) qr.mini_challenge_unlocked = {};
+          qr.mini_challenge_unlocked.M6 = true;
+          localStorage.setItem('philo_quiz_results', JSON.stringify(qr));
+        } catch (e) { }
+      }
+
+      // Score display
+      const scoreEl = document.getElementById('quiz-modal-score');
+      scoreEl.innerHTML = `<span class="${passed ? 'text-green-600' : 'text-red-500'} font-bold">${score}% (${correct}/${total}) — ${passed ? '✅ Đạt' : '❌ Chưa đạt'}</span>`;
+
+      // Submit → Close
+      document.getElementById('quiz-submit-btn').classList.add('hidden');
+      document.getElementById('quiz-close-btn').classList.remove('hidden');
+
+      // Achievement
+      if (passed && currentQuiz.achievement) {
+        setTimeout(() => showAchievement(currentQuiz.achievement), 800);
+        // Update button
+        const btnId = 'btn-' + currentQuiz.id;
+        const btn = document.getElementById(btnId);
+        if (btn) {
+          btn.textContent = '✅ Đã hoàn thành';
+          btn.classList.remove('bg-indigo-600', 'hover:bg-indigo-700');
+          btn.classList.add('bg-green-600', 'hover:bg-green-700');
+        }
+      }
+      // Historical materialist check
+      if (currentQuiz.id === 'M6-FINAL' && passed) {
+        setTimeout(checkHistoricalMaterialist, 3000);
+      }
+    }
+
+    function closeQuizModal() {
+      document.getElementById('quiz-modal-overlay').classList.add('hidden');
+      document.getElementById('quiz-modal-overlay').classList.remove('flex');
+      currentQuiz = null;
+      currentAnswers = {};
+      currentQuizSubmitted = false;
+    }
+
+    // ═══════════════════════════════════════════════════
+    // ACHIEVEMENTS
+    // ═══════════════════════════════════════════════════
+    function showAchievement(slug) {
+      const ach = M6_ACHIEVEMENTS[slug];
+      if (!ach) return;
+      // Check not already earned
+      try {
+        const arr = JSON.parse(localStorage.getItem('philo_achievements') || '[]');
+        if (arr.some(a => a.id === slug)) return; // Already earned
+        arr.push({ id: slug, slug, name: ach.name, icon: ach.icon, earnedAt: Date.now(), module: slug === 'historical-materialist' ? 'cross' : 'M6', xp: ach.xp });
+        localStorage.setItem('philo_achievements', JSON.stringify(arr));
+      } catch (e) { }
+      // Toast
+      document.getElementById('toast-icon').textContent = ach.icon;
+      document.getElementById('toast-name').textContent = ach.name;
+      document.getElementById('toast-desc').textContent = ach.desc;
+      const toast = document.getElementById('achievement-toast');
+      toast.classList.remove('hidden');
+      setTimeout(() => toast.classList.add('hidden'), 4500);
+    }
+
+    function checkHistoricalMaterialist() {
+      try {
+        const qr = JSON.parse(localStorage.getItem('philo_quiz_results') || '{}');
+        const m1 = qr.M1_quiz && Object.values(qr.M1_quiz).some(r => r?.passed && r?.total >= 10);
+        const m2 = qr.M2_quiz && Object.values(qr.M2_quiz).some(r => r?.passed && r?.total >= 10);
+        const m3 = qr.M3_quiz && Object.values(qr.M3_quiz).some(r => r?.passed && r?.total >= 10);
+        const m4 = qr.M4_quiz && Object.values(qr.M4_quiz).some(r => r?.passed && r?.total >= 10);
+        const m5 = qr.M5_quiz && Object.values(qr.M5_quiz).some(r => r?.passed && r?.total >= 10);
+        const m6 = M6_STATE.quizResults['M6-FINAL']?.passed;
+        if (m1 && m2 && m3 && m4 && m5 && m6) {
+          setTimeout(() => showAchievement('historical-materialist'), 2000);
+        }
+      } catch (e) { }
+    }
+
+    // ═══════════════════════════════════════════════════
+    // AI PANEL
+    // ═══════════════════════════════════════════════════
+    const AI_M6_RESPONSES = {
+      csht: {
+        keywords: ['cơ sở hạ tầng', 'csht', 'cơ cấu kinh tế', 'hạ tầng kinh tế', 'quan hệ sản xuất tổng'],
+        answer: '🏗️ <strong>Cơ sở Hạ tầng (CSHT)</strong> là toàn bộ những QUAN HỆ SẢN XUẤT (QHSX) của một xã hội hợp thành cơ cấu kinh tế (dòng 934).\n\n⚠️ Lưu ý: CSHT ≠ hạ tầng vật lý! Không phải nhà máy, đường sá — mà là MỐI QUAN HỆ người-người trong sản xuất.\n\nCấu trúc CSHT gồm 3 loại QHSX:\n• ⭐ Thống trị — đặc trưng cho xã hội\n• 🍂 Tàn dư — QHSX cũ còn sót\n• 🌱 Mầm mống — QHSX mới đang hình thành',
+        sourceRef: 'Triet.txt, dòng 934–936'
+      },
+      kttt: {
+        keywords: ['kiến trúc thượng tầng', 'kttt', 'thượng tầng', 'tư tưởng xã hội', 'thiết chế'],
+        answer: '⚖️ <strong>Kiến trúc Thượng tầng (KTTT)</strong> gồm 2 thành phần (dòng 937–938):\n\n① Tư tưởng/Quan điểm: chính trị, pháp quyền, đạo đức, tôn giáo, nghệ thuật, triết học\n\n② Thiết chế tương ứng: Nhà nước, đảng phái, giáo hội, đoàn thể\n\nLiên hệ với CSHT: chính trị, pháp luật → trực tiếp; tôn giáo, nghệ thuật → gián tiếp.',
+        sourceRef: 'Triet.txt, dòng 937–941'
+      },
+      state: {
+        keywords: ['nhà nước', 'bạo lực', 'quyền lực mạnh nhất', 'thiết chế nhà nước', 'dòng 941'],
+        answer: '🏛️ <strong>Nhà nước</strong> là "bộ phận có quyền lực mạnh nhất" trong KTTT (dòng 941).\n\nTại sao? Chính nhờ nhà nước mà tư tưởng của giai cấp thống trị trở thành SỨC MẠNH THỐNG TRỊ toàn bộ đời sống xã hội.\n\nPh. Ăngghen (dòng 954): "Bạo lực [quyền lực nhà nước] — cũng là một sức mạnh kinh tế." Tức là nhà nước tác động 3 chiều: thúc đẩy / kìm hãm / định hướng nền kinh tế.',
+        sourceRef: 'Triet.txt, dòng 941, 954'
+      },
+      determination: {
+        keywords: ['quyết định', 'csht quyết', '3 nội dung', 'kiểu kttt', 'cơ cấu tính chất', 'vận động phát triển'],
+        answer: '🔩 CSHT quyết định KTTT theo <strong>3 nội dung</strong> (dòng 946):\n\n① Quyết định KIỂU KTTT — loại CSHT nào sinh ra loại KTTT đó\n② Quyết định CƠ CẤU & TÍNH CHẤT KTTT — CSHT có đối kháng → KTTT có đối kháng\n③ Quyết định SỰ VẬN ĐỘNG & PHÁT TRIỂN — CSHT thay đổi → KTTT phải thay đổi\n\nC. Mác (dòng 948): "Cơ sở kinh tế thay đổi thì toàn bộ cái kiến trúc thượng tầng đồ sộ cũng bị đảo lộn ít nhiều nhanh chóng."',
+        sourceRef: 'Triet.txt, dòng 945–948'
+      },
+      reaction: {
+        keywords: ['tác động trở lại', 'độc lập tương đối', 'ăngghen', 'phản ánh trở lại', 'kttt tác động'],
+        answer: '🔄 KTTT có <strong>tính độc lập tương đối</strong> và tác động trở lại mạnh mẽ (dòng 951).\n\n2 chiều tác động (dòng 953):\n🚀 THÚC ĐẨY: khi KTTT phản ánh đúng tính tất yếu kinh tế\n⛔ KÌM HÃM: khi KTTT đi ngược quy luật kinh tế khách quan\n\nVí dụ VN: Cơ chế bao cấp (KTTT cũ) kìm hãm kinh tế → Đổi mới 1986 → KTTT mới (luật thị trường) thúc đẩy kinh tế.',
+        sourceRef: 'Triet.txt, dòng 951–955'
+      },
+      doi_moi: {
+        keywords: ['đổi mới', 'việt nam', 'đảng', '1986', 'kinh tế thị trường', 'đcsvn'],
+        answer: '🇻🇳 <strong>Đổi mới VN 1986</strong> vận dụng đúng quy luật CSHT-KTTT (dòng 962):\n\n"Đảng Cộng sản Việt Nam chủ trương đổi mới toàn diện cả kinh tế và chính trị, trong đó đổi mới kinh tế là TRUNG TÂM, đồng thời đổi mới chính trị từng bước thận trọng vững chắc."\n\nTức là: CSHT (kinh tế) thay đổi trước → KTTT (chính trị, pháp luật) thay đổi theo từng bước — đúng quy luật, không nôn nóng.',
+        sourceRef: 'Triet.txt, dòng 962'
+      },
+      effects: {
+        keywords: ['thúc đẩy', 'kìm hãm', 'hai chiều', 'tác động', 'ngược chiều', 'cùng chiều'],
+        answer: '↕️ KTTT tác động KTTT theo <strong>2 chiều</strong> (dòng 953):\n\n🚀 <strong>THÚC ĐẨY</strong> (cùng chiều): KTTT phản ánh đúng quy luật kinh tế khách quan → đẩy nhanh phát triển CSHT. Ví dụ: Luật Doanh nghiệp 1999 thúc đẩy kinh tế tư nhân.\n\n⛔ <strong>KÌM HÃM</strong> (ngược chiều): KTTT đi ngược tính tất yếu kinh tế → cản trở phát triển. Ví dụ: bao cấp trước 1986.',
+        sourceRef: 'Triet.txt, dòng 953'
+      }
+    };
+
+    let aiPanelOpen = false;
+
+    function toggleAIPanel() {
+      aiPanelOpen = !aiPanelOpen;
+      const panel = document.getElementById('ai-panel');
+      if (aiPanelOpen) {
+        panel.classList.remove('hidden-panel');
+      } else {
+        panel.classList.add('hidden-panel');
+      }
+    }
+
+    function getAIResponse(query) {
+      const q = query.toLowerCase();
+      for (const [key, resp] of Object.entries(AI_M6_RESPONSES)) {
+        if (resp.keywords.some(kw => q.includes(kw))) {
+          return resp;
+        }
+      }
+      return {
+        answer: '🤔 Tôi chưa có câu trả lời sẵn cho câu hỏi này. Bạn có thể hỏi về:\n• Cơ sở hạ tầng (CSHT)\n• Kiến trúc thượng tầng (KTTT)\n• Nhà nước và quyền lực\n• CSHT quyết định KTTT như thế nào\n• Tác động trở lại của KTTT\n• Đổi mới Việt Nam 1986',
+        sourceRef: ''
+      };
+    }
+
+    function appendAIBubble(cls, html) {
+      const msgs = document.getElementById('ai-chat-messages');
+      const div = document.createElement('div');
+      div.className = `${cls} text-xs p-3 max-w-[85%]`;
+      if (cls.includes('user')) div.classList.add('ml-auto');
+      div.innerHTML = html;
+      msgs.appendChild(div);
+      msgs.scrollTop = msgs.scrollHeight;
+    }
+
+    function sendAIMessage() {
+      const input = document.getElementById('ai-input');
+      const q = input.value.trim();
+      if (!q) return;
+      input.value = '';
+      appendAIBubble('ai-bubble-user', q);
+      setTimeout(() => {
+        const resp = getAIResponse(q);
+        appendAIBubble('ai-bubble-bot', resp.answer.replace(/\n/g, '<br>') + (resp.sourceRef ? `<br><span class="text-indigo-400 text-xs">${resp.sourceRef}</span>` : ''));
+        // Save to history
+        try {
+          const hist = JSON.parse(localStorage.getItem('philoMapAiHistory') || '[]');
+          hist.push({ question: q, answer: resp.answer, sourceRef: resp.sourceRef, module: 'M6', timestamp: Date.now() });
+          if (hist.length > 50) hist.shift();
+          localStorage.setItem('philoMapAiHistory', JSON.stringify(hist));
+        } catch (e) { }
+      }, 700);
+    }
+
+    function sendAIPrompt(prompt) {
+      document.getElementById('ai-input').value = prompt;
+      sendAIMessage();
+    }
+
+    // ═══════════════════════════════════════════════════
+    // INIT
+    // ═══════════════════════════════════════════════════
+    document.addEventListener('DOMContentLoaded', () => {
+      loadM6State();
+      setupWordCount('L4');
+      setupWordCount('L6');
+      // If no lesson active yet, show L1
+      if (M6_STATE.completedLessons.size === 0) {
+        showLesson('M6-L1');
+      } else {
+        // Show first incomplete lesson
+        const next = M6_LESSONS.find(id => !M6_STATE.completedLessons.has(id));
+        if (next) showLesson(next);
+        else showLesson('M6-L1');
+      }
+    });
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,1295 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Module 4: Quy luật Mâu thuẫn Biện chứng — PhiloVerse MLN111</title>
+    <meta name="description" content="Khám phá hạt nhân của phép biện chứng: quy luật thống nhất và đấu tranh của các mặt đối lập — nguồn gốc và động lực bên trong của mọi sự vận động, phát triển." />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+    <script src="js/tailwind-config-global.js"></script>
+    <style>
+        .material-symbols-outlined { font-family: 'Material Symbols Outlined'; font-weight: normal; font-style: normal; font-size: 24px; display: inline-block; line-height: 1; text-transform: none; letter-spacing: normal; word-wrap: normal; white-space: nowrap; direction: ltr; font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        #m4-progress-bar { transition: width 0.6s ease; }
+        .reflection-answer { max-height: 0; overflow: hidden; transition: max-height 0.5s ease, opacity 0.3s; opacity: 0; }
+        .reflection-answer.open { max-height: 600px; opacity: 1; }
+        #ai-panel { transition: transform 0.35s ease, opacity 0.35s; }
+        #ai-panel.hidden-panel { transform: translateX(110%); opacity: 0; pointer-events: none; }
+        @keyframes badge-pulse { 0%,100%{ transform:scale(1); } 50%{ transform:scale(1.15); } }
+        .achievement-earned { animation: badge-pulse 0.5s ease 3; }
+        .short-answer-textarea { resize: vertical; min-height: 120px; }
+        /* Diamond diagram */
+        .diamond-node { padding: 10px 14px; border-radius: 12px; font-size: 12px; font-weight: 600; text-align: center; min-width: 120px; }
+        /* Accordion */
+        .accordion-body { max-height: 0; overflow: hidden; transition: max-height 0.4s ease, opacity 0.3s; opacity: 0; }
+        .accordion-body.open { max-height: 400px; opacity: 1; }
+    </style>
+</head>
+
+<body class="bg-bg-light dark:bg-bg-dark text-text-main-light dark:text-text-main-dark font-body transition-colors duration-300 min-h-screen flex flex-col overflow-x-hidden">
+    <div id="header-placeholder"></div>
+
+    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 w-full">
+
+        <!-- MODULE HEADER -->
+        <header class="text-center mb-12 space-y-5 max-w-4xl mx-auto">
+            <div class="inline-flex items-center px-4 py-1.5 rounded-full bg-purple-50 border border-purple-100 dark:bg-purple-900/20 dark:border-purple-800 text-primary text-xs font-bold uppercase tracking-wider mb-4 gap-2">
+                <a href="home.html" class="hover:underline hover:text-purple-600 transition-colors">TRANG CHỦ</a>
+                <span class="opacity-60">/</span>
+                <a href="home.html#overview" class="hover:underline hover:text-purple-600 transition-colors">MODULES</a>
+                <span class="opacity-60">/</span>
+                <span>MODULE 4 • MÂU THUẪN BIỆN CHỨNG</span>
+            </div>
+            <h1 class="font-display text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
+                Quy luật <span class="text-primary italic">Mâu thuẫn</span> Biện chứng
+            </h1>
+            <p class="max-w-2xl mx-auto text-lg text-text-muted-light dark:text-text-muted-dark font-light leading-relaxed">
+                6 bài học về "hạt nhân" của phép biện chứng duy vật: thống nhất và đấu tranh của các mặt đối lập — nguồn gốc, động lực bên trong của mọi sự vận động.
+            </p>
+            <div class="max-w-md mx-auto">
+                <div class="flex items-center justify-between text-xs text-text-muted-light dark:text-text-muted-dark mb-1.5">
+                    <span id="m4-progress-label">0 / 6 bài hoàn thành</span>
+                    <span id="m4-progress-pct">0%</span>
+                </div>
+                <div class="h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                    <div id="m4-progress-bar" class="h-full bg-gradient-to-r from-purple-500 to-violet-500 rounded-full" style="width:0%"></div>
+                </div>
+            </div>
+        </header>
+
+        <!-- LESSON TABS -->
+        <section class="mb-10">
+            <div class="flex items-center gap-4 mb-6">
+                <span class="h-px bg-gray-200 dark:bg-gray-700 flex-1"></span>
+                <span class="font-display text-lg uppercase tracking-widest text-text-muted-light dark:text-text-muted-dark">6 Bài học</span>
+                <span class="h-px bg-gray-200 dark:bg-gray-700 flex-1"></span>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
+                <button onclick="showLesson('M4-L1')" id="tab-M4-L1" class="lesson-tab flex flex-col items-center gap-2 p-4 rounded-2xl bg-surface-light dark:bg-surface-dark border-2 border-gray-100 dark:border-gray-700 hover:border-purple-500 transition-all duration-200 text-center">
+                    <span class="text-2xl">⚡</span><span class="text-xs font-semibold text-text-muted-light dark:text-text-muted-dark">Bài 4.1</span><span class="text-xs font-medium">Hạt nhân Biện chứng</span><span class="w-2 h-2 rounded-full bg-gray-300 dark:bg-gray-600 lesson-dot" id="dot-M4-L1"></span>
+                </button>
+                <button onclick="showLesson('M4-L2')" id="tab-M4-L2" class="lesson-tab flex flex-col items-center gap-2 p-4 rounded-2xl bg-surface-light dark:bg-surface-dark border-2 border-gray-100 dark:border-gray-700 hover:border-purple-500 transition-all duration-200 text-center">
+                    <span class="text-2xl">🔀</span><span class="text-xs font-semibold text-text-muted-light dark:text-text-muted-dark">Bài 4.2</span><span class="text-xs font-medium">Mâu thuẫn & Mặt đối lập</span><span class="w-2 h-2 rounded-full bg-gray-300 dark:bg-gray-600 lesson-dot" id="dot-M4-L2"></span>
+                </button>
+                <button onclick="showLesson('M4-L3')" id="tab-M4-L3" class="lesson-tab flex flex-col items-center gap-2 p-4 rounded-2xl bg-surface-light dark:bg-surface-dark border-2 border-gray-100 dark:border-gray-700 hover:border-purple-500 transition-all duration-200 text-center">
+                    <span class="text-2xl">🤝</span><span class="text-xs font-semibold text-text-muted-light dark:text-text-muted-dark">Bài 4.3</span><span class="text-xs font-medium">Thống nhất</span><span class="w-2 h-2 rounded-full bg-gray-300 dark:bg-gray-600 lesson-dot" id="dot-M4-L3"></span>
+                </button>
+                <button onclick="showLesson('M4-L4')" id="tab-M4-L4" class="lesson-tab flex flex-col items-center gap-2 p-4 rounded-2xl bg-surface-light dark:bg-surface-dark border-2 border-gray-100 dark:border-gray-700 hover:border-purple-500 transition-all duration-200 text-center">
+                    <span class="text-2xl">⚔️</span><span class="text-xs font-semibold text-text-muted-light dark:text-text-muted-dark">Bài 4.4</span><span class="text-xs font-medium">Đấu tranh & Phát triển</span><span class="w-2 h-2 rounded-full bg-gray-300 dark:bg-gray-600 lesson-dot" id="dot-M4-L4"></span>
+                </button>
+                <button onclick="showLesson('M4-L5')" id="tab-M4-L5" class="lesson-tab flex flex-col items-center gap-2 p-4 rounded-2xl bg-surface-light dark:bg-surface-dark border-2 border-gray-100 dark:border-gray-700 hover:border-purple-500 transition-all duration-200 text-center">
+                    <span class="text-2xl">🗂️</span><span class="text-xs font-semibold text-text-muted-light dark:text-text-muted-dark">Bài 4.5</span><span class="text-xs font-medium">Phân loại Mâu thuẫn</span><span class="w-2 h-2 rounded-full bg-gray-300 dark:bg-gray-600 lesson-dot" id="dot-M4-L5"></span>
+                </button>
+                <button onclick="showLesson('M4-L6')" id="tab-M4-L6" class="lesson-tab flex flex-col items-center gap-2 p-4 rounded-2xl bg-surface-light dark:bg-surface-dark border-2 border-gray-100 dark:border-gray-700 hover:border-purple-500 transition-all duration-200 text-center">
+                    <span class="text-2xl">🧭</span><span class="text-xs font-semibold text-text-muted-light dark:text-text-muted-dark">Bài 4.6</span><span class="text-xs font-medium">Phương pháp luận</span><span class="w-2 h-2 rounded-full bg-gray-300 dark:bg-gray-600 lesson-dot" id="dot-M4-L6"></span>
+                </button>
+            </div>
+        </section>
+
+        <!-- LESSON CONTENT -->
+        <section id="lesson-area" class="mb-16 min-h-[500px]">
+
+            <!-- BÀI 4.1: HẠT NHÂN BIỆN CHỨNG -->
+            <div id="lesson-M4-L1" class="lesson-content hidden">
+                <div class="bg-surface-light dark:bg-surface-dark rounded-3xl border border-gray-100 dark:border-gray-700 shadow-sm overflow-hidden">
+                    <div class="lesson-header-academic">
+                        <div class="flex items-center gap-3 mb-3"><span class="text-3xl">⚡</span><span class="text-purple-100 text-sm font-semibold uppercase tracking-wider">Bài 4.1 — Module 4</span></div>
+                        <h2 class="font-display text-3xl font-bold text-white mb-2">Quy luật Mâu thuẫn — "Hạt nhân" của Biện chứng</h2>
+                        <p class="text-purple-100 text-sm">🎯 <strong>Mục tiêu:</strong> Định vị quy luật Mâu thuẫn trong ba quy luật biện chứng; giải thích tại sao V.I. Lênin gọi đây là "hạt nhân"; nắm vấn đề cốt lõi quy luật giải quyết.</p>
+                    </div>
+                    <div class="p-8 space-y-8">
+                        <div class="bg-purple-50 dark:bg-purple-900/20 border-l-4 border-purple-500 rounded-r-2xl p-6">
+                            <p class="text-xs font-bold text-purple-700 uppercase tracking-wider mb-2">📖 Trích dẫn kinh điển — V.I. Lênin, Triet.txt dòng 753</p>
+                            <blockquote class="font-display text-lg italic text-text-main-light dark:text-text-main-dark leading-relaxed">
+                                "có thể định nghĩa vắn tắt phép biện chứng là học thuyết về sự thống nhất của các mặt đối lập. Như thế là nắm được hạt nhân của phép biện chứng."
+                            </blockquote>
+                        </div>
+
+                        <div class="space-y-5">
+                            <h3 class="font-display text-xl font-bold">Vị trí của Quy luật Mâu thuẫn trong Biện chứng Duy vật</h3>
+                            <div class="overflow-x-auto">
+                                <table class="w-full text-sm border-collapse">
+                                    <thead>
+                                        <tr class="bg-purple-50 dark:bg-purple-900/20">
+                                            <th class="p-3 text-left font-bold border border-purple-200 dark:border-purple-800">Quy luật</th>
+                                            <th class="p-3 text-left font-bold border border-purple-200 dark:border-purple-800">Trả lời câu hỏi</th>
+                                            <th class="p-3 text-left font-bold border border-purple-200 dark:border-purple-800">Vai trò</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="bg-purple-50/70 dark:bg-purple-900/10">
+                                            <td class="p-3 border border-purple-200 dark:border-purple-800 font-semibold text-purple-700">⚡ Mâu thuẫn <em>(M4 — đang học)</em></td>
+                                            <td class="p-3 border border-purple-200 dark:border-purple-800"><strong>Tại sao</strong> sự vật vận động?</td>
+                                            <td class="p-3 border border-purple-200 dark:border-purple-800"><strong>Nguồn gốc, động lực</strong> — hạt nhân</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="p-3 border border-gray-200 dark:border-gray-700 font-semibold text-amber-600">⚗️ Lượng ↔ Chất <em>(M3)</em></td>
+                                            <td class="p-3 border border-gray-200 dark:border-gray-700"><strong>Như thế nào</strong> — cách thức?</td>
+                                            <td class="p-3 border border-gray-200 dark:border-gray-700">Tích lũy → bước nhảy</td>
+                                        </tr>
+                                        <tr class="bg-gray-50 dark:bg-gray-800/50">
+                                            <td class="p-3 border border-gray-200 dark:border-gray-700 font-semibold text-teal-600">🌀 Phủ định <em>(M5)</em></td>
+                                            <td class="p-3 border border-gray-200 dark:border-gray-700"><strong>Hướng nào</strong> — khuynh hướng?</td>
+                                            <td class="p-3 border border-gray-200 dark:border-gray-700">Tiến lên theo đường xoáy ốc</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="grid md:grid-cols-2 gap-5">
+                                <div class="bg-purple-50 dark:bg-purple-900/20 rounded-2xl p-5">
+                                    <h4 class="font-bold text-purple-700 mb-2">🧬 Tại sao là "hạt nhân"?</h4>
+                                    <p class="text-sm text-text-muted-light dark:text-text-muted-dark">Hạt nhân = phần trung tâm, quyết định bản chất. Quy luật Mâu thuẫn đề cập vấn đề cơ bản nhất của biện chứng: <strong>tại sao sự vật tự vận động và phát triển?</strong> — không phải do lực bên ngoài tác động, mà do mâu thuẫn bên trong. Hai quy luật còn lại đều phải "dựa vào" quy luật này để giải thích đầy đủ. (dòng 753)</p>
+                                </div>
+                                <div class="bg-violet-50 dark:bg-violet-900/20 rounded-2xl p-5">
+                                    <h4 class="font-bold text-violet-700 mb-2">🔍 Phân biệt Mâu thuẫn Biện chứng vs. Lôgích hình thức</h4>
+                                    <div class="text-xs text-text-muted-light dark:text-text-muted-dark space-y-2">
+                                        <div class="flex gap-2"><span class="font-bold text-red-500 flex-shrink-0">Lôgích:</span><span>"A không thể vừa là A vừa là không-A" — luật phi mâu thuẫn trong tư duy hình thức.</span></div>
+                                        <div class="flex gap-2"><span class="font-bold text-purple-600 flex-shrink-0">Biện chứng:</span><span>Mọi sự vật đều chứa đựng các mặt đối lập vừa thống nhất vừa đấu tranh — đây là sự thật về thế giới thực. (dòng 755)</span></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="bg-indigo-50 dark:bg-indigo-900/10 border border-indigo-200 rounded-2xl p-5">
+                                <h4 class="font-bold text-indigo-700 mb-2">💡 Ý nghĩa thực tiễn của "nguồn gốc nội tại"</h4>
+                                <p class="text-sm text-text-muted-light dark:text-text-muted-dark">Nếu mâu thuẫn bên trong là nguồn gốc phát triển → mọi sự vật đều có <em>tiềm năng tự phát triển</em>. Điều này giải thích: tại sao xã hội tiến bộ không nhờ "ý muốn" từ bên ngoài mà do mâu thuẫn nội tại thúc đẩy; tại sao con người phát triển qua giải quyết mâu thuẫn với chính mình. (dòng 762–763)</p>
+                            </div>
+                        </div>
+
+                        <div class="border-t border-gray-100 dark:border-gray-700 pt-6">
+                            <h3 class="font-display text-lg font-bold mb-4">Câu hỏi phản tư</h3>
+                            <div class="space-y-3">
+                                <div class="reflection-item">
+                                    <button onclick="toggleReflection(this)" class="w-full text-left p-4 bg-gray-50 dark:bg-gray-800 rounded-xl hover:bg-purple-50 dark:hover:bg-purple-900/20 transition-colors text-sm font-medium flex justify-between items-center">
+                                        <span>1. Nếu mâu thuẫn biện chứng khác với mâu thuẫn lôgích hình thức, tại sao nhiều người lại nhầm lẫn hai khái niệm này?</span>
+                                        <span class="material-symbols-outlined text-gray-400 flex-shrink-0 ml-2">expand_more</span>
+                                    </button>
+                                    <div class="reflection-answer p-4 text-sm text-text-muted-light dark:text-text-muted-dark">
+                                        <strong class="text-purple-600 block mb-1">Gợi ý:</strong> Nguyên nhân nhầm lẫn: (1) Cùng dùng từ "mâu thuẫn"; (2) Tư duy thông thường hay coi "A không thể vừa là A vừa không là A" là nguyên tắc tuyệt đối; (3) Biện chứng duy vật nói về thế giới thực (ontology), lôgích hình thức nói về quy tắc tư duy đúng đắn (logic). Ví dụ: "Con người vừa duy lý vừa cảm xúc" — lôgích hình thức coi là mâu thuẫn, nhưng đây là mâu thuẫn biện chứng thực sự của bản chất người.
+                                    </div>
+                                </div>
+                                <div class="reflection-item">
+                                    <button onclick="toggleReflection(this)" class="w-full text-left p-4 bg-gray-50 dark:bg-gray-800 rounded-xl hover:bg-purple-50 dark:hover:bg-purple-900/20 transition-colors text-sm font-medium flex justify-between items-center">
+                                        <span>2. Quy luật Mâu thuẫn nói sự phát triển là "tự thân" — điều này có nghĩa là con người không cần làm gì không? Phân tích.</span>
+                                        <span class="material-symbols-outlined text-gray-400 flex-shrink-0 ml-2">expand_more</span>
+                                    </button>
+                                    <div class="reflection-answer p-4 text-sm text-text-muted-light dark:text-text-muted-dark">
+                                        <strong class="text-purple-600 block mb-1">Gợi ý:</strong> Không phải vậy! "Tự thân" có nghĩa là nguồn gốc bên trong, không phải bên ngoài. Nhưng trong lĩnh vực xã hội, quy luật xã hội diễn ra <em>thông qua</em> hoạt động có ý thức của con người (dòng 750, M3). Con người không thể "đứng ngoài" mâu thuẫn — con người là chủ thể tham gia vào quá trình giải quyết mâu thuẫn. Ý nghĩa thực tiễn: nhận thức đúng mâu thuẫn → hành động đúng để đẩy nhanh giải quyết → thúc đẩy phát triển.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-purple-50 dark:bg-purple-900/20 border border-purple-200 rounded-2xl p-6">
+                            <h3 class="font-display text-lg font-bold mb-3">Hoạt động: Ghép câu hỏi → Quy luật phù hợp</h3>
+                            <p class="text-sm text-text-muted-light dark:text-text-muted-dark mb-3">Mỗi câu hỏi sau thuộc quy luật biện chứng nào? (Lượng-Chất / Mâu thuẫn / Phủ định)</p>
+                            <div class="space-y-2 text-sm">
+                                <div class="p-3 bg-white dark:bg-gray-800 rounded-xl flex gap-2"><span class="font-bold text-purple-600">A.</span><span>"Tại sao sau mỗi cuộc khủng hoảng, kinh tế lại phục hồi mạnh hơn?" → <em>Quy luật ___</em></span></div>
+                                <div class="p-3 bg-white dark:bg-gray-800 rounded-xl flex gap-2"><span class="font-bold text-amber-600">B.</span><span>"Học 10 năm thì thành thạo — tại sao cần lâu như vậy?" → <em>Quy luật ___</em></span></div>
+                                <div class="p-3 bg-white dark:bg-gray-800 rounded-xl flex gap-2"><span class="font-bold text-teal-600">C.</span><span>"Tại sao các nền văn minh cũ sụp đổ nhưng các giá trị tốt đẹp của nó vẫn được kế thừa?" → <em>Quy luật ___</em></span></div>
+                            </div>
+                            <p class="text-xs text-gray-400 mt-3">Đáp án: A → Mâu thuẫn (nguồn gốc phục hồi là mâu thuẫn nội tại); B → Lượng-Chất (tích lũy lượng); C → Phủ định của phủ định (kế thừa biện chứng)</p>
+                        </div>
+
+                        <div class="flex justify-end">
+                            <button onclick="completeLesson('M4-L1')" id="btn-complete-M4-L1" class="bg-primary hover:bg-purple-700 text-white font-semibold px-8 py-3 rounded-xl transition-colors flex items-center gap-2">
+                                <span class="material-symbols-outlined">check_circle</span> Đánh dấu hoàn thành
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BÀI 4.2: MÂU THUẪN BIỆN CHỨNG & MẶT ĐỐI LẬP -->
+            <div id="lesson-M4-L2" class="lesson-content hidden">
+                <div class="bg-surface-light dark:bg-surface-dark rounded-3xl border border-gray-100 dark:border-gray-700 shadow-sm overflow-hidden">
+                    <div class="lesson-header-academic">
+                        <div class="flex items-center gap-3 mb-3"><span class="text-3xl">🔀</span><span class="text-violet-100 text-sm font-semibold uppercase tracking-wider">Bài 4.2 — Module 4</span></div>
+                        <h2 class="font-display text-3xl font-bold text-white mb-2">Mâu thuẫn Biện chứng & Các mặt đối lập</h2>
+                        <p class="text-violet-100 text-sm">🎯 <strong>Mục tiêu:</strong> Định nghĩa mâu thuẫn biện chứng; xác định yếu tố tạo thành mâu thuẫn; nhận diện mặt đối lập trong thực tiễn.</p>
+                    </div>
+                    <div class="p-8 space-y-8">
+                        <div class="bg-violet-50 dark:bg-violet-900/20 border-l-4 border-violet-500 rounded-r-2xl p-6">
+                            <p class="text-xs font-bold text-violet-700 uppercase tracking-wider mb-2">📖 Trích dẫn kinh điển — Triet.txt, dòng 755</p>
+                            <blockquote class="font-display text-lg italic text-text-main-light dark:text-text-main-dark leading-relaxed">
+                                "mâu thuẫn biện chứng là khái niệm dùng để chỉ sự liên hệ, tác động theo cách vừa thống nhất, vừa đấu tranh; vừa đòi hỏi, vừa loại trừ, vừa chuyển hóa lẫn nhau giữa các mặt đối lập."
+                            </blockquote>
+                        </div>
+
+                        <div class="space-y-5">
+                            <h3 class="font-display text-xl font-bold">Yếu tố tạo thành Mâu thuẫn Biện chứng</h3>
+                            <div class="grid md:grid-cols-3 gap-4 text-sm">
+                                <div class="bg-purple-50 dark:bg-purple-900/20 rounded-2xl p-5 text-center">
+                                    <p class="text-2xl mb-2">↔️</p>
+                                    <p class="font-bold text-purple-700 mb-1">Trái ngược nhau</p>
+                                    <p class="text-xs text-text-muted-light dark:text-text-muted-dark">Có khuynh hướng biến đổi trái ngược nhau (hướng ngược chiều)</p>
+                                </div>
+                                <div class="bg-violet-50 dark:bg-violet-900/20 rounded-2xl p-5 text-center">
+                                    <p class="text-2xl mb-2">🏠</p>
+                                    <p class="font-bold text-violet-700 mb-1">Cùng trong một sự vật</p>
+                                    <p class="text-xs text-text-muted-light dark:text-text-muted-dark">Cùng tồn tại khách quan trong MỘT sự vật/hiện tượng, không phải hai sự vật riêng</p>
+                                </div>
+                                <div class="bg-indigo-50 dark:bg-indigo-900/20 rounded-2xl p-5 text-center">
+                                    <p class="text-2xl mb-2">🔄</p>
+                                    <p class="font-bold text-indigo-700 mb-1">Vừa thống nhất vừa đấu tranh</p>
+                                    <p class="text-xs text-text-muted-light dark:text-text-muted-dark">Không chỉ đối lập mà còn liên hệ, đòi hỏi, chuyển hóa lẫn nhau</p>
+                                </div>
+                            </div>
+
+                            <h3 class="font-display text-xl font-bold">Mâu thuẫn biện chứng trong 4 lĩnh vực</h3>
+                            <div class="grid md:grid-cols-2 gap-4 text-sm">
+                                <div class="bg-green-50 dark:bg-green-900/20 rounded-2xl p-4">
+                                    <p class="font-bold text-green-600 mb-2">🌿 Tự nhiên</p>
+                                    <ul class="text-xs text-text-muted-light dark:text-text-muted-dark space-y-1">
+                                        <li>• Đồng hóa ↔ Dị hóa (trao đổi chất sinh vật)</li>
+                                        <li>• Hút ↔ Đẩy (lực từ, điện)</li>
+                                        <li>• Di truyền ↔ Biến dị (tiến hóa sinh học)</li>
+                                    </ul>
+                                </div>
+                                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-2xl p-4">
+                                    <p class="font-bold text-blue-600 mb-2">🏛️ Xã hội</p>
+                                    <ul class="text-xs text-text-muted-light dark:text-text-muted-dark space-y-1">
+                                        <li>• Sản xuất ↔ Tiêu dùng</li>
+                                        <li>• Giai cấp thống trị ↔ bị trị</li>
+                                        <li>• Truyền thống ↔ Đổi mới</li>
+                                    </ul>
+                                </div>
+                                <div class="bg-amber-50 dark:bg-amber-900/20 rounded-2xl p-4">
+                                    <p class="font-bold text-amber-600 mb-2">🧠 Tư duy</p>
+                                    <ul class="text-xs text-text-muted-light dark:text-text-muted-dark space-y-1">
+                                        <li>• Lý trí ↔ Cảm xúc</li>
+                                        <li>• Phân tích ↔ Tổng hợp</li>
+                                        <li>• Quy nạp ↔ Diễn dịch</li>
+                                    </ul>
+                                </div>
+                                <div class="bg-rose-50 dark:bg-rose-900/20 rounded-2xl p-4">
+                                    <p class="font-bold text-rose-600 mb-2">💹 Kinh tế</p>
+                                    <ul class="text-xs text-text-muted-light dark:text-text-muted-dark space-y-1">
+                                        <li>• Cung ↔ Cầu</li>
+                                        <li>• Cạnh tranh ↔ Hợp tác</li>
+                                        <li>• Tích lũy vốn ↔ Tiêu dùng</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="border-t border-gray-100 dark:border-gray-700 pt-6">
+                            <h3 class="font-display text-lg font-bold mb-4">Câu hỏi phản tư</h3>
+                            <div class="space-y-3">
+                                <div class="reflection-item">
+                                    <button onclick="toggleReflection(this)" class="w-full text-left p-4 bg-gray-50 dark:bg-gray-800 rounded-xl hover:bg-violet-50 dark:hover:bg-violet-900/20 transition-colors text-sm font-medium flex justify-between items-center">
+                                        <span>1. "Yêu và ghét" — đây có phải mâu thuẫn biện chứng không? Phân tích theo 3 điều kiện của mặt đối lập biện chứng.</span>
+                                        <span class="material-symbols-outlined text-gray-400 flex-shrink-0 ml-2">expand_more</span>
+                                    </button>
+                                    <div class="reflection-answer p-4 text-sm text-text-muted-light dark:text-text-muted-dark">
+                                        <strong class="text-violet-600 block mb-1">Gợi ý:</strong> Phân tích: (1) Trái ngược nhau? ✓ — yêu và ghét là hai cảm xúc đối lập. (2) Cùng trong một sự vật? ✓ — trong tình cảm con người về một đối tượng cụ thể (VD: yêu-ghét cùng lúc một người: "hate and love, what is this feeling?"). (3) Vừa thống nhất vừa đấu tranh? ✓ — yêu tạo điều kiện cho ghét (kỳ vọng cao → dễ thất vọng), ghét tiềm ẩn trong yêu. → ĐÂY LÀ mâu thuẫn biện chứng. Không có yêu thì không có ghét (thống nhất), nhưng chúng đấu tranh làm cảm xúc vận động.
+                                    </div>
+                                </div>
+                                <div class="reflection-item">
+                                    <button onclick="toggleReflection(this)" class="w-full text-left p-4 bg-gray-50 dark:bg-gray-800 rounded-xl hover:bg-violet-50 dark:hover:bg-violet-900/20 transition-colors text-sm font-medium flex justify-between items-center">
+                                        <span>2. Trong tâm lý học, "hành vi tiếp cận vs. né tránh" (approach-avoidance conflict) có phải là mâu thuẫn biện chứng không? Tại sao CNDV biện chứng có thể giải thích điều này?</span>
+                                        <span class="material-symbols-outlined text-gray-400 flex-shrink-0 ml-2">expand_more</span>
+                                    </button>
+                                    <div class="reflection-answer p-4 text-sm text-text-muted-light dark:text-text-muted-dark">
+                                        <strong class="text-violet-600 block mb-1">Gợi ý:</strong> Đây là mâu thuẫn biện chứng: hai khuynh hướng trái ngược (tiếp cận/né tránh) cùng tồn tại trong một tâm lý, vừa thống nhất (cùng hướng về một đối tượng) vừa đấu tranh (tạo ra xung đột nội tâm). CNDV biện chứng giải thích: mâu thuẫn này là nguồn gốc của sự vận động tâm lý — con người ra quyết định chính là quá trình giải quyết mâu thuẫn tiếp cận-né tránh. Khi mâu thuẫn được giải quyết → chất mới (quyết định) ra đời.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-violet-50 dark:bg-violet-900/20 border border-violet-200 rounded-2xl p-6">
+                            <h3 class="font-display text-lg font-bold mb-3">Hoạt động: Nhận diện mặt đối lập trong 4 tình huống</h3>
+                            <p class="text-sm text-text-muted-light dark:text-text-muted-dark mb-3">Với mỗi tình huống: (a) Xác định hai mặt đối lập; (b) Chúng có cùng trong một sự vật không? (c) Chúng có vừa thống nhất vừa đấu tranh không?</p>
+                            <div class="space-y-2 text-sm">
+                                <div class="p-3 bg-white dark:bg-gray-800 rounded-xl flex gap-2"><span class="font-bold text-purple-600">1.</span><span>Một doanh nghiệp muốn vừa tiết kiệm chi phí, vừa nâng cao chất lượng sản phẩm.</span></div>
+                                <div class="p-3 bg-white dark:bg-gray-800 rounded-xl flex gap-2"><span class="font-bold text-violet-600">2.</span><span>Sinh viên muốn vừa học tốt, vừa đi làm thêm kiếm tiền.</span></div>
+                                <div class="p-3 bg-white dark:bg-gray-800 rounded-xl flex gap-2"><span class="font-bold text-indigo-600">3.</span><span>Trong tế bào: quá trình tổng hợp protein (đồng hóa) và phân giải để lấy năng lượng (dị hóa).</span></div>
+                                <div class="p-3 bg-white dark:bg-gray-800 rounded-xl flex gap-2"><span class="font-bold text-rose-600">4.</span><span>Chính phủ muốn vừa kiểm soát lạm phát (thắt chặt tiền tệ), vừa kích thích tăng trưởng (nới lỏng tiền tệ).</span></div>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center justify-between">
+                            <button onclick="showLesson('M4-L1')" class="text-sm text-text-muted-light hover:text-primary flex items-center gap-1"><span class="material-symbols-outlined text-sm">arrow_back</span> Bài trước</button>
+                            <div class="flex gap-3">
+                                <button onclick="openFormativeQuiz('M4-FQ1')" class="bg-violet-600 hover:bg-violet-700 text-white font-semibold px-6 py-3 rounded-xl transition-colors flex items-center gap-2 text-sm">
+                                    <span class="material-symbols-outlined text-sm">quiz</span> Kiểm tra hình thành (Bài 4.1–4.2)
+                                </button>
+                                <button onclick="completeLesson('M4-L2')" id="btn-complete-M4-L2" class="bg-primary hover:bg-purple-700 text-white font-semibold px-6 py-3 rounded-xl transition-colors flex items-center gap-2 text-sm"><span class="material-symbols-outlined text-sm">check_circle</span> Hoàn thành</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BÀI 4.3: THỐNG NHẤT CỦA CÁC MẶT ĐỐI LẬP -->
+            <div id="lesson-M4-L3" class="lesson-content hidden">
+                <div class="bg-surface-light dark:bg-surface-dark rounded-3xl border border-gray-100 dark:border-gray-700 shadow-sm overflow-hidden">
+                    <div class="lesson-header-academic">
+                        <div class="flex items-center gap-3 mb-3"><span class="text-3xl">🤝</span><span class="text-indigo-100 text-sm font-semibold uppercase tracking-wider">Bài 4.3 — Module 4</span></div>
+                        <h2 class="font-display text-3xl font-bold text-white mb-2">Thống nhất của các mặt đối lập</h2>
+                        <p class="text-indigo-100 text-sm">🎯 <strong>Mục tiêu:</strong> Giải thích 3 biểu hiện của sự thống nhất; hiểu tính tương đối-tạm thời của thống nhất; phân tích ví dụ cung-cầu và hợp tác-cạnh tranh.</p>
+                    </div>
+                    <div class="p-8 space-y-8">
+                        <div class="bg-indigo-50 dark:bg-indigo-900/20 border-l-4 border-indigo-500 rounded-r-2xl p-6">
+                            <p class="text-xs font-bold text-indigo-600 uppercase tracking-wider mb-2">📖 Trích dẫn kinh điển — Triet.txt, dòng 755</p>
+                            <blockquote class="font-display text-lg italic text-text-main-light dark:text-text-main-dark leading-relaxed">
+                                "các mặt đối lập cần đến nhau, nương tựa vào nhau, làm tiền đề cho nhau tồn tại, không có mặt này thì không có mặt kia."
+                            </blockquote>
+                        </div>
+
+                        <div class="space-y-5">
+                            <h3 class="font-display text-xl font-bold">3 Biểu hiện của Thống nhất</h3>
+                            <div class="space-y-4">
+                                <div class="flex gap-4 items-start p-5 bg-indigo-50 dark:bg-indigo-900/20 rounded-2xl border border-indigo-200 dark:border-indigo-800/30">
+                                    <div class="w-10 h-10 rounded-full bg-indigo-600 text-white flex items-center justify-center font-bold flex-shrink-0 text-lg">1</div>
+                                    <div>
+                                        <p class="font-bold text-indigo-700 mb-1">Nương tựa vào nhau — làm tiền đề cho nhau tồn tại</p>
+                                        <p class="text-sm text-text-muted-light dark:text-text-muted-dark">Không có mặt này thì không có mặt kia. <strong>Ví dụ:</strong> không có người bán (cung) thì không có người mua (cầu); không có chủ thì không có tớ. Đây là cơ sở khiến chúng vừa đối lập vừa liên hệ không thể tách rời. (dòng 755)</p>
+                                    </div>
+                                </div>
+                                <div class="flex gap-4 items-start p-5 bg-blue-50 dark:bg-blue-900/20 rounded-2xl border border-blue-200 dark:border-blue-800/30">
+                                    <div class="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold flex-shrink-0 text-lg">2</div>
+                                    <div>
+                                        <p class="font-bold text-blue-700 mb-1">Tác động ngang nhau, cân bằng nhau</p>
+                                        <p class="text-sm text-text-muted-light dark:text-text-muted-dark">Thể hiện sự đấu tranh giữa cái mới đang hình thành với cái cũ chưa mất hẳn — giai đoạn "cân bằng tương đối". <strong>Ví dụ:</strong> trong một thị trường, khi cung và cầu tạm thời cân bằng tại một mức giá (đây là trạng thái cân bằng-thống nhất, nhưng chỉ tạm thời). (dòng 755)</p>
+                                    </div>
+                                </div>
+                                <div class="flex gap-4 items-start p-5 bg-purple-50 dark:bg-purple-900/20 rounded-2xl border border-purple-200 dark:border-purple-800/30">
+                                    <div class="w-10 h-10 rounded-full bg-purple-600 text-white flex items-center justify-center font-bold flex-shrink-0 text-lg">3</div>
+                                    <div>
+                                        <p class="font-bold text-purple-700 mb-1">Tương đồng, đồng nhất — chuyển hóa lẫn nhau</p>
+                                        <p class="text-sm text-text-muted-light dark:text-text-muted-dark">Trong mỗi mặt đối lập vẫn có những yếu tố giống nhau → trong điều kiện phù hợp, chúng chuyển hóa vào nhau. <strong>Ví dụ:</strong> Người mua hôm nay có thể trở thành người bán ngày mai. Cạnh tranh gay gắt có thể dẫn đến sáp nhập (hợp tác). (dòng 755)</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="bg-amber-50 dark:bg-amber-900/10 border border-amber-200 rounded-2xl p-5">
+                                <h4 class="font-bold text-amber-700 mb-3">⚖️ Thống nhất là TƯƠNG ĐỐI — Đấu tranh là TUYỆT ĐỐI</h4>
+                                <div class="grid md:grid-cols-2 gap-4 text-sm">
+                                    <div class="bg-white dark:bg-gray-800 rounded-xl p-4">
+                                        <p class="font-bold text-amber-600 mb-2">Thống nhất — Tương đối, tạm thời</p>
+                                        <ul class="text-xs text-text-muted-light dark:text-text-muted-dark space-y-1">
+                                            <li>• Chỉ tồn tại khi có điều kiện phù hợp</li>
+                                            <li>• Gắn với trạng thái "đứng im tương đối"</li>
+                                            <li>• Sẽ bị phá vỡ khi đấu tranh đạt đến một mức</li>
+                                            <li><strong>VD:</strong> Hòa bình giữa các nước — chỉ tạm thời</li>
+                                        </ul>
+                                    </div>
+                                    <div class="bg-white dark:bg-gray-800 rounded-xl p-4">
+                                        <p class="font-bold text-rose-600 mb-2">Đấu tranh — Tuyệt đối, vĩnh cửu</p>
+                                        <ul class="text-xs text-text-muted-light dark:text-text-muted-dark space-y-1">
+                                            <li>• Gắn với tự thân vận động không ngừng</li>
+                                            <li>• Phá vỡ sự ổn định tương đối</li>
+                                            <li>• Không bao giờ dừng — dù âm ỉ hay công khai</li>
+                                            <li><strong>VD:</strong> Cạnh tranh giữa doanh nghiệp — không bao giờ kết thúc</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <p class="text-xs text-gray-400 mt-3 text-center">Nguồn: Triet.txt, dòng 756</p>
+                            </div>
+                        </div>
+
+                        <div class="border-t border-gray-100 dark:border-gray-700 pt-6">
+                            <h3 class="font-display text-lg font-bold mb-4">Câu hỏi phản tư</h3>
+                            <div class="space-y-3">
+                                <div class="reflection-item">
+                                    <button onclick="toggleReflection(this)" class="w-full text-left p-4 bg-gray-50 dark:bg-gray-800 rounded-xl hover:bg-indigo-50 dark:hover:bg-indigo-900/20 transition-colors text-sm font-medium flex justify-between items-center">
+                                        <span>1. Trong quan hệ thầy-trò: "Không có trò thì không có thầy, và ngược lại." Đây là biểu hiện thứ mấy của thống nhất? Mâu thuẫn thầy-trò thúc đẩy điều gì?</span>
+                                        <span class="material-symbols-outlined text-gray-400 flex-shrink-0 ml-2">expand_more</span>
+                                    </button>
+                                    <div class="reflection-answer p-4 text-sm text-text-muted-light dark:text-text-muted-dark">
+                                        <strong class="text-indigo-600 block mb-1">Gợi ý:</strong> Biểu hiện thứ nhất — nương tựa vào nhau. Không có trò → không có thầy (không có đối tượng dạy → mất vai trò thầy). Không có thầy → không có trò (không có người hướng dẫn → không thành học trò). Mâu thuẫn thúc đẩy: đấu tranh trong quan hệ thầy-trò (trò không hiểu → đặt câu hỏi → thầy phải tìm cách giải thích tốt hơn → cả hai cùng phát triển). Đây là mâu thuẫn biện chứng tích cực.
+                                    </div>
+                                </div>
+                                <div class="reflection-item">
+                                    <button onclick="toggleReflection(this)" class="w-full text-left p-4 bg-gray-50 dark:bg-gray-800 rounded-xl hover:bg-indigo-50 dark:hover:bg-indigo-900/20 transition-colors text-sm font-medium flex justify-between items-center">
+                                        <span>2. Tại sao nói "hòa bình" là tương đối, còn "xung đột lợi ích" là tuyệt đối trong quan hệ quốc tế?</span>
+                                        <span class="material-symbols-outlined text-gray-400 flex-shrink-0 ml-2">expand_more</span>
+                                    </button>
+                                    <div class="reflection-answer p-4 text-sm text-text-muted-light dark:text-text-muted-dark">
+                                        <strong class="text-indigo-600 block mb-1">Gợi ý:</strong> Hòa bình (thống nhất) là tạm thời vì nó chỉ duy trì khi lợi ích các nước tạm thời cân bằng hoặc có điều kiện phù hợp (hiệp ước, sức mạnh cân bằng). Khi điều kiện thay đổi → hòa bình bị phá vỡ. Xung đột lợi ích (đấu tranh) là tuyệt đối vì mỗi quốc gia luôn có lợi ích quốc gia riêng → mâu thuẫn lợi ích không bao giờ biến mất, dù âm ỉ (ngoại giao, kinh tế) hay công khai (chiến tranh). Điều này không có nghĩa là chiến tranh là tất yếu — vì hình thức đấu tranh có thể là hòa bình, ngoại giao, thương mại.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center justify-between">
+                            <button onclick="showLesson('M4-L2')" class="text-sm text-text-muted-light hover:text-primary flex items-center gap-1"><span class="material-symbols-outlined text-sm">arrow_back</span> Bài trước</button>
+                            <button onclick="completeLesson('M4-L3')" id="btn-complete-M4-L3" class="bg-primary hover:bg-purple-700 text-white font-semibold px-8 py-3 rounded-xl transition-colors flex items-center gap-2 text-sm"><span class="material-symbols-outlined text-sm">check_circle</span> Hoàn thành</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BÀI 4.4: ĐẤU TRANH & NGUỒN GỐC PHÁT TRIỂN -->
+            <div id="lesson-M4-L4" class="lesson-content hidden">
+                <div class="bg-surface-light dark:bg-surface-dark rounded-3xl border border-gray-100 dark:border-gray-700 shadow-sm overflow-hidden">
+                    <div class="lesson-header-academic">
+                        <div class="flex items-center gap-3 mb-3"><span class="text-3xl">⚔️</span><span class="text-rose-100 text-sm font-semibold uppercase tracking-wider">Bài 4.4 — Module 4</span></div>
+                        <h2 class="font-display text-3xl font-bold text-white mb-2">Đấu tranh của các mặt đối lập & Nguồn gốc Phát triển</h2>
+                        <p class="text-rose-100 text-sm">🎯 <strong>Mục tiêu:</strong> Giải thích tính tuyệt đối của đấu tranh; hiểu mâu thuẫn là nguyên nhân, giải quyết mâu thuẫn là động lực; phân tích sự phát triển "tự thân".</p>
+                    </div>
+                    <div class="p-8 space-y-8">
+                        <div class="bg-rose-50 dark:bg-rose-900/20 border-l-4 border-rose-500 rounded-r-2xl p-6">
+                            <p class="text-xs font-bold text-rose-600 uppercase tracking-wider mb-2">📖 Trích dẫn kinh điển — V.I. Lênin, Triet.txt dòng 756</p>
+                            <blockquote class="font-display text-lg italic text-text-main-light dark:text-text-main-dark leading-relaxed">
+                                "Sự phát triển là một cuộc 'đấu tranh' giữa các mặt đối lập."
+                            </blockquote>
+                        </div>
+
+                        <div class="space-y-6">
+                            <h3 class="font-display text-xl font-bold">Sơ đồ: Cơ chế Mâu thuẫn → Phát triển</h3>
+                            <div class="bg-gray-50 dark:bg-gray-800 rounded-2xl p-6 overflow-x-auto">
+                                <div class="flex items-center justify-center gap-1 min-w-max mx-auto flex-wrap gap-y-3">
+                                    <div class="text-center p-3 rounded-xl bg-purple-100 dark:bg-purple-900/30 border-2 border-purple-200 dark:border-purple-700 min-w-[110px]">
+                                        <p class="text-xl mb-1">⚡</p>
+                                        <p class="text-xs font-bold text-purple-700">Mâu thuẫn</p>
+                                        <p class="text-xs text-gray-500">= Nguyên nhân</p>
+                                    </div>
+                                    <span class="text-2xl text-purple-500">→</span>
+                                    <div class="text-center p-3 rounded-xl bg-rose-100 dark:bg-rose-900/30 border-2 border-rose-200 dark:border-rose-700 min-w-[110px]">
+                                        <p class="text-xl mb-1">⚔️</p>
+                                        <p class="text-xs font-bold text-rose-700">Đấu tranh</p>
+                                        <p class="text-xs text-gray-500">tuyệt đối, liên tục</p>
+                                    </div>
+                                    <span class="text-2xl text-rose-500">→</span>
+                                    <div class="text-center p-3 rounded-xl bg-amber-100 dark:bg-amber-900/30 border-2 border-amber-200 dark:border-amber-700 min-w-[110px]">
+                                        <p class="text-xl mb-1">🔓</p>
+                                        <p class="text-xs font-bold text-amber-700">Giải quyết</p>
+                                        <p class="text-xs text-gray-500">= Động lực</p>
+                                    </div>
+                                    <span class="text-2xl text-amber-500">→</span>
+                                    <div class="text-center p-3 rounded-xl bg-green-100 dark:bg-green-900/30 border-2 border-green-200 dark:border-green-700 min-w-[110px]">
+                                        <p class="text-xl mb-1">🌱</p>
+                                        <p class="text-xs font-bold text-green-700">Phát triển</p>
+                                        <p class="text-xs text-gray-500">tự thân vận động</p>
+                                    </div>
+                                </div>
+                                <p class="text-xs text-center text-gray-400 mt-4">Triet.txt, dòng 763: "mâu thuẫn giữa các mặt đối lập là nguyên nhân, giải quyết mâu thuẫn đó là động lực của sự vận động, phát triển. Vì vậy, sự vận động, phát triển của sự vật là tự thân."</p>
+                            </div>
+
+                            <h3 class="font-display text-xl font-bold">3 Ví dụ phân tích đấu tranh → Phát triển</h3>
+                            <div class="space-y-3">
+                                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-2xl p-5">
+                                    <h4 class="font-bold text-blue-600 mb-2">🧠 Xung đột nội tâm → Quyết định</h4>
+                                    <p class="text-sm text-text-muted-light dark:text-text-muted-dark">Mâu thuẫn: "Lý trí (an toàn) ↔ Đam mê (rủi ro)". Đấu tranh: suy nghĩ, phân tích, thử nghiệm. Giải quyết mâu thuẫn: ra quyết định. Phát triển: con người trở nên quyết đoán hơn, tự hiểu mình hơn.</p>
+                                </div>
+                                <div class="bg-amber-50 dark:bg-amber-900/20 rounded-2xl p-5">
+                                    <h4 class="font-bold text-amber-700 mb-2">🏛️ Đấu tranh giai cấp → Tiến bộ xã hội</h4>
+                                    <p class="text-sm text-text-muted-light dark:text-text-muted-dark">Mâu thuẫn: "Giai cấp thống trị (cũ) ↔ Giai cấp bị trị (mới)". Đấu tranh: cách mạng, đấu tranh chính trị. Giải quyết: thay đổi quan hệ sản xuất. Phát triển: xã hội tiến lên hình thái kinh tế-xã hội mới. (dòng 756)</p>
+                                </div>
+                                <div class="bg-green-50 dark:bg-green-900/20 rounded-2xl p-5">
+                                    <h4 class="font-bold text-green-600 mb-2">💹 Cạnh tranh thị trường → Đổi mới sáng tạo</h4>
+                                    <p class="text-sm text-text-muted-light dark:text-text-muted-dark">Mâu thuẫn: "Doanh nghiệp A ↔ Doanh nghiệp B" (cùng lĩnh vực). Đấu tranh: cạnh tranh giá, chất lượng, sáng tạo. Giải quyết: doanh nghiệp mạnh hơn tiến lên, yếu hơn phải cải tổ hoặc sáp nhập. Phát triển: toàn ngành nâng cao chất lượng, đổi mới công nghệ.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="border-t border-gray-100 dark:border-gray-700 pt-6">
+                            <h3 class="font-display text-lg font-bold mb-4">Câu hỏi phản tư</h3>
+                            <div class="space-y-3">
+                                <div class="reflection-item">
+                                    <button onclick="toggleReflection(this)" class="w-full text-left p-4 bg-gray-50 dark:bg-gray-800 rounded-xl hover:bg-rose-50 dark:hover:bg-rose-900/20 transition-colors text-sm font-medium flex justify-between items-center">
+                                        <span>1. Nếu đấu tranh là tuyệt đối, tại sao không phải mọi mâu thuẫn đều dẫn đến bạo lực hay xung đột công khai?</span>
+                                        <span class="material-symbols-outlined text-gray-400 flex-shrink-0 ml-2">expand_more</span>
+                                    </button>
+                                    <div class="reflection-answer p-4 text-sm text-text-muted-light dark:text-text-muted-dark">
+                                        <strong class="text-rose-600 block mb-1">Gợi ý:</strong> "Tuyệt đối" không có nghĩa là "dữ dội hay bạo lực". Đấu tranh có nhiều hình thức: âm thầm (đấu tranh sinh học trong tế bào), ôn hòa (cạnh tranh kinh tế, thảo luận khoa học), có ý thức (đàm phán, cải cách), hoặc bùng nổ (cách mạng). "Tuyệt đối" có nghĩa là không bao giờ dừng — dù hình thức đấu tranh thay đổi theo điều kiện. Ví dụ: mâu thuẫn lợi ích quốc tế luôn tồn tại, nhưng hình thức là ngoại giao, thương mại, đàm phán — không nhất thiết là chiến tranh.
+                                    </div>
+                                </div>
+                                <div class="reflection-item">
+                                    <button onclick="toggleReflection(this)" class="w-full text-left p-4 bg-gray-50 dark:bg-gray-800 rounded-xl hover:bg-rose-50 dark:hover:bg-rose-900/20 transition-colors text-sm font-medium flex justify-between items-center">
+                                        <span>2. "Phát triển tự thân" — điều này có mâu thuẫn với vai trò của con người trong lịch sử không? Phân tích ngắn gọn.</span>
+                                        <span class="material-symbols-outlined text-gray-400 flex-shrink-0 ml-2">expand_more</span>
+                                    </button>
+                                    <div class="reflection-answer p-4 text-sm text-text-muted-light dark:text-text-muted-dark">
+                                        <strong class="text-rose-600 block mb-1">Gợi ý:</strong> Không mâu thuẫn. "Tự thân" = nguồn gốc bên trong, không phải lực bên ngoài tạo ra. Con người KHÔNG phải là "lực bên ngoài" — con người là bộ phận của xã hội, là người tham gia vào mâu thuẫn (là một trong các mặt đối lập hoặc là chủ thể giải quyết mâu thuẫn). Vai trò của con người: nhận thức đúng mâu thuẫn → hành động đúng để giải quyết hiệu quả hơn → thúc đẩy phát triển nhanh hơn. Không có con người: mâu thuẫn vẫn tồn tại, phát triển vẫn diễn ra (dù chậm hơn).
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Short Answer M4-L4 -->
+                        <div class="bg-gradient-to-br from-rose-50 to-purple-50 dark:from-rose-900/10 dark:to-purple-900/10 border border-rose-200 dark:border-rose-800/30 rounded-2xl p-6">
+                            <h3 class="font-display text-lg font-bold mb-2 flex items-center gap-2"><span class="material-symbols-outlined text-rose-600">edit_note</span> Bài tập phân tích mini-case (150–300 từ)</h3>
+                            <p class="text-sm text-text-muted-light dark:text-text-muted-dark mb-4">Tình huống: <em>Một công ty công nghệ đang đối mặt với mâu thuẫn giữa "đội kỹ thuật" (muốn code hoàn hảo, release chậm) và "đội kinh doanh" (muốn ra sản phẩm nhanh, bất kể lỗi). Mâu thuẫn này đang làm chậm tốc độ phát triển sản phẩm.</em><br/>Phân tích: (1) Đây là mâu thuẫn loại nào (bên trong/ngoài, chủ yếu/cơ bản)? (2) Đấu tranh đang diễn ra như thế nào? (3) Để phát triển, cần giải quyết mâu thuẫn này ra sao?</p>
+                            <div class="bg-amber-50 dark:bg-amber-900/10 border border-amber-200 rounded-xl p-4 mb-4 text-xs">
+                                <p class="font-bold text-amber-700 mb-1">📋 Rubric 3 điểm:</p>
+                                <ul class="text-amber-700 space-y-1">
+                                    <li>• <strong>1đ</strong> — Phân loại đúng mâu thuẫn theo ≥2 tiêu chí (bên trong, chủ yếu...)</li>
+                                    <li>• <strong>1đ</strong> — Mô tả đúng quá trình đấu tranh và tính tuyệt đối của nó</li>
+                                    <li>• <strong>1đ</strong> — Đề xuất giải quyết khả thi, không "điều hòa" và có dẫn chứng từ giáo trình</li>
+                                </ul>
+                            </div>
+                            <textarea id="short-answer-M4-L4" class="short-answer-textarea w-full rounded-xl border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-800 p-4 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30" placeholder="Viết bài phân tích của bạn ở đây (150–300 từ)..."></textarea>
+                            <div class="flex items-center justify-between mt-3">
+                                <span id="word-count-M4-L4" class="text-xs text-gray-400">0 từ</span>
+                                <button onclick="submitShortAnswer('M4-L4')" class="bg-rose-600 hover:bg-rose-700 text-white font-semibold px-6 py-2.5 rounded-xl transition-colors text-sm flex items-center gap-2">
+                                    <span class="material-symbols-outlined text-sm">send</span> Nộp bài tập
+                                </button>
+                            </div>
+                            <div id="short-answer-feedback-M4-L4" class="hidden mt-4 p-4 bg-green-50 dark:bg-green-900/20 border border-green-200 rounded-xl text-sm text-green-700 dark:text-green-400"></div>
+                        </div>
+
+                        <div class="flex items-center justify-between">
+                            <button onclick="showLesson('M4-L3')" class="text-sm text-text-muted-light hover:text-primary flex items-center gap-1"><span class="material-symbols-outlined text-sm">arrow_back</span> Bài trước</button>
+                            <div class="flex gap-3">
+                                <button onclick="openFormativeQuiz('M4-FQ2')" class="bg-rose-500 hover:bg-rose-600 text-white font-semibold px-6 py-3 rounded-xl transition-colors flex items-center gap-2 text-sm">
+                                    <span class="material-symbols-outlined text-sm">quiz</span> Kiểm tra hình thành (Bài 4.3–4.4)
+                                </button>
+                                <button onclick="completeLesson('M4-L4')" id="btn-complete-M4-L4" class="bg-primary hover:bg-purple-700 text-white font-semibold px-6 py-3 rounded-xl transition-colors flex items-center gap-2 text-sm"><span class="material-symbols-outlined text-sm">check_circle</span> Hoàn thành</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BÀI 4.5: PHÂN LOẠI MÂU THUẪN -->
+            <div id="lesson-M4-L5" class="lesson-content hidden">
+                <div class="bg-surface-light dark:bg-surface-dark rounded-3xl border border-gray-100 dark:border-gray-700 shadow-sm overflow-hidden">
+                    <div class="lesson-header-academic">
+                        <div class="flex items-center gap-3 mb-3"><span class="text-3xl">🗂️</span><span class="text-slate-100 text-sm font-semibold uppercase tracking-wider">Bài 4.5 — Module 4</span></div>
+                        <h2 class="font-display text-3xl font-bold text-white mb-2">Phân loại Mâu thuẫn — 4 Tiêu chí</h2>
+                        <p class="text-slate-100 text-sm">🎯 <strong>Mục tiêu:</strong> Nắm 4 tiêu chí phân loại mâu thuẫn; phân biệt cơ bản/chủ yếu, bên trong/bên ngoài, đối kháng/không đối kháng; áp dụng vào tình huống cụ thể.</p>
+                    </div>
+                    <div class="p-8 space-y-8">
+                        <div class="bg-slate-50 dark:bg-slate-900/20 border-l-4 border-slate-500 rounded-r-2xl p-6">
+                            <p class="text-xs font-bold text-slate-600 uppercase tracking-wider mb-2">📖 Trích dẫn kinh điển — Triet.txt, dòng 757</p>
+                            <blockquote class="font-display text-lg italic text-text-main-light dark:text-text-main-dark leading-relaxed">
+                                "Mâu thuẫn tồn tại khách quan trong mọi lĩnh vực của thế giới và vô cùng đa dạng. Sự đa dạng đó phụ thuộc vào đặc điểm của các mặt đối lập, vào điều kiện mà trong đó sự tác động qua lại giữa các mặt đối lập triển khai..."
+                            </blockquote>
+                        </div>
+
+                        <div class="space-y-5">
+                            <h3 class="font-display text-xl font-bold">4 Tiêu chí Phân loại Mâu thuẫn</h3>
+                            <div class="space-y-3">
+                                <!-- Tiêu chí 1 -->
+                                <div class="border border-gray-200 dark:border-gray-700 rounded-2xl overflow-hidden">
+                                    <button onclick="toggleAccordion(this)" class="w-full flex items-center justify-between p-5 bg-gray-50 dark:bg-gray-800 text-left hover:bg-purple-50 dark:hover:bg-purple-900/20 transition-colors">
+                                        <div class="flex items-center gap-3">
+                                            <span class="w-8 h-8 rounded-full bg-purple-600 text-white text-sm font-bold flex items-center justify-center flex-shrink-0">1</span>
+                                            <div><p class="font-bold">Theo tầm quan trọng toàn bộ</p><p class="text-xs text-text-muted-light dark:text-text-muted-dark">Cơ bản ↔ Không cơ bản (dòng 758)</p></div>
+                                        </div>
+                                        <span class="material-symbols-outlined text-gray-400">expand_more</span>
+                                    </button>
+                                    <div class="accordion-body px-5 pb-5">
+                                        <div class="grid md:grid-cols-2 gap-4 text-sm mt-3">
+                                            <div class="bg-purple-50 dark:bg-purple-900/10 rounded-xl p-4">
+                                                <p class="font-bold text-purple-700 mb-1">Mâu thuẫn CƠ BẢN</p>
+                                                <p class="text-xs text-text-muted-light dark:text-text-muted-dark">Tác động SUỐT quá trình tồn tại; quy định bản chất và sự phát triển từ khi hình thành đến lúc tiêu vong.</p>
+                                                <p class="text-xs font-medium text-purple-600 mt-2">VD: Mâu thuẫn giữa lực lượng sản xuất ↔ quan hệ sản xuất — quy định bản chất toàn bộ hình thái kinh tế-xã hội.</p>
+                                            </div>
+                                            <div class="bg-gray-50 dark:bg-gray-800 rounded-xl p-4">
+                                                <p class="font-bold text-gray-600 mb-1">Mâu thuẫn KHÔNG CƠ BẢN</p>
+                                                <p class="text-xs text-text-muted-light dark:text-text-muted-dark">Đặc trưng cho một phương diện nào đó; chỉ quy định vận động một số mặt và chịu chi phối của mâu thuẫn cơ bản.</p>
+                                                <p class="text-xs font-medium text-gray-500 mt-2">VD: Mâu thuẫn giữa các ngành kinh tế trong một nền kinh tế — không quyết định bản chất toàn bộ.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Tiêu chí 2 -->
+                                <div class="border border-gray-200 dark:border-gray-700 rounded-2xl overflow-hidden">
+                                    <button onclick="toggleAccordion(this)" class="w-full flex items-center justify-between p-5 bg-gray-50 dark:bg-gray-800 text-left hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors">
+                                        <div class="flex items-center gap-3">
+                                            <span class="w-8 h-8 rounded-full bg-blue-600 text-white text-sm font-bold flex items-center justify-center flex-shrink-0">2</span>
+                                            <div><p class="font-bold">Theo vai trò ở từng giai đoạn</p><p class="text-xs text-text-muted-light dark:text-text-muted-dark">Chủ yếu ↔ Thứ yếu (dòng 759)</p></div>
+                                        </div>
+                                        <span class="material-symbols-outlined text-gray-400">expand_more</span>
+                                    </button>
+                                    <div class="accordion-body px-5 pb-5">
+                                        <div class="grid md:grid-cols-2 gap-4 text-sm mt-3">
+                                            <div class="bg-blue-50 dark:bg-blue-900/10 rounded-xl p-4">
+                                                <p class="font-bold text-blue-700 mb-1">Mâu thuẫn CHỦ YẾU</p>
+                                                <p class="text-xs text-text-muted-light dark:text-text-muted-dark">Nổi lên hàng đầu ở TỪNG GIAI ĐOẠN; có tác dụng quy định các mâu thuẫn khác trong cùng giai đoạn. Giải quyết nó → giải quyết được các mâu thuẫn khác.</p>
+                                                <p class="text-xs font-medium text-blue-600 mt-2">VD: Giai đoạn 1986 ở VN — mâu thuẫn cơ chế bao cấp ↔ nhu cầu phát triển là chủ yếu.</p>
+                                            </div>
+                                            <div class="bg-gray-50 dark:bg-gray-800 rounded-xl p-4">
+                                                <p class="font-bold text-gray-600 mb-1">Mâu thuẫn THỨ YẾU</p>
+                                                <p class="text-xs text-text-muted-light dark:text-text-muted-dark">Không đóng vai trò quyết định trong vận động, phát triển. Ranh giới chủ yếu/thứ yếu chỉ tương đối — trong hoàn cảnh này là thứ yếu, hoàn cảnh khác lại là chủ yếu.</p>
+                                                <p class="text-xs font-medium text-gray-500 mt-2">VD: Giai đoạn đó, mâu thuẫn giữa các vùng kinh tế là thứ yếu hơn.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Tiêu chí 3 -->
+                                <div class="border border-gray-200 dark:border-gray-700 rounded-2xl overflow-hidden">
+                                    <button onclick="toggleAccordion(this)" class="w-full flex items-center justify-between p-5 bg-gray-50 dark:bg-gray-800 text-left hover:bg-teal-50 dark:hover:bg-teal-900/20 transition-colors">
+                                        <div class="flex items-center gap-3">
+                                            <span class="w-8 h-8 rounded-full bg-teal-600 text-white text-sm font-bold flex items-center justify-center flex-shrink-0">3</span>
+                                            <div><p class="font-bold">Theo vị trí trong sự vật</p><p class="text-xs text-text-muted-light dark:text-text-muted-dark">Bên trong ↔ Bên ngoài (dòng 760)</p></div>
+                                        </div>
+                                        <span class="material-symbols-outlined text-gray-400">expand_more</span>
+                                    </button>
+                                    <div class="accordion-body px-5 pb-5">
+                                        <div class="grid md:grid-cols-2 gap-4 text-sm mt-3">
+                                            <div class="bg-teal-50 dark:bg-teal-900/10 rounded-xl p-4">
+                                                <p class="font-bold text-teal-700 mb-1">Mâu thuẫn BÊN TRONG</p>
+                                                <p class="text-xs text-text-muted-light dark:text-text-muted-dark">Giữa các mặt, khuynh hướng đối lập nằm TRONG chính sự vật; quy định TRỰC TIẾP quá trình vận động và phát triển.</p>
+                                                <p class="text-xs font-medium text-teal-600 mt-2">VD: Mâu thuẫn giữa hai phe phái trong một đảng — quy định trực tiếp sự phát triển của đảng đó.</p>
+                                            </div>
+                                            <div class="bg-gray-50 dark:bg-gray-800 rounded-xl p-4">
+                                                <p class="font-bold text-gray-600 mb-1">Mâu thuẫn BÊN NGOÀI</p>
+                                                <p class="text-xs text-text-muted-light dark:text-text-muted-dark">Giữa sự vật với các sự vật khác; ảnh hưởng nhưng phải THÔNG QUA mâu thuẫn bên trong mới phát huy tác dụng.</p>
+                                                <p class="text-xs font-medium text-gray-500 mt-2">VD: Áp lực cạnh tranh từ đối thủ nước ngoài — tác động qua mâu thuẫn nội bộ doanh nghiệp về chiến lược.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Tiêu chí 4 -->
+                                <div class="border border-gray-200 dark:border-gray-700 rounded-2xl overflow-hidden">
+                                    <button onclick="toggleAccordion(this)" class="w-full flex items-center justify-between p-5 bg-gray-50 dark:bg-gray-800 text-left hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors">
+                                        <div class="flex items-center gap-3">
+                                            <span class="w-8 h-8 rounded-full bg-red-600 text-white text-sm font-bold flex items-center justify-center flex-shrink-0">4</span>
+                                            <div><p class="font-bold">Theo tính chất lợi ích (trong xã hội)</p><p class="text-xs text-text-muted-light dark:text-text-muted-dark">Đối kháng ↔ Không đối kháng (dòng 761)</p></div>
+                                        </div>
+                                        <span class="material-symbols-outlined text-gray-400">expand_more</span>
+                                    </button>
+                                    <div class="accordion-body px-5 pb-5">
+                                        <div class="grid md:grid-cols-2 gap-4 text-sm mt-3">
+                                            <div class="bg-red-50 dark:bg-red-900/10 rounded-xl p-4">
+                                                <p class="font-bold text-red-700 mb-1">Mâu thuẫn ĐỐI KHÁNG</p>
+                                                <p class="text-xs text-text-muted-light dark:text-text-muted-dark">Giữa các giai cấp/lực lượng có lợi ích cơ bản ĐỐI LẬP và KHÔNG THỂ điều hòa được.</p>
+                                                <p class="text-xs font-medium text-red-600 mt-2">VD: Giai cấp bóc lột ↔ bị bóc lột; giai cấp thống trị ↔ bị trị — chỉ giải quyết được bằng cách mạng xã hội.</p>
+                                            </div>
+                                            <div class="bg-green-50 dark:bg-green-900/10 rounded-xl p-4">
+                                                <p class="font-bold text-green-700 mb-1">Mâu thuẫn KHÔNG ĐỐI KHÁNG</p>
+                                                <p class="text-xs text-text-muted-light dark:text-text-muted-dark">Giữa các lực lượng có lợi ích cơ bản KHÔNG đối lập — là mâu thuẫn cục bộ, tạm thời, có thể điều chỉnh.</p>
+                                                <p class="text-xs font-medium text-green-600 mt-2">VD: Mâu thuẫn giữa các bộ trong chính phủ về ngân sách — có thể giải quyết qua thương lượng, cải cách.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="border-t border-gray-100 dark:border-gray-700 pt-6">
+                            <h3 class="font-display text-lg font-bold mb-4">Câu hỏi phản tư</h3>
+                            <div class="space-y-3">
+                                <div class="reflection-item">
+                                    <button onclick="toggleReflection(this)" class="w-full text-left p-4 bg-gray-50 dark:bg-gray-800 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-900/20 transition-colors text-sm font-medium flex justify-between items-center">
+                                        <span>1. Mâu thuẫn "chủ yếu" và mâu thuẫn "cơ bản" có thể là cùng một mâu thuẫn không? Cho ví dụ.</span>
+                                        <span class="material-symbols-outlined text-gray-400 flex-shrink-0 ml-2">expand_more</span>
+                                    </button>
+                                    <div class="reflection-answer p-4 text-sm text-text-muted-light dark:text-text-muted-dark">
+                                        <strong class="text-slate-600 block mb-1">Gợi ý:</strong> Có thể trùng nhau! Ví dụ: Mâu thuẫn "lực lượng sản xuất ↔ quan hệ sản xuất" là mâu thuẫn cơ bản (suốt cả giai đoạn tư bản). Trong giai đoạn khủng hoảng kinh tế, nó cũng là mâu thuẫn chủ yếu (nổi lên hàng đầu, quy định chiều hướng). Nhưng chúng không nhất thiết phải trùng — mâu thuẫn cơ bản có thể không phải mâu thuẫn chủ yếu ở một giai đoạn nếu các mâu thuẫn khác đang nổi cộm hơn.
+                                    </div>
+                                </div>
+                                <div class="reflection-item">
+                                    <button onclick="toggleReflection(this)" class="w-full text-left p-4 bg-gray-50 dark:bg-gray-800 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-900/20 transition-colors text-sm font-medium flex justify-between items-center">
+                                        <span>2. Trong một công ty, mâu thuẫn giữa phòng Marketing và phòng Kỹ thuật là mâu thuẫn đối kháng hay không đối kháng? Tại sao?</span>
+                                        <span class="material-symbols-outlined text-gray-400 flex-shrink-0 ml-2">expand_more</span>
+                                    </button>
+                                    <div class="reflection-answer p-4 text-sm text-text-muted-light dark:text-text-muted-dark">
+                                        <strong class="text-slate-600 block mb-1">Gợi ý:</strong> Không đối kháng — vì lợi ích cơ bản của hai phòng ban không đối lập: cả hai đều hướng tới thành công của công ty (lợi ích cơ bản đồng nhất). Mâu thuẫn là cục bộ (về phương pháp: nhanh vs. chất lượng) và tạm thời (có thể giải quyết qua cơ chế ra quyết định, OKR, ưu tiên). → Giải quyết bằng đối thoại, cải cách quy trình — không cần "đấu tranh triệt để" như mâu thuẫn đối kháng.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-slate-50 dark:bg-slate-900/20 border border-slate-200 rounded-2xl p-6">
+                            <h3 class="font-display text-lg font-bold mb-3">Hoạt động: Phân loại mâu thuẫn trong 4 tình huống</h3>
+                            <p class="text-sm text-text-muted-light dark:text-text-muted-dark mb-3">Với mỗi tình huống, xác định loại mâu thuẫn theo đủ 4 tiêu chí (nếu áp dụng được):</p>
+                            <div class="space-y-2 text-sm">
+                                <div class="p-3 bg-white dark:bg-gray-800 rounded-xl flex gap-2"><span class="font-bold text-purple-600">A.</span><span>Việt Nam đang có mâu thuẫn giữa "yêu cầu tăng trưởng kinh tế nhanh" và "bảo vệ môi trường" — phân loại đầy đủ.</span></div>
+                                <div class="p-3 bg-white dark:bg-gray-800 rounded-xl flex gap-2"><span class="font-bold text-blue-600">B.</span><span>Trong thế hệ Gen Z: mâu thuẫn giữa "giá trị truyền thống (gia đình) và giá trị hiện đại (cá nhân)" — phân loại đầy đủ.</span></div>
+                                <div class="p-3 bg-white dark:bg-gray-800 rounded-xl flex gap-2"><span class="font-bold text-red-600">C.</span><span>Trong xã hội phong kiến Việt Nam trước 1945: mâu thuẫn giữa giai cấp nông dân và địa chủ.</span></div>
+                                <div class="p-3 bg-white dark:bg-gray-800 rounded-xl flex gap-2"><span class="font-bold text-green-600">D.</span><span>Trong cơ thể người: hệ thống miễn dịch (kháng thể) đấu tranh với vi khuẩn xâm nhập từ bên ngoài.</span></div>
+                            </div>
+                            <p class="text-xs text-gray-400 mt-3">Gợi ý D: Bên ngoài (vi khuẩn từ môi trường) + Tác động qua mâu thuẫn bên trong (hệ miễn dịch) → cơ thể phát triển sức đề kháng.</p>
+                        </div>
+
+                        <div class="flex items-center justify-between">
+                            <button onclick="showLesson('M4-L4')" class="text-sm text-text-muted-light hover:text-primary flex items-center gap-1"><span class="material-symbols-outlined text-sm">arrow_back</span> Bài trước</button>
+                            <button onclick="completeLesson('M4-L5')" id="btn-complete-M4-L5" class="bg-primary hover:bg-purple-700 text-white font-semibold px-8 py-3 rounded-xl transition-colors flex items-center gap-2 text-sm"><span class="material-symbols-outlined text-sm">check_circle</span> Hoàn thành</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BÀI 4.6: Ý NGHĨA PHƯƠNG PHÁP LUẬN & ỨNG DỤNG -->
+            <div id="lesson-M4-L6" class="lesson-content hidden">
+                <div class="bg-surface-light dark:bg-surface-dark rounded-3xl border border-gray-100 dark:border-gray-700 shadow-sm overflow-hidden">
+                    <div class="lesson-header-academic">
+                        <div class="flex items-center gap-3 mb-3"><span class="text-3xl">🧭</span><span class="text-fuchsia-100 text-sm font-semibold uppercase tracking-wider">Bài 4.6 — Module 4</span></div>
+                        <h2 class="font-display text-3xl font-bold text-white mb-2">Ý nghĩa phương pháp luận & Ứng dụng</h2>
+                        <p class="text-fuchsia-100 text-sm">🎯 <strong>Mục tiêu:</strong> Rút ra 3 nguyên tắc phương pháp luận; áp dụng "phân tích cụ thể một mâu thuẫn cụ thể"; kết nối sang Module 5 (Phủ định).</p>
+                    </div>
+                    <div class="p-8 space-y-8">
+                        <div class="bg-fuchsia-50 dark:bg-fuchsia-900/20 border-l-4 border-fuchsia-500 rounded-r-2xl p-6">
+                            <p class="text-xs font-bold text-fuchsia-600 uppercase tracking-wider mb-2">📖 Trích dẫn kinh điển — Triet.txt, dòng 765</p>
+                            <blockquote class="font-display text-lg italic text-text-main-light dark:text-text-main-dark leading-relaxed">
+                                "Muốn phát hiện mâu thuẫn cần tìm ra thể thống nhất của các mặt đối lập trong sự vật, hiện tượng; từ đó tìm ra phương hướng, giải pháp đúng cho hoạt động nhận thức và thực tiễn."
+                            </blockquote>
+                        </div>
+
+                        <div class="space-y-5">
+                            <h3 class="font-display text-xl font-bold">3 Nguyên tắc Phương pháp luận từ Quy luật Mâu thuẫn</h3>
+                            <div class="space-y-4">
+                                <div class="flex gap-4 items-start p-5 bg-purple-50 dark:bg-purple-900/20 rounded-2xl border border-purple-200">
+                                    <div class="w-10 h-10 rounded-full bg-purple-600 text-white flex items-center justify-center font-bold flex-shrink-0 text-lg">1</div>
+                                    <div>
+                                        <p class="font-bold text-purple-700 mb-1">Thừa nhận tính khách quan của mâu thuẫn</p>
+                                        <p class="text-sm text-text-muted-light dark:text-text-muted-dark">Mâu thuẫn tồn tại khách quan — không phải do ta "tạo ra" hay "tưởng tượng". Giải quyết mâu thuẫn phải <em>tuân theo quy luật và điều kiện khách quan</em>, không áp đặt ý muốn chủ quan. Trước tiên: "tìm ra thể thống nhất của các mặt đối lập" — xác định đúng mâu thuẫn. (dòng 765)</p>
+                                    </div>
+                                </div>
+                                <div class="flex gap-4 items-start p-5 bg-violet-50 dark:bg-violet-900/20 rounded-2xl border border-violet-200">
+                                    <div class="w-10 h-10 rounded-full bg-violet-600 text-white flex items-center justify-center font-bold flex-shrink-0 text-lg">2</div>
+                                    <div>
+                                        <p class="font-bold text-violet-700 mb-1">Phân tích cụ thể từng loại mâu thuẫn</p>
+                                        <p class="text-sm text-text-muted-light dark:text-text-muted-dark">Phân tích mâu thuẫn từ quá trình phát sinh, phát triển; xem xét vai trò, vị trí, mối quan hệ giữa các mâu thuẫn. <strong>"Phân tích cụ thể một mâu thuẫn cụ thể"</strong> — không áp khuôn mẫu từ mâu thuẫn này sang mâu thuẫn khác. (dòng 766)</p>
+                                    </div>
+                                </div>
+                                <div class="flex gap-4 items-start p-5 bg-fuchsia-50 dark:bg-fuchsia-900/20 rounded-2xl border border-fuchsia-200">
+                                    <div class="w-10 h-10 rounded-full bg-fuchsia-600 text-white flex items-center justify-center font-bold flex-shrink-0 text-lg">3</div>
+                                    <div>
+                                        <p class="font-bold text-fuchsia-700 mb-1">Giải quyết bằng đấu tranh — không điều hòa, không nóng vội, không bảo thủ</p>
+                                        <p class="text-sm text-text-muted-light dark:text-text-muted-dark"><em>Điều hòa mâu thuẫn</em> = che giấu, không giải quyết thực chất. <em>Nóng vội</em> = giải quyết khi điều kiện chưa chín muồi. <em>Bảo thủ</em> = không giải quyết khi điều kiện đã đủ. → Phải giải quyết bằng đấu tranh đúng thời điểm, đúng hình thức, đúng mức độ. (dòng 767)</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <h3 class="font-display text-xl font-bold">3 Tình huống ứng dụng</h3>
+                            <div class="space-y-4">
+                                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-2xl p-5">
+                                    <h4 class="font-bold text-blue-600 mb-2">💹 1. Kinh tế: Giải quyết mâu thuẫn lạm phát ↔ tăng trưởng</h4>
+                                    <p class="text-sm text-text-muted-light dark:text-text-muted-dark">Nguyên tắc 1: thừa nhận đây là mâu thuẫn khách quan (không thể tránh). Nguyên tắc 2: phân tích cụ thể giai đoạn (mâu thuẫn chủ yếu giai đoạn 2022 là lạm phát; 2024 là tăng trưởng). Nguyên tắc 3: không điều hòa theo kiểu "vừa thắt vừa nới" cùng lúc → chọn ưu tiên phù hợp giai đoạn.</p>
+                                </div>
+                                <div class="bg-green-50 dark:bg-green-900/20 rounded-2xl p-5">
+                                    <h4 class="font-bold text-green-600 mb-2">🤝 2. Xã hội: Xử lý mâu thuẫn thế hệ trong gia đình</h4>
+                                    <p class="text-sm text-text-muted-light dark:text-text-muted-dark">Nguyên tắc 1: mâu thuẫn cha mẹ-con cái về lối sống là khách quan, không phủ nhận. Nguyên tắc 2: phân tích từng mâu thuẫn cụ thể (về học tập, về hôn nhân, về nghề nghiệp) — không dùng cùng một giải pháp cho tất cả. Nguyên tắc 3: không "điều hòa" (tránh nói chuyện), không nóng vội (ép buộc ngay), không bảo thủ (từ chối thay đổi) → đối thoại có chủ đích, từng bước.</p>
+                                </div>
+                                <div class="bg-purple-50 dark:bg-purple-900/20 rounded-2xl p-5">
+                                    <h4 class="font-bold text-purple-600 mb-2">🧩 3. Cá nhân: Mâu thuẫn trong phát triển bản thân</h4>
+                                    <p class="text-sm text-text-muted-light dark:text-text-muted-dark">Mâu thuẫn: "an toàn (vùng thoải mái) ↔ phát triển (rủi ro)". Nguyên tắc 1: thừa nhận đây là mâu thuẫn thực (không trốn tránh bằng "để tính sau"). Nguyên tắc 2: phân tích cụ thể — mâu thuẫn nào đang là chủ yếu? Rủi ro tài chính hay rủi ro danh tiếng? Nguyên tắc 3: không điều hòa ("nửa vời"); khi đã đủ điều kiện → dám thực hiện bước nhảy (liên kết M3).</p>
+                                </div>
+                            </div>
+
+                            <div class="bg-gradient-to-r from-purple-50 to-teal-50 dark:from-purple-900/10 dark:to-teal-900/10 border border-purple-200 rounded-2xl p-5">
+                                <h4 class="font-bold text-purple-700 mb-2">🔗 Kết nối sang Module 5: Phủ định của phủ định</h4>
+                                <p class="text-sm text-text-muted-light dark:text-text-muted-dark">Quy luật Mâu thuẫn chỉ ra <em>nguồn gốc</em> phát triển. Nhưng phát triển diễn ra theo <em>hướng nào</em>? → Câu trả lời: Module 5 — Quy luật phủ định của phủ định chỉ ra khuynh hướng tiến lên theo đường xoáy ốc. Mỗi lần phủ định biện chứng = một lần giải quyết mâu thuẫn + kế thừa những yếu tố tích cực của trạng thái trước. (dòng 775)</p>
+                            </div>
+                        </div>
+
+                        <div class="border-t border-gray-100 dark:border-gray-700 pt-6">
+                            <h3 class="font-display text-lg font-bold mb-4">Câu hỏi phản tư</h3>
+                            <div class="space-y-3">
+                                <div class="reflection-item">
+                                    <button onclick="toggleReflection(this)" class="w-full text-left p-4 bg-gray-50 dark:bg-gray-800 rounded-xl hover:bg-fuchsia-50 dark:hover:bg-fuchsia-900/20 transition-colors text-sm font-medium flex justify-between items-center">
+                                        <span>1. "Điều hòa mâu thuẫn" trong xã hội (kiểu "thỏa hiệp cho qua") bị phê phán vì lý do gì theo CNDV biện chứng?</span>
+                                        <span class="material-symbols-outlined text-gray-400 flex-shrink-0 ml-2">expand_more</span>
+                                    </button>
+                                    <div class="reflection-answer p-4 text-sm text-text-muted-light dark:text-text-muted-dark">
+                                        <strong class="text-fuchsia-600 block mb-1">Gợi ý:</strong> Điều hòa = che giấu mâu thuẫn, không giải quyết thực chất. Hậu quả: mâu thuẫn vẫn tồn tại và tiếp tục phát triển ngầm; đến điểm nút nó sẽ bùng nổ với sức mạnh lớn hơn. Ví dụ: "thỏa hiệp tạm thời" giữa chủ-thợ về tiền lương mà không giải quyết mâu thuẫn cơ bản về lợi ích → đình công quy mô lớn hơn sau đó. CNDV biện chứng: mâu thuẫn chỉ được giải quyết thực sự khi một mặt thắng (chiếm ưu thế), hoặc cả hai chuyển hóa sang chất mới (thông qua bước nhảy).
+                                    </div>
+                                </div>
+                                <div class="reflection-item">
+                                    <button onclick="toggleReflection(this)" class="w-full text-left p-4 bg-gray-50 dark:bg-gray-800 rounded-xl hover:bg-fuchsia-50 dark:hover:bg-fuchsia-900/20 transition-colors text-sm font-medium flex justify-between items-center">
+                                        <span>2. Trong nghiên cứu khoa học: "Giả thuyết (hypothesis) ↔ Bằng chứng thực nghiệm" — đây là mâu thuẫn gì? Nó thúc đẩy khoa học phát triển như thế nào?</span>
+                                        <span class="material-symbols-outlined text-gray-400 flex-shrink-0 ml-2">expand_more</span>
+                                    </button>
+                                    <div class="reflection-answer p-4 text-sm text-text-muted-light dark:text-text-muted-dark">
+                                        <strong class="text-fuchsia-600 block mb-1">Gợi ý:</strong> Đây là mâu thuẫn biện chứng bên trong tư duy khoa học: giả thuyết (mặt đối lập 1 — nhận thức lý luận) và bằng chứng thực nghiệm (mặt đối lập 2 — nhận thức thực tiễn). Khi thực nghiệm bác bỏ giả thuyết → mâu thuẫn gay gắt → nhà khoa học phải xây dựng giả thuyết mới tốt hơn → bước nhảy nhận thức → khoa học tiến lên. Thomas Kuhn gọi đây là "cách mạng khoa học" — đây là mâu thuẫn biện chứng trong lĩnh vực tư duy. (dòng 753: phép biện chứng áp dụng cho "tư duy")
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Mini-essay M4-L6 -->
+                        <div class="bg-gradient-to-br from-fuchsia-50 to-purple-50 dark:from-fuchsia-900/10 dark:to-purple-900/10 border border-fuchsia-200 dark:border-fuchsia-800/30 rounded-2xl p-6">
+                            <h3 class="font-display text-lg font-bold mb-2 flex items-center gap-2"><span class="material-symbols-outlined text-fuchsia-600">edit_note</span> Mini-essay tổng kết Module 4 (200–300 từ)</h3>
+                            <p class="text-sm text-text-muted-light dark:text-text-muted-dark mb-4">Câu hỏi: <em>"Hãy phân tích một mâu thuẫn cụ thể trong cuộc sống, học tập hoặc lịch sử theo đầy đủ các phạm trù của Module 4: (1) Xác định các mặt đối lập; (2) Phân tích thống nhất và đấu tranh; (3) Phân loại mâu thuẫn theo ≥2 tiêu chí; (4) Đề xuất hướng giải quyết theo 3 nguyên tắc phương pháp luận."</em><br/>Yêu cầu: ít nhất 1 trích dẫn từ Triet.txt dòng 752–767.</p>
+                            <textarea id="short-answer-M4-L6" class="short-answer-textarea w-full rounded-xl border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-800 p-4 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30" placeholder="Viết mini-essay của bạn ở đây (200–300 từ)..."></textarea>
+                            <div class="flex items-center justify-between mt-3">
+                                <span id="word-count-M4-L6" class="text-xs text-gray-400">0 từ</span>
+                                <button onclick="submitShortAnswer('M4-L6')" class="bg-fuchsia-600 hover:bg-fuchsia-700 text-white font-semibold px-6 py-2.5 rounded-xl transition-colors text-sm flex items-center gap-2">
+                                    <span class="material-symbols-outlined text-sm">send</span> Nộp mini-essay
+                                </button>
+                            </div>
+                            <div id="short-answer-feedback-M4-L6" class="hidden mt-4 p-4 bg-green-50 dark:bg-green-900/20 border border-green-200 rounded-xl text-sm text-green-700 dark:text-green-400"></div>
+                        </div>
+
+                        <div class="flex items-center justify-between">
+                            <button onclick="showLesson('M4-L5')" class="text-sm text-text-muted-light hover:text-primary flex items-center gap-1"><span class="material-symbols-outlined text-sm">arrow_back</span> Bài trước</button>
+                            <div class="flex gap-3">
+                                <button onclick="openFormativeQuiz('M4-FQ3')" class="bg-fuchsia-500 hover:bg-fuchsia-600 text-white font-semibold px-6 py-3 rounded-xl transition-colors flex items-center gap-2 text-sm">
+                                    <span class="material-symbols-outlined text-sm">quiz</span> Kiểm tra hình thành (Bài 4.5–4.6)
+                                </button>
+                                <button onclick="completeLesson('M4-L6')" id="btn-complete-M4-L6" class="bg-primary hover:bg-purple-700 text-white font-semibold px-8 py-3 rounded-xl transition-colors flex items-center gap-2 text-sm"><span class="material-symbols-outlined text-sm">check_circle</span> Hoàn thành</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MODULE QUIZ BANNER -->
+        <section id="module-quiz-banner" class="mb-16 hidden">
+            <div class="bg-gradient-to-r from-purple-700 to-violet-600 rounded-3xl p-8 text-white text-center">
+                <span class="text-5xl mb-4 block">⚡</span>
+                <h2 class="font-display text-3xl font-bold mb-3">Bạn đã hoàn thành 6 bài học Module 4!</h2>
+                <p class="text-white/80 mb-6">Làm bài kiểm tra tổng kết (12 câu) để nhận thành tích <strong>Contradiction Master 🥈 +10 XP</strong>.</p>
+                <button onclick="openModuleQuiz()" class="bg-white text-purple-700 hover:bg-purple-50 font-bold px-10 py-4 rounded-2xl transition-colors inline-flex items-center gap-2 text-lg shadow-lg">
+                    <span class="material-symbols-outlined">school</span> Làm bài kiểm tra Module 4
+                </button>
+            </div>
+        </section>
+
+        <!-- AI FAB -->
+        <div class="fixed bottom-6 right-6 z-40">
+            <button onclick="toggleAIPanel()" class="w-14 h-14 rounded-full bg-purple-700 text-white shadow-xl hover:bg-purple-800 flex items-center justify-center transition-all hover:scale-105">
+                <span class="material-symbols-outlined">smart_toy</span>
+            </button>
+        </div>
+
+        <!-- AI PANEL -->
+        <div id="ai-panel" class="hidden-panel fixed right-0 top-0 h-full w-80 md:w-96 bg-surface-light dark:bg-surface-dark border-l border-gray-200 dark:border-gray-700 shadow-2xl z-50 flex flex-col">
+            <div class="p-4 border-b border-gray-200 dark:border-gray-700 flex items-center justify-between">
+                <div>
+                    <h3 class="font-bold text-sm">🤖 AI Triết học — Module 4</h3>
+                    <p class="text-xs text-text-muted-light dark:text-text-muted-dark">Trả lời kèm sourceRef từ Triet.txt Chương 3 (dòng 752–767)</p>
+                </div>
+                <button onclick="toggleAIPanel()" class="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full"><span class="material-symbols-outlined text-gray-500">close</span></button>
+            </div>
+            <div id="ai-chat-history" class="flex-1 overflow-y-auto p-4 space-y-3">
+                <div class="bg-purple-50 dark:bg-purple-900/20 rounded-xl p-3">
+                    <p class="text-xs font-bold text-purple-700 mb-1">🤖 AI Triết học — Module 4</p>
+                    <p class="text-sm text-text-muted-light dark:text-text-muted-dark">Xin chào! Tôi sẵn sàng giải thích Module 4 — <strong>Quy luật Mâu thuẫn Biện chứng</strong>. Câu trả lời kèm trích dẫn từ <em>Triet.txt, dòng 752–767</em>.</p>
+                </div>
+                <div class="space-y-2">
+                    <p class="text-xs text-gray-400 font-medium">💡 Câu hỏi gợi ý:</p>
+                    <button onclick="sendAIPrompt('Mâu thuẫn biện chứng là gì?')" class="w-full text-left text-xs p-2.5 bg-gray-50 dark:bg-gray-800 rounded-lg hover:bg-purple-50 dark:hover:bg-purple-900/20 transition-colors">Mâu thuẫn biện chứng là gì?</button>
+                    <button onclick="sendAIPrompt('Sự thống nhất của các mặt đối lập có 3 biểu hiện nào?')" class="w-full text-left text-xs p-2.5 bg-gray-50 dark:bg-gray-800 rounded-lg hover:bg-purple-50 dark:hover:bg-purple-900/20 transition-colors">3 biểu hiện của thống nhất?</button>
+                    <button onclick="sendAIPrompt('Tại sao đấu tranh là tuyệt đối còn thống nhất là tương đối?')" class="w-full text-left text-xs p-2.5 bg-gray-50 dark:bg-gray-800 rounded-lg hover:bg-purple-50 dark:hover:bg-purple-900/20 transition-colors">Tại sao đấu tranh tuyệt đối?</button>
+                    <button onclick="sendAIPrompt('Có mấy loại mâu thuẫn? Phân loại theo tiêu chí nào?')" class="w-full text-left text-xs p-2.5 bg-gray-50 dark:bg-gray-800 rounded-lg hover:bg-purple-50 dark:hover:bg-purple-900/20 transition-colors">Phân loại mâu thuẫn như thế nào?</button>
+                    <button onclick="sendAIPrompt('Ý nghĩa phương pháp luận của quy luật mâu thuẫn')" class="w-full text-left text-xs p-2.5 bg-gray-50 dark:bg-gray-800 rounded-lg hover:bg-purple-50 dark:hover:bg-purple-900/20 transition-colors">Ý nghĩa phương pháp luận?</button>
+                </div>
+            </div>
+            <div class="p-4 border-t border-gray-200 dark:border-gray-700">
+                <div class="flex gap-2">
+                    <input id="ai-input" type="text" placeholder="Hỏi về Module 4..." class="flex-1 text-sm border border-gray-200 dark:border-gray-600 rounded-xl px-3 py-2 bg-gray-50 dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-primary/30" onkeypress="if(event.key==='Enter') sendAIMessage()">
+                    <button onclick="sendAIMessage()" class="bg-purple-700 text-white rounded-xl px-4 hover:bg-purple-800 transition-colors"><span class="material-symbols-outlined text-sm">send</span></button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- QUIZ MODAL -->
+    <div id="quiz-modal" class="hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+        <div class="bg-surface-light dark:bg-surface-dark rounded-3xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            <div class="p-6 border-b border-gray-200 dark:border-gray-700 flex items-center justify-between">
+                <div>
+                    <h2 id="quiz-modal-title" class="text-xl font-bold">Kiểm tra hình thành</h2>
+                    <p id="quiz-modal-sub" class="text-sm text-text-muted-light dark:text-text-muted-dark"></p>
+                </div>
+                <button onclick="closeQuizModal()" class="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full"><span class="material-symbols-outlined text-gray-500">close</span></button>
+            </div>
+            <div id="quiz-modal-body" class="p-6"></div>
+        </div>
+    </div>
+
+    <!-- ACHIEVEMENT TOAST -->
+    <div id="achievement-toast" class="hidden fixed top-6 right-6 z-50 max-w-sm">
+        <div class="bg-gradient-to-r from-purple-500 to-violet-400 rounded-2xl p-4 shadow-2xl flex items-center gap-4 achievement-earned">
+            <span id="achievement-icon" class="text-4xl">🥈</span>
+            <div>
+                <p class="font-bold text-white text-sm">Thành tích mới!</p>
+                <p id="achievement-name" class="font-display font-bold text-white"></p>
+                <p id="achievement-desc" class="text-xs text-purple-100"></p>
+            </div>
+        </div>
+    </div>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="js/search-data-global.js"></script>
+    <script src="js/quiz-data.js"></script>
+    <script src="js/quiz-data-m4.js"></script>
+    <script src="js/load-components.js"></script>
+    <script src="js/search-init.js"></script>
+
+    <script>
+    // =============================================
+    // MODULE 4 STATE
+    // =============================================
+    const M4_STATE = {
+        completedLessons: new Set(),
+        currentLesson: null,
+        quizResults: {},
+    };
+    const M4_LESSONS = ['M4-L1','M4-L2','M4-L3','M4-L4','M4-L5','M4-L6'];
+
+    function loadM4State() {
+        try {
+            const saved = JSON.parse(localStorage.getItem('philo_quiz_results') || '{}');
+            if (saved.M4_completed) saved.M4_completed.forEach(id => M4_STATE.completedLessons.add(id));
+            M4_STATE.quizResults = saved.M4_quiz || {};
+        } catch(e) {}
+    }
+
+    function saveM4State() {
+        try {
+            const saved = JSON.parse(localStorage.getItem('philo_quiz_results') || '{}');
+            saved.M4_completed = [...M4_STATE.completedLessons];
+            saved.M4_quiz = M4_STATE.quizResults;
+            localStorage.setItem('philo_quiz_results', JSON.stringify(saved));
+        } catch(e) {}
+    }
+
+    // =============================================
+    // LESSON NAVIGATION
+    // =============================================
+    function showLesson(lessonId) {
+        document.querySelectorAll('.lesson-content').forEach(el => el.classList.add('hidden'));
+        document.querySelectorAll('.lesson-tab').forEach(el => {
+            el.classList.remove('border-purple-500','bg-purple-50','dark:bg-purple-900/20');
+            el.classList.add('border-gray-100','dark:border-gray-700');
+        });
+        const target = document.getElementById('lesson-' + lessonId);
+        if (target) { target.classList.remove('hidden'); M4_STATE.currentLesson = lessonId; }
+        const tab = document.getElementById('tab-' + lessonId);
+        if (tab) {
+            tab.classList.remove('border-gray-100','dark:border-gray-700');
+            tab.classList.add('border-purple-500','bg-purple-50','dark:bg-purple-900/20');
+        }
+        document.getElementById('lesson-area').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function completeLesson(lessonId) {
+        M4_STATE.completedLessons.add(lessonId);
+        saveM4State();
+        updateProgress();
+        const dot = document.getElementById('dot-' + lessonId);
+        if (dot) { dot.classList.remove('bg-gray-300','dark:bg-gray-600'); dot.classList.add('bg-purple-500'); }
+        const btn = document.getElementById('btn-complete-' + lessonId);
+        if (btn) {
+            btn.classList.remove('bg-primary','hover:bg-purple-700');
+            btn.classList.add('bg-green-500','hover:bg-green-600');
+            btn.innerHTML = '<span class="material-symbols-outlined">check_circle</span> Đã hoàn thành ✓';
+        }
+        const idx = M4_LESSONS.indexOf(lessonId);
+        if (idx >= 0 && idx < M4_LESSONS.length - 1) setTimeout(() => showLesson(M4_LESSONS[idx + 1]), 500);
+        if (M4_STATE.completedLessons.size === 6) {
+            document.getElementById('module-quiz-banner').classList.remove('hidden');
+            checkThreeLawsScholar();
+        }
+    }
+
+    function checkThreeLawsScholar() {
+        try {
+            const saved = JSON.parse(localStorage.getItem('philo_quiz_results') || '{}');
+            const m3Done = saved.M3_completed && saved.M3_completed.length >= 6;
+            const m4Done = M4_STATE.completedLessons.size >= 6;
+            const m5Done = saved.M5_completed && saved.M5_completed.length >= 6;
+            if (m3Done && m4Done && m5Done) setTimeout(() => showAchievement('three-laws-scholar'), 1200);
+        } catch(e) {}
+    }
+
+    function updateProgress() {
+        const count = M4_STATE.completedLessons.size;
+        const pct = Math.round((count / 6) * 100);
+        document.getElementById('m4-progress-label').textContent = count + ' / 6 bài hoàn thành';
+        document.getElementById('m4-progress-pct').textContent = pct + '%';
+        document.getElementById('m4-progress-bar').style.width = pct + '%';
+        M4_STATE.completedLessons.forEach(id => {
+            const dot = document.getElementById('dot-' + id);
+            if (dot) { dot.classList.remove('bg-gray-300','dark:bg-gray-600'); dot.classList.add('bg-purple-500'); }
+        });
+    }
+
+    // =============================================
+    // UI HELPERS
+    // =============================================
+    function toggleReflection(btn) {
+        const answer = btn.nextElementSibling;
+        const icon = btn.querySelector('.material-symbols-outlined');
+        if (answer.classList.contains('open')) { answer.classList.remove('open'); icon.textContent = 'expand_more'; }
+        else { answer.classList.add('open'); icon.textContent = 'expand_less'; }
+    }
+
+    function toggleAccordion(btn) {
+        const body = btn.nextElementSibling;
+        const icon = btn.querySelector('.material-symbols-outlined');
+        if (body.classList.contains('open')) { body.classList.remove('open'); icon.textContent = 'expand_more'; }
+        else { body.classList.add('open'); icon.textContent = 'expand_less'; }
+    }
+
+    // =============================================
+    // SHORT ANSWER SYSTEM
+    // =============================================
+    function countWords(text) { return text.trim() === '' ? 0 : text.trim().split(/\s+/).length; }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        ['M4-L4','M4-L6'].forEach(lid => {
+            const ta = document.getElementById('short-answer-' + lid);
+            const counter = document.getElementById('word-count-' + lid);
+            if (ta && counter) {
+                ta.addEventListener('input', () => {
+                    const words = countWords(ta.value);
+                    const minMax = lid === 'M4-L6' ? [200, 300] : [150, 300];
+                    counter.textContent = words + ' từ';
+                    counter.className = words < minMax[0] ? 'text-xs text-gray-400' :
+                                        words > minMax[1] ? 'text-xs text-red-500' :
+                                        'text-xs text-green-500';
+                });
+            }
+        });
+
+        loadM4State();
+        updateProgress();
+
+        if (M4_STATE.completedLessons.size > 0) {
+            showLesson(M4_LESSONS[Math.min(M4_STATE.completedLessons.size, 5)]);
+        } else {
+            showLesson('M4-L1');
+        }
+
+        if (M4_STATE.completedLessons.size === 6) {
+            document.getElementById('module-quiz-banner').classList.remove('hidden');
+        }
+
+        M4_STATE.completedLessons.forEach(id => {
+            const btn = document.getElementById('btn-complete-' + id);
+            if (btn) {
+                btn.classList.remove('bg-primary','hover:bg-purple-700');
+                btn.classList.add('bg-green-500','hover:bg-green-600');
+                btn.innerHTML = '<span class="material-symbols-outlined">check_circle</span> Đã hoàn thành ✓';
+            }
+        });
+    });
+
+    function submitShortAnswer(lessonId) {
+        const ta = document.getElementById('short-answer-' + lessonId);
+        const feedbackEl = document.getElementById('short-answer-feedback-' + lessonId);
+        if (!ta || !feedbackEl) return;
+        const text = ta.value.trim();
+        const words = countWords(text);
+        const minWords = lessonId === 'M4-L6' ? 200 : 150;
+        if (words < minWords) {
+            feedbackEl.className = 'mt-4 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 rounded-xl text-sm text-red-600';
+            feedbackEl.textContent = `Bài làm cần ít nhất ${minWords} từ. Hiện tại: ${words} từ.`;
+            feedbackEl.classList.remove('hidden'); return;
+        }
+        try {
+            const saved = JSON.parse(localStorage.getItem('philo_short_answers') || '[]');
+            saved.push({ id: lessonId + '-' + Date.now(), lessonId, module: 'M4', text, wordCount: words, timestamp: new Date().toISOString() });
+            localStorage.setItem('philo_short_answers', JSON.stringify(saved));
+        } catch(e) {}
+        feedbackEl.className = 'mt-4 p-4 bg-green-50 dark:bg-green-900/20 border border-green-200 rounded-xl text-sm text-green-700 dark:text-green-400';
+        feedbackEl.innerHTML = `✅ <strong>Đã lưu bài làm!</strong> (${words} từ)<br><br>
+            <strong>Rubric tự đánh giá:</strong><br>
+            ☐ 1đ — Phân loại đúng mâu thuẫn theo ≥2 tiêu chí<br>
+            ☐ 1đ — Mô tả đúng quá trình đấu tranh<br>
+            ☐ 1đ — Đề xuất giải quyết có dẫn chứng từ giáo trình<br><br>
+            <em class="text-xs">Bài làm đã lưu vào localStorage và sẽ được giảng viên xem xét.</em>`;
+        feedbackEl.classList.remove('hidden');
+        ta.disabled = true;
+    }
+
+    // =============================================
+    // QUIZ SYSTEM
+    // =============================================
+    let currentQuizData = null;
+    let currentQuizAnswers = {};
+    let currentQuizSubmitted = false;
+
+    function openFormativeQuiz(quizId) {
+        if (!window.FORMATIVE_QUIZZES_M4) { alert('Quiz data chưa tải. Hãy thử lại.'); return; }
+        const quiz = window.FORMATIVE_QUIZZES_M4[quizId];
+        if (!quiz) { alert('Không tìm thấy quiz: ' + quizId); return; }
+        currentQuizData = { ...quiz, id: quizId };
+        currentQuizAnswers = {};
+        currentQuizSubmitted = false;
+        renderQuizModal(quiz);
+        document.getElementById('quiz-modal').classList.remove('hidden');
+    }
+
+    function openModuleQuiz() {
+        if (!window.MODULE_QUIZ_M4) { alert('Quiz data chưa tải.'); return; }
+        currentQuizData = window.MODULE_QUIZ_M4;
+        currentQuizAnswers = {};
+        currentQuizSubmitted = false;
+        renderQuizModal(window.MODULE_QUIZ_M4);
+        document.getElementById('quiz-modal').classList.remove('hidden');
+    }
+
+    function renderQuizModal(quiz) {
+        document.getElementById('quiz-modal-title').textContent = quiz.title;
+        document.getElementById('quiz-modal-sub').textContent = 'Cần đạt ' + quiz.passingScore + '% • ' + quiz.questions.length + ' câu hỏi';
+        let html = '<div class="space-y-6">';
+        quiz.questions.forEach((q, qi) => {
+            html += `<div class="quiz-question" data-qid="${q.id}">
+                <p class="font-medium text-sm mb-3">${qi+1}. ${q.text}</p>
+                <div class="space-y-2">`;
+            q.options.forEach(opt => {
+                html += `<label class="quiz-option flex items-start gap-3 p-3 rounded-xl border border-gray-200 dark:border-gray-600 cursor-pointer hover:border-purple-500 hover:bg-purple-50 dark:hover:bg-purple-900/10 transition-all">
+                    <input type="radio" name="q_${q.id}" value="${opt.id}" onclick="selectAnswer('${q.id}','${opt.id}')" class="mt-0.5 flex-shrink-0">
+                    <span class="text-sm">${opt.text}</span>
+                </label>`;
+            });
+            html += `</div></div>`;
+        });
+        html += `</div><div class="mt-6 flex justify-end">
+            <button onclick="submitQuiz()" id="btn-submit-quiz" class="bg-gray-300 dark:bg-gray-600 text-gray-500 dark:text-gray-400 font-bold px-8 py-3 rounded-xl transition-all cursor-not-allowed" data-ready="false">
+                Nộp bài
+            </button></div>`;
+        document.getElementById('quiz-modal-body').innerHTML = html;
+    }
+
+    function selectAnswer(qId, optId) {
+        currentQuizAnswers[qId] = optId;
+        const allAnswered = currentQuizData.questions.every(q => currentQuizAnswers[q.id]);
+        const btn = document.getElementById('btn-submit-quiz');
+        if (btn) {
+            if (allAnswered) {
+                btn.setAttribute('data-ready', 'true');
+                btn.className = 'bg-purple-600 hover:bg-purple-700 text-white font-bold px-8 py-3 rounded-xl transition-all cursor-pointer';
+            } else {
+                btn.setAttribute('data-ready', 'false');
+                btn.className = 'bg-gray-300 dark:bg-gray-600 text-gray-500 dark:text-gray-400 font-bold px-8 py-3 rounded-xl transition-all cursor-not-allowed';
+            }
+        }
+    }
+
+    function submitQuiz() {
+        const btn = document.getElementById('btn-submit-quiz');
+        if (btn && btn.getAttribute('data-ready') !== 'true') return;
+        if (currentQuizSubmitted) return;
+        currentQuizSubmitted = true;
+        const quiz = currentQuizData;
+        let correct = 0;
+        quiz.questions.forEach(q => {
+            const userAns = currentQuizAnswers[q.id];
+            const isCorrect = userAns === q.correctOptionId;
+            if (isCorrect) correct++;
+            const qEl = document.querySelector(`[data-qid="${q.id}"]`);
+            if (!qEl) return;
+            qEl.querySelectorAll('.quiz-option').forEach(label => {
+                const radio = label.querySelector('input');
+                if (!radio) return;
+                if (radio.value === q.correctOptionId) label.classList.add('border-green-400','bg-green-50','dark:bg-green-900/20');
+                if (radio.value === userAns && !isCorrect) label.classList.add('border-red-400','bg-red-50','dark:bg-red-900/20');
+            });
+            const rationaleEl = document.createElement('div');
+            rationaleEl.className = 'mt-2 p-3 bg-purple-50 dark:bg-purple-900/20 rounded-lg text-xs text-text-muted-light dark:text-text-muted-dark';
+            rationaleEl.innerHTML = '<strong class="text-purple-700">📖 Giải thích:</strong> ' + q.rationale;
+            qEl.appendChild(rationaleEl);
+        });
+        const score = Math.round((correct / quiz.questions.length) * 100);
+        const passed = score >= quiz.passingScore;
+        M4_STATE.quizResults[currentQuizData.id] = { score, correct, total: quiz.questions.length, passed, timestamp: Date.now() };
+        saveM4State();
+        if (passed && currentQuizData.id && currentQuizData.id.startsWith('M4-FQ')) {
+            try {
+                const qr = JSON.parse(localStorage.getItem('philo_quiz_results') || '{}');
+                if (!qr.mini_challenge_unlocked) qr.mini_challenge_unlocked = {};
+                qr.mini_challenge_unlocked.M4 = true;
+                localStorage.setItem('philo_quiz_results', JSON.stringify(qr));
+            } catch(e) {}
+        }
+        const resultHtml = `<div class="mb-6 p-4 rounded-2xl text-center ${passed ? 'bg-green-50 dark:bg-green-900/20 border border-green-200' : 'bg-red-50 dark:bg-red-900/20 border border-red-200'}">
+            <p class="text-4xl mb-2">${passed ? '🎉' : '📚'}</p>
+            <p class="text-2xl font-bold ${passed ? 'text-green-600' : 'text-red-600'}">${score}%</p>
+            <p class="text-sm font-medium">${correct}/${quiz.questions.length} câu đúng</p>
+            <p class="text-sm mt-1 ${passed ? 'text-green-600' : 'text-red-600'}">${passed ? '✅ Đạt!' : '❌ Chưa đạt — hãy ôn lại và thử lại.'}</p>
+        </div>`;
+        document.getElementById('quiz-modal-body').insertAdjacentHTML('afterbegin', resultHtml);
+        document.getElementById('btn-submit-quiz').textContent = passed ? 'Tiếp tục ✓' : 'Đóng';
+        document.getElementById('btn-submit-quiz').onclick = closeQuizModal;
+        if (passed && quiz.achievement) showAchievement(quiz.achievement);
+    }
+
+    function closeQuizModal() { document.getElementById('quiz-modal').classList.add('hidden'); }
+
+    // =============================================
+    // ACHIEVEMENTS
+    // =============================================
+    const M4_ACHIEVEMENTS = {
+        'dialectic-detector':  { name: 'Dialectic Detector',  icon: '🥉', desc: 'Pass M4-FQ1 — +5 XP' },
+        'contradiction-master':{ name: 'Contradiction Master', icon: '🥈', desc: 'Đạt ≥75% Module 4 quiz — +10 XP' },
+        'three-laws-scholar':  { name: 'Three Laws Scholar',   icon: '🥇', desc: 'Hoàn thành cả Module 3, 4 và 5!' }
+    };
+
+    function showAchievement(slug) {
+        const ach = M4_ACHIEVEMENTS[slug];
+        if (!ach) return;
+        try {
+            const saved = JSON.parse(localStorage.getItem('philo_achievements') || '[]');
+            if (!saved.find(a => a.id === slug)) {
+                saved.push({ id: slug, slug, earnedAt: Date.now(), module: 'M4', xp: slug === 'contradiction-master' ? 10 : 5 });
+                localStorage.setItem('philo_achievements', JSON.stringify(saved));
+            }
+        } catch(e) {}
+        document.getElementById('achievement-icon').textContent = ach.icon;
+        document.getElementById('achievement-name').textContent = ach.name;
+        document.getElementById('achievement-desc').textContent = ach.desc;
+        const toast = document.getElementById('achievement-toast');
+        toast.classList.remove('hidden');
+        setTimeout(() => toast.classList.add('hidden'), 4500);
+    }
+
+    // =============================================
+    // AI PANEL
+    // =============================================
+    let aiPanelOpen = false;
+    function toggleAIPanel() {
+        aiPanelOpen = !aiPanelOpen;
+        document.getElementById('ai-panel').classList[aiPanelOpen ? 'remove' : 'add']('hidden-panel');
+    }
+
+    const AI_M4_RESPONSES = {
+        'mâu thuẫn': { answer: '"Mâu thuẫn biện chứng là sự liên hệ, tác động theo cách vừa thống nhất, vừa đấu tranh; vừa đòi hỏi, vừa loại trừ, vừa chuyển hóa lẫn nhau giữa các mặt đối lập." (dòng 755). Yếu tố tạo thành: các mặt đối lập có khuynh hướng biến đổi trái ngược nhau, cùng tồn tại khách quan trong một sự vật. Đây là "hạt nhân của phép biện chứng" — trả lời câu hỏi nguồn gốc, động lực vận động.', sourceRef: 'Triet.txt, dòng 753, 755' },
+        'thống nhất': { answer: '3 biểu hiện của thống nhất: (1) Nương tựa vào nhau — không có mặt này thì không có mặt kia. (2) Tác động ngang nhau, cân bằng nhau — giai đoạn cân bằng tương đối. (3) Tương đồng, đồng nhất — trong điều kiện phù hợp, chuyển hóa lẫn nhau. Thống nhất có tính TƯƠNG ĐỐI, TẠM THỜI, CÓ ĐIỀU KIỆN. (dòng 755)', sourceRef: 'Triet.txt, dòng 755' },
+        'đấu tranh': { answer: '"Đấu tranh là sự tác động qua lại theo hướng bài trừ, phủ định lẫn nhau giữa các mặt đối lập." (dòng 756). Đấu tranh có tính TUYỆT ĐỐI — gắn với tự thân vận động không ngừng. V.I. Lênin: "Sự phát triển là một cuộc đấu tranh giữa các mặt đối lập." So sánh: thống nhất = tương đối, đấu tranh = tuyệt đối.', sourceRef: 'Triet.txt, dòng 756' },
+        'mặt đối lập': { answer: '"Mặt đối lập" là các bộ phận/thuộc tính có khuynh hướng biến đổi trái ngược nhau, cùng tồn tại khách quan trong một sự vật. (dòng 755). Điều kiện để là mặt đối lập biện chứng: (1) trái ngược nhau; (2) cùng trong một sự vật; (3) vừa thống nhất vừa đấu tranh. Ví dụ: cung ↔ cầu, đồng hóa ↔ dị hóa, lý trí ↔ cảm xúc.', sourceRef: 'Triet.txt, dòng 755' },
+        'phân loại mâu thuẫn': { answer: '4 tiêu chí: (1) Tầm quan trọng toàn bộ: Cơ bản (suốt quá trình) ↔ Không cơ bản (dòng 758). (2) Vai trò giai đoạn: Chủ yếu (nổi hàng đầu từng giai đoạn) ↔ Thứ yếu (dòng 759). (3) Vị trí: Bên trong (quy định trực tiếp) ↔ Bên ngoài (qua bên trong mới tác dụng) (dòng 760). (4) Tính chất xã hội: Đối kháng (không điều hòa được) ↔ Không đối kháng (cục bộ, tạm thời) (dòng 761).', sourceRef: 'Triet.txt, dòng 757–761' },
+        'phương pháp luận': { answer: '3 nguyên tắc: (1) Thừa nhận tính khách quan của mâu thuẫn; giải quyết theo quy luật khách quan (dòng 765). (2) Phân tích cụ thể từng mâu thuẫn — xem xét phát sinh, phát triển, mối quan hệ; "phân tích cụ thể một mâu thuẫn cụ thể" (dòng 766). (3) Giải quyết bằng đấu tranh — không điều hòa, không nóng vội, không bảo thủ; phụ thuộc điều kiện chín muồi (dòng 767).', sourceRef: 'Triet.txt, dòng 764–767' },
+        'nguồn gốc phát triển': { answer: '"Mâu thuẫn giữa các mặt đối lập là nguyên nhân, giải quyết mâu thuẫn là động lực của sự vận động, phát triển. Vì vậy, sự vận động, phát triển của sự vật là tự thân." (dòng 763). Ph. Ăngghen: "nguyên nhân chính tạo nguồn gốc vận động là sự tác động lẫn nhau giữa các mặt đối lập bên trong." (dòng 762). Tác động bên ngoài phải qua mâu thuẫn bên trong mới phát huy tác dụng.', sourceRef: 'Triet.txt, dòng 762–763' }
+    };
+
+    function getAIResponse(query) {
+        const q = query.toLowerCase();
+        for (const [key, resp] of Object.entries(AI_M4_RESPONSES)) {
+            if (q.includes(key) || q.split(' ').some(w => key.includes(w) && w.length > 3)) return resp;
+        }
+        if (q.includes('lượng chất') || q.includes('module 3') || q.includes('bước nhảy')) {
+            return { answer: 'Câu hỏi này liên quan Module 3. Tôi là AI Module 4 — chuyên về Quy luật Mâu thuẫn. Hãy hỏi về: mâu thuẫn biện chứng, thống nhất, đấu tranh, mặt đối lập, phân loại mâu thuẫn, phương pháp luận, nguồn gốc phát triển.', sourceRef: 'Module 4 — Triet.txt, dòng 752–767' };
+        }
+        return { answer: 'Module 4 tập trung vào Quy luật Mâu thuẫn Biện chứng. Tôi có thể trả lời về: (1) Mâu thuẫn biện chứng là gì? (2) 3 biểu hiện của thống nhất? (3) Tại sao đấu tranh là tuyệt đối? (4) 4 tiêu chí phân loại mâu thuẫn? (5) 3 nguyên tắc phương pháp luận? (6) Nguồn gốc phát triển?', sourceRef: 'Triet.txt, dòng 752–767' };
+    }
+
+    function sendAIPrompt(prompt) { document.getElementById('ai-input').value = prompt; sendAIMessage(); }
+
+    function sendAIMessage() {
+        const input = document.getElementById('ai-input');
+        const query = input.value.trim();
+        if (!query) return;
+        input.value = '';
+        const history = document.getElementById('ai-chat-history');
+        history.insertAdjacentHTML('beforeend', `<div class="flex justify-end"><div class="bg-purple-700 text-white rounded-xl rounded-tr-sm p-3 max-w-[85%]"><p class="text-sm">${query}</p></div></div>`);
+        const loadingId = 'ai-load-' + Date.now();
+        history.insertAdjacentHTML('beforeend', `<div id="${loadingId}" class="bg-purple-50 dark:bg-purple-900/20 rounded-xl p-3"><p class="text-xs text-text-muted-light">⏳ Đang tra cứu Triet.txt dòng 752–767...</p></div>`);
+        history.scrollTop = history.scrollHeight;
+        setTimeout(() => {
+            const resp = getAIResponse(query);
+            const loadEl = document.getElementById(loadingId);
+            if (loadEl) loadEl.outerHTML = `<div class="bg-purple-50 dark:bg-purple-900/20 rounded-xl p-3">
+                <p class="text-xs font-bold text-purple-700 mb-1">🤖 AI Triết học — Module 4</p>
+                <p class="text-sm text-text-main-light dark:text-text-main-dark mb-2">${resp.answer}</p>
+                <p class="text-xs text-gray-400 border-t border-purple-100 dark:border-purple-800 pt-1 mt-1">📖 <em>${resp.sourceRef}</em></p>
+            </div>`;
+            history.scrollTop = history.scrollHeight;
+            try {
+                const aiHist = JSON.parse(localStorage.getItem('philoMapAiHistory') || '[]');
+                aiHist.push({ question: query, answer: resp.answer, sourceRef: resp.sourceRef, module: 'M4', timestamp: Date.now() });
+                if (aiHist.length > 50) aiHist.shift();
+                localStorage.setItem('philoMapAiHistory', JSON.stringify(aiHist));
+            } catch(e) {}
+        }, 700);
+    }
+    </script>
+</body>
+</html>

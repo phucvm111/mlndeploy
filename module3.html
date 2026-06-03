@@ -1,0 +1,1216 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Module 3: Quy luật Lượng ↔ Chất — PhiloVerse MLN111</title>
+    <meta name="description" content="Khám phá quy luật chuyển hóa từ những thay đổi về lượng dẫn đến những thay đổi về chất — một trong ba quy luật cơ bản của phép biện chứng duy vật." />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+    <script src="js/tailwind-config-global.js"></script>
+    <style>
+        .material-symbols-outlined { font-family: 'Material Symbols Outlined'; font-weight: normal; font-style: normal; font-size: 24px; display: inline-block; line-height: 1; text-transform: none; letter-spacing: normal; word-wrap: normal; white-space: nowrap; direction: ltr; font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        #m3-progress-bar { transition: width 0.6s ease; }
+        .reflection-answer { max-height: 0; overflow: hidden; transition: max-height 0.5s ease, opacity 0.3s; opacity: 0; }
+        .reflection-answer.open { max-height: 600px; opacity: 1; }
+        #ai-panel { transition: transform 0.35s ease, opacity 0.35s; }
+        #ai-panel.hidden-panel { transform: translateX(110%); opacity: 0; pointer-events: none; }
+        @keyframes badge-pulse { 0%,100%{ transform:scale(1); } 50%{ transform:scale(1.15); } }
+        .achievement-earned { animation: badge-pulse 0.5s ease 3; }
+        .short-answer-textarea { resize: vertical; min-height: 120px; }
+        /* Diagram styles */
+        .flow-diagram { display: flex; align-items: center; gap: 0; flex-wrap: wrap; }
+        .flow-node { padding: 12px 16px; border-radius: 12px; font-size: 13px; font-weight: 600; text-align: center; min-width: 100px; }
+        .flow-arrow { font-size: 20px; color: #d97706; padding: 0 4px; flex-shrink: 0; }
+    </style>
+</head>
+
+<body class="bg-bg-light dark:bg-bg-dark text-text-main-light dark:text-text-main-dark font-body transition-colors duration-300 min-h-screen flex flex-col overflow-x-hidden">
+    <div id="header-placeholder"></div>
+
+    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 w-full">
+
+        <!-- ===== MODULE HEADER ===== -->
+        <header class="text-center mb-12 space-y-5 max-w-4xl mx-auto">
+            <div class="inline-flex items-center px-4 py-1.5 rounded-full bg-amber-50 border border-amber-100 dark:bg-amber-900/20 dark:border-amber-800 text-primary text-xs font-bold uppercase tracking-wider mb-4 gap-2">
+                <a href="home.html" class="hover:underline hover:text-amber-600 transition-colors">TRANG CHỦ</a>
+                <span class="opacity-60">/</span>
+                <a href="home.html#overview" class="hover:underline hover:text-amber-600 transition-colors">MODULES</a>
+                <span class="opacity-60">/</span>
+                <span>MODULE 3 • QUY LUẬT LƯỢNG ↔ CHẤT</span>
+            </div>
+            <h1 class="font-display text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
+                Quy luật <span class="text-primary italic">Lượng ↔ Chất</span>
+            </h1>
+            <p class="max-w-2xl mx-auto text-lg text-text-muted-light dark:text-text-muted-dark font-light leading-relaxed">
+                6 bài học về cách thức vận động phổ biến nhất: tích lũy lượng → bước nhảy chất → chất mới. Áp dụng vào học tập, kinh doanh và lịch sử.
+            </p>
+            <div class="max-w-md mx-auto">
+                <div class="flex items-center justify-between text-xs text-text-muted-light dark:text-text-muted-dark mb-1.5">
+                    <span id="m3-progress-label">0 / 6 bài hoàn thành</span>
+                    <span id="m3-progress-pct">0%</span>
+                </div>
+                <div class="h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                    <div id="m3-progress-bar" class="h-full bg-gradient-to-r from-amber-500 to-orange-500 rounded-full" style="width:0%"></div>
+                </div>
+            </div>
+        </header>
+
+        <!-- ===== LESSON TABS ===== -->
+        <section class="mb-10">
+            <div class="flex items-center gap-4 mb-6">
+                <span class="h-px bg-gray-200 dark:bg-gray-700 flex-1"></span>
+                <span class="font-display text-lg uppercase tracking-widest text-text-muted-light dark:text-text-muted-dark">6 Bài học</span>
+                <span class="h-px bg-gray-200 dark:bg-gray-700 flex-1"></span>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
+                <button onclick="showLesson('M3-L1')" id="tab-M3-L1" class="lesson-tab flex flex-col items-center gap-2 p-4 rounded-2xl bg-surface-light dark:bg-surface-dark border-2 border-gray-100 dark:border-gray-700 hover:border-amber-500 transition-all duration-200 text-center">
+                    <span class="text-2xl">📐</span><span class="text-xs font-semibold text-text-muted-light dark:text-text-muted-dark">Bài 3.1</span><span class="text-xs font-medium">Quy luật là gì?</span><span class="w-2 h-2 rounded-full bg-gray-300 dark:bg-gray-600 lesson-dot" id="dot-M3-L1"></span>
+                </button>
+                <button onclick="showLesson('M3-L2')" id="tab-M3-L2" class="lesson-tab flex flex-col items-center gap-2 p-4 rounded-2xl bg-surface-light dark:bg-surface-dark border-2 border-gray-100 dark:border-gray-700 hover:border-amber-500 transition-all duration-200 text-center">
+                    <span class="text-2xl">💎</span><span class="text-xs font-semibold text-text-muted-light dark:text-text-muted-dark">Bài 3.2</span><span class="text-xs font-medium">Chất là gì?</span><span class="w-2 h-2 rounded-full bg-gray-300 dark:bg-gray-600 lesson-dot" id="dot-M3-L2"></span>
+                </button>
+                <button onclick="showLesson('M3-L3')" id="tab-M3-L3" class="lesson-tab flex flex-col items-center gap-2 p-4 rounded-2xl bg-surface-light dark:bg-surface-dark border-2 border-gray-100 dark:border-gray-700 hover:border-amber-500 transition-all duration-200 text-center">
+                    <span class="text-2xl">📏</span><span class="text-xs font-semibold text-text-muted-light dark:text-text-muted-dark">Bài 3.3</span><span class="text-xs font-medium">Lượng là gì?</span><span class="w-2 h-2 rounded-full bg-gray-300 dark:bg-gray-600 lesson-dot" id="dot-M3-L3"></span>
+                </button>
+                <button onclick="showLesson('M3-L4')" id="tab-M3-L4" class="lesson-tab flex flex-col items-center gap-2 p-4 rounded-2xl bg-surface-light dark:bg-surface-dark border-2 border-gray-100 dark:border-gray-700 hover:border-amber-500 transition-all duration-200 text-center">
+                    <span class="text-2xl">🌡️</span><span class="text-xs font-semibold text-text-muted-light dark:text-text-muted-dark">Bài 3.4</span><span class="text-xs font-medium">Độ, Điểm nút, Bước nhảy</span><span class="w-2 h-2 rounded-full bg-gray-300 dark:bg-gray-600 lesson-dot" id="dot-M3-L4"></span>
+                </button>
+                <button onclick="showLesson('M3-L5')" id="tab-M3-L5" class="lesson-tab flex flex-col items-center gap-2 p-4 rounded-2xl bg-surface-light dark:bg-surface-dark border-2 border-gray-100 dark:border-gray-700 hover:border-amber-500 transition-all duration-200 text-center">
+                    <span class="text-2xl">🧭</span><span class="text-xs font-semibold text-text-muted-light dark:text-text-muted-dark">Bài 3.5</span><span class="text-xs font-medium">Phương pháp luận</span><span class="w-2 h-2 rounded-full bg-gray-300 dark:bg-gray-600 lesson-dot" id="dot-M3-L5"></span>
+                </button>
+                <button onclick="showLesson('M3-L6')" id="tab-M3-L6" class="lesson-tab flex flex-col items-center gap-2 p-4 rounded-2xl bg-surface-light dark:bg-surface-dark border-2 border-gray-100 dark:border-gray-700 hover:border-amber-500 transition-all duration-200 text-center">
+                    <span class="text-2xl">🎯</span><span class="text-xs font-semibold text-text-muted-light dark:text-text-muted-dark">Bài 3.6</span><span class="text-xs font-medium">Ứng dụng</span><span class="w-2 h-2 rounded-full bg-gray-300 dark:bg-gray-600 lesson-dot" id="dot-M3-L6"></span>
+                </button>
+            </div>
+        </section>
+
+        <!-- ===== LESSON CONTENT ===== -->
+        <section id="lesson-area" class="mb-16 min-h-[500px]">
+
+            <!-- BÀI 3.1: QUY LUẬT LÀ GÌ? -->
+            <div id="lesson-M3-L1" class="lesson-content hidden">
+                <div class="bg-surface-light dark:bg-surface-dark rounded-3xl border border-gray-100 dark:border-gray-700 shadow-sm overflow-hidden">
+                    <div class="lesson-header-academic">
+                        <div class="flex items-center gap-3 mb-3"><span class="text-3xl">📐</span><span class="text-amber-100 text-sm font-semibold uppercase tracking-wider">Bài 3.1 — Module 3</span></div>
+                        <h2 class="font-display text-3xl font-bold text-white mb-2">Quy luật là gì? Tổng quan ba quy luật biện chứng</h2>
+                        <p class="text-amber-100 text-sm">🎯 <strong>Mục tiêu:</strong> Định nghĩa quy luật; phân biệt quy luật khách quan vs. quy luật khoa học; định vị Quy luật Lượng-Chất trong ba quy luật biện chứng cơ bản.</p>
+                    </div>
+                    <div class="p-8 space-y-8">
+                        <div class="bg-amber-50 dark:bg-amber-900/20 border-l-4 border-amber-500 rounded-r-2xl p-6">
+                            <p class="text-xs font-bold text-amber-700 uppercase tracking-wider mb-2">📖 Trích dẫn kinh điển — Triet.txt, dòng 728</p>
+                            <blockquote class="font-display text-lg italic text-text-main-light dark:text-text-main-dark leading-relaxed">
+                                "Quy luật là mối liên hệ phổ biến, khách quan, bản chất, bền vững, tất yếu giữa các đối tượng và nhất định tác động khi có các điều kiện phù hợp."
+                            </blockquote>
+                        </div>
+
+                        <div class="space-y-5">
+                            <h3 class="font-display text-xl font-bold">Ba quy luật cơ bản của phép biện chứng duy vật</h3>
+                            <div class="overflow-x-auto">
+                                <table class="w-full text-sm border-collapse">
+                                    <thead>
+                                        <tr class="bg-amber-50 dark:bg-amber-900/20">
+                                            <th class="p-3 text-left font-bold border border-amber-200 dark:border-amber-800">Quy luật</th>
+                                            <th class="p-3 text-left font-bold border border-amber-200 dark:border-amber-800">Chỉ ra cái gì?</th>
+                                            <th class="p-3 text-left font-bold border border-amber-200 dark:border-amber-800">Từ khóa</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="bg-amber-50/50 dark:bg-amber-900/10">
+                                            <td class="p-3 border border-amber-200 dark:border-amber-800 font-semibold text-amber-700">⚗️ Lượng ↔ Chất <em>(Module 3)</em></td>
+                                            <td class="p-3 border border-amber-200 dark:border-amber-800"><strong>Cách thức</strong> vận động & phát triển</td>
+                                            <td class="p-3 border border-amber-200 dark:border-amber-800">Tích lũy → Bước nhảy</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="p-3 border border-gray-200 dark:border-gray-700 font-semibold text-purple-600">🔄 Thống nhất & Đấu tranh các mặt đối lập <em>(Module 4)</em></td>
+                                            <td class="p-3 border border-gray-200 dark:border-gray-700"><strong>Nguồn gốc/Động lực</strong> vận động</td>
+                                            <td class="p-3 border border-gray-200 dark:border-gray-700">Mâu thuẫn biện chứng</td>
+                                        </tr>
+                                        <tr class="bg-gray-50 dark:bg-gray-800/50">
+                                            <td class="p-3 border border-gray-200 dark:border-gray-700 font-semibold text-teal-600">🌀 Phủ định của phủ định <em>(Module 5)</em></td>
+                                            <td class="p-3 border border-gray-200 dark:border-gray-700"><strong>Khuynh hướng</strong> vận động (đi lên, xoáy ốc)</td>
+                                            <td class="p-3 border border-gray-200 dark:border-gray-700">Kế thừa biện chứng</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="grid md:grid-cols-2 gap-5">
+                                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-2xl p-5">
+                                    <h4 class="font-bold text-blue-600 mb-2">🔬 Quy luật khách quan</h4>
+                                    <p class="text-sm text-text-muted-light dark:text-text-muted-dark">Thuộc bản thân sự vật, tồn tại độc lập với nhận thức của con người. Ví dụ: nước sôi ở 100°C dù không ai biết.</p>
+                                </div>
+                                <div class="bg-green-50 dark:bg-green-900/20 rounded-2xl p-5">
+                                    <h4 class="font-bold text-green-600 mb-2">📚 Quy luật khoa học</h4>
+                                    <p class="text-sm text-text-muted-light dark:text-text-muted-dark">Sự khái quát quy luật khách quan bằng ngôn ngữ khoa học. Chỉ "gần đúng" với quy luật khách quan — có thể được cập nhật, bác bỏ.</p>
+                                </div>
+                            </div>
+
+                            <div class="bg-orange-50 dark:bg-orange-900/10 border border-orange-200 rounded-2xl p-5">
+                                <h4 class="font-bold text-orange-700 mb-2">💡 Tại sao phép biện chứng chỉ có 3 quy luật phổ biến?</h4>
+                                <p class="text-sm text-text-muted-light dark:text-text-muted-dark">V.I. Lênin và Ph. Ăngghen xác định: trong vô số quy luật, có 3 quy luật <strong>phổ biến nhất</strong> — chi phối mọi lĩnh vực tự nhiên, xã hội và tư duy. Mỗi quy luật trả lời một câu hỏi khác nhau về bản chất của sự phát triển.</p>
+                            </div>
+                        </div>
+
+                        <div class="border-t border-gray-100 dark:border-gray-700 pt-6">
+                            <h3 class="font-display text-lg font-bold mb-4">Câu hỏi phản tư</h3>
+                            <div class="space-y-3">
+                                <div class="reflection-item">
+                                    <button onclick="toggleReflection(this)" class="w-full text-left p-4 bg-gray-50 dark:bg-gray-800 rounded-xl hover:bg-amber-50 dark:hover:bg-amber-900/20 transition-colors text-sm font-medium flex justify-between items-center">
+                                        <span>1. "Quy luật tự nhiên" và "quy luật xã hội" có gì giống và khác nhau? Quy luật xã hội có mang tính khách quan không?</span>
+                                        <span class="material-symbols-outlined text-gray-400 flex-shrink-0 ml-2">expand_more</span>
+                                    </button>
+                                    <div class="reflection-answer p-4 text-sm text-text-muted-light dark:text-text-muted-dark">
+                                        <strong class="text-amber-600 block mb-1">Gợi ý:</strong> Giống: đều khách quan, không phụ thuộc ý chí. Khác: quy luật xã hội diễn ra <em>thông qua</em> hoạt động có ý thức của con người (không tự động như quy luật vật lý). "Quy luật xã hội chỉ diễn ra thông qua hoạt động có ý thức của con người" (dòng 750) → con người không thể "xóa" quy luật nhưng có thể chủ động hành động phù hợp với nó.
+                                    </div>
+                                </div>
+                                <div class="reflection-item">
+                                    <button onclick="toggleReflection(this)" class="w-full text-left p-4 bg-gray-50 dark:bg-gray-800 rounded-xl hover:bg-amber-50 dark:hover:bg-amber-900/20 transition-colors text-sm font-medium flex justify-between items-center">
+                                        <span>2. Tại sao V.I. Lênin viết: "chừng nào chúng ta chưa biết được một quy luật của giới tự nhiên thì quy luật đó biến ta thành những nô lệ của tính tất yếu mù quáng"?</span>
+                                        <span class="material-symbols-outlined text-gray-400 flex-shrink-0 ml-2">expand_more</span>
+                                    </button>
+                                    <div class="reflection-answer p-4 text-sm text-text-muted-light dark:text-text-muted-dark">
+                                        <strong class="text-amber-600 block mb-1">Gợi ý:</strong> Quy luật tác động bất kể ta biết hay không — nhưng khi ta biết, ta có thể chủ động hành động phù hợp hoặc vô hiệu hóa tác động của một quy luật bằng cách dựa vào quy luật khác. Ví dụ: biết quy luật hấp dẫn → chế tạo máy bay. Chưa biết quy luật → bị sự vật chi phối, không hiểu tại sao thất bại hay thành công.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 rounded-2xl p-6">
+                            <h3 class="font-display text-lg font-bold mb-3">Hoạt động: Điền bảng so sánh</h3>
+                            <p class="text-sm text-text-muted-light dark:text-text-muted-dark mb-3">Ghép mỗi câu hỏi với quy luật biện chứng phù hợp (Lượng-Chất / Mâu thuẫn / Phủ định):</p>
+                            <div class="space-y-2 text-sm">
+                                <div class="flex gap-2 items-start p-2 bg-white dark:bg-gray-800 rounded-lg"><span class="font-bold text-amber-600 flex-shrink-0">A.</span><span>"Tại sao nước trở thành hơi khi đủ nhiệt độ?" → <em>Quy luật ___</em></span></div>
+                                <div class="flex gap-2 items-start p-2 bg-white dark:bg-gray-800 rounded-lg"><span class="font-bold text-purple-600 flex-shrink-0">B.</span><span>"Tại sao xã hội loài người liên tục vận động và phát triển?" → <em>Quy luật ___</em></span></div>
+                                <div class="flex gap-2 items-start p-2 bg-white dark:bg-gray-800 rounded-lg"><span class="font-bold text-teal-600 flex-shrink-0">C.</span><span>"Tại sao sự phát triển đi theo hướng lên nhưng không phải đường thẳng?" → <em>Quy luật ___</em></span></div>
+                            </div>
+                            <p class="text-xs text-gray-400 mt-3">Đáp án: A → Lượng-Chất; B → Mâu thuẫn; C → Phủ định của phủ định</p>
+                        </div>
+
+                        <div class="flex justify-end">
+                            <button onclick="completeLesson('M3-L1')" id="btn-complete-M3-L1" class="bg-primary hover:bg-amber-700 text-white font-semibold px-8 py-3 rounded-xl transition-colors flex items-center gap-2">
+                                <span class="material-symbols-outlined">check_circle</span> Đánh dấu hoàn thành
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BÀI 3.2: CHẤT LÀ GÌ? -->
+            <div id="lesson-M3-L2" class="lesson-content hidden">
+                <div class="bg-surface-light dark:bg-surface-dark rounded-3xl border border-gray-100 dark:border-gray-700 shadow-sm overflow-hidden">
+                    <div class="lesson-header-academic">
+                        <div class="flex items-center gap-3 mb-3"><span class="text-3xl">💎</span><span class="text-yellow-100 text-sm font-semibold uppercase tracking-wider">Bài 3.2 — Module 3</span></div>
+                        <h2 class="font-display text-3xl font-bold text-white mb-2">Chất là gì?</h2>
+                        <p class="text-yellow-100 text-sm">🎯 <strong>Mục tiêu:</strong> Định nghĩa chất; phân biệt thuộc tính cơ bản/không cơ bản; hiểu phương thức liên kết quyết định chất của sự vật.</p>
+                    </div>
+                    <div class="p-8 space-y-8">
+                        <div class="bg-yellow-50 dark:bg-yellow-900/20 border-l-4 border-yellow-500 rounded-r-2xl p-6">
+                            <p class="text-xs font-bold text-yellow-700 uppercase tracking-wider mb-2">📖 Trích dẫn kinh điển — Triet.txt, dòng 735</p>
+                            <blockquote class="font-display text-lg italic text-text-main-light dark:text-text-main-dark leading-relaxed">
+                                "Chất là khái niệm dùng để chỉ tính quy định khách quan vốn có của sự vật, hiện tượng; là sự thống nhất hữu cơ của các thuộc tính, yếu tố tạo nên sự vật, hiện tượng làm cho sự vật, hiện tượng là nó mà không phải là sự vật, hiện tượng khác."
+                            </blockquote>
+                        </div>
+
+                        <div class="space-y-5">
+                            <div class="grid md:grid-cols-2 gap-5">
+                                <div class="bg-amber-50 dark:bg-amber-900/20 rounded-2xl p-5">
+                                    <h4 class="font-bold text-amber-700 mb-3">Đặc điểm cơ bản của Chất</h4>
+                                    <ul class="text-sm text-text-muted-light dark:text-text-muted-dark space-y-2">
+                                        <li>✦ <strong>Tính khách quan</strong> — không phụ thuộc nhận thức người</li>
+                                        <li>✦ <strong>Tính ổn định tương đối</strong> — chừng nào sự vật chưa biến thành cái khác</li>
+                                        <li>✦ <strong>Tính đa dạng</strong> — một sự vật có thể có nhiều chất tùy quan hệ</li>
+                                    </ul>
+                                </div>
+                                <div class="bg-gray-50 dark:bg-gray-800 rounded-2xl p-5">
+                                    <h4 class="font-bold mb-3">Thuộc tính cơ bản vs. không cơ bản</h4>
+                                    <p class="text-sm text-text-muted-light dark:text-text-muted-dark">Chỉ thuộc tính <strong>cơ bản</strong> mới biểu hiện chất — và tính "cơ bản" chỉ có ý nghĩa trong <em>mối liên hệ cụ thể</em>. Ví dụ: với động vật, "tư duy" là thuộc tính cơ bản của người. Nhưng giữa hai người với nhau, "dấu vân tay" mới là thuộc tính cơ bản để phân biệt. (dòng 736)</p>
+                                </div>
+                            </div>
+
+                            <h3 class="font-display text-xl font-bold">Ví dụ kinh điển: Kim cương và Than chì</h3>
+                            <div class="bg-gradient-to-r from-gray-50 to-amber-50 dark:from-gray-800 dark:to-amber-900/20 rounded-2xl p-6">
+                                <div class="grid md:grid-cols-3 gap-4 text-center text-sm">
+                                    <div class="bg-white dark:bg-gray-700 rounded-xl p-4">
+                                        <p class="text-3xl mb-2">💎</p>
+                                        <p class="font-bold">Kim cương</p>
+                                        <p class="text-xs text-gray-500">Thành phần: Carbon (C)</p>
+                                        <p class="text-xs text-amber-600 font-medium mt-1">Cứng nhất tự nhiên</p>
+                                    </div>
+                                    <div class="flex items-center justify-center">
+                                        <div class="text-center">
+                                            <p class="text-xs text-gray-500 mb-1">Cùng nguyên tố</p>
+                                            <p class="text-2xl">⚛️</p>
+                                            <p class="font-bold text-amber-600">Carbon (C)</p>
+                                            <p class="text-xs text-gray-500 mt-1">Phương thức liên kết<br/><strong>KHÁC NHAU</strong></p>
+                                        </div>
+                                    </div>
+                                    <div class="bg-white dark:bg-gray-700 rounded-xl p-4">
+                                        <p class="text-3xl mb-2">🪨</p>
+                                        <p class="font-bold">Than chì</p>
+                                        <p class="text-xs text-gray-500">Thành phần: Carbon (C)</p>
+                                        <p class="text-xs text-blue-600 font-medium mt-1">Mềm, dẫn điện</p>
+                                    </div>
+                                </div>
+                                <p class="text-xs text-center text-gray-400 mt-3">→ Chứng minh: chất phụ thuộc vào <strong>phương thức liên kết</strong>, không chỉ vào thành phần. (Triet.txt, dòng 737)</p>
+                            </div>
+
+                            <div class="bg-orange-50 dark:bg-orange-900/10 border border-orange-200 rounded-2xl p-5">
+                                <h4 class="font-bold text-orange-700 mb-2">💼 Ứng dụng trong quản lý nhóm</h4>
+                                <p class="text-sm text-text-muted-light dark:text-text-muted-dark">"Trong một tập thể nhất định nếu phương thức liên kết giữa các cá nhân biến đổi thì tập thể đó có thể trở nên vững mạnh, hoặc sẽ trở thành yếu kém, nghĩa là chất của tập thể biến đổi." (dòng 737). → Cùng 10 người nhưng thay đổi cơ cấu tổ chức, phân công vai trò → chất đội nhóm thay đổi hẳn.</p>
+                            </div>
+                        </div>
+
+                        <div class="border-t border-gray-100 dark:border-gray-700 pt-6">
+                            <h3 class="font-display text-lg font-bold mb-4">Câu hỏi phản tư</h3>
+                            <div class="space-y-3">
+                                <div class="reflection-item">
+                                    <button onclick="toggleReflection(this)" class="w-full text-left p-4 bg-gray-50 dark:bg-gray-800 rounded-xl hover:bg-yellow-50 dark:hover:bg-yellow-900/20 transition-colors text-sm font-medium flex justify-between items-center">
+                                        <span>1. Sinh viên A và sinh viên B cùng học Trường Đại học X, cùng học lực giỏi. "Chất" của hai người có giống nhau không? Tại sao?</span>
+                                        <span class="material-symbols-outlined text-gray-400 flex-shrink-0 ml-2">expand_more</span>
+                                    </button>
+                                    <div class="reflection-answer p-4 text-sm text-text-muted-light dark:text-text-muted-dark">
+                                        <strong class="text-yellow-600 block mb-1">Gợi ý:</strong> Trong mối quan hệ với trường học → thuộc tính "học lực giỏi" là cơ bản → chất giống nhau. Nhưng trong mối quan hệ cụ thể giữa hai người với nhau → vô số thuộc tính khác (tính cách, kỹ năng mềm, điểm mạnh riêng) trở thành cơ bản → chất của mỗi người hoàn toàn khác. CNDV biện chứng: thuộc tính cơ bản chỉ có ý nghĩa trong mối liên hệ cụ thể.
+                                    </div>
+                                </div>
+                                <div class="reflection-item">
+                                    <button onclick="toggleReflection(this)" class="w-full text-left p-4 bg-gray-50 dark:bg-gray-800 rounded-xl hover:bg-yellow-50 dark:hover:bg-yellow-900/20 transition-colors text-sm font-medium flex justify-between items-center">
+                                        <span>2. Một tổ chức có thể "thay đổi chất" mà không cần thêm nhân sự hay tài chính không? Cho ví dụ cụ thể.</span>
+                                        <span class="material-symbols-outlined text-gray-400 flex-shrink-0 ml-2">expand_more</span>
+                                    </button>
+                                    <div class="reflection-answer p-4 text-sm text-text-muted-light dark:text-text-muted-dark">
+                                        <strong class="text-yellow-600 block mb-1">Gợi ý:</strong> Có thể! Chất phụ thuộc phương thức liên kết. Ví dụ: Toyota "thay đổi chất" sản xuất bằng hệ thống Kanban/Lean Manufacturing (thay đổi cách liên kết quy trình) mà không cần thêm người hay vốn ban đầu. Một lớp học thay đổi từ giảng bài truyền thống sang thảo luận nhóm → chất học tập thay đổi dù cùng học sinh, giáo viên.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 rounded-2xl p-6">
+                            <h3 class="font-display text-lg font-bold mb-3">Hoạt động: Phân tích 3 tình huống — Chất là gì?</h3>
+                            <p class="text-sm text-text-muted-light dark:text-text-muted-dark mb-3">Với mỗi tình huống: (a) Xác định "sự vật" đang xét; (b) Chất của nó là gì? (c) Thuộc tính cơ bản nào biểu hiện chất đó?</p>
+                            <div class="space-y-2 text-sm">
+                                <div class="flex gap-2 items-start p-3 bg-white dark:bg-gray-800 rounded-xl"><span class="text-amber-500">1.</span><span>Muối NaCl trong bát canh — vs — muối NaCl trong gói bảo quản thực phẩm. Chất có giống nhau không?</span></div>
+                                <div class="flex gap-2 items-start p-3 bg-white dark:bg-gray-800 rounded-xl"><span class="text-amber-500">2.</span><span>Một sinh viên vừa tốt nghiệp — chất của họ thay đổi như thế nào so với trước khi vào đại học?</span></div>
+                                <div class="flex gap-2 items-start p-3 bg-white dark:bg-gray-800 rounded-xl"><span class="text-amber-500">3.</span><span>Nước H₂O ở dạng lỏng và ở dạng rắn (nước đá) — chất có khác nhau không?</span></div>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center justify-between">
+                            <button onclick="showLesson('M3-L1')" class="text-sm text-text-muted-light hover:text-primary flex items-center gap-1"><span class="material-symbols-outlined text-sm">arrow_back</span> Bài trước</button>
+                            <div class="flex gap-3">
+                                <button onclick="openFormativeQuiz('M3-FQ1')" class="bg-yellow-500 hover:bg-yellow-600 text-white font-semibold px-6 py-3 rounded-xl transition-colors flex items-center gap-2 text-sm">
+                                    <span class="material-symbols-outlined text-sm">quiz</span> Kiểm tra hình thành (Bài 3.1–3.2)
+                                </button>
+                                <button onclick="completeLesson('M3-L2')" id="btn-complete-M3-L2" class="bg-primary hover:bg-amber-700 text-white font-semibold px-6 py-3 rounded-xl transition-colors flex items-center gap-2 text-sm"><span class="material-symbols-outlined text-sm">check_circle</span> Hoàn thành</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BÀI 3.3: LƯỢNG LÀ GÌ? -->
+            <div id="lesson-M3-L3" class="lesson-content hidden">
+                <div class="bg-surface-light dark:bg-surface-dark rounded-3xl border border-gray-100 dark:border-gray-700 shadow-sm overflow-hidden">
+                    <div class="lesson-header-academic">
+                        <div class="flex items-center gap-3 mb-3"><span class="text-3xl">📏</span><span class="text-orange-100 text-sm font-semibold uppercase tracking-wider">Bài 3.3 — Module 3</span></div>
+                        <h2 class="font-display text-3xl font-bold text-white mb-2">Lượng là gì?</h2>
+                        <p class="text-orange-100 text-sm">🎯 <strong>Mục tiêu:</strong> Định nghĩa lượng; phân biệt lượng đo được và không đo được; nắm tính tương đối của ranh giới chất–lượng.</p>
+                    </div>
+                    <div class="p-8 space-y-8">
+                        <div class="bg-orange-50 dark:bg-orange-900/20 border-l-4 border-orange-500 rounded-r-2xl p-6">
+                            <p class="text-xs font-bold text-orange-600 uppercase tracking-wider mb-2">📖 Trích dẫn kinh điển — Triet.txt, dòng 739</p>
+                            <blockquote class="font-display text-lg italic text-text-main-light dark:text-text-main-dark leading-relaxed">
+                                "Lượng là khái niệm dùng để chỉ tính quy định vốn có của sự vật, hiện tượng về mặt quy mô, trình độ phát triển, các yếu tố biểu hiện ở số lượng các thuộc tính, ở tổng số các bộ phận, ở đại lượng, ở tốc độ và nhịp điệu vận động và phát triển của sự vật, hiện tượng."
+                            </blockquote>
+                        </div>
+
+                        <div class="space-y-5">
+                            <h3 class="font-display text-xl font-bold">Hai dạng biểu hiện của Lượng</h3>
+                            <div class="grid md:grid-cols-2 gap-5">
+                                <div class="bg-green-50 dark:bg-green-900/20 rounded-2xl p-5">
+                                    <h4 class="font-bold text-green-600 mb-3">📊 Lượng đo, đếm được</h4>
+                                    <p class="text-xs text-gray-400 mb-2">(Phổ biến trong tự nhiên và phần nhiều trong xã hội)</p>
+                                    <ul class="text-sm text-text-muted-light dark:text-text-muted-dark space-y-1">
+                                        <li>• Nhiệt độ nước: 25°C, 50°C, 100°C</li>
+                                        <li>• Số sinh viên trong lớp: 35 người</li>
+                                        <li>• Tốc độ tăng trưởng GDP: 6.8%/năm</li>
+                                        <li>• Số giờ học/tuần: 24 giờ</li>
+                                    </ul>
+                                </div>
+                                <div class="bg-purple-50 dark:bg-purple-900/20 rounded-2xl p-5">
+                                    <h4 class="font-bold text-purple-600 mb-3">🧠 Lượng chỉ nhận biết bằng trừu tượng hóa</h4>
+                                    <p class="text-xs text-gray-400 mb-2">(Phổ biến trong xã hội và tư duy)</p>
+                                    <ul class="text-sm text-text-muted-light dark:text-text-muted-dark space-y-1">
+                                        <li>• Mức độ trưởng thành về nhận thức</li>
+                                        <li>• "Độ chín" của thời cơ cách mạng</li>
+                                        <li>• Mức độ tín nhiệm trong tổ chức</li>
+                                        <li>• Trình độ văn hóa chính trị quần chúng</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="bg-amber-50 dark:bg-amber-900/10 border border-amber-200 rounded-2xl p-5">
+                                <h4 class="font-bold text-amber-700 mb-2">🔄 Tính tương đối của ranh giới Chất–Lượng</h4>
+                                <p class="text-sm text-text-muted-light dark:text-text-muted-dark mb-3">"Sự phân biệt giữa chất và lượng chỉ có ý nghĩa tương đối... cái là lượng trong mối quan hệ này, lại có thể là chất trong mối quan hệ khác." (dòng 739)</p>
+                                <div class="grid md:grid-cols-2 gap-3 text-xs">
+                                    <div class="bg-white dark:bg-gray-800 p-3 rounded-lg">
+                                        <p class="font-bold mb-1">Ví dụ: Điểm GPA</p>
+                                        <p>→ Trong quan hệ với <em>học lực</em>: GPA = <strong>lượng</strong> (đo chất học tập)</p>
+                                        <p>→ Trong quan hệ xét <em>học bổng</em>: GPA ≥ 3.5 = điều kiện <strong>chất</strong> (đủ/không đủ điều kiện)</p>
+                                    </div>
+                                    <div class="bg-white dark:bg-gray-800 p-3 rounded-lg">
+                                        <p class="font-bold mb-1">Ví dụ: Nhiệt độ</p>
+                                        <p>→ Trong quan hệ với <em>trạng thái nước</em>: nhiệt độ = <strong>lượng</strong></p>
+                                        <p>→ Trong quan hệ <em>phân loại khí hậu</em>: "nhiệt đới" hay "ôn đới" = <strong>chất</strong></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="border-t border-gray-100 dark:border-gray-700 pt-6">
+                            <h3 class="font-display text-lg font-bold mb-4">Câu hỏi phản tư</h3>
+                            <div class="space-y-3">
+                                <div class="reflection-item">
+                                    <button onclick="toggleReflection(this)" class="w-full text-left p-4 bg-gray-50 dark:bg-gray-800 rounded-xl hover:bg-orange-50 dark:hover:bg-orange-900/20 transition-colors text-sm font-medium flex justify-between items-center">
+                                        <span>1. "Tình yêu" là lượng hay chất? Làm sao "đo" được lượng của tình yêu?</span>
+                                        <span class="material-symbols-outlined text-gray-400 flex-shrink-0 ml-2">expand_more</span>
+                                    </button>
+                                    <div class="reflection-answer p-4 text-sm text-text-muted-light dark:text-text-muted-dark">
+                                        <strong class="text-orange-600 block mb-1">Gợi ý:</strong> Tình yêu <em>như một cảm xúc cụ thể</em> là chất. Nhưng "độ sâu", "mức độ cam kết", "thời gian dành cho nhau" là lượng của tình yêu — không đo bằng số liệu cụ thể mà chỉ nhận biết bằng trừu tượng hóa và so sánh. Đây là trường hợp "lượng trong xã hội và tư duy" — không thể đo theo đơn vị vật lý nhưng vẫn có thể nhận ra sự tích lũy.
+                                    </div>
+                                </div>
+                                <div class="reflection-item">
+                                    <button onclick="toggleReflection(this)" class="w-full text-left p-4 bg-gray-50 dark:bg-gray-800 rounded-xl hover:bg-orange-50 dark:hover:bg-orange-900/20 transition-colors text-sm font-medium flex justify-between items-center">
+                                        <span>2. "Số tiền trong tài khoản ngân hàng" là lượng hay chất? Cho ví dụ khi nó là lượng và khi nó là chất.</span>
+                                        <span class="material-symbols-outlined text-gray-400 flex-shrink-0 ml-2">expand_more</span>
+                                    </button>
+                                    <div class="reflection-answer p-4 text-sm text-text-muted-light dark:text-text-muted-dark">
+                                        <strong class="text-orange-600 block mb-1">Gợi ý:</strong> Khi là <strong>lượng</strong>: "Tài khoản có 500 triệu" — số tiền phản ánh mức độ giàu có (lượng của sự giàu có). Khi là <strong>chất</strong>: "Doanh nghiệp có đủ vốn pháp định ≥ 10 tỷ để kinh doanh bất động sản" — 10 tỷ là điểm nút, trên đó mới đạt chất "đủ điều kiện pháp lý". Tùy mối quan hệ → chất hay lượng thay đổi.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center justify-between">
+                            <button onclick="showLesson('M3-L2')" class="text-sm text-text-muted-light hover:text-primary flex items-center gap-1"><span class="material-symbols-outlined text-sm">arrow_back</span> Bài trước</button>
+                            <button onclick="completeLesson('M3-L3')" id="btn-complete-M3-L3" class="bg-primary hover:bg-amber-700 text-white font-semibold px-8 py-3 rounded-xl transition-colors flex items-center gap-2 text-sm"><span class="material-symbols-outlined text-sm">check_circle</span> Hoàn thành</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BÀI 3.4: ĐỘ, ĐIỂM NÚT, BƯỚC NHẢY -->
+            <div id="lesson-M3-L4" class="lesson-content hidden">
+                <div class="bg-surface-light dark:bg-surface-dark rounded-3xl border border-gray-100 dark:border-gray-700 shadow-sm overflow-hidden">
+                    <div class="lesson-header-academic">
+                        <div class="flex items-center gap-3 mb-3"><span class="text-3xl">🌡️</span><span class="text-teal-100 text-sm font-semibold uppercase tracking-wider">Bài 3.4 — Module 3</span></div>
+                        <h2 class="font-display text-3xl font-bold text-white mb-2">Độ, Điểm nút & Bước nhảy</h2>
+                        <p class="text-teal-100 text-sm">🎯 <strong>Mục tiêu:</strong> Định nghĩa và phân biệt 3 phạm trù; mô tả cơ chế lượng → chất; phân loại 4 dạng bước nhảy.</p>
+                    </div>
+                    <div class="p-8 space-y-8">
+                        <div class="bg-teal-50 dark:bg-teal-900/20 border-l-4 border-teal-500 rounded-r-2xl p-6">
+                            <p class="text-xs font-bold text-teal-600 uppercase tracking-wider mb-2">📖 Trích dẫn kinh điển — Triet.txt, dòng 741</p>
+                            <blockquote class="font-display text-base italic text-text-main-light dark:text-text-main-dark leading-relaxed">
+                                "Độ là khái niệm dùng để chỉ mối liên hệ thống nhất và quy định lẫn nhau giữa chất với lượng; là giới hạn tồn tại của sự vật, hiện tượng mà trong đó sự thay đổi về lượng chưa dẫn đến sự thay đổi về chất; sự vật, hiện tượng vẫn là nó, chưa chuyển hóa thành sự vật, hiện tượng khác."
+                            </blockquote>
+                        </div>
+
+                        <div class="space-y-6">
+                            <h3 class="font-display text-xl font-bold">Sơ đồ cơ chế Lượng → Chất</h3>
+                            <div class="bg-gray-50 dark:bg-gray-800 rounded-2xl p-6 overflow-x-auto">
+                                <div class="flex items-center justify-center gap-1 min-w-max mx-auto flex-wrap gap-y-3">
+                                    <div class="flow-node bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 border-2 border-blue-200 dark:border-blue-700">📊 Lượng<br/><span class="font-normal text-xs">tích lũy dần</span></div>
+                                    <div class="flow-arrow">→</div>
+                                    <div class="flow-node bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300 border-2 border-amber-200 dark:border-amber-700">📐 Độ<br/><span class="font-normal text-xs">giới hạn ổn định</span></div>
+                                    <div class="flow-arrow">→</div>
+                                    <div class="flow-node bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-300 border-2 border-red-200 dark:border-red-700">🎯 Điểm nút<br/><span class="font-normal text-xs">phá vỡ độ cũ</span></div>
+                                    <div class="flow-arrow">→</div>
+                                    <div class="flow-node bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 border-2 border-purple-200 dark:border-purple-700">🚀 Bước nhảy<br/><span class="font-normal text-xs">chuyển hóa căn bản</span></div>
+                                    <div class="flow-arrow">→</div>
+                                    <div class="flow-node bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 border-2 border-green-200 dark:border-green-700">✨ Chất mới<br/><span class="font-normal text-xs">+ Độ mới + Lượng mới</span></div>
+                                </div>
+                                <p class="text-xs text-center text-gray-400 mt-4">→ Chu kỳ lặp vô tận: chất mới tạo ra lượng mới, lại tích lũy, lại bước nhảy... (Triet.txt, dòng 742)</p>
+                            </div>
+
+                            <h3 class="font-display text-xl font-bold">Ví dụ: Nước đun sôi — phân tích đầy đủ</h3>
+                            <div class="grid md:grid-cols-2 gap-4 text-sm">
+                                <div class="space-y-2">
+                                    <div class="flex gap-3 items-start p-3 bg-blue-50 dark:bg-blue-900/20 rounded-xl"><div class="w-8 h-8 rounded-full bg-blue-500 text-white flex items-center justify-center text-xs font-bold flex-shrink-0">Độ</div><div><p class="font-medium">0°C → 99°C</p><p class="text-xs text-gray-500">Lượng (nhiệt độ) tích lũy trong giới hạn độ của nước lỏng — chất vẫn là nước lỏng</p></div></div>
+                                    <div class="flex gap-3 items-start p-3 bg-red-50 dark:bg-red-900/20 rounded-xl"><div class="w-8 h-8 rounded-full bg-red-500 text-white flex items-center justify-center text-xs font-bold flex-shrink-0">⚡</div><div><p class="font-medium">100°C — Điểm nút</p><p class="text-xs text-gray-500">Lượng phá vỡ độ cũ, bắt đầu chuyển hóa căn bản về chất</p></div></div>
+                                </div>
+                                <div class="space-y-2">
+                                    <div class="flex gap-3 items-start p-3 bg-purple-50 dark:bg-purple-900/20 rounded-xl"><div class="w-8 h-8 rounded-full bg-purple-500 text-white flex items-center justify-center text-xs font-bold flex-shrink-0">🚀</div><div><p class="font-medium">Quá trình bốc hơi — Bước nhảy</p><p class="text-xs text-gray-500">Chuyển hóa căn bản: nước → hơi nước (tức thời, toàn bộ ở điều kiện áp suất thường)</p></div></div>
+                                    <div class="flex gap-3 items-start p-3 bg-green-50 dark:bg-green-900/20 rounded-xl"><div class="w-8 h-8 rounded-full bg-green-500 text-white flex items-center justify-center text-xs font-bold flex-shrink-0">✨</div><div><p class="font-medium">Hơi nước — Chất mới</p><p class="text-xs text-gray-500">Với độ mới (100°C–nhiệt độ cao hơn) và lượng mới tiếp tục thay đổi</p></div></div>
+                                </div>
+                            </div>
+
+                            <h3 class="font-display text-xl font-bold">4 loại Bước nhảy</h3>
+                            <div class="grid md:grid-cols-2 gap-4">
+                                <div class="bg-gray-50 dark:bg-gray-800 rounded-2xl p-5">
+                                    <p class="text-xs font-bold text-gray-500 uppercase mb-3">Phân loại theo QUY MÔ (dòng 744)</p>
+                                    <div class="space-y-2">
+                                        <div class="flex gap-2 items-start text-sm p-2 bg-white dark:bg-gray-700 rounded-lg"><span class="font-bold text-teal-600 flex-shrink-0">Toàn bộ:</span><span class="text-text-muted-light dark:text-text-muted-dark">Tất cả các mặt thay đổi. VD: Cách mạng 1945 — toàn bộ cấu trúc xã hội thay đổi.</span></div>
+                                        <div class="flex gap-2 items-start text-sm p-2 bg-white dark:bg-gray-700 rounded-lg"><span class="font-bold text-cyan-600 flex-shrink-0">Cục bộ:</span><span class="text-text-muted-light dark:text-text-muted-dark">Chỉ một số mặt thay đổi. VD: Cải cách giáo dục — đổi mới chương trình nhưng chưa đổi mới giáo viên và cơ sở hạ tầng.</span></div>
+                                    </div>
+                                </div>
+                                <div class="bg-gray-50 dark:bg-gray-800 rounded-2xl p-5">
+                                    <p class="text-xs font-bold text-gray-500 uppercase mb-3">Phân loại theo THỜI GIAN (dòng 745)</p>
+                                    <div class="space-y-2">
+                                        <div class="flex gap-2 items-start text-sm p-2 bg-white dark:bg-gray-700 rounded-lg"><span class="font-bold text-orange-600 flex-shrink-0">Tức thời:</span><span class="text-text-muted-light dark:text-text-muted-dark">Chất biến đổi mau chóng. VD: Nước đá tan → nước lỏng khi nhiệt độ qua 0°C.</span></div>
+                                        <div class="flex gap-2 items-start text-sm p-2 bg-white dark:bg-gray-700 rounded-lg"><span class="font-bold text-amber-600 flex-shrink-0">Dần dần:</span><span class="text-text-muted-light dark:text-text-muted-dark">Tích lũy yếu tố chất mới, loại bỏ chất cũ từng bước. VD: Người tự học tiếng Anh 3 năm, dần đạt trình độ lưu loát.</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="border-t border-gray-100 dark:border-gray-700 pt-6">
+                            <h3 class="font-display text-lg font-bold mb-4">Câu hỏi phản tư</h3>
+                            <div class="space-y-3">
+                                <div class="reflection-item">
+                                    <button onclick="toggleReflection(this)" class="w-full text-left p-4 bg-gray-50 dark:bg-gray-800 rounded-xl hover:bg-teal-50 dark:hover:bg-teal-900/20 transition-colors text-sm font-medium flex justify-between items-center">
+                                        <span>1. Quá trình học lái xe: từ chưa biết → biết lý thuyết → biết lái chậm → lái thành thạo → lái tự động (không cần nghĩ). Hãy xác định các "bước nhảy" trong quá trình này.</span>
+                                        <span class="material-symbols-outlined text-gray-400 flex-shrink-0 ml-2">expand_more</span>
+                                    </button>
+                                    <div class="reflection-answer p-4 text-sm text-text-muted-light dark:text-text-muted-dark">
+                                        <strong class="text-teal-600 block mb-1">Gợi ý:</strong> Có ít nhất 3 bước nhảy: (1) Từ "không biết" → "biết lý thuyết": tích lũy kiến thức đến điểm nút thi lý thuyết → bước nhảy tức thời/cục bộ. (2) Từ "biết lý thuyết" → "lái được cơ bản": tích lũy giờ thực hành → bước nhảy (chất: tự điều khiển xe). (3) Từ "lái có ý thức" → "lái tự động": tích lũy kinh nghiệm → bước nhảy (chất: kỹ năng tiềm thức). Mỗi bước nhảy là bước nhảy dần dần!
+                                    </div>
+                                </div>
+                                <div class="reflection-item">
+                                    <button onclick="toggleReflection(this)" class="w-full text-left p-4 bg-gray-50 dark:bg-gray-800 rounded-xl hover:bg-teal-50 dark:hover:bg-teal-900/20 transition-colors text-sm font-medium flex justify-between items-center">
+                                        <span>2. Tại sao bước nhảy toàn bộ và bước nhảy cục bộ chỉ có ý nghĩa tương đối? Cho ví dụ minh họa.</span>
+                                        <span class="material-symbols-outlined text-gray-400 flex-shrink-0 ml-2">expand_more</span>
+                                    </button>
+                                    <div class="reflection-answer p-4 text-sm text-text-muted-light dark:text-text-muted-dark">
+                                        <strong class="text-teal-600 block mb-1">Gợi ý:</strong> Tương đối vì tùy phạm vi xem xét. Ví dụ: "Chuyển đổi số" của một doanh nghiệp → là bước nhảy toàn bộ (thay đổi quy trình, công cụ, văn hóa làm việc) nếu xét trong doanh nghiệp. Nhưng là cục bộ nếu xét trong toàn ngành kinh tế (chỉ một vài doanh nghiệp thay đổi). Hay "Đổi mới 1986" — toàn bộ với Việt Nam nhưng cục bộ với thế giới.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-teal-50 dark:bg-teal-900/20 border border-teal-200 rounded-2xl p-6">
+                            <h3 class="font-display text-lg font-bold mb-3">Hoạt động: Phân tích theo mô hình Lượng→Chất</h3>
+                            <p class="text-sm text-text-muted-light dark:text-text-muted-dark mb-3">Chọn <strong>1 trong 3</strong> tình huống và phân tích đầy đủ: Lượng tích lũy là gì? Độ là gì? Điểm nút là gì? Bước nhảy loại nào? Chất mới là gì?</p>
+                            <div class="space-y-2 text-sm">
+                                <div class="p-3 bg-white dark:bg-gray-800 rounded-xl"><span class="font-bold text-teal-600">A.</span> Học sinh từ lớp 1 đến lớp 12 → tốt nghiệp THPT</div>
+                                <div class="p-3 bg-white dark:bg-gray-800 rounded-xl"><span class="font-bold text-cyan-600">B.</span> Một startup tích lũy người dùng từ 100 → 10.000 → 1 triệu → đạt "unicorn" (định giá >1 tỷ USD)</div>
+                                <div class="p-3 bg-white dark:bg-gray-800 rounded-xl"><span class="font-bold text-orange-600">C.</span> Quá trình rèn luyện sức khỏe: từ không tập → tập 3 tháng → chạy được 10km</div>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center justify-between">
+                            <button onclick="showLesson('M3-L3')" class="text-sm text-text-muted-light hover:text-primary flex items-center gap-1"><span class="material-symbols-outlined text-sm">arrow_back</span> Bài trước</button>
+                            <div class="flex gap-3">
+                                <button onclick="openFormativeQuiz('M3-FQ2')" class="bg-teal-500 hover:bg-teal-600 text-white font-semibold px-6 py-3 rounded-xl transition-colors flex items-center gap-2 text-sm">
+                                    <span class="material-symbols-outlined text-sm">quiz</span> Kiểm tra hình thành (Bài 3.3–3.4)
+                                </button>
+                                <button onclick="completeLesson('M3-L4')" id="btn-complete-M3-L4" class="bg-primary hover:bg-amber-700 text-white font-semibold px-6 py-3 rounded-xl transition-colors flex items-center gap-2 text-sm"><span class="material-symbols-outlined text-sm">check_circle</span> Hoàn thành</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BÀI 3.5: Ý NGHĨA PHƯƠNG PHÁP LUẬN -->
+            <div id="lesson-M3-L5" class="lesson-content hidden">
+                <div class="bg-surface-light dark:bg-surface-dark rounded-3xl border border-gray-100 dark:border-gray-700 shadow-sm overflow-hidden">
+                    <div class="lesson-header-academic">
+                        <div class="flex items-center gap-3 mb-3"><span class="text-3xl">🧭</span><span class="text-indigo-100 text-sm font-semibold uppercase tracking-wider">Bài 3.5 — Module 3</span></div>
+                        <h2 class="font-display text-3xl font-bold text-white mb-2">Ý nghĩa phương pháp luận</h2>
+                        <p class="text-indigo-100 text-sm">🎯 <strong>Mục tiêu:</strong> Rút ra 4 nguyên tắc phương pháp luận; phê phán tư tưởng nôn nóng và bảo thủ; áp dụng vào thực tiễn học tập, quản lý, xã hội.</p>
+                    </div>
+                    <div class="p-8 space-y-8">
+                        <div class="bg-indigo-50 dark:bg-indigo-900/20 border-l-4 border-indigo-500 rounded-r-2xl p-6">
+                            <p class="text-xs font-bold text-indigo-600 uppercase tracking-wider mb-2">📖 Trích dẫn kinh điển — Triet.txt, dòng 748</p>
+                            <blockquote class="font-display text-lg italic text-text-main-light dark:text-text-main-dark leading-relaxed">
+                                "Trong hoạt động nhận thức và hoạt động thực tiễn phải biết tích lũy về lượng để có biến đổi về chất; không được nôn nóng cũng như không được bảo thủ."
+                            </blockquote>
+                        </div>
+
+                        <div class="space-y-5">
+                            <h3 class="font-display text-xl font-bold">4 Nguyên tắc từ Quy luật Lượng-Chất</h3>
+                            <div class="grid md:grid-cols-2 gap-4">
+                                <div class="flex gap-4 items-start p-5 bg-amber-50 dark:bg-amber-900/20 rounded-2xl border border-amber-200 dark:border-amber-800/30">
+                                    <div class="w-10 h-10 rounded-full bg-amber-500 text-white flex items-center justify-center font-bold flex-shrink-0">1</div>
+                                    <div><p class="font-bold text-amber-700 mb-1">Tích lũy lượng kiên nhẫn</p><p class="text-xs text-text-muted-light dark:text-text-muted-dark">Muốn có bước nhảy chất, phải thực hiện quá trình tích lũy lượng — không có shortcut. (dòng 748)</p></div>
+                                </div>
+                                <div class="flex gap-4 items-start p-5 bg-orange-50 dark:bg-orange-900/20 rounded-2xl border border-orange-200 dark:border-orange-800/30">
+                                    <div class="w-10 h-10 rounded-full bg-orange-500 text-white flex items-center justify-center font-bold flex-shrink-0">2</div>
+                                    <div><p class="font-bold text-orange-700 mb-1">Dám thực hiện bước nhảy đúng lúc</p><p class="text-xs text-text-muted-light dark:text-text-muted-dark">Khi lượng đến điểm nút, phải dứt khoát hành động — không do dự bảo thủ. (dòng 749)</p></div>
+                                </div>
+                                <div class="flex gap-4 items-start p-5 bg-purple-50 dark:bg-purple-900/20 rounded-2xl border border-purple-200 dark:border-purple-800/30">
+                                    <div class="w-10 h-10 rounded-full bg-purple-500 text-white flex items-center justify-center font-bold flex-shrink-0">3</div>
+                                    <div><p class="font-bold text-purple-700 mb-1">Khách quan + Quyết tâm</p><p class="text-xs text-text-muted-light dark:text-text-muted-dark">Xác định quy mô & nhịp bước nhảy khách quan, khoa học; nhưng cần quyết tâm và nghị lực khi thực hiện. (dòng 750)</p></div>
+                                </div>
+                                <div class="flex gap-4 items-start p-5 bg-teal-50 dark:bg-teal-900/20 rounded-2xl border border-teal-200 dark:border-teal-800/30">
+                                    <div class="w-10 h-10 rounded-full bg-teal-500 text-white flex items-center justify-center font-bold flex-shrink-0">4</div>
+                                    <div><p class="font-bold text-teal-700 mb-1">Chú ý phương thức liên kết</p><p class="text-xs text-text-muted-light dark:text-text-muted-dark">Đôi khi không cần thêm yếu tố mới — thay đổi cách tổ chức/liên kết là đủ để tạo chất mới. (dòng 751)</p></div>
+                                </div>
+                            </div>
+
+                            <h3 class="font-display text-xl font-bold">Nôn nóng vs. Bảo thủ — Hai sai lầm đối lập</h3>
+                            <div class="grid md:grid-cols-2 gap-5">
+                                <div class="bg-red-50 dark:bg-red-900/10 border-2 border-red-200 dark:border-red-800/30 rounded-2xl p-5">
+                                    <h4 class="font-bold text-red-600 mb-3">⚡ Nôn nóng</h4>
+                                    <p class="text-sm text-text-muted-light dark:text-text-muted-dark mb-2">"Không chú ý đến tích lũy lượng — cho rằng phát triển chỉ là những bước nhảy liên tục." (dòng 749)</p>
+                                    <div class="bg-red-100 dark:bg-red-900/20 rounded-xl p-3 text-xs space-y-1">
+                                        <p>❌ Startup tăng vốn gấp 10 lần mà không cải tổ hệ thống</p>
+                                        <p>❌ Cắt giảm thời gian học nhưng kỳ vọng kết quả như cũ</p>
+                                        <p>❌ Cải cách toàn bộ khi chưa có đủ nhân lực và điều kiện</p>
+                                    </div>
+                                </div>
+                                <div class="bg-gray-100 dark:bg-gray-800 border-2 border-gray-300 dark:border-gray-600 rounded-2xl p-5">
+                                    <h4 class="font-bold text-gray-600 mb-3">🐌 Bảo thủ</h4>
+                                    <p class="text-sm text-text-muted-light dark:text-text-muted-dark mb-2">"Không dám thực hiện bước nhảy — coi phát triển chỉ là thay đổi về lượng." (dòng 749)</p>
+                                    <div class="bg-gray-200 dark:bg-gray-700 rounded-xl p-3 text-xs space-y-1">
+                                        <p>❌ Điều kiện chín muồi nhưng không dám thay đổi phương pháp</p>
+                                        <p>❌ Biết mô hình cũ lỗi thời nhưng không chịu đổi mới</p>
+                                        <p>❌ Trì hoãn quyết định khi thời cơ đã đến</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="border-t border-gray-100 dark:border-gray-700 pt-6">
+                            <h3 class="font-display text-lg font-bold mb-4">Câu hỏi phản tư</h3>
+                            <div class="space-y-3">
+                                <div class="reflection-item">
+                                    <button onclick="toggleReflection(this)" class="w-full text-left p-4 bg-gray-50 dark:bg-gray-800 rounded-xl hover:bg-indigo-50 dark:hover:bg-indigo-900/20 transition-colors text-sm font-medium flex justify-between items-center">
+                                        <span>1. "Học 1 tuần rồi thi — không cần học lâu." Đây là nôn nóng hay không? Phân tích theo quy luật Lượng-Chất.</span>
+                                        <span class="material-symbols-outlined text-gray-400 flex-shrink-0 ml-2">expand_more</span>
+                                    </button>
+                                    <div class="reflection-answer p-4 text-sm text-text-muted-light dark:text-text-muted-dark">
+                                        <strong class="text-indigo-600 block mb-1">Gợi ý:</strong> Phụ thuộc vào điều kiện cụ thể. Nếu người đó đã có nền tảng kiến thức từ trước → lượng đã được tích lũy, chỉ cần 1 tuần để đến điểm nút → không phải nôn nóng. Nếu là người hoàn toàn mới → 1 tuần chưa đủ lượng → đây là nôn nóng (không tích lũy đủ mà kỳ vọng bước nhảy). Nguyên tắc: đánh giá khách quan lượng đã tích lũy trước khi quyết định bước nhảy.
+                                    </div>
+                                </div>
+                                <div class="reflection-item">
+                                    <button onclick="toggleReflection(this)" class="w-full text-left p-4 bg-gray-50 dark:bg-gray-800 rounded-xl hover:bg-indigo-50 dark:hover:bg-indigo-900/20 transition-colors text-sm font-medium flex justify-between items-center">
+                                        <span>2. Đổi mới 1986 ở Việt Nam — đây là bước nhảy toàn bộ hay cục bộ, tức thời hay dần dần? Lượng được tích lũy như thế nào trước 1986?</span>
+                                        <span class="material-symbols-outlined text-gray-400 flex-shrink-0 ml-2">expand_more</span>
+                                    </button>
+                                    <div class="reflection-answer p-4 text-sm text-text-muted-light dark:text-text-muted-dark">
+                                        <strong class="text-indigo-600 block mb-1">Gợi ý:</strong> Loại bước nhảy: <strong>toàn bộ</strong> (thay đổi cơ chế kinh tế, chính sách xã hội, mở cửa) nhưng <strong>dần dần</strong> (không phải một đêm — từ 1986 → 1995 → 2000 mới thực sự hoàn thiện). Lượng tích lũy: các thí điểm khoán hộ 1981, kinh nghiệm thất bại của mô hình bao cấp, áp lực khủng hoảng kinh tế, quan sát các nước XHCN cải cách → lượng mâu thuẫn tích lũy đủ → điểm nút 1986 → Đổi mới.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Short answer bài 3.5 -->
+                        <div class="bg-gradient-to-br from-indigo-50 to-purple-50 dark:from-indigo-900/10 dark:to-purple-900/10 border border-indigo-200 dark:border-indigo-800/30 rounded-2xl p-6">
+                            <h3 class="font-display text-lg font-bold mb-2 flex items-center gap-2"><span class="material-symbols-outlined text-indigo-600">edit_note</span> Bài tập phân tích mini-case (150–300 từ)</h3>
+                            <p class="text-sm text-text-muted-light dark:text-text-muted-dark mb-4">Tình huống: <em>Một startup công nghệ nhận được vốn đầu tư 10 triệu USD trong vòng 6 tháng, tăng nhân sự từ 10 lên 100 người, mở thêm 5 văn phòng. Nhưng sau 1 năm, doanh thu không tăng, đội ngũ rối loạn, startup thất bại.</em><br/>Phân tích: (1) Sai lầm nào theo quy luật Lượng-Chất? (2) Lẽ ra phải tích lũy những lượng nào trước? (3) Nguyên tắc phương pháp luận nào bị vi phạm?</p>
+                            <div class="bg-amber-50 dark:bg-amber-900/10 border border-amber-200 rounded-xl p-4 mb-4 text-xs">
+                                <p class="font-bold text-amber-700 mb-1">📋 Rubric 3 điểm:</p>
+                                <ul class="text-amber-700 space-y-1">
+                                    <li>• <strong>1đ</strong> — Xác định đúng loại sai lầm (nôn nóng/bảo thủ) và giải thích</li>
+                                    <li>• <strong>1đ</strong> — Nêu được cụ thể những lượng cần tích lũy trước bước nhảy</li>
+                                    <li>• <strong>1đ</strong> — Liên hệ ít nhất 1 nguyên tắc phương pháp luận với dẫn chứng từ giáo trình</li>
+                                </ul>
+                            </div>
+                            <textarea id="short-answer-M3-L5" class="short-answer-textarea w-full rounded-xl border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-800 p-4 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30" placeholder="Viết bài phân tích của bạn ở đây (150–300 từ)..."></textarea>
+                            <div class="flex items-center justify-between mt-3">
+                                <span id="word-count-M3-L5" class="text-xs text-gray-400">0 từ</span>
+                                <button onclick="submitShortAnswer('M3-L5')" class="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-6 py-2.5 rounded-xl transition-colors text-sm flex items-center gap-2">
+                                    <span class="material-symbols-outlined text-sm">send</span> Nộp bài tập
+                                </button>
+                            </div>
+                            <div id="short-answer-feedback-M3-L5" class="hidden mt-4 p-4 bg-green-50 dark:bg-green-900/20 border border-green-200 rounded-xl text-sm text-green-700 dark:text-green-400"></div>
+                        </div>
+
+                        <div class="flex items-center justify-between">
+                            <button onclick="showLesson('M3-L4')" class="text-sm text-text-muted-light hover:text-primary flex items-center gap-1"><span class="material-symbols-outlined text-sm">arrow_back</span> Bài trước</button>
+                            <button onclick="completeLesson('M3-L5')" id="btn-complete-M3-L5" class="bg-primary hover:bg-amber-700 text-white font-semibold px-8 py-3 rounded-xl transition-colors flex items-center gap-2 text-sm"><span class="material-symbols-outlined text-sm">check_circle</span> Hoàn thành</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BÀI 3.6: ỨNG DỤNG TỔNG HỢP -->
+            <div id="lesson-M3-L6" class="lesson-content hidden">
+                <div class="bg-surface-light dark:bg-surface-dark rounded-3xl border border-gray-100 dark:border-gray-700 shadow-sm overflow-hidden">
+                    <div class="lesson-header-academic">
+                        <div class="flex items-center gap-3 mb-3"><span class="text-3xl">🎯</span><span class="text-rose-100 text-sm font-semibold uppercase tracking-wider">Bài 3.6 — Module 3</span></div>
+                        <h2 class="font-display text-3xl font-bold text-white mb-2">Ứng dụng tổng hợp</h2>
+                        <p class="text-rose-100 text-sm">🎯 <strong>Mục tiêu:</strong> Vận dụng toàn bộ Module 3 phân tích tình huống thực tiễn; kết nối sang Module 4 (Mâu thuẫn); viết mini-essay tổng kết.</p>
+                    </div>
+                    <div class="p-8 space-y-8">
+                        <div class="bg-rose-50 dark:bg-rose-900/20 border-l-4 border-rose-500 rounded-r-2xl p-6">
+                            <p class="text-xs font-bold text-rose-600 uppercase tracking-wider mb-2">📖 Trích dẫn — Triet.txt, dòng 746</p>
+                            <blockquote class="font-display text-lg italic text-text-main-light dark:text-text-main-dark leading-relaxed">
+                                "Mọi đối tượng đều là sự thống nhất của hai mặt đối lập chất và lượng, những sự thay đổi dần dần về lượng vượt quá giới hạn của độ sẽ dẫn đến sự thay đổi căn bản về chất thông qua bước nhảy, chất mới ra đời tiếp tục tác động trở lại duy trì sự thay đổi của lượng."
+                            </blockquote>
+                        </div>
+
+                        <div class="space-y-6">
+                            <h3 class="font-display text-xl font-bold">3 Tình huống ứng dụng thực tiễn</h3>
+
+                            <div class="bg-blue-50 dark:bg-blue-900/20 rounded-2xl p-6">
+                                <h4 class="font-bold text-blue-600 mb-3">📚 1. Học tập: Quá trình thành thạo một kỹ năng</h4>
+                                <div class="grid md:grid-cols-4 gap-3 text-xs">
+                                    <div class="text-center p-3 bg-white dark:bg-gray-800 rounded-xl"><p class="text-xl mb-1">📦</p><p class="font-bold">Lượng tích lũy</p><p class="text-gray-500">Giờ học, bài tập, kinh nghiệm thất bại</p></div>
+                                    <div class="text-center p-3 bg-white dark:bg-gray-800 rounded-xl"><p class="text-xl mb-1">🔒</p><p class="font-bold">Độ</p><p class="text-gray-500">Giai đoạn "chưa thành thạo nhưng đang học"</p></div>
+                                    <div class="text-center p-3 bg-white dark:bg-gray-800 rounded-xl"><p class="text-xl mb-1">⚡</p><p class="font-bold">Điểm nút</p><p class="text-gray-500">Khoảnh khắc "a-ha!" — bỗng nhiên hiểu</p></div>
+                                    <div class="text-center p-3 bg-white dark:bg-gray-800 rounded-xl"><p class="text-xl mb-1">🌟</p><p class="font-bold">Chất mới</p><p class="text-gray-500">Thành thạo — kỹ năng tiềm thức</p></div>
+                                </div>
+                            </div>
+
+                            <div class="bg-green-50 dark:bg-green-900/20 rounded-2xl p-6">
+                                <h4 class="font-bold text-green-600 mb-3">💼 2. Kinh doanh: Từ startup đến công ty bền vững</h4>
+                                <p class="text-sm text-text-muted-light dark:text-text-muted-dark mb-3">Lượng cần tích lũy TRƯỚC khi mở rộng: <strong>quy trình vận hành</strong> (SOP), <strong>văn hóa doanh nghiệp</strong>, <strong>năng lực đội ngũ</strong>, <strong>cơ sở khách hàng trung thành</strong>. Chỉ khi đủ các lượng này → điểm nút → bước nhảy mở rộng an toàn.</p>
+                                <div class="bg-red-50 dark:bg-red-900/10 rounded-xl p-3 text-xs">
+                                    <p class="font-bold text-red-600">⚠️ Sai lầm phổ biến (nôn nóng):</p>
+                                    <p class="text-text-muted-light dark:text-text-muted-dark">Mở rộng bằng cách tăng vốn, nhân sự, thị trường trong khi quy trình, văn hóa, năng lực chưa đủ → bước nhảy không thành → thất bại.</p>
+                                </div>
+                            </div>
+
+                            <div class="bg-amber-50 dark:bg-amber-900/20 rounded-2xl p-6">
+                                <h4 class="font-bold text-amber-700 mb-3">🏛️ 3. Lịch sử: Cách mạng Tháng Tám 1945</h4>
+                                <div class="grid md:grid-cols-2 gap-4 text-sm">
+                                    <div>
+                                        <p class="font-bold text-amber-700 mb-2">Lượng tích lũy 15 năm (1930–1945):</p>
+                                        <ul class="text-xs text-text-muted-light dark:text-text-muted-dark space-y-1">
+                                            <li>• Đảng Cộng sản VN hình thành và phát triển (1930)</li>
+                                            <li>• Các phong trào Xô-Viết, Bình Dân, Việt Minh</li>
+                                            <li>• Kinh nghiệm khởi nghĩa thất bại → bài học</li>
+                                            <li>• Phát xít Nhật suy yếu + thời cơ quốc tế</li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <p class="font-bold text-amber-700 mb-2">Bước nhảy & Chất mới:</p>
+                                        <ul class="text-xs text-text-muted-light dark:text-text-muted-dark space-y-1">
+                                            <li>• Điểm nút: Nhật đầu hàng 8/1945</li>
+                                            <li>• Bước nhảy: Tổng khởi nghĩa tức thời, toàn bộ</li>
+                                            <li>• Chất mới: Nhà nước Việt Nam Dân chủ Cộng hòa độc lập</li>
+                                            <li>• → Lượng mới: xây dựng chính quyền, kháng chiến</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="bg-gradient-to-r from-amber-50 to-orange-50 dark:from-amber-900/10 dark:to-orange-900/10 border border-amber-200 rounded-2xl p-5">
+                                <h4 class="font-bold text-amber-700 mb-2">🔗 Kết nối sang Module 4: Mâu thuẫn</h4>
+                                <p class="text-sm text-text-muted-light dark:text-text-muted-dark">Quy luật Lượng-Chất chỉ ra <em>cách thức</em> vận động. Nhưng <em>tại sao</em> lượng lại tích lũy và tạo ra điểm nút? → Câu trả lời: do <strong>mâu thuẫn bên trong</strong> sự vật (Module 4). Mâu thuẫn là nguồn gốc, động lực của sự vận động — nó tạo ra áp lực tích lũy lượng đến điểm nút và thực hiện bước nhảy.</p>
+                            </div>
+                        </div>
+
+                        <div class="border-t border-gray-100 dark:border-gray-700 pt-6">
+                            <h3 class="font-display text-lg font-bold mb-4">Câu hỏi phản tư</h3>
+                            <div class="space-y-3">
+                                <div class="reflection-item">
+                                    <button onclick="toggleReflection(this)" class="w-full text-left p-4 bg-gray-50 dark:bg-gray-800 rounded-xl hover:bg-rose-50 dark:hover:bg-rose-900/20 transition-colors text-sm font-medium flex justify-between items-center">
+                                        <span>1. Trong cuộc sống của bạn, hãy kể lại một "bước nhảy chất" quan trọng. Lượng đã tích lũy như thế nào? Điểm nút là gì?</span>
+                                        <span class="material-symbols-outlined text-gray-400 flex-shrink-0 ml-2">expand_more</span>
+                                    </button>
+                                    <div class="reflection-answer p-4 text-sm text-text-muted-light dark:text-text-muted-dark">
+                                        <strong class="text-rose-600 block mb-1">Gợi ý cấu trúc:</strong> [1] Bước nhảy chất là gì? (VD: quyết định chọn ngành học, thay đổi lối sống, bắt đầu khởi nghiệp). [2] Lượng tích lũy trước đó: kiến thức, kinh nghiệm, thất bại, quan sát, suy nghĩ — bao lâu, dưới dạng nào? [3] Điểm nút: sự kiện, khoảnh khắc, hoặc nhận thức nào đã "phá vỡ độ cũ"? [4] Bước nhảy loại gì (tức thời/dần dần; toàn bộ/cục bộ)?
+                                    </div>
+                                </div>
+                                <div class="reflection-item">
+                                    <button onclick="toggleReflection(this)" class="w-full text-left p-4 bg-gray-50 dark:bg-gray-800 rounded-xl hover:bg-rose-50 dark:hover:bg-rose-900/20 transition-colors text-sm font-medium flex justify-between items-center">
+                                        <span>2. "Trí tuệ nhân tạo phát triển đủ lượng (dữ liệu, thuật toán, tính toán) có thể tạo ra bước nhảy chất — đạt 'ý thức' thực sự không?" Bình luận theo CNDV biện chứng.</span>
+                                        <span class="material-symbols-outlined text-gray-400 flex-shrink-0 ml-2">expand_more</span>
+                                    </button>
+                                    <div class="reflection-answer p-4 text-sm text-text-muted-light dark:text-text-muted-dark">
+                                        <strong class="text-rose-600 block mb-1">Gợi ý:</strong> Theo quy luật Lượng-Chất: tích lũy lượng đủ → có thể có bước nhảy chất. Nhưng: (1) Chất "ý thức" theo Module 2 đòi hỏi nguồn gốc xã hội-lịch sử và thực tiễn, không chỉ xử lý thông tin. (2) Câu hỏi: lượng AI tích lũy (data, tính toán) có đủ loại và đủ "độ" để tạo ra bước nhảy thành "ý thức" không? — Đây là cuộc tranh luận mở. CNDV biện chứng gợi ý: cần nghiên cứu khoa học để xác định "điểm nút" cụ thể, không thể kết luận duy ý chí.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Mini-essay tổng kết Module 3 -->
+                        <div class="bg-gradient-to-br from-rose-50 to-amber-50 dark:from-rose-900/10 dark:to-amber-900/10 border border-rose-200 dark:border-rose-800/30 rounded-2xl p-6">
+                            <h3 class="font-display text-lg font-bold mb-2 flex items-center gap-2"><span class="material-symbols-outlined text-rose-600">edit_note</span> Mini-essay tổng kết Module 3 (200–300 từ)</h3>
+                            <p class="text-sm text-text-muted-light dark:text-text-muted-dark mb-4">Trả lời câu hỏi: <em>"Áp dụng quy luật Lượng-Chất, phân tích một thành công hoặc thất bại trong lịch sử Việt Nam hoặc cuộc sống của bạn. Chỉ rõ: lượng tích lũy, độ, điểm nút, loại bước nhảy, chất mới, và bài học phương pháp luận."</em><br/>Yêu cầu: ít nhất 1 trích dẫn từ Triet.txt; phân tích đủ 5 phạm trù (chất, lượng, độ, điểm nút, bước nhảy).</p>
+                            <textarea id="short-answer-M3-L6" class="short-answer-textarea w-full rounded-xl border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-800 p-4 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30" placeholder="Viết mini-essay của bạn ở đây (200–300 từ)..."></textarea>
+                            <div class="flex items-center justify-between mt-3">
+                                <span id="word-count-M3-L6" class="text-xs text-gray-400">0 từ</span>
+                                <button onclick="submitShortAnswer('M3-L6')" class="bg-rose-600 hover:bg-rose-700 text-white font-semibold px-6 py-2.5 rounded-xl transition-colors text-sm flex items-center gap-2">
+                                    <span class="material-symbols-outlined text-sm">send</span> Nộp mini-essay
+                                </button>
+                            </div>
+                            <div id="short-answer-feedback-M3-L6" class="hidden mt-4 p-4 bg-green-50 dark:bg-green-900/20 border border-green-200 rounded-xl text-sm text-green-700 dark:text-green-400"></div>
+                        </div>
+
+                        <div class="flex items-center justify-between">
+                            <button onclick="showLesson('M3-L5')" class="text-sm text-text-muted-light hover:text-primary flex items-center gap-1"><span class="material-symbols-outlined text-sm">arrow_back</span> Bài trước</button>
+                            <div class="flex gap-3">
+                                <button onclick="openFormativeQuiz('M3-FQ3')" class="bg-rose-500 hover:bg-rose-600 text-white font-semibold px-6 py-3 rounded-xl transition-colors flex items-center gap-2 text-sm">
+                                    <span class="material-symbols-outlined text-sm">quiz</span> Kiểm tra hình thành (Bài 3.5–3.6)
+                                </button>
+                                <button onclick="completeLesson('M3-L6')" id="btn-complete-M3-L6" class="bg-primary hover:bg-amber-700 text-white font-semibold px-8 py-3 rounded-xl transition-colors flex items-center gap-2 text-sm"><span class="material-symbols-outlined text-sm">check_circle</span> Hoàn thành</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MODULE QUIZ BANNER -->
+        <section id="module-quiz-banner" class="mb-16 hidden">
+            <div class="bg-gradient-to-r from-amber-600 to-orange-500 rounded-3xl p-8 text-white text-center">
+                <span class="text-5xl mb-4 block">⚗️</span>
+                <h2 class="font-display text-3xl font-bold mb-3">Bạn đã hoàn thành 6 bài học Module 3!</h2>
+                <p class="text-white/80 mb-6">Làm bài kiểm tra tổng kết (12 câu) để nhận thành tích <strong>Leap Master 🥈 +10 XP</strong>.</p>
+                <button onclick="openModuleQuiz()" class="bg-white text-amber-700 hover:bg-amber-50 font-bold px-10 py-4 rounded-2xl transition-colors inline-flex items-center gap-2 text-lg shadow-lg">
+                    <span class="material-symbols-outlined">school</span> Làm bài kiểm tra Module 3
+                </button>
+            </div>
+        </section>
+
+        <!-- AI FAB -->
+        <div class="fixed bottom-6 right-6 z-40">
+            <button onclick="toggleAIPanel()" class="w-14 h-14 rounded-full bg-amber-600 text-white shadow-xl hover:bg-amber-700 flex items-center justify-center transition-all hover:scale-105">
+                <span class="material-symbols-outlined">smart_toy</span>
+            </button>
+        </div>
+
+        <!-- AI PANEL -->
+        <div id="ai-panel" class="hidden-panel fixed right-0 top-0 h-full w-80 md:w-96 bg-surface-light dark:bg-surface-dark border-l border-gray-200 dark:border-gray-700 shadow-2xl z-50 flex flex-col">
+            <div class="p-4 border-b border-gray-200 dark:border-gray-700 flex items-center justify-between">
+                <div>
+                    <h3 class="font-bold text-sm">🤖 AI Triết học — Module 3</h3>
+                    <p class="text-xs text-text-muted-light dark:text-text-muted-dark">Trả lời kèm sourceRef từ Triet.txt Chương 3 (dòng 727–751)</p>
+                </div>
+                <button onclick="toggleAIPanel()" class="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full"><span class="material-symbols-outlined text-gray-500">close</span></button>
+            </div>
+            <div id="ai-chat-history" class="flex-1 overflow-y-auto p-4 space-y-3">
+                <div class="bg-amber-50 dark:bg-amber-900/20 rounded-xl p-3">
+                    <p class="text-xs font-bold text-amber-700 mb-1">🤖 AI Triết học — Module 3</p>
+                    <p class="text-sm text-text-muted-light dark:text-text-muted-dark">Xin chào! Tôi sẵn sàng giải thích các khái niệm Module 3 — <strong>Quy luật Lượng ↔ Chất</strong>. Mọi câu trả lời kèm trích dẫn từ <em>Triet.txt, dòng 727–751</em>.</p>
+                </div>
+                <div class="space-y-2">
+                    <p class="text-xs text-gray-400 font-medium">💡 Câu hỏi gợi ý:</p>
+                    <button onclick="sendAIPrompt('Chất là gì theo CNDV biện chứng?')" class="w-full text-left text-xs p-2.5 bg-gray-50 dark:bg-gray-800 rounded-lg hover:bg-amber-50 dark:hover:bg-amber-900/20 transition-colors">Chất là gì?</button>
+                    <button onclick="sendAIPrompt('Lượng là gì? Có bao nhiêu loại lượng?')" class="w-full text-left text-xs p-2.5 bg-gray-50 dark:bg-gray-800 rounded-lg hover:bg-amber-50 dark:hover:bg-amber-900/20 transition-colors">Lượng là gì?</button>
+                    <button onclick="sendAIPrompt('Giải thích độ và điểm nút trong quy luật lượng chất')" class="w-full text-left text-xs p-2.5 bg-gray-50 dark:bg-gray-800 rounded-lg hover:bg-amber-50 dark:hover:bg-amber-900/20 transition-colors">Độ & Điểm nút là gì?</button>
+                    <button onclick="sendAIPrompt('Bước nhảy có mấy loại và ví dụ nào?')" class="w-full text-left text-xs p-2.5 bg-gray-50 dark:bg-gray-800 rounded-lg hover:bg-amber-50 dark:hover:bg-amber-900/20 transition-colors">Bước nhảy có mấy loại?</button>
+                    <button onclick="sendAIPrompt('Ý nghĩa phương pháp luận của quy luật lượng chất')" class="w-full text-left text-xs p-2.5 bg-gray-50 dark:bg-gray-800 rounded-lg hover:bg-amber-50 dark:hover:bg-amber-900/20 transition-colors">Phương pháp luận từ quy luật này?</button>
+                </div>
+            </div>
+            <div class="p-4 border-t border-gray-200 dark:border-gray-700">
+                <div class="flex gap-2">
+                    <input id="ai-input" type="text" placeholder="Hỏi về Module 3..." class="flex-1 text-sm border border-gray-200 dark:border-gray-600 rounded-xl px-3 py-2 bg-gray-50 dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-primary/30" onkeypress="if(event.key==='Enter') sendAIMessage()">
+                    <button onclick="sendAIMessage()" class="bg-amber-600 text-white rounded-xl px-4 hover:bg-amber-700 transition-colors"><span class="material-symbols-outlined text-sm">send</span></button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- QUIZ MODAL -->
+    <div id="quiz-modal" class="hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+        <div class="bg-surface-light dark:bg-surface-dark rounded-3xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            <div class="p-6 border-b border-gray-200 dark:border-gray-700 flex items-center justify-between">
+                <div>
+                    <h2 id="quiz-modal-title" class="text-xl font-bold">Kiểm tra hình thành</h2>
+                    <p id="quiz-modal-sub" class="text-sm text-text-muted-light dark:text-text-muted-dark"></p>
+                </div>
+                <button onclick="closeQuizModal()" class="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full"><span class="material-symbols-outlined text-gray-500">close</span></button>
+            </div>
+            <div id="quiz-modal-body" class="p-6"></div>
+        </div>
+    </div>
+
+    <!-- ACHIEVEMENT TOAST -->
+    <div id="achievement-toast" class="hidden fixed top-6 right-6 z-50 max-w-sm">
+        <div class="bg-gradient-to-r from-amber-400 to-yellow-300 rounded-2xl p-4 shadow-2xl flex items-center gap-4 achievement-earned">
+            <span id="achievement-icon" class="text-4xl">🥈</span>
+            <div>
+                <p class="font-bold text-amber-900 text-sm">Thành tích mới!</p>
+                <p id="achievement-name" class="font-display font-bold text-amber-900"></p>
+                <p id="achievement-desc" class="text-xs text-amber-800"></p>
+            </div>
+        </div>
+    </div>
+
+    <div id="footer-placeholder"></div>
+
+    <!-- Scripts -->
+    <script src="js/search-data-global.js"></script>
+    <script src="js/quiz-data.js"></script>
+    <script src="js/quiz-data-m3.js"></script>
+    <script src="js/load-components.js"></script>
+    <script src="js/search-init.js"></script>
+
+    <script>
+    // =============================================
+    // MODULE 3 STATE
+    // =============================================
+    const M3_STATE = {
+        completedLessons: new Set(),
+        currentLesson: null,
+        quizResults: {},
+    };
+    const M3_LESSONS = ['M3-L1','M3-L2','M3-L3','M3-L4','M3-L5','M3-L6'];
+
+    function loadM3State() {
+        try {
+            const saved = JSON.parse(localStorage.getItem('philo_quiz_results') || '{}');
+            if (saved.M3_completed) saved.M3_completed.forEach(id => M3_STATE.completedLessons.add(id));
+            M3_STATE.quizResults = saved.M3_quiz || {};
+        } catch(e) {}
+    }
+
+    function saveM3State() {
+        try {
+            const saved = JSON.parse(localStorage.getItem('philo_quiz_results') || '{}');
+            saved.M3_completed = [...M3_STATE.completedLessons];
+            saved.M3_quiz = M3_STATE.quizResults;
+            localStorage.setItem('philo_quiz_results', JSON.stringify(saved));
+        } catch(e) {}
+    }
+
+    // =============================================
+    // LESSON NAVIGATION
+    // =============================================
+    function showLesson(lessonId) {
+        document.querySelectorAll('.lesson-content').forEach(el => el.classList.add('hidden'));
+        document.querySelectorAll('.lesson-tab').forEach(el => {
+            el.classList.remove('border-amber-500', 'bg-amber-50', 'dark:bg-amber-900/20');
+            el.classList.add('border-gray-100', 'dark:border-gray-700');
+        });
+        const target = document.getElementById('lesson-' + lessonId);
+        if (target) { target.classList.remove('hidden'); M3_STATE.currentLesson = lessonId; }
+        const tab = document.getElementById('tab-' + lessonId);
+        if (tab) {
+            tab.classList.remove('border-gray-100', 'dark:border-gray-700');
+            tab.classList.add('border-amber-500', 'bg-amber-50', 'dark:bg-amber-900/20');
+        }
+        document.getElementById('lesson-area').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function completeLesson(lessonId) {
+        M3_STATE.completedLessons.add(lessonId);
+        saveM3State();
+        updateProgress();
+        const dot = document.getElementById('dot-' + lessonId);
+        if (dot) { dot.classList.remove('bg-gray-300','dark:bg-gray-600'); dot.classList.add('bg-amber-500'); }
+        const btn = document.getElementById('btn-complete-' + lessonId);
+        if (btn) {
+            btn.classList.remove('bg-primary','hover:bg-amber-700');
+            btn.classList.add('bg-green-500','hover:bg-green-600');
+            btn.innerHTML = '<span class="material-symbols-outlined">check_circle</span> Đã hoàn thành ✓';
+        }
+        const idx = M3_LESSONS.indexOf(lessonId);
+        if (idx >= 0 && idx < M3_LESSONS.length - 1) setTimeout(() => showLesson(M3_LESSONS[idx + 1]), 500);
+        if (M3_STATE.completedLessons.size === 6) {
+            document.getElementById('module-quiz-banner').classList.remove('hidden');
+            checkDialecticThinker();
+        }
+    }
+
+    function checkDialecticThinker() {
+        try {
+            const saved = JSON.parse(localStorage.getItem('philo_quiz_results') || '{}');
+            const m1Done = saved.M1_completed && saved.M1_completed.length >= 6;
+            const m2Done = saved.M2_completed && saved.M2_completed.length >= 6;
+            const m3Done = M3_STATE.completedLessons.size >= 6;
+            if (m1Done && m2Done && m3Done) {
+                setTimeout(() => showAchievement('dialectic-thinker'), 1200);
+            }
+        } catch(e) {}
+    }
+
+    function updateProgress() {
+        const count = M3_STATE.completedLessons.size;
+        const pct = Math.round((count / 6) * 100);
+        document.getElementById('m3-progress-label').textContent = count + ' / 6 bài hoàn thành';
+        document.getElementById('m3-progress-pct').textContent = pct + '%';
+        document.getElementById('m3-progress-bar').style.width = pct + '%';
+        M3_STATE.completedLessons.forEach(id => {
+            const dot = document.getElementById('dot-' + id);
+            if (dot) { dot.classList.remove('bg-gray-300','dark:bg-gray-600'); dot.classList.add('bg-amber-500'); }
+        });
+    }
+
+    // =============================================
+    // REFLECTION TOGGLES
+    // =============================================
+    function toggleReflection(btn) {
+        const answer = btn.nextElementSibling;
+        const icon = btn.querySelector('.material-symbols-outlined');
+        if (answer.classList.contains('open')) {
+            answer.classList.remove('open'); icon.textContent = 'expand_more';
+        } else {
+            answer.classList.add('open'); icon.textContent = 'expand_less';
+        }
+    }
+
+    // =============================================
+    // SHORT ANSWER SYSTEM
+    // =============================================
+    function countWords(text) {
+        return text.trim() === '' ? 0 : text.trim().split(/\s+/).length;
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        ['M3-L5','M3-L6'].forEach(lid => {
+            const ta = document.getElementById('short-answer-' + lid);
+            const counter = document.getElementById('word-count-' + lid);
+            if (ta && counter) {
+                ta.addEventListener('input', () => {
+                    const words = countWords(ta.value);
+                    const minMax = lid === 'M3-L6' ? [200, 300] : [150, 300];
+                    counter.textContent = words + ' từ';
+                    counter.className = words < minMax[0] ? 'text-xs text-gray-400' :
+                                        words > minMax[1] ? 'text-xs text-red-500' :
+                                        'text-xs text-green-500';
+                });
+            }
+        });
+
+        loadM3State();
+        updateProgress();
+
+        if (M3_STATE.completedLessons.size > 0) {
+            showLesson(M3_LESSONS[Math.min(M3_STATE.completedLessons.size, 5)]);
+        } else {
+            showLesson('M3-L1');
+        }
+
+        if (M3_STATE.completedLessons.size === 6) {
+            document.getElementById('module-quiz-banner').classList.remove('hidden');
+        }
+
+        M3_STATE.completedLessons.forEach(id => {
+            const btn = document.getElementById('btn-complete-' + id);
+            if (btn) {
+                btn.classList.remove('bg-primary','hover:bg-amber-700');
+                btn.classList.add('bg-green-500','hover:bg-green-600');
+                btn.innerHTML = '<span class="material-symbols-outlined">check_circle</span> Đã hoàn thành ✓';
+            }
+        });
+    });
+
+    function submitShortAnswer(lessonId) {
+        const ta = document.getElementById('short-answer-' + lessonId);
+        const feedbackEl = document.getElementById('short-answer-feedback-' + lessonId);
+        if (!ta || !feedbackEl) return;
+        const text = ta.value.trim();
+        const words = countWords(text);
+        const minWords = lessonId === 'M3-L6' ? 200 : 150;
+        if (words < minWords) {
+            feedbackEl.className = 'mt-4 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 rounded-xl text-sm text-red-600';
+            feedbackEl.textContent = `Bài làm cần ít nhất ${minWords} từ. Hiện tại: ${words} từ.`;
+            feedbackEl.classList.remove('hidden');
+            return;
+        }
+        try {
+            const saved = JSON.parse(localStorage.getItem('philo_short_answers') || '[]');
+            saved.push({ id: lessonId + '-' + Date.now(), lessonId, module: 'M3', text, wordCount: words, timestamp: new Date().toISOString() });
+            localStorage.setItem('philo_short_answers', JSON.stringify(saved));
+        } catch(e) {}
+        feedbackEl.className = 'mt-4 p-4 bg-green-50 dark:bg-green-900/20 border border-green-200 rounded-xl text-sm text-green-700 dark:text-green-400';
+        feedbackEl.innerHTML = `✅ <strong>Đã lưu bài làm!</strong> (${words} từ)<br><br>
+            <strong>Rubric tự đánh giá:</strong><br>
+            ☐ 1đ — Xác định đúng loại sai lầm và giải thích<br>
+            ☐ 1đ — Nêu cụ thể những lượng cần tích lũy<br>
+            ☐ 1đ — Liên hệ nguyên tắc phương pháp luận với trích dẫn<br><br>
+            <em class="text-xs">Bài làm sẽ được giảng viên xem xét theo rubric 3 điểm.</em>`;
+        feedbackEl.classList.remove('hidden');
+        ta.disabled = true;
+    }
+
+    // =============================================
+    // QUIZ SYSTEM (kế thừa pattern module2.html)
+    // =============================================
+    let currentQuizData = null;
+    let currentQuizAnswers = {};
+    let currentQuizSubmitted = false;
+
+    function openFormativeQuiz(quizId) {
+        if (!window.FORMATIVE_QUIZZES_M3) { alert('Quiz data chưa tải. Hãy thử lại.'); return; }
+        const quiz = window.FORMATIVE_QUIZZES_M3[quizId];
+        if (!quiz) { alert('Không tìm thấy quiz: ' + quizId); return; }
+        currentQuizData = { ...quiz, id: quizId };
+        currentQuizAnswers = {};
+        currentQuizSubmitted = false;
+        renderQuizModal(quiz);
+        document.getElementById('quiz-modal').classList.remove('hidden');
+    }
+
+    function openModuleQuiz() {
+        if (!window.MODULE_QUIZ_M3) { alert('Quiz data chưa tải.'); return; }
+        currentQuizData = window.MODULE_QUIZ_M3;
+        currentQuizAnswers = {};
+        currentQuizSubmitted = false;
+        renderQuizModal(window.MODULE_QUIZ_M3);
+        document.getElementById('quiz-modal').classList.remove('hidden');
+    }
+
+    function renderQuizModal(quiz) {
+        document.getElementById('quiz-modal-title').textContent = quiz.title;
+        document.getElementById('quiz-modal-sub').textContent = 'Cần đạt ' + quiz.passingScore + '% • ' + quiz.questions.length + ' câu hỏi';
+        let html = '<div class="space-y-6">';
+        quiz.questions.forEach((q, qi) => {
+            html += `<div class="quiz-question" data-qid="${q.id}">
+                <p class="font-medium text-sm mb-3">${qi+1}. ${q.text}</p>
+                <div class="space-y-2">`;
+            q.options.forEach(opt => {
+                html += `<label class="quiz-option flex items-start gap-3 p-3 rounded-xl border border-gray-200 dark:border-gray-600 cursor-pointer hover:border-amber-500 hover:bg-amber-50 dark:hover:bg-amber-900/10 transition-all">
+                    <input type="radio" name="q_${q.id}" value="${opt.id}" onclick="selectAnswer('${q.id}','${opt.id}')" class="mt-0.5 flex-shrink-0">
+                    <span class="text-sm">${opt.text}</span>
+                </label>`;
+            });
+            html += `</div></div>`;
+        });
+        html += `</div><div class="mt-6 flex justify-end">
+            <button onclick="submitQuiz()" id="btn-submit-quiz" class="bg-gray-300 dark:bg-gray-600 text-gray-500 dark:text-gray-400 font-bold px-8 py-3 rounded-xl transition-all cursor-not-allowed" data-ready="false">
+                Nộp bài
+            </button></div>`;
+        document.getElementById('quiz-modal-body').innerHTML = html;
+    }
+
+    function selectAnswer(qId, optId) {
+        currentQuizAnswers[qId] = optId;
+        const allAnswered = currentQuizData.questions.every(q => currentQuizAnswers[q.id]);
+        const btn = document.getElementById('btn-submit-quiz');
+        if (btn) {
+            if (allAnswered) {
+                btn.setAttribute('data-ready', 'true');
+                btn.className = 'bg-amber-600 hover:bg-amber-700 text-white font-bold px-8 py-3 rounded-xl transition-all cursor-pointer';
+            } else {
+                btn.setAttribute('data-ready', 'false');
+                btn.className = 'bg-gray-300 dark:bg-gray-600 text-gray-500 dark:text-gray-400 font-bold px-8 py-3 rounded-xl transition-all cursor-not-allowed';
+            }
+        }
+    }
+
+    function submitQuiz() {
+        const btn = document.getElementById('btn-submit-quiz');
+        if (btn && btn.getAttribute('data-ready') !== 'true') return;
+        if (currentQuizSubmitted) return;
+        currentQuizSubmitted = true;
+        const quiz = currentQuizData;
+        let correct = 0;
+        quiz.questions.forEach(q => {
+            const userAns = currentQuizAnswers[q.id];
+            const isCorrect = userAns === q.correctOptionId;
+            if (isCorrect) correct++;
+            const qEl = document.querySelector(`[data-qid="${q.id}"]`);
+            if (!qEl) return;
+            qEl.querySelectorAll('.quiz-option').forEach(label => {
+                const radio = label.querySelector('input');
+                if (!radio) return;
+                if (radio.value === q.correctOptionId) label.classList.add('border-green-400','bg-green-50','dark:bg-green-900/20');
+                if (radio.value === userAns && !isCorrect) label.classList.add('border-red-400','bg-red-50','dark:bg-red-900/20');
+            });
+            const rationaleEl = document.createElement('div');
+            rationaleEl.className = 'mt-2 p-3 bg-amber-50 dark:bg-amber-900/20 rounded-lg text-xs text-text-muted-light dark:text-text-muted-dark';
+            rationaleEl.innerHTML = '<strong class="text-amber-700">📖 Giải thích:</strong> ' + q.rationale;
+            qEl.appendChild(rationaleEl);
+        });
+        const score = Math.round((correct / quiz.questions.length) * 100);
+        const passed = score >= quiz.passingScore;
+        M3_STATE.quizResults[currentQuizData.id] = { score, correct, total: quiz.questions.length, passed, timestamp: Date.now() };
+        saveM3State();
+        if (passed && currentQuizData.id && currentQuizData.id.startsWith('M3-FQ')) {
+            try {
+                const qr = JSON.parse(localStorage.getItem('philo_quiz_results') || '{}');
+                if (!qr.mini_challenge_unlocked) qr.mini_challenge_unlocked = {};
+                qr.mini_challenge_unlocked.M3 = true;
+                localStorage.setItem('philo_quiz_results', JSON.stringify(qr));
+            } catch(e) {}
+        }
+        const resultHtml = `<div class="mb-6 p-4 rounded-2xl text-center ${passed ? 'bg-green-50 dark:bg-green-900/20 border border-green-200' : 'bg-red-50 dark:bg-red-900/20 border border-red-200'}">
+            <p class="text-4xl mb-2">${passed ? '🎉' : '📚'}</p>
+            <p class="text-2xl font-bold ${passed ? 'text-green-600' : 'text-red-600'}">${score}%</p>
+            <p class="text-sm font-medium">${correct}/${quiz.questions.length} câu đúng</p>
+            <p class="text-sm mt-1 ${passed ? 'text-green-600' : 'text-red-600'}">${passed ? '✅ Đạt!' : '❌ Chưa đạt. Hãy ôn lại và thử lại.'}</p>
+        </div>`;
+        document.getElementById('quiz-modal-body').insertAdjacentHTML('afterbegin', resultHtml);
+        document.getElementById('btn-submit-quiz').textContent = passed ? 'Tiếp tục ✓' : 'Thử lại';
+        document.getElementById('btn-submit-quiz').onclick = passed ? closeQuizModal : () => { closeQuizModal(); };
+        if (passed && quiz.achievement) showAchievement(quiz.achievement);
+    }
+
+    function closeQuizModal() { document.getElementById('quiz-modal').classList.add('hidden'); }
+
+    // =============================================
+    // ACHIEVEMENTS
+    // =============================================
+    const M3_ACHIEVEMENTS = {
+        'quantity-tracker':   { name: 'Quantity Tracker',   icon: '🥉', desc: 'Hoàn thành kiểm tra hình thành đầu tiên Module 3 — +5 XP' },
+        'leap-master':        { name: 'Leap Master',         icon: '🥈', desc: 'Đạt ≥75% bài kiểm tra Module 3 — +10 XP' },
+        'dialectic-thinker':  { name: 'Dialectic Thinker',   icon: '🥇', desc: 'Hoàn thành cả Module 1, 2 và 3 — Huy hiệu vàng Biện chứng!' }
+    };
+
+    function showAchievement(slug) {
+        const ach = M3_ACHIEVEMENTS[slug];
+        if (!ach) return;
+        try {
+            const saved = JSON.parse(localStorage.getItem('philo_achievements') || '[]');
+            if (!saved.find(a => a.id === slug)) {
+                saved.push({ id: slug, slug, earnedAt: Date.now(), module: 'M3', xp: slug === 'leap-master' ? 10 : 5 });
+                localStorage.setItem('philo_achievements', JSON.stringify(saved));
+            }
+        } catch(e) {}
+        document.getElementById('achievement-icon').textContent = ach.icon;
+        document.getElementById('achievement-name').textContent = ach.name;
+        document.getElementById('achievement-desc').textContent = ach.desc;
+        const toast = document.getElementById('achievement-toast');
+        toast.classList.remove('hidden');
+        setTimeout(() => toast.classList.add('hidden'), 4500);
+    }
+
+    // =============================================
+    // AI PANEL
+    // =============================================
+    let aiPanelOpen = false;
+    function toggleAIPanel() {
+        aiPanelOpen = !aiPanelOpen;
+        document.getElementById('ai-panel').classList[aiPanelOpen ? 'remove' : 'add']('hidden-panel');
+    }
+
+    const AI_M3_RESPONSES = {
+        'chất': { answer: '"Chất là khái niệm dùng để chỉ tính quy định khách quan vốn có của sự vật, hiện tượng; là sự thống nhất hữu cơ của các thuộc tính làm cho sự vật là nó mà không phải là sự vật khác." (dòng 735). Đặc điểm: tính ổn định tương đối. Ví dụ kinh điển: Kim cương và than chì — cùng carbon nhưng phương thức liên kết khác → chất khác hoàn toàn. (dòng 737)', sourceRef: 'Triet.txt, dòng 735–738' },
+        'lượng': { answer: '"Lượng là khái niệm dùng để chỉ tính quy định vốn có của sự vật về mặt quy mô, trình độ phát triển, các yếu tố biểu hiện ở số lượng thuộc tính, tổng số bộ phận, tốc độ vận động..." (dòng 739). Có hai dạng: đo/đếm được (nhiệt độ, số người) và chỉ nhận biết bằng trừu tượng hóa (mức độ trưởng thành, "độ chín" thời cơ). Ranh giới chất-lượng chỉ tương đối!', sourceRef: 'Triet.txt, dòng 739' },
+        'độ': { answer: '"Độ là khái niệm dùng để chỉ giới hạn tồn tại của sự vật mà trong đó sự thay đổi về lượng chưa dẫn đến sự thay đổi về chất; sự vật vẫn là nó, chưa chuyển hóa thành sự vật khác." (dòng 741). Độ được giới hạn bởi hai điểm nút. Ví dụ: nước từ 0°C đến 99°C vẫn trong "độ" của nước lỏng.', sourceRef: 'Triet.txt, dòng 741' },
+        'điểm nút': { answer: '"Điểm giới hạn mà tại đó sự thay đổi về lượng đạt tới chỗ phá vỡ độ cũ, làm cho chất của sự vật thay đổi, chuyển thành chất mới — thời điểm mà tại đó bắt đầu xảy ra bước nhảy, gọi là điểm nút." (dòng 741). Ví dụ: 100°C là điểm nút của nước → bắt đầu bước nhảy (bốc hơi). Sau điểm nút = chất mới với độ mới.', sourceRef: 'Triet.txt, dòng 741' },
+        'bước nhảy': { answer: '"Bước nhảy là khái niệm dùng để chỉ giai đoạn chuyển hóa cơ bản về chất của sự vật do những thay đổi về lượng trước đó gây ra." (dòng 741). Có 4 loại: theo quy mô: toàn bộ (mọi mặt thay đổi) / cục bộ (một số mặt); theo thời gian: tức thời / dần dần. (dòng 744–745). Ví dụ toàn bộ+tức thời: Cách mạng 1945. Ví dụ toàn bộ+dần dần: Đổi mới 1986.', sourceRef: 'Triet.txt, dòng 741–745' },
+        'phương pháp luận': { answer: '4 nguyên tắc từ quy luật Lượng-Chất (dòng 748–751): (1) Phải tích lũy lượng để có biến đổi chất — không nôn nóng, không bảo thủ. (2) Khi lượng đến điểm nút — phải dám thực hiện bước nhảy. (3) Khách quan+quyết tâm: xác định quy mô bước nhảy khách quan nhưng cần nghị lực thực hiện. (4) Chú ý phương thức liên kết — đôi khi thay đổi cách tổ chức là đủ để thay đổi chất.', sourceRef: 'Triet.txt, dòng 747–751' },
+        'quy luật': { answer: '"Quy luật là mối liên hệ phổ biến, khách quan, bản chất, bền vững, tất yếu giữa các đối tượng và nhất định tác động khi có các điều kiện phù hợp." (dòng 728). Ba quy luật biện chứng phổ biến: Lượng-Chất (cách thức), Mâu thuẫn (nguồn gốc/động lực), Phủ định (khuynh hướng). Quy luật khách quan khác với quy luật khoa học — chỉ gần đúng.', sourceRef: 'Triet.txt, dòng 727–731' }
+    };
+
+    function getAIResponse(query) {
+        const q = query.toLowerCase();
+        for (const [key, resp] of Object.entries(AI_M3_RESPONSES)) {
+            if (q.includes(key) || q.split(' ').some(w => key.includes(w) && w.length > 3)) return resp;
+        }
+        if (q.includes('ý thức') || q.includes('vật chất') || q.includes('module 1') || q.includes('module 2')) {
+            return { answer: 'Câu hỏi này thuộc Module 1 hoặc Module 2. Tôi là AI Module 3 — chuyên về Quy luật Lượng-Chất. Hãy hỏi về: chất, lượng, độ, điểm nút, bước nhảy, phương pháp luận, hoặc quy luật biện chứng.', sourceRef: 'Module 3 — Triet.txt, dòng 727–751' };
+        }
+        return { answer: 'Module 3 tập trung vào Quy luật Lượng-Chất. Tôi có thể trả lời các câu hỏi về: (1) Chất là gì? (2) Lượng là gì? (3) Độ, Điểm nút? (4) Bước nhảy (4 loại)? (5) Phương pháp luận (4 nguyên tắc)? (6) Quy luật là gì? Hãy hỏi cụ thể hơn!', sourceRef: 'Triet.txt, dòng 727–751' };
+    }
+
+    function sendAIPrompt(prompt) { document.getElementById('ai-input').value = prompt; sendAIMessage(); }
+
+    function sendAIMessage() {
+        const input = document.getElementById('ai-input');
+        const query = input.value.trim();
+        if (!query) return;
+        input.value = '';
+        const history = document.getElementById('ai-chat-history');
+        history.insertAdjacentHTML('beforeend', `<div class="flex justify-end"><div class="bg-amber-600 text-white rounded-xl rounded-tr-sm p-3 max-w-[85%]"><p class="text-sm">${query}</p></div></div>`);
+        const loadingId = 'ai-load-' + Date.now();
+        history.insertAdjacentHTML('beforeend', `<div id="${loadingId}" class="bg-amber-50 dark:bg-amber-900/20 rounded-xl p-3"><p class="text-xs text-text-muted-light">⏳ Đang tra cứu Triet.txt dòng 727–751...</p></div>`);
+        history.scrollTop = history.scrollHeight;
+        setTimeout(() => {
+            const resp = getAIResponse(query);
+            const loadEl = document.getElementById(loadingId);
+            if (loadEl) loadEl.outerHTML = `<div class="bg-amber-50 dark:bg-amber-900/20 rounded-xl p-3">
+                <p class="text-xs font-bold text-amber-700 mb-1">🤖 AI Triết học — Module 3</p>
+                <p class="text-sm text-text-main-light dark:text-text-main-dark mb-2">${resp.answer}</p>
+                <p class="text-xs text-gray-400 border-t border-amber-100 dark:border-amber-800 pt-1 mt-1">📖 <em>${resp.sourceRef}</em></p>
+            </div>`;
+            history.scrollTop = history.scrollHeight;
+            try {
+                const aiHist = JSON.parse(localStorage.getItem('philoMapAiHistory') || '[]');
+                aiHist.push({ question: query, answer: resp.answer, sourceRef: resp.sourceRef, module: 'M3', timestamp: Date.now() });
+                if (aiHist.length > 50) aiHist.shift();
+                localStorage.setItem('philoMapAiHistory', JSON.stringify(aiHist));
+            } catch(e) {}
+        }, 700);
+    }
+    </script>
+</body>
+</html>
