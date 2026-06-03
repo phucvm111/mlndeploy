@@ -42,15 +42,13 @@ Câu hỏi của sinh viên: "${question}"
     let pdfData = cachedPdfData;
 
     if (!pdfData) {
-      if (process.env.PDF_URL) {
-        // Chạy trên Netlify: tải PDF từ URL được cấu hình trong env var
-        const pdfResponse = await fetch(process.env.PDF_URL);
-        if (!pdfResponse.ok) {
-          throw new Error("Không thể tải PDF từ PDF_URL.");
-        }
-        const buffer = Buffer.from(await pdfResponse.arrayBuffer());
-        pdfData = buffer.toString("base64");
-      } else {
+      // URL mặc định của giáo trình trên Google Drive
+      const DEFAULT_PDF_URL =
+        "https://drive.google.com/uc?export=download&confirm=t&id=13FQwIAIQqBWWcJzMBtopdpUKpAEaKOHW";
+
+      const isLocal = !process.env.NETLIFY && !process.env.PDF_URL;
+
+      if (isLocal) {
         // Chạy local: đọc file trực tiếp
         const pdfPath = path.join(
           __dirname,
@@ -58,6 +56,17 @@ Câu hỏi của sinh viên: "${question}"
         );
         const fileBuffer = fs.readFileSync(pdfPath);
         pdfData = fileBuffer.toString("base64");
+      } else {
+        // Chạy trên Netlify: tải PDF từ URL (env var hoặc mặc định)
+        const pdfUrl = process.env.PDF_URL || DEFAULT_PDF_URL;
+        const pdfResponse = await fetch(pdfUrl);
+        if (!pdfResponse.ok) {
+          throw new Error(
+            `Không thể tải PDF (HTTP ${pdfResponse.status}). Kiểm tra lại PDF_URL.`,
+          );
+        }
+        const buffer = Buffer.from(await pdfResponse.arrayBuffer());
+        pdfData = buffer.toString("base64");
       }
       cachedPdfData = pdfData;
     }
