@@ -46,15 +46,14 @@ Câu hỏi của sinh viên: "${question}"
       const DEFAULT_PDF_URL =
         "https://drive.google.com/uc?export=download&confirm=t&id=13FQwIAIQqBWWcJzMBtopdpUKpAEaKOHW";
 
-      const isLocal = !process.env.NETLIFY && !process.env.PDF_URL;
+      const localPdfPath = path.join(
+        __dirname,
+        "../../assets/docs/1. Giao trinh Triet hoc Mac - Lenin 2021.doc.pdf",
+      );
 
-      if (isLocal) {
+      if (fs.existsSync(localPdfPath)) {
         // Chạy local: đọc file trực tiếp
-        const pdfPath = path.join(
-          __dirname,
-          "../../assets/docs/1. Giao trinh Triet hoc Mac - Lenin 2021.doc.pdf",
-        );
-        const fileBuffer = fs.readFileSync(pdfPath);
+        const fileBuffer = fs.readFileSync(localPdfPath);
         pdfData = fileBuffer.toString("base64");
       } else {
         // Chạy trên Netlify: tải PDF từ URL (env var hoặc mặc định)
