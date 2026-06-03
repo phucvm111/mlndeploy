@@ -1,8 +1,5 @@
-// Backend API endpoint (change this if deploying to production)
-const API_ENDPOINT =
-  window.location.port && window.location.port !== "3000"
-    ? `http://${window.location.hostname}:3000/api/ask-gemini`
-    : window.location.origin + "/api/ask-gemini";
+// Backend API endpoint - ĐÃ SỬA CHO NETLIFY
+const API_ENDPOINT = "/.netlify/functions/ask-gemini";
 
 const chatBox = document.getElementById("chat-box");
 const chatInput = document.getElementById("chat-input");
@@ -84,9 +81,7 @@ function setStatus(text) {
 function appendMessage(content, type = "ai", isHtml = false) {
   const wrapper = document.createElement("div");
   wrapper.className =
-    type === "user"
-      ? "flex justify-end"
-      : "flex justify-start";
+    type === "user" ? "flex justify-end" : "flex justify-start";
 
   const bubble = document.createElement("div");
   bubble.className =
@@ -123,40 +118,39 @@ function formatAnswer(text) {
 }
 
 async function askPhilosophyGemini(userQuestion) {
-  if (location.protocol === "file:") {
-    throw new Error(
-      "Trang đang mở bằng file://. Hãy chạy bằng Live Server hoặc một web server.",
-    );
-  }
-
   setStatus("Đang gửi câu hỏi...");
 
-  const response = await fetch(API_ENDPOINT, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      question: userQuestion,
-    }),
-  });
+  try {
+    const response = await fetch(API_ENDPOINT, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        question: userQuestion,
+      }),
+    });
 
-  if (!response.ok) {
-    const errorData = await response.json().catch(() => ({}));
-    if (response.status === 429) {
-      const retryAfter = errorData.retryAfter;
-      const waitText = retryAfter
-        ? ` Vui lòng thử lại sau ${retryAfter}s.`
-        : " Vui lòng thử lại sau ít phút.";
-      throw new Error(
-        `Bạn đã vượt giới hạn miễn phí.${waitText} Nếu cần, hãy nâng quota hoặc đợi sang ngày mới.`,
-      );
+    if (!response.ok) {
+      const errorData = await response.json().catch(() => ({}));
+      if (response.status === 429) {
+        const retryAfter = errorData.retryAfter;
+        const waitText = retryAfter
+          ? ` Vui lòng thử lại sau ${retryAfter}s.`
+          : " Vui lòng thử lại sau ít phút.";
+        throw new Error(
+          `Bạn đã vượt giới hạn miễn phí.${waitText} Nếu cần, hãy nâng quota hoặc đợi sang ngày mới.`,
+        );
+      }
+      throw new Error(errorData.error || "Không thể kết nối với server");
     }
-    throw new Error(errorData.error || "Không thể kết nối với server");
-  }
 
-  const data = await response.json();
-  return data.answer;
+    const data = await response.json();
+    return data.answer;
+  } catch (error) {
+    console.error("Fetch error:", error);
+    throw new Error("Không thể kết nối với server. Vui lòng thử lại sau.");
+  }
 }
 
 async function handleSend() {
@@ -205,17 +199,8 @@ async function handleSend() {
       return;
     }
     console.error("Lỗi gọi Gemini:", error);
-    const fallbackMessage =
-      "Xin lỗi, hệ thống đang quá tải hoặc không đọc được tài liệu. Vui lòng thử lại sau.";
-    const errorMessage =
-      error && error.message ? `Lỗi: ${error.message}` : fallbackMessage;
-    const networkHint =
-      error &&
-      error.message &&
-      error.message.toLowerCase().includes("failed to fetch")
-        ? " (Kiểm tra backend đang chạy ở http://localhost:3000)"
-        : "";
-    loadingBubble.textContent = errorMessage + networkHint;
+    loadingBubble.textContent =
+      error.message || "Xin lỗi, đã có lỗi xảy ra. Vui lòng thử lại sau.";
   } finally {
     if (requestId !== activeRequestId) {
       return;
@@ -232,7 +217,11 @@ async function handleSend() {
   }
 }
 
-sendBtn.addEventListener("click", handleSend);
+// Event listeners
+if (sendBtn) {
+  sendBtn.addEventListener("click", handleSend);
+}
+
 if (stopBtn) {
   stopBtn.addEventListener("click", () => {
     if (!isBusy) return;
@@ -250,12 +239,15 @@ if (stopBtn) {
     stopBtn.classList.add("opacity-50", "cursor-not-allowed");
   });
 }
-chatInput.addEventListener("keydown", (event) => {
-  if (event.key === "Enter" && !event.shiftKey) {
-    event.preventDefault();
-    handleSend();
-  }
-});
+
+if (chatInput) {
+  chatInput.addEventListener("keydown", (event) => {
+    if (event.key === "Enter" && !event.shiftKey) {
+      event.preventDefault();
+      handleSend();
+    }
+  });
+}
 
 suggestionButtons.forEach((button) => {
   button.addEventListener("click", () => {
@@ -264,6 +256,7 @@ suggestionButtons.forEach((button) => {
   });
 });
 
+// Welcome message
 appendMessage(
   "Xin chào! Hãy đặt câu hỏi về Triết học Mác - Lênin. Tôi sẽ trả lời dựa trên giáo trình đã cung cấp.",
   "ai",

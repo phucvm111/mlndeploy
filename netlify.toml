@@ -1,0 +1,18 @@
+[build]
+  command = "npm install"
+  functions = "netlify/functions"
+  publish = "."
+
+[functions]
+  node_bundler = "esbuild"
+  
+[[redirects]]
+  from = "/api/ask-gemini"
+  to = "/.netlify/functions/ask-gemini"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/*"
+  to = "/home.html"
+  status = 200
