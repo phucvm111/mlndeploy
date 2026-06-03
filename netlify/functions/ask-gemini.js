@@ -25,7 +25,7 @@ exports.handler = async (event) => {
 
     // Khởi tạo Gemini với API Key từ environment variable
     const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-    const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
+    const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash-lite" });
 
     const prompt = `
 Vai trò: Bạn là một giảng viên Triết học Mác - Lênin nhiệt tình.
